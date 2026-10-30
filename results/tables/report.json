@@ -1,0 +1,2210 @@
+{
+ "sim": {
+  "detection": {
+   "cnn": {
+    "seed": 0.0,
+    "precision": 0.7976043350128339,
+    "recall": 0.19223058505458754,
+    "f1": 0.30979700726490594,
+    "event_recall": 0.8928571428571429,
+    "delay_median_s": 18.0,
+    "fa_per_hour": 0.9271250950278459
+   }
+  },
+  "test_hr1_alarm+0": {
+   "n": 6,
+   "friedman_chi2": 36.01886792452853,
+   "friedman_p": 0.04107076061951395,
+   "pairs": [
+    {
+     "method": "CLX|single",
+     "ref_mean": 0.8333333333333334,
+     "other_mean": 0.5,
+     "effect_rb": 1.0,
+     "p": 0.5,
+     "p_holm": 1.0
+    },
+    {
+     "method": "CLX|tea",
+     "ref_mean": 0.8333333333333334,
+     "other_mean": 0.5,
+     "effect_rb": 1.0,
+     "p": 0.5,
+     "p_holm": 1.0
+    },
+    {
+     "method": "Fung-ens|single",
+     "ref_mean": 0.8333333333333334,
+     "other_mean": 0.8333333333333334,
+     "effect_rb": 0.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "Fung-ens|tea",
+     "ref_mean": 0.8333333333333334,
+     "other_mean": 0.8333333333333334,
+     "effect_rb": 0.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "IG|single",
+     "ref_mean": 0.8333333333333334,
+     "other_mean": 0.8333333333333334,
+     "effect_rb": 0.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "IG|tea",
+     "ref_mean": 0.8333333333333334,
+     "other_mean": 0.8333333333333334,
+     "effect_rb": 0.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "KS-2048|single",
+     "ref_mean": 0.8333333333333334,
+     "other_mean": 0.8333333333333334,
+     "effect_rb": 0.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "KS-2048|tea",
+     "ref_mean": 0.8333333333333334,
+     "other_mean": 0.8333333333333334,
+     "effect_rb": 0.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "KS-eq|single",
+     "ref_mean": 0.8333333333333334,
+     "other_mean": 0.8333333333333334,
+     "effect_rb": 0.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "KS-eq|tea",
+     "ref_mean": 0.8333333333333334,
+     "other_mean": 0.8333333333333334,
+     "effect_rb": 0.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "LIME-2048|single",
+     "ref_mean": 0.8333333333333334,
+     "other_mean": 0.8333333333333334,
+     "effect_rb": 0.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "LIME-2048|tea",
+     "ref_mean": 0.8333333333333334,
+     "other_mean": 0.8333333333333334,
+     "effect_rb": 0.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "LIME-eq|single",
+     "ref_mean": 0.8333333333333334,
+     "other_mean": 0.8333333333333334,
+     "effect_rb": 0.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "LIME-eq|tea",
+     "ref_mean": 0.8333333333333334,
+     "other_mean": 0.8333333333333334,
+     "effect_rb": 0.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "LX|single",
+     "ref_mean": 0.8333333333333334,
+     "other_mean": 0.8333333333333334,
+     "effect_rb": 0.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "LX-bg|single",
+     "ref_mean": 0.8333333333333334,
+     "other_mean": 0.8333333333333334,
+     "effect_rb": 0.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "LX-bg|tea",
+     "ref_mean": 0.8333333333333334,
+     "other_mean": 0.8333333333333334,
+     "effect_rb": 0.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "RE|single",
+     "ref_mean": 0.8333333333333334,
+     "other_mean": 0.8333333333333334,
+     "effect_rb": 0.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "RE|tea",
+     "ref_mean": 0.8333333333333334,
+     "other_mean": 0.8333333333333334,
+     "effect_rb": 0.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "RPX|single",
+     "ref_mean": 0.8333333333333334,
+     "other_mean": 0.6666666666666666,
+     "effect_rb": 1.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "RPX|tea",
+     "ref_mean": 0.8333333333333334,
+     "other_mean": 0.6666666666666666,
+     "effect_rb": 1.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "SM|single",
+     "ref_mean": 0.8333333333333334,
+     "other_mean": 0.5,
+     "effect_rb": 1.0,
+     "p": 0.5,
+     "p_holm": 1.0
+    },
+    {
+     "method": "SM|tea",
+     "ref_mean": 0.8333333333333334,
+     "other_mean": 0.5,
+     "effect_rb": 1.0,
+     "p": 0.5,
+     "p_holm": 1.0
+    }
+   ]
+  },
+  "test_hr1_alarm+60": {
+   "n": 6,
+   "friedman_chi2": 47.943661971831006,
+   "friedman_p": 0.0017010548034505242,
+   "pairs": [
+    {
+     "method": "CLX|single",
+     "ref_mean": 0.8333333333333334,
+     "other_mean": 0.5,
+     "effect_rb": 1.0,
+     "p": 0.5,
+     "p_holm": 1.0
+    },
+    {
+     "method": "CLX|tea",
+     "ref_mean": 0.8333333333333334,
+     "other_mean": 0.6666666666666666,
+     "effect_rb": 1.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "Fung-ens|single",
+     "ref_mean": 0.8333333333333334,
+     "other_mean": 0.16666666666666666,
+     "effect_rb": 1.0,
+     "p": 0.125,
+     "p_holm": 1.0
+    },
+    {
+     "method": "Fung-ens|tea",
+     "ref_mean": 0.8333333333333334,
+     "other_mean": 0.8333333333333334,
+     "effect_rb": 0.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "IG|single",
+     "ref_mean": 0.8333333333333334,
+     "other_mean": 0.5,
+     "effect_rb": 1.0,
+     "p": 0.5,
+     "p_holm": 1.0
+    },
+    {
+     "method": "IG|tea",
+     "ref_mean": 0.8333333333333334,
+     "other_mean": 0.8333333333333334,
+     "effect_rb": 0.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "KS-2048|single",
+     "ref_mean": 0.8333333333333334,
+     "other_mean": 0.6666666666666666,
+     "effect_rb": 1.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "KS-2048|tea",
+     "ref_mean": 0.8333333333333334,
+     "other_mean": 0.8333333333333334,
+     "effect_rb": 0.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "KS-eq|single",
+     "ref_mean": 0.8333333333333334,
+     "other_mean": 0.6666666666666666,
+     "effect_rb": 1.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "KS-eq|tea",
+     "ref_mean": 0.8333333333333334,
+     "other_mean": 0.8333333333333334,
+     "effect_rb": 0.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "LIME-2048|single",
+     "ref_mean": 0.8333333333333334,
+     "other_mean": 0.6666666666666666,
+     "effect_rb": 1.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "LIME-2048|tea",
+     "ref_mean": 0.8333333333333334,
+     "other_mean": 0.8333333333333334,
+     "effect_rb": 0.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "LIME-eq|single",
+     "ref_mean": 0.8333333333333334,
+     "other_mean": 0.5,
+     "effect_rb": 1.0,
+     "p": 0.5,
+     "p_holm": 1.0
+    },
+    {
+     "method": "LIME-eq|tea",
+     "ref_mean": 0.8333333333333334,
+     "other_mean": 0.8333333333333334,
+     "effect_rb": 0.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "LX|single",
+     "ref_mean": 0.8333333333333334,
+     "other_mean": 0.3333333333333333,
+     "effect_rb": 1.0,
+     "p": 0.25,
+     "p_holm": 1.0
+    },
+    {
+     "method": "LX-bg|single",
+     "ref_mean": 0.8333333333333334,
+     "other_mean": 0.6666666666666666,
+     "effect_rb": 0.3333333333333333,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "LX-bg|tea",
+     "ref_mean": 0.8333333333333334,
+     "other_mean": 0.8333333333333334,
+     "effect_rb": 0.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "RE|single",
+     "ref_mean": 0.8333333333333334,
+     "other_mean": 0.16666666666666666,
+     "effect_rb": 1.0,
+     "p": 0.125,
+     "p_holm": 1.0
+    },
+    {
+     "method": "RE|tea",
+     "ref_mean": 0.8333333333333334,
+     "other_mean": 0.8333333333333334,
+     "effect_rb": 0.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "RPX|single",
+     "ref_mean": 0.8333333333333334,
+     "other_mean": 0.16666666666666666,
+     "effect_rb": 1.0,
+     "p": 0.125,
+     "p_holm": 1.0
+    },
+    {
+     "method": "RPX|tea",
+     "ref_mean": 0.8333333333333334,
+     "other_mean": 0.6666666666666666,
+     "effect_rb": 1.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "SM|single",
+     "ref_mean": 0.8333333333333334,
+     "other_mean": 0.16666666666666666,
+     "effect_rb": 1.0,
+     "p": 0.125,
+     "p_holm": 1.0
+    },
+    {
+     "method": "SM|tea",
+     "ref_mean": 0.8333333333333334,
+     "other_mean": 0.6666666666666666,
+     "effect_rb": 1.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    }
+   ]
+  },
+  "test_hr1_bestguess": {
+   "n": 6,
+   "friedman_chi2": 31.2093023255814,
+   "friedman_p": 0.0010203020811493154,
+   "pairs": [
+    {
+     "method": "CLX|single",
+     "ref_mean": 1.0,
+     "other_mean": 0.6666666666666666,
+     "effect_rb": 1.0,
+     "p": 0.5,
+     "p_holm": 1.0
+    },
+    {
+     "method": "Fung-ens|single",
+     "ref_mean": 1.0,
+     "other_mean": 0.16666666666666666,
+     "effect_rb": 1.0,
+     "p": 0.0625,
+     "p_holm": 0.6875
+    },
+    {
+     "method": "IG|single",
+     "ref_mean": 1.0,
+     "other_mean": 0.8333333333333334,
+     "effect_rb": 1.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "KS-2048|single",
+     "ref_mean": 1.0,
+     "other_mean": 0.8333333333333334,
+     "effect_rb": 1.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "KS-eq|single",
+     "ref_mean": 1.0,
+     "other_mean": 1.0,
+     "effect_rb": 0.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "LIME-2048|single",
+     "ref_mean": 1.0,
+     "other_mean": 0.8333333333333334,
+     "effect_rb": 1.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "LIME-eq|single",
+     "ref_mean": 1.0,
+     "other_mean": 0.3333333333333333,
+     "effect_rb": 1.0,
+     "p": 0.125,
+     "p_holm": 1.0
+    },
+    {
+     "method": "LX-bg|single",
+     "ref_mean": 1.0,
+     "other_mean": 0.6666666666666666,
+     "effect_rb": 1.0,
+     "p": 0.5,
+     "p_holm": 1.0
+    },
+    {
+     "method": "RE|single",
+     "ref_mean": 1.0,
+     "other_mean": 0.16666666666666666,
+     "effect_rb": 1.0,
+     "p": 0.0625,
+     "p_holm": 0.6875
+    },
+    {
+     "method": "RPX|single",
+     "ref_mean": 1.0,
+     "other_mean": 0.6666666666666666,
+     "effect_rb": 1.0,
+     "p": 0.5,
+     "p_holm": 1.0
+    },
+    {
+     "method": "SM|single",
+     "ref_mean": 1.0,
+     "other_mean": 0.16666666666666666,
+     "effect_rb": 1.0,
+     "p": 0.0625,
+     "p_holm": 0.6875
+    }
+   ]
+  },
+  "test_hr3_alarm+0": {
+   "n": 6,
+   "friedman_chi2": 30.26315789473713,
+   "friedman_p": 0.14199536238919575,
+   "pairs": [
+    {
+     "method": "CLX|single",
+     "ref_mean": 1.0,
+     "other_mean": 0.6666666666666666,
+     "effect_rb": 1.0,
+     "p": 0.5,
+     "p_holm": 1.0
+    },
+    {
+     "method": "CLX|tea",
+     "ref_mean": 1.0,
+     "other_mean": 0.6666666666666666,
+     "effect_rb": 1.0,
+     "p": 0.5,
+     "p_holm": 1.0
+    },
+    {
+     "method": "Fung-ens|single",
+     "ref_mean": 1.0,
+     "other_mean": 0.8333333333333334,
+     "effect_rb": 1.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "Fung-ens|tea",
+     "ref_mean": 1.0,
+     "other_mean": 0.8333333333333334,
+     "effect_rb": 1.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "IG|single",
+     "ref_mean": 1.0,
+     "other_mean": 1.0,
+     "effect_rb": 0.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "IG|tea",
+     "ref_mean": 1.0,
+     "other_mean": 1.0,
+     "effect_rb": 0.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "KS-2048|single",
+     "ref_mean": 1.0,
+     "other_mean": 1.0,
+     "effect_rb": 0.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "KS-2048|tea",
+     "ref_mean": 1.0,
+     "other_mean": 1.0,
+     "effect_rb": 0.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "KS-eq|single",
+     "ref_mean": 1.0,
+     "other_mean": 0.8333333333333334,
+     "effect_rb": 1.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "KS-eq|tea",
+     "ref_mean": 1.0,
+     "other_mean": 0.8333333333333334,
+     "effect_rb": 1.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "LIME-2048|single",
+     "ref_mean": 1.0,
+     "other_mean": 1.0,
+     "effect_rb": 0.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "LIME-2048|tea",
+     "ref_mean": 1.0,
+     "other_mean": 1.0,
+     "effect_rb": 0.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "LIME-eq|single",
+     "ref_mean": 1.0,
+     "other_mean": 0.8333333333333334,
+     "effect_rb": 1.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "LIME-eq|tea",
+     "ref_mean": 1.0,
+     "other_mean": 0.8333333333333334,
+     "effect_rb": 1.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "LX|single",
+     "ref_mean": 1.0,
+     "other_mean": 1.0,
+     "effect_rb": 0.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "LX-bg|single",
+     "ref_mean": 1.0,
+     "other_mean": 1.0,
+     "effect_rb": 0.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "LX-bg|tea",
+     "ref_mean": 1.0,
+     "other_mean": 1.0,
+     "effect_rb": 0.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "RE|single",
+     "ref_mean": 1.0,
+     "other_mean": 0.8333333333333334,
+     "effect_rb": 1.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "RE|tea",
+     "ref_mean": 1.0,
+     "other_mean": 0.8333333333333334,
+     "effect_rb": 1.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "RPX|single",
+     "ref_mean": 1.0,
+     "other_mean": 0.8333333333333334,
+     "effect_rb": 1.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "RPX|tea",
+     "ref_mean": 1.0,
+     "other_mean": 0.8333333333333334,
+     "effect_rb": 1.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "SM|single",
+     "ref_mean": 1.0,
+     "other_mean": 0.6666666666666666,
+     "effect_rb": 1.0,
+     "p": 0.5,
+     "p_holm": 1.0
+    },
+    {
+     "method": "SM|tea",
+     "ref_mean": 1.0,
+     "other_mean": 0.6666666666666666,
+     "effect_rb": 1.0,
+     "p": 0.5,
+     "p_holm": 1.0
+    }
+   ]
+  },
+  "test_hr3_alarm+60": {
+   "n": 6,
+   "friedman_chi2": 42.050505050505095,
+   "friedman_p": 0.008956237252574443,
+   "pairs": [
+    {
+     "method": "CLX|single",
+     "ref_mean": 1.0,
+     "other_mean": 0.5,
+     "effect_rb": 1.0,
+     "p": 0.25,
+     "p_holm": 1.0
+    },
+    {
+     "method": "CLX|tea",
+     "ref_mean": 1.0,
+     "other_mean": 0.8333333333333334,
+     "effect_rb": 1.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "Fung-ens|single",
+     "ref_mean": 1.0,
+     "other_mean": 0.6666666666666666,
+     "effect_rb": 1.0,
+     "p": 0.5,
+     "p_holm": 1.0
+    },
+    {
+     "method": "Fung-ens|tea",
+     "ref_mean": 1.0,
+     "other_mean": 0.8333333333333334,
+     "effect_rb": 1.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "IG|single",
+     "ref_mean": 1.0,
+     "other_mean": 0.8333333333333334,
+     "effect_rb": 1.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "IG|tea",
+     "ref_mean": 1.0,
+     "other_mean": 0.8333333333333334,
+     "effect_rb": 1.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "KS-2048|single",
+     "ref_mean": 1.0,
+     "other_mean": 0.8333333333333334,
+     "effect_rb": 1.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "KS-2048|tea",
+     "ref_mean": 1.0,
+     "other_mean": 0.8333333333333334,
+     "effect_rb": 1.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "KS-eq|single",
+     "ref_mean": 1.0,
+     "other_mean": 1.0,
+     "effect_rb": 0.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "KS-eq|tea",
+     "ref_mean": 1.0,
+     "other_mean": 0.8333333333333334,
+     "effect_rb": 1.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "LIME-2048|single",
+     "ref_mean": 1.0,
+     "other_mean": 0.8333333333333334,
+     "effect_rb": 1.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "LIME-2048|tea",
+     "ref_mean": 1.0,
+     "other_mean": 0.8333333333333334,
+     "effect_rb": 1.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "LIME-eq|single",
+     "ref_mean": 1.0,
+     "other_mean": 0.5,
+     "effect_rb": 1.0,
+     "p": 0.25,
+     "p_holm": 1.0
+    },
+    {
+     "method": "LIME-eq|tea",
+     "ref_mean": 1.0,
+     "other_mean": 0.8333333333333334,
+     "effect_rb": 1.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "LX|single",
+     "ref_mean": 1.0,
+     "other_mean": 0.5,
+     "effect_rb": 1.0,
+     "p": 0.25,
+     "p_holm": 1.0
+    },
+    {
+     "method": "LX-bg|single",
+     "ref_mean": 1.0,
+     "other_mean": 1.0,
+     "effect_rb": 0.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "LX-bg|tea",
+     "ref_mean": 1.0,
+     "other_mean": 1.0,
+     "effect_rb": 0.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "RE|single",
+     "ref_mean": 1.0,
+     "other_mean": 1.0,
+     "effect_rb": 0.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "RE|tea",
+     "ref_mean": 1.0,
+     "other_mean": 1.0,
+     "effect_rb": 0.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "RPX|single",
+     "ref_mean": 1.0,
+     "other_mean": 0.5,
+     "effect_rb": 1.0,
+     "p": 0.25,
+     "p_holm": 1.0
+    },
+    {
+     "method": "RPX|tea",
+     "ref_mean": 1.0,
+     "other_mean": 0.8333333333333334,
+     "effect_rb": 1.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "SM|single",
+     "ref_mean": 1.0,
+     "other_mean": 0.8333333333333334,
+     "effect_rb": 1.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "SM|tea",
+     "ref_mean": 1.0,
+     "other_mean": 0.8333333333333334,
+     "effect_rb": 1.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    }
+   ]
+  },
+  "test_hr3_bestguess": {
+   "n": 6,
+   "friedman_chi2": 13.244897959183698,
+   "friedman_p": 0.2776208678633089,
+   "pairs": [
+    {
+     "method": "CLX|single",
+     "ref_mean": 1.0,
+     "other_mean": 1.0,
+     "effect_rb": 0.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "Fung-ens|single",
+     "ref_mean": 1.0,
+     "other_mean": 0.8333333333333334,
+     "effect_rb": 1.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "IG|single",
+     "ref_mean": 1.0,
+     "other_mean": 1.0,
+     "effect_rb": 0.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "KS-2048|single",
+     "ref_mean": 1.0,
+     "other_mean": 1.0,
+     "effect_rb": 0.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "KS-eq|single",
+     "ref_mean": 1.0,
+     "other_mean": 1.0,
+     "effect_rb": 0.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "LIME-2048|single",
+     "ref_mean": 1.0,
+     "other_mean": 1.0,
+     "effect_rb": 0.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "LIME-eq|single",
+     "ref_mean": 1.0,
+     "other_mean": 0.8333333333333334,
+     "effect_rb": 1.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "LX-bg|single",
+     "ref_mean": 1.0,
+     "other_mean": 1.0,
+     "effect_rb": 0.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "RE|single",
+     "ref_mean": 1.0,
+     "other_mean": 0.8333333333333334,
+     "effect_rb": 1.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "RPX|single",
+     "ref_mean": 1.0,
+     "other_mean": 1.0,
+     "effect_rb": 0.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "SM|single",
+     "ref_mean": 1.0,
+     "other_mean": 0.6666666666666666,
+     "effect_rb": 1.0,
+     "p": 0.5,
+     "p_holm": 1.0
+    }
+   ]
+  },
+  "test_nrank_alarm+0": {
+   "n": 6,
+   "friedman_chi2": 42.67469879518073,
+   "friedman_p": 0.0075670818027612835,
+   "pairs": [
+    {
+     "method": "CLX|single",
+     "ref_mean": 0.06666666666666667,
+     "other_mean": 0.3333333333333333,
+     "effect_rb": 1.0,
+     "p": 0.25,
+     "p_holm": 1.0
+    },
+    {
+     "method": "CLX|tea",
+     "ref_mean": 0.06666666666666667,
+     "other_mean": 0.3333333333333333,
+     "effect_rb": 1.0,
+     "p": 0.25,
+     "p_holm": 1.0
+    },
+    {
+     "method": "Fung-ens|single",
+     "ref_mean": 0.06666666666666667,
+     "other_mean": 0.16666666666666666,
+     "effect_rb": 1.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "Fung-ens|tea",
+     "ref_mean": 0.06666666666666667,
+     "other_mean": 0.16666666666666666,
+     "effect_rb": 1.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "IG|single",
+     "ref_mean": 0.06666666666666667,
+     "other_mean": 0.06666666666666667,
+     "effect_rb": -0.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "IG|tea",
+     "ref_mean": 0.06666666666666667,
+     "other_mean": 0.06666666666666667,
+     "effect_rb": -0.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "KS-2048|single",
+     "ref_mean": 0.06666666666666667,
+     "other_mean": 0.06666666666666667,
+     "effect_rb": -0.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "KS-2048|tea",
+     "ref_mean": 0.06666666666666667,
+     "other_mean": 0.06666666666666667,
+     "effect_rb": -0.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "KS-eq|single",
+     "ref_mean": 0.06666666666666667,
+     "other_mean": 0.13333333333333333,
+     "effect_rb": 1.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "KS-eq|tea",
+     "ref_mean": 0.06666666666666667,
+     "other_mean": 0.13333333333333333,
+     "effect_rb": 1.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "LIME-2048|single",
+     "ref_mean": 0.06666666666666667,
+     "other_mean": 0.06666666666666667,
+     "effect_rb": -0.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "LIME-2048|tea",
+     "ref_mean": 0.06666666666666667,
+     "other_mean": 0.06666666666666667,
+     "effect_rb": -0.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "LIME-eq|single",
+     "ref_mean": 0.06666666666666667,
+     "other_mean": 0.13333333333333333,
+     "effect_rb": 1.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "LIME-eq|tea",
+     "ref_mean": 0.06666666666666667,
+     "other_mean": 0.13333333333333333,
+     "effect_rb": 1.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "LX|single",
+     "ref_mean": 0.06666666666666667,
+     "other_mean": 0.06666666666666667,
+     "effect_rb": -0.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "LX-bg|single",
+     "ref_mean": 0.06666666666666667,
+     "other_mean": 0.03333333333333333,
+     "effect_rb": -1.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "LX-bg|tea",
+     "ref_mean": 0.06666666666666667,
+     "other_mean": 0.03333333333333333,
+     "effect_rb": -1.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "RE|single",
+     "ref_mean": 0.06666666666666667,
+     "other_mean": 0.16666666666666666,
+     "effect_rb": 1.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "RE|tea",
+     "ref_mean": 0.06666666666666667,
+     "other_mean": 0.16666666666666666,
+     "effect_rb": 1.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "RPX|single",
+     "ref_mean": 0.06666666666666667,
+     "other_mean": 0.19999999999999998,
+     "effect_rb": 1.0,
+     "p": 0.5,
+     "p_holm": 1.0
+    },
+    {
+     "method": "RPX|tea",
+     "ref_mean": 0.06666666666666667,
+     "other_mean": 0.19999999999999998,
+     "effect_rb": 1.0,
+     "p": 0.5,
+     "p_holm": 1.0
+    },
+    {
+     "method": "SM|single",
+     "ref_mean": 0.06666666666666667,
+     "other_mean": 0.3666666666666667,
+     "effect_rb": 1.0,
+     "p": 0.25,
+     "p_holm": 1.0
+    },
+    {
+     "method": "SM|tea",
+     "ref_mean": 0.06666666666666667,
+     "other_mean": 0.3666666666666667,
+     "effect_rb": 1.0,
+     "p": 0.25,
+     "p_holm": 1.0
+    }
+   ]
+  },
+  "test_nrank_alarm+60": {
+   "n": 6,
+   "friedman_chi2": 52.91234347048304,
+   "friedman_p": 0.00037665220176837875,
+   "pairs": [
+    {
+     "method": "CLX|single",
+     "ref_mean": 0.06666666666666667,
+     "other_mean": 0.4666666666666666,
+     "effect_rb": 1.0,
+     "p": 0.25,
+     "p_holm": 1.0
+    },
+    {
+     "method": "CLX|tea",
+     "ref_mean": 0.06666666666666667,
+     "other_mean": 0.20000000000000004,
+     "effect_rb": 1.0,
+     "p": 0.5,
+     "p_holm": 1.0
+    },
+    {
+     "method": "Fung-ens|single",
+     "ref_mean": 0.06666666666666667,
+     "other_mean": 0.3666666666666667,
+     "effect_rb": 1.0,
+     "p": 0.0625,
+     "p_holm": 1.0
+    },
+    {
+     "method": "Fung-ens|tea",
+     "ref_mean": 0.06666666666666667,
+     "other_mean": 0.13333333333333333,
+     "effect_rb": 1.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "IG|single",
+     "ref_mean": 0.06666666666666667,
+     "other_mean": 0.2333333333333333,
+     "effect_rb": 1.0,
+     "p": 0.25,
+     "p_holm": 1.0
+    },
+    {
+     "method": "IG|tea",
+     "ref_mean": 0.06666666666666667,
+     "other_mean": 0.09999999999999999,
+     "effect_rb": 1.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "KS-2048|single",
+     "ref_mean": 0.06666666666666667,
+     "other_mean": 0.16666666666666666,
+     "effect_rb": 1.0,
+     "p": 0.5,
+     "p_holm": 1.0
+    },
+    {
+     "method": "KS-2048|tea",
+     "ref_mean": 0.06666666666666667,
+     "other_mean": 0.09999999999999999,
+     "effect_rb": 1.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "KS-eq|single",
+     "ref_mean": 0.06666666666666667,
+     "other_mean": 0.10000000000000002,
+     "effect_rb": 1.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "KS-eq|tea",
+     "ref_mean": 0.06666666666666667,
+     "other_mean": 0.09999999999999999,
+     "effect_rb": 1.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "LIME-2048|single",
+     "ref_mean": 0.06666666666666667,
+     "other_mean": 0.16666666666666666,
+     "effect_rb": 1.0,
+     "p": 0.5,
+     "p_holm": 1.0
+    },
+    {
+     "method": "LIME-2048|tea",
+     "ref_mean": 0.06666666666666667,
+     "other_mean": 0.09999999999999999,
+     "effect_rb": 1.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "LIME-eq|single",
+     "ref_mean": 0.06666666666666667,
+     "other_mean": 0.43333333333333335,
+     "effect_rb": 1.0,
+     "p": 0.25,
+     "p_holm": 1.0
+    },
+    {
+     "method": "LIME-eq|tea",
+     "ref_mean": 0.06666666666666667,
+     "other_mean": 0.13333333333333333,
+     "effect_rb": 1.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "LX|single",
+     "ref_mean": 0.06666666666666667,
+     "other_mean": 0.5333333333333333,
+     "effect_rb": 1.0,
+     "p": 0.125,
+     "p_holm": 1.0
+    },
+    {
+     "method": "LX-bg|single",
+     "ref_mean": 0.06666666666666667,
+     "other_mean": 0.06666666666666667,
+     "effect_rb": -0.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "LX-bg|tea",
+     "ref_mean": 0.06666666666666667,
+     "other_mean": 0.03333333333333333,
+     "effect_rb": -1.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "RE|single",
+     "ref_mean": 0.06666666666666667,
+     "other_mean": 0.3,
+     "effect_rb": 1.0,
+     "p": 0.125,
+     "p_holm": 1.0
+    },
+    {
+     "method": "RE|tea",
+     "ref_mean": 0.06666666666666667,
+     "other_mean": 0.06666666666666667,
+     "effect_rb": -0.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "RPX|single",
+     "ref_mean": 0.06666666666666667,
+     "other_mean": 0.39999999999999997,
+     "effect_rb": 1.0,
+     "p": 0.0625,
+     "p_holm": 1.0
+    },
+    {
+     "method": "RPX|tea",
+     "ref_mean": 0.06666666666666667,
+     "other_mean": 0.13333333333333333,
+     "effect_rb": 1.0,
+     "p": 0.5,
+     "p_holm": 1.0
+    },
+    {
+     "method": "SM|single",
+     "ref_mean": 0.06666666666666667,
+     "other_mean": 0.26666666666666666,
+     "effect_rb": 1.0,
+     "p": 0.0625,
+     "p_holm": 1.0
+    },
+    {
+     "method": "SM|tea",
+     "ref_mean": 0.06666666666666667,
+     "other_mean": 0.16666666666666666,
+     "effect_rb": 1.0,
+     "p": 0.5,
+     "p_holm": 1.0
+    }
+   ]
+  },
+  "test_nrank_bestguess": {
+   "n": 6,
+   "friedman_chi2": 32.942807625649884,
+   "friedman_p": 0.0005375073741276403,
+   "pairs": [
+    {
+     "method": "CLX|single",
+     "ref_mean": 0.0,
+     "other_mean": 0.10000000000000002,
+     "effect_rb": 1.0,
+     "p": 0.5,
+     "p_holm": 1.0
+    },
+    {
+     "method": "Fung-ens|single",
+     "ref_mean": 0.0,
+     "other_mean": 0.3,
+     "effect_rb": 1.0,
+     "p": 0.0625,
+     "p_holm": 0.6875
+    },
+    {
+     "method": "IG|single",
+     "ref_mean": 0.0,
+     "other_mean": 0.03333333333333333,
+     "effect_rb": 1.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "KS-2048|single",
+     "ref_mean": 0.0,
+     "other_mean": 0.03333333333333333,
+     "effect_rb": 1.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "KS-eq|single",
+     "ref_mean": 0.0,
+     "other_mean": 0.0,
+     "effect_rb": -0.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "LIME-2048|single",
+     "ref_mean": 0.0,
+     "other_mean": 0.06666666666666667,
+     "effect_rb": 1.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "LIME-eq|single",
+     "ref_mean": 0.0,
+     "other_mean": 0.26666666666666666,
+     "effect_rb": 1.0,
+     "p": 0.125,
+     "p_holm": 1.0
+    },
+    {
+     "method": "LX-bg|single",
+     "ref_mean": 0.0,
+     "other_mean": 0.06666666666666667,
+     "effect_rb": 1.0,
+     "p": 0.5,
+     "p_holm": 1.0
+    },
+    {
+     "method": "RE|single",
+     "ref_mean": 0.0,
+     "other_mean": 0.3333333333333333,
+     "effect_rb": 1.0,
+     "p": 0.0625,
+     "p_holm": 0.6875
+    },
+    {
+     "method": "RPX|single",
+     "ref_mean": 0.0,
+     "other_mean": 0.06666666666666667,
+     "effect_rb": 1.0,
+     "p": 0.5,
+     "p_holm": 1.0
+    },
+    {
+     "method": "SM|single",
+     "ref_mean": 0.0,
+     "other_mean": 0.3666666666666667,
+     "effect_rb": 1.0,
+     "p": 0.0625,
+     "p_holm": 0.6875
+    }
+   ]
+  },
+  "test_dcl_haz_hr1": {
+   "n": 2,
+   "friedman_chi2": 23.000000000000032,
+   "friedman_p": 0.4607708905522904,
+   "pairs": [
+    {
+     "method": "CLX|single",
+     "ref_mean": 0.5,
+     "other_mean": 0.0,
+     "effect_rb": 1.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "CLX|tea",
+     "ref_mean": 0.5,
+     "other_mean": 0.5,
+     "effect_rb": 0.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "Fung-ens|single",
+     "ref_mean": 0.5,
+     "other_mean": 0.0,
+     "effect_rb": 1.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "Fung-ens|tea",
+     "ref_mean": 0.5,
+     "other_mean": 0.5,
+     "effect_rb": 0.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "IG|single",
+     "ref_mean": 0.5,
+     "other_mean": 0.0,
+     "effect_rb": 1.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "IG|tea",
+     "ref_mean": 0.5,
+     "other_mean": 0.5,
+     "effect_rb": 0.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "KS-2048|single",
+     "ref_mean": 0.5,
+     "other_mean": 0.0,
+     "effect_rb": 1.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "KS-2048|tea",
+     "ref_mean": 0.5,
+     "other_mean": 0.5,
+     "effect_rb": 0.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "KS-eq|single",
+     "ref_mean": 0.5,
+     "other_mean": 0.5,
+     "effect_rb": 0.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "KS-eq|tea",
+     "ref_mean": 0.5,
+     "other_mean": 0.5,
+     "effect_rb": 0.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "LIME-2048|single",
+     "ref_mean": 0.5,
+     "other_mean": 0.0,
+     "effect_rb": 1.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "LIME-2048|tea",
+     "ref_mean": 0.5,
+     "other_mean": 0.5,
+     "effect_rb": 0.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "LIME-eq|single",
+     "ref_mean": 0.5,
+     "other_mean": 0.0,
+     "effect_rb": 1.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "LIME-eq|tea",
+     "ref_mean": 0.5,
+     "other_mean": 0.5,
+     "effect_rb": 0.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "LX|single",
+     "ref_mean": 0.5,
+     "other_mean": 0.0,
+     "effect_rb": 1.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "LX-bg|single",
+     "ref_mean": 0.5,
+     "other_mean": 0.0,
+     "effect_rb": 1.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "LX-bg|tea",
+     "ref_mean": 0.5,
+     "other_mean": 0.5,
+     "effect_rb": 0.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "RE|single",
+     "ref_mean": 0.5,
+     "other_mean": 0.0,
+     "effect_rb": 1.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "RE|tea",
+     "ref_mean": 0.5,
+     "other_mean": 0.5,
+     "effect_rb": 0.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "RPX|single",
+     "ref_mean": 0.5,
+     "other_mean": 0.0,
+     "effect_rb": 1.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "RPX|tea",
+     "ref_mean": 0.5,
+     "other_mean": 0.5,
+     "effect_rb": 0.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "SM|single",
+     "ref_mean": 0.5,
+     "other_mean": 0.0,
+     "effect_rb": 1.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "SM|tea",
+     "ref_mean": 0.5,
+     "other_mean": 0.5,
+     "effect_rb": 0.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    }
+   ]
+  },
+  "test_dcl60_hr1": {
+   "n": 6,
+   "friedman_chi2": 27.752767527675363,
+   "friedman_p": 0.22527540060299264,
+   "pairs": [
+    {
+     "method": "CLX|single",
+     "ref_mean": 0.5,
+     "other_mean": 0.5,
+     "effect_rb": 0.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "CLX|tea",
+     "ref_mean": 0.5,
+     "other_mean": 0.3333333333333333,
+     "effect_rb": 1.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "Fung-ens|single",
+     "ref_mean": 0.5,
+     "other_mean": 0.16666666666666666,
+     "effect_rb": 1.0,
+     "p": 0.5,
+     "p_holm": 1.0
+    },
+    {
+     "method": "Fung-ens|tea",
+     "ref_mean": 0.5,
+     "other_mean": 0.5,
+     "effect_rb": 0.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "IG|single",
+     "ref_mean": 0.5,
+     "other_mean": 0.3333333333333333,
+     "effect_rb": 1.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "IG|tea",
+     "ref_mean": 0.5,
+     "other_mean": 0.5,
+     "effect_rb": 0.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "KS-2048|single",
+     "ref_mean": 0.5,
+     "other_mean": 0.3333333333333333,
+     "effect_rb": 1.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "KS-2048|tea",
+     "ref_mean": 0.5,
+     "other_mean": 0.5,
+     "effect_rb": 0.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "KS-eq|single",
+     "ref_mean": 0.5,
+     "other_mean": 0.5,
+     "effect_rb": 0.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "KS-eq|tea",
+     "ref_mean": 0.5,
+     "other_mean": 0.5,
+     "effect_rb": 0.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "LIME-2048|single",
+     "ref_mean": 0.5,
+     "other_mean": 0.3333333333333333,
+     "effect_rb": 1.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "LIME-2048|tea",
+     "ref_mean": 0.5,
+     "other_mean": 0.5,
+     "effect_rb": 0.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "LIME-eq|single",
+     "ref_mean": 0.5,
+     "other_mean": 0.3333333333333333,
+     "effect_rb": 1.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "LIME-eq|tea",
+     "ref_mean": 0.5,
+     "other_mean": 0.5,
+     "effect_rb": 0.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "LX|single",
+     "ref_mean": 0.5,
+     "other_mean": 0.16666666666666666,
+     "effect_rb": 1.0,
+     "p": 0.5,
+     "p_holm": 1.0
+    },
+    {
+     "method": "LX-bg|single",
+     "ref_mean": 0.5,
+     "other_mean": 0.5,
+     "effect_rb": 0.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "LX-bg|tea",
+     "ref_mean": 0.5,
+     "other_mean": 0.5,
+     "effect_rb": 0.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "RE|single",
+     "ref_mean": 0.5,
+     "other_mean": 0.16666666666666666,
+     "effect_rb": 1.0,
+     "p": 0.5,
+     "p_holm": 1.0
+    },
+    {
+     "method": "RE|tea",
+     "ref_mean": 0.5,
+     "other_mean": 0.5,
+     "effect_rb": 0.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "RPX|single",
+     "ref_mean": 0.5,
+     "other_mean": 0.3333333333333333,
+     "effect_rb": 1.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "RPX|tea",
+     "ref_mean": 0.5,
+     "other_mean": 0.3333333333333333,
+     "effect_rb": 1.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "SM|single",
+     "ref_mean": 0.5,
+     "other_mean": 0.16666666666666666,
+     "effect_rb": 1.0,
+     "p": 0.5,
+     "p_holm": 1.0
+    },
+    {
+     "method": "SM|tea",
+     "ref_mean": 0.5,
+     "other_mean": 0.5,
+     "effect_rb": 0.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    }
+   ]
+  },
+  "test_dcl_haz_hr3": {
+   "n": 2,
+   "friedman_chi2": 23.000000000000014,
+   "friedman_p": 0.46077089055229115,
+   "pairs": [
+    {
+     "method": "CLX|single",
+     "ref_mean": 0.5,
+     "other_mean": 0.0,
+     "effect_rb": 1.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "CLX|tea",
+     "ref_mean": 0.5,
+     "other_mean": 0.5,
+     "effect_rb": 0.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "Fung-ens|single",
+     "ref_mean": 0.5,
+     "other_mean": 0.0,
+     "effect_rb": 1.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "Fung-ens|tea",
+     "ref_mean": 0.5,
+     "other_mean": 0.5,
+     "effect_rb": 0.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "IG|single",
+     "ref_mean": 0.5,
+     "other_mean": 0.0,
+     "effect_rb": 1.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "IG|tea",
+     "ref_mean": 0.5,
+     "other_mean": 0.5,
+     "effect_rb": 0.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "KS-2048|single",
+     "ref_mean": 0.5,
+     "other_mean": 0.0,
+     "effect_rb": 1.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "KS-2048|tea",
+     "ref_mean": 0.5,
+     "other_mean": 0.5,
+     "effect_rb": 0.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "KS-eq|single",
+     "ref_mean": 0.5,
+     "other_mean": 0.5,
+     "effect_rb": 0.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "KS-eq|tea",
+     "ref_mean": 0.5,
+     "other_mean": 0.5,
+     "effect_rb": 0.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "LIME-2048|single",
+     "ref_mean": 0.5,
+     "other_mean": 0.0,
+     "effect_rb": 1.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "LIME-2048|tea",
+     "ref_mean": 0.5,
+     "other_mean": 0.5,
+     "effect_rb": 0.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "LIME-eq|single",
+     "ref_mean": 0.5,
+     "other_mean": 0.5,
+     "effect_rb": 0.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "LIME-eq|tea",
+     "ref_mean": 0.5,
+     "other_mean": 0.5,
+     "effect_rb": 0.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "LX|single",
+     "ref_mean": 0.5,
+     "other_mean": 0.0,
+     "effect_rb": 1.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "LX-bg|single",
+     "ref_mean": 0.5,
+     "other_mean": 0.0,
+     "effect_rb": 1.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "LX-bg|tea",
+     "ref_mean": 0.5,
+     "other_mean": 0.5,
+     "effect_rb": 0.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "RE|single",
+     "ref_mean": 0.5,
+     "other_mean": 0.0,
+     "effect_rb": 1.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "RE|tea",
+     "ref_mean": 0.5,
+     "other_mean": 0.5,
+     "effect_rb": 0.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "RPX|single",
+     "ref_mean": 0.5,
+     "other_mean": 0.0,
+     "effect_rb": 1.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "RPX|tea",
+     "ref_mean": 0.5,
+     "other_mean": 0.5,
+     "effect_rb": 0.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "SM|single",
+     "ref_mean": 0.5,
+     "other_mean": 0.0,
+     "effect_rb": 1.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "SM|tea",
+     "ref_mean": 0.5,
+     "other_mean": 0.5,
+     "effect_rb": 0.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    }
+   ]
+  },
+  "test_dcl60_hr3": {
+   "n": 6,
+   "friedman_chi2": 21.2135922330101,
+   "friedman_p": 0.5680454342409114,
+   "pairs": [
+    {
+     "method": "CLX|single",
+     "ref_mean": 0.5,
+     "other_mean": 0.5,
+     "effect_rb": 0.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "CLX|tea",
+     "ref_mean": 0.5,
+     "other_mean": 0.5,
+     "effect_rb": 0.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "Fung-ens|single",
+     "ref_mean": 0.5,
+     "other_mean": 0.3333333333333333,
+     "effect_rb": 1.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "Fung-ens|tea",
+     "ref_mean": 0.5,
+     "other_mean": 0.5,
+     "effect_rb": 0.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "IG|single",
+     "ref_mean": 0.5,
+     "other_mean": 0.5,
+     "effect_rb": 0.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "IG|tea",
+     "ref_mean": 0.5,
+     "other_mean": 0.5,
+     "effect_rb": 0.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "KS-2048|single",
+     "ref_mean": 0.5,
+     "other_mean": 0.5,
+     "effect_rb": 0.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "KS-2048|tea",
+     "ref_mean": 0.5,
+     "other_mean": 0.5,
+     "effect_rb": 0.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "KS-eq|single",
+     "ref_mean": 0.5,
+     "other_mean": 0.5,
+     "effect_rb": 0.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "KS-eq|tea",
+     "ref_mean": 0.5,
+     "other_mean": 0.5,
+     "effect_rb": 0.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "LIME-2048|single",
+     "ref_mean": 0.5,
+     "other_mean": 0.3333333333333333,
+     "effect_rb": 1.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "LIME-2048|tea",
+     "ref_mean": 0.5,
+     "other_mean": 0.5,
+     "effect_rb": 0.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "LIME-eq|single",
+     "ref_mean": 0.5,
+     "other_mean": 0.3333333333333333,
+     "effect_rb": 1.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "LIME-eq|tea",
+     "ref_mean": 0.5,
+     "other_mean": 0.5,
+     "effect_rb": 0.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "LX|single",
+     "ref_mean": 0.5,
+     "other_mean": 0.5,
+     "effect_rb": 0.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "LX-bg|single",
+     "ref_mean": 0.5,
+     "other_mean": 0.5,
+     "effect_rb": 0.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "LX-bg|tea",
+     "ref_mean": 0.5,
+     "other_mean": 0.5,
+     "effect_rb": 0.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "RE|single",
+     "ref_mean": 0.5,
+     "other_mean": 0.3333333333333333,
+     "effect_rb": 1.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "RE|tea",
+     "ref_mean": 0.5,
+     "other_mean": 0.5,
+     "effect_rb": 0.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "RPX|single",
+     "ref_mean": 0.5,
+     "other_mean": 0.3333333333333333,
+     "effect_rb": 1.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "RPX|tea",
+     "ref_mean": 0.5,
+     "other_mean": 0.5,
+     "effect_rb": 0.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "SM|single",
+     "ref_mean": 0.5,
+     "other_mean": 0.5,
+     "effect_rb": 0.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    },
+    {
+     "method": "SM|tea",
+     "ref_mean": 0.5,
+     "other_mean": 0.5,
+     "effect_rb": 0.0,
+     "p": 1.0,
+     "p_holm": 1.0
+    }
+   ]
+  }
+ }
+}

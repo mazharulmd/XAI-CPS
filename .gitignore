@@ -1,0 +1,14 @@
+data/raw/
+data/cache/
+__pycache__/
+*.pyc
+*.egg-info/
+results/cache/
+paper/*.aux
+paper/*.log
+paper/*.out
+paper/*.blg
+paper/*.bbl
+paper/*.synctex.gz
+paper/*.fls
+paper/*.fdb_latexmk

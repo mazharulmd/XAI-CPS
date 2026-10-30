@@ -1,0 +1,5 @@
+[sim/linear/s1] detection {"precision": 0.788, "recall": 0.171, "f1": 0.281, "event_recall": 0.964, "delay_median_s": 6.0, "fa_per_hour": 1.377} (1s)
+  10/280 events (8s)
+  20/280 events (16s)
+  30/280 events (24s)
+  40/280 events (31s)
