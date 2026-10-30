@@ -12,3 +12,7 @@ paper/*.bbl
 paper/*.synctex.gz
 paper/*.fls
 paper/*.fdb_latexmk
+results/logs/
+results/logs_phase1.txt
+results/raw/
+results/models/

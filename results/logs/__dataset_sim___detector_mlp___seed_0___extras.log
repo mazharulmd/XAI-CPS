@@ -1,3 +1,0 @@
-[sim/mlp/s0] detection {"precision": 0.776, "recall": 0.047, "f1": 0.089, "event_recall": 0.725, "delay_median_s": 23.0, "fa_per_hour": 0.272} (5s)
-  10/280 events (14s)
-  20/280 events (24s)
