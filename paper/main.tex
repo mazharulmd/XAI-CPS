@@ -1,0 +1,53 @@
+\documentclass[preprint,12pt,authoryear]{elsarticle}
+\usepackage{amsmath,amssymb,amsthm,bm}
+\usepackage{graphicx,booktabs,multirow,siunitx,xcolor}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,fit,backgrounds,calc}
+\usepackage[hidelinks]{hyperref}
+\usepackage{algorithm,algpseudocode}
+\usepackage[capitalise]{cleveref}
+\sisetup{detect-all}
+\newtheorem{proposition}{Proposition}
+\newtheorem{definition}{Definition}
+\input{generated/numbers.tex}
+\newcommand{\LX}{\textsc{LX}}
+\newcommand{\TEA}{\textsc{TEA}}
+\journal{Computers \& Security}
+
+\begin{document}
+\begin{frontmatter}
+\title{Explaining Before the Process Safety Time Runs Out: Deadline-Aware, Control-Loop-Structured Attribution for Intrusion Localization in Industrial Control Systems}
+
+\author{[Author names withheld for review]}
+\address{[Affiliation]}
+
+\begin{abstract}
+\input{sections/abstract}
+\end{abstract}
+
+\begin{keyword}
+industrial control systems \sep intrusion detection \sep explainable AI \sep Shapley values \sep attack localization \sep process safety time \sep cyber-physical systems
+\end{keyword}
+\end{frontmatter}
+
+\input{sections/introduction}
+\input{sections/related}
+\input{sections/problem}
+\input{sections/method}
+\input{sections/setup}
+\input{sections/results}
+\input{sections/discussion}
+\input{sections/conclusion}
+
+\section*{Data and code availability}
+All code, configuration files, the HAI~21.03 loop-level ground-truth table, the PCL-Sim simulator, raw per-attack outputs and the scripts that generate every table and figure are available in the project repository (\url{https://github.com/mazharulmd/XAI-CPS}). HAI~21.03 is publicly available from its maintainers \citep{shin2021hai}.
+
+\section*{Declaration of generative AI use}
+[To be completed by the authors according to the journal policy.]
+
+\bibliographystyle{elsarticle-harv}
+\bibliography{refs}
+
+\appendix
+\input{sections/appendix}
+\end{document}

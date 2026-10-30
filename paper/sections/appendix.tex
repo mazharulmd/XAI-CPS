@@ -1,0 +1,53 @@
+\section{Pre-specified hypotheses}\label{app:design}
+The following were recorded in \texttt{docs/02\_research\_design.md} before the evaluation runs.
+\begin{itemize}
+\item \textbf{H1.} \LX{} achieves higher HR@1 and a lower normalised rank than tag-level attributions aggregated post hoc.
+\item \textbf{H4.} \LX{} beats exact Shapley over data-driven clusters (CLX) and random partitions (RPX) with the same number of groups.
+\item \textbf{H2.} \TEA{} increases HR@$k$ at a fixed delivery time and increases temporal stability.
+\item \textbf{H3.} \LX+\TEA{} has deterministic cost, lower latency than sampling explainers at equal or higher accuracy, and the highest DCL and in-time rate.
+\item \textbf{H5a.} Localization degrades less under sensor noise with \LX+\TEA.
+\item \textbf{H5b.} A decoy captures top-1 less often with \LX+\TEA.
+\item \textbf{H6.} Random window splits inflate detection metrics relative to chronological, attack-disjoint splits.
+\end{itemize}
+A hypothesis is reported as supported only if the Holm-corrected two-sided $p<0.05$ and the effect has the predicted sign.
+
+\section{Validation protocols in the reviewed corpus}\label{app:corpus}
+\begin{table}[h]
+\centering\scriptsize
+\caption{Validation protocols stated in reviewed XAI-IDS studies that use time-series CPS/IIoT data (as stated in the papers; ``--'' if not stated in the sections we read). Random proportional splits or $k$-fold CV without a stated chronological or gapped protocol allow overlapping or adjacent windows on both sides of the split.}\label{tab:corpus}
+\begin{tabular}{@{}lll@{}}
+\toprule
+Study & Data & Stated protocol\\
+\midrule
+\citet{ha2022ifac} & gas pipeline & 80/20 split\\
+\citet{yazdinejad2025ppfl} & SWaT, gas pipeline, UNSW-NB15 & 70/30 split\\
+\citet{birihanu2024correlation} & SWaT, HAI, Modbus & 80/20 split\\
+\citet{xu2024alrl} & SWaT, WADI & five-fold CV\\
+\citet{rasheed2026xaicps} & SWaT, WADI, BATADAL, IIoT & 5-fold CV, 70/15/15\\
+\citet{panesar2026mmdcritic} & HIL microgrid scalograms & 70/30 split\\
+\citet{shoukat2025trustmyids} & N-BaIoT, Edge-IIoTset & 70/30 split\\
+\citet{attique2024iiot} & CICIDS2017, X-IIoTID & 70/30 split\\
+\citet{saiyed2026eshield} & WUSTL-IIoT-2021, CICIoT2023 & stratified 5-fold CV\\
+\citet{franco2026shats} & SWaT & padded segment split (leakage-aware)\\
+\citet{fung2024attributions} & SWaT, WADI, TEP & normal-only training, attack test sets\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{HAI 21.03 loop map}\label{app:loops}
+The ten groups used for HAI 21.03 are listed below. Tags constant in training were removed, leaving 57 tags in nine non-empty groups; P1-AUX holds discrete pump-state tags, all constant. The full mapping, with engineering-judgement flags, is in \texttt{configs/hai/hai2103\_loops.yaml}, and the ground truth is in \texttt{configs/hai/hai2103\_attacks.csv}.
+\begin{itemize}
+\item P1-PC: pressure;
+\item P1-LC: return-tank level;
+\item P1-FC: discharge flow;
+\item P1-TC: heat-exchanger temperature;
+\item P1-AUX: pumps;
+\item P2-SC: turbine speed;
+\item P2-TC: vibration and trip limits;
+\item P3-LC: upper-tank level;
+\item P4-ST: steam-turbine model;
+\item P4-HT: hydro-turbine model.
+\end{itemize}
+
+\section{Additional results}\label{app:extra}
+\input{generated/appendix_tables.tex}

@@ -1,0 +1,72 @@
+\section{Method}\label{sec:method}
+
+\Cref{fig:arch} summarises the pipeline. The detector raises an alarm; from then on, \LX{} explains the anomaly score every $\Delta$ seconds at loop level; \TEA{} accumulates these explanations into a ranking with a confidence margin; and the top loop is refined to tags.
+
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[font=\footnotesize, node distance=4mm and 6mm,
+  box/.style={draw, rounded corners=2pt, align=center, minimum height=9mm, inner sep=3pt, fill=white},
+  data/.style={box, fill=black!4},
+  ours/.style={box, draw=blue!60!black, fill=blue!6, thick},
+  ar/.style={-{Stealth[length=2mm]}, thick}]
+\node[data] (hist) {Historian / SCADA feed\\ $\bm x_t\in\mathbb R^d$ (1\,Hz)};
+\node[box, right=of hist] (det) {Forecasting detector\\ $e(Z_t)$, EWMA $s_t$, $\theta$};
+\node[box, right=of det] (alarm) {Alarm at $t_a$\\ ref.\ $t_{\mathrm{ref}}=t_a-\Delta_{\mathrm{ref}}$};
+\node[data, below=7mm of hist] (pid) {P\&ID / controller config\\ loops $g_1,\dots,g_L$};
+\node[ours, below=7mm of det] (lx) {\LX: exact loop Shapley\\ $2^L$ batched evaluations\\ incident-local reference};
+\node[ours, right=of lx] (tea) {\TEA: $A_T=\sum_t\omega_t\,p_t$\\ confidence $c_T$};
+\node[ours, below=6mm of tea] (ref) {Tag refinement in\\ top loop (H-\LX)};
+\node[data, right=6mm of tea] (op) {Operator view:\\ ranked loops + tags,\\ delivered by $t_{\mathrm{on}}+D$};
+\draw[ar] (hist) -- (det); \draw[ar] (det) -- (alarm);
+\draw[ar] (pid) -- (lx); \draw[ar] (alarm.south) |- ($(lx.east)+(0,2mm)$);
+\draw[ar] (lx) -- node[above,font=\scriptsize]{$\phi_t$ every $\Delta$} (tea);
+\draw[ar] (tea) -- (op); \draw[ar] (tea) -- (ref); \draw[ar] (ref) -| (op);
+\draw[ar, dashed] (hist.south) ++(5mm,0) |- ($(lx.west)+(0,-2mm)$);
+\end{tikzpicture}
+\caption{Deadline-aware localization pipeline. Shaded blue: components proposed in this paper. The detector, the explainer and the delivery schedule together determine whether a correct localization reaches the operator before the deadline $D$.}\label{fig:arch}
+\end{figure}
+
+\subsection{Loop game with an incident-local reference}
+At alarm time $t_a$ we fix a last-known-good reference time $t_{\mathrm{ref}}=t_a-\Delta_{\mathrm{ref}}$ ($\Delta_{\mathrm{ref}}=60$\,s by default; ablated in \cref{sec:ablation}). Let $Z_t=\bm x_{t-w:t}$ be the current segment and $R=\bm x_{t_{\mathrm{ref}}-w:t_{\mathrm{ref}}}$ the reference segment. For a coalition of loops $S\subseteq\mathcal G$ define the hybrid segment
+\begin{equation}
+[Z_t^S]_{\tau j}=\begin{cases}[Z_t]_{\tau j}& j\in\bigcup_{g\in S}g,\\ [R]_{\tau j}&\text{otherwise,}\end{cases}
+\end{equation}
+and the characteristic function $v_t(S)=e(Z^S_t)-e(Z^\emptyset_t)$.
+
+The game asks how much of the current anomaly is explained by each loop's trajectory departing from its last known good trajectory, with all other loops restored to that state. This differs from the common interventional value function, which averages over a background drawn from training data \citep{lundberg2017shap,franco2026shats}. Background windows come from unrelated operating points (other setpoints, other plant states). Hybrid segments built from them are off-manifold for a forecaster and can themselves look anomalous. The incident-local reference keeps hybrids close to the operating point of the incident. We compare both choices empirically (\LX{} vs.\ \LX-bg).
+
+\subsection{Exact loop Shapley values (\LX)}
+The attribution of loop $g$ at time $t$ is its Shapley value \citep{shapley1953value}
+\begin{equation}\label{eq:shapley}
+\phi_t(g)=\sum_{S\subseteq\mathcal G\setminus\{g\}}\frac{|S|!\,(L-|S|-1)!}{L!}\bigl[v_t(S\cup\{g\})-v_t(S)\bigr].
+\end{equation}
+\begin{proposition}\label{prop:cost}
+\LX{} requires exactly $2^L$ evaluations of $e(\cdot)$ per explanation, independent of the data and of $d$. It satisfies efficiency, $\sum_g\phi_t(g)=e(Z_t)-e(R)$. Since it is exact, it also satisfies the symmetry, dummy and additivity axioms.
+\end{proposition}
+\begin{proof}
+All $2^L$ coalitions are evaluated once, and \cref{eq:shapley} is a fixed linear map of these values. The axioms are those of the Shapley value \citep{shapley1953value}, which hold because no sampling approximation is involved.
+\end{proof}
+The $2^L$ hybrid segments are evaluated in one batch. For $L\le 10$ this is at most 1024 forward passes of a small network. Explanation latency is therefore \emph{deterministic and known before deployment}, a property that sampling-based estimators lack. Exact Shapley values over $d$ tags would need $2^d$ evaluations ($d=57$ on HAI). Tag-level sampling estimators trade cost for variance \citep{castro2009sampling,strumbelj2014explaining}. Grouping by loops is an a priori union in the sense of \citet{owen1977unions}, as in ShaTS's multi-feature grouping \citep{franco2026shats}. The loop is also the unit in which ICS attacks are specified \citep{shin2021hai}. Finally, loop grouping encodes the sensor--actuator coupling that \citet{fung2024attributions} identify as a cause of attribution failure: a loop's SP, PV, CV and feedback enter or leave a coalition together.
+
+\subsection{Temporal evidence accumulation (\TEA)}
+An incident produces a sequence of explanations at times $t_a,t_a+\Delta,\dots$. Single-shot attributions are noisy. Worse, as the attack propagates through coupled loops, later residuals increasingly appear in loops that merely \emph{react}. Following \citet{fung2024attributions}, we expect the earliest windows to be most informative but not always reliable. \TEA{} therefore aggregates normalised positive attributions, weighted by severity:
+\begin{equation}\label{eq:tea}
+p_t(g)=\frac{\max(\phi_t(g),0)}{\sum_h\max(\phi_t(h),0)},\qquad A_T(g)=\sum_{t=t_a}^{T}\omega_t\,p_t(g),\qquad \omega_t=\log^+\!\frac{s_t}{\theta}+\varepsilon .
+\end{equation}
+The ranking published at $T$ sorts loops by $A_T$, with confidence margin $c_T=(A_T^{(1)}-A_T^{(2)})/\sum_g A_T(g)$, where $A_T^{(r)}$ is the $r$-th largest accumulated value. A deployment may publish as soon as $c_T\ge\gamma$, or at the deadline, whichever is first. \TEA{} is agnostic to the attribution method, so we apply it to every baseline as well.
+
+\subsection{Tag refinement (H-\LX)}
+Operators eventually need tags. Within the top-ranked loop $g^\star$ we compute exact Shapley values over its $|g^\star|$ tags. All other loops are held at their current values, so the game isolates within-loop responsibility; the cost is $2^{|g^\star|}$ evaluations ($\le 2^{12}$ on HAI).
+
+\begin{algorithm}[t]
+\caption{Deadline-aware localization for one incident}\label{alg:main}
+\begin{algorithmic}[1]
+\Require detector $(f,\sigma,\theta)$, loops $\mathcal G$, alarm time $t_a$, refresh $\Delta$, deadline $D$, threshold $\gamma$
+\State $t_{\mathrm{ref}}\gets t_a-\Delta_{\mathrm{ref}}$;\ $R\gets\bm x_{t_{\mathrm{ref}}-w:t_{\mathrm{ref}}}$;\ $A\gets\bm 0\in\mathbb R^L$
+\For{$t=t_a,\,t_a+\Delta,\dots$ \textbf{while} $t+\ell\le t_{\mathrm{on}}+D$}
+  \State Build the $2^L$ hybrid segments $Z^S_t$; evaluate $e(\cdot)$ in one batch
+  \State $\bm\phi_t\gets$ \cref{eq:shapley};\quad $A\gets A+\omega_t\,\bm p_t$ (\cref{eq:tea})
+  \State Publish ranking $\operatorname{argsort}(-A)$ and margin $c$; \textbf{if} $c\ge\gamma$ \textbf{then} publish H-\LX{} tags for the top loop
+\EndFor
+\end{algorithmic}
+\end{algorithm}

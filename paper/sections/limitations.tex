@@ -1,0 +1,24 @@
+\subsection{Limitations and threats to validity}\label{sec:limitations}
+\paragraph{External validity}
+\begin{itemize}
+\item \emph{Benchmark coverage.} We evaluate on one real HIL testbed (HAI 21.03, 50 attacks) and one simulator of our own design. SWaT and WADI, the most common ICS benchmarks, are only available on request, and we could not include them in this study. Replication on them, on HAI 22.04/23.05, and on TEP-based manipulation suites \citep{fung2024attributions} is the most important next step.
+\item \emph{Simulator bias.} A simulator designed by the authors of a method risks favouring it. We mitigate this in three ways: all explainers query the same score function and reference; attack primitives mirror HAI's taxonomy; and simulator parameters were fixed on development seeds before any explainer was evaluated. The simulator is released for scrutiny.
+\end{itemize}
+
+\paragraph{Deadlines} Hazard deadlines are computed in simulation, with no operator or safety-system response, and with safety limits we chose. On HAI we can only report DCL over a deadline grid, because recorded data carry no process safety times. Real process safety times come from hazard analyses (IEC~61511) and differ by orders of magnitude between processes.
+
+\paragraph{Hardware} Latencies were measured on one thread of a server CPU, not on a PLC-adjacent embedded device. We report hardware-independent evaluation counts and a sensitivity analysis with an assumed slowdown factor, but we did not measure on embedded hardware. Edge-class conclusions are therefore extrapolations.
+
+\paragraph{Method assumptions}
+\begin{itemize}
+\item \emph{Engineering metadata.} \LX{} needs a loop map. Some HAI assignments are our engineering judgement (flagged in the released configuration).
+\item \emph{Scaling.} Exact computation is exponential in $L$. Beyond $L\approx 14$ (16k evaluations), loops would need a two-level hierarchy (unit $\to$ loop) or sampling, and the deterministic-latency guarantee would weaken.
+\item \emph{Reference.} The incident-local reference assumes that the plant was in a normal state $\Delta_{\mathrm{ref}}$ seconds before the alarm. Slow ramps that begin long before detection contaminate it (\cref{sec:ablation}).
+\item \emph{Detector family.} We study forecasting detectors only. Reconstruction-, density- or classifier-based detectors would need their own score functions.
+\end{itemize}
+
+\paragraph{Adversary} The decoy experiment considers a non-adaptive adversary with a fixed small bias. An adversary who optimises manipulations against the explainer \citep{slack2020fooling}, under physical constraints, is out of scope and remains open.
+
+\paragraph{Human factors} We measure whether the correct loop is ranked first or within the top $k$. We do not measure whether operators act faster or better. The preference for showing several candidates found in the operator survey of \citet{fung2024attributions} motivates our HR@3 results but does not substitute for a user study.
+
+\paragraph{Literature search} Bibliographic APIs (OpenAlex, Crossref, arXiv, Semantic Scholar) were not reachable from our analysis environment. The novelty check therefore combined the curated corpus with general web search. We found no prior work combining the elements above, but this does not prove that none exists.

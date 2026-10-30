@@ -1,0 +1,36 @@
+\section{Problem formulation and threat model}\label{sec:problem}
+
+\paragraph{System model}
+A historian or SCADA feed delivers process-level tags $\bm x_t\in\mathbb R^d$ at a fixed sampling period (1\,s in both benchmarks). The tags are partitioned into $L$ control loops $\mathcal G=\{g_1,\dots,g_L\}$, where $g_\ell\subseteq\{1,\dots,d\}$ contains the setpoint, process variable(s), controller output and actuator feedback of loop $\ell$. Tags not owned by a controller (e.g.\ measured disturbances or simulator states) form auxiliary groups. The partition is engineering metadata, available from the piping-and-instrumentation diagram or controller configuration; it is fixed before any test data is seen.
+
+\paragraph{Detector} The detector is a forecaster $f$ that maps a window $W_t=\bm x_{t-w:t-1}$ to $\hat{\bm x}_t=\bm x_{t-1}+f(W_t)$. For a segment $Z=[W_t;\bm x_t]\in\mathbb R^{(w+1)\times d}$ the anomaly score is
+\begin{equation}\label{eq:score}
+e(Z)=\frac1d\sum_{j=1}^{d}\psi\!\left(\frac{x_{t,j}-\hat x_{t,j}}{\sigma_j}\right)^{2},\qquad \psi(r)=c\tanh(r/c),
+\end{equation}
+where $\sigma_j$ is the residual standard deviation on held-out normal data (floored at $0.05$) and $\psi$ is a differentiable soft clip ($c=20$). An alarm is raised when the exponentially weighted score $s_t=\alpha e_t+(1-\alpha)s_{t-1}$ exceeds $\theta$, the $q$-quantile of $s$ on chronologically held-out normal validation data.
+
+\paragraph{Threat model}
+\begin{itemize}
+\item \emph{Access.} The adversary has gained access to the control network (Purdue levels 1--2). Over an interval $[t_{\mathrm{on}},t_{\mathrm{off}})$ the adversary can: (a)~change a setpoint while hiding the change from the HMI; (b)~override or offset an actuator command; (c)~spoof a sensor value by bias, freezing or replay, as seen by both the controller and the historian; or (d)~combine these, e.g.\ a CV attack masked by PV replay, on one or two loops. This matches the I/O-point attack taxonomy of HAI \citep{shin2021hai}.
+\item \emph{Goal.} Drive the process toward an unsafe state or disrupt production.
+\item \emph{Knowledge.} In the main experiments the adversary does not know the detector or the explainer. In the decoy experiment (RQ5) the adversary knows that attributions are shown to operators. In addition to the main attack, the adversary then applies a small bias to the PV of an innocent loop to shift blame.
+\item \emph{Out of scope.} Network-layer attacks without process effect, compromise of the IDS host, and training-data poisoning.
+\item \emph{Defender's objective.} Deliver the identity of the compromised loop(s), ideally with the manipulated tags, before the process safety time is consumed.
+\end{itemize}
+
+\paragraph{Deadline-conditioned localization}
+Consider an attack $i$ with onset $t_{\mathrm{on},i}$, target loops $\mathcal G_i^\star$ and first alarm $t_{a,i}$ (undefined if missed). An explainer with latency $\ell$ produces explanations sequentially. It starts at the alarm and computes one explanation every $\Delta_{\mathrm{eff}}=\Delta\lceil\max(\Delta,\ell)/\Delta\rceil$ seconds, where $\Delta$ is the nominal refresh period. The $j$-th explanation uses data up to $t_{a,i}+j\Delta_{\mathrm{eff}}$ and becomes available at $t_{a,i}+j\Delta_{\mathrm{eff}}+\ell$. Let $\bm\rho_i(D)\in\mathbb R^L$ be the loop ranking available at $t_{\mathrm{on},i}+D$, i.e.\ the last explanation delivered by then.
+
+\begin{definition}[DCL]
+The deadline-conditioned localization at depth $k$ is
+\begin{equation}\label{eq:dcl}
+\mathrm{DCL@}k(D)=\frac1N\sum_{i=1}^{N}\mathbb 1\!\left[t_{a,i}\text{ exists},\ \exists\,\text{delivery by }t_{\mathrm{on},i}+D,\ \mathcal G_i^\star\cap\operatorname{top}_k\bm\rho_i(D)\neq\emptyset\right].
+\end{equation}
+\end{definition}
+Missed detections, explanations that are not ready, and wrong explanations all count as failures. Hence $\mathrm{DCL@}k$ is upper-bounded by the event recall of the detector.
+
+\begin{definition}[In-time rate]
+When the hazard deadline $D_i^{\mathrm{haz}}$ of each attack is known, the in-time rate is $\frac1{N_h}\sum_{i:\,D_i^{\mathrm{haz}}<\infty}\mathbb 1[\cdot]$ with $D=D_i^{\mathrm{haz}}-t_{\mathrm{act}}$ per attack. Here $D_i^{\mathrm{haz}}$ is the time from onset until the \emph{true} physical state first violates a safety limit with no operator response, and $t_{\mathrm{act}}$ is a reserve for the operator's action.
+\end{definition}
+
+$D_i^{\mathrm{haz}}$ is the empirical counterpart of the process safety time of IEC~61511 \citep{iec61511}. It can be computed in simulation but is not available for recorded datasets. On HAI we therefore report DCL over a grid of deadlines.

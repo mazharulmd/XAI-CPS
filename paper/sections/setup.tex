@@ -1,0 +1,94 @@
+\section{Experimental design}\label{sec:setup}
+
+\subsection{Research questions}
+\begin{itemize}
+\item \textbf{RQ1 (structure).} Does loop-level exact attribution localize the attacked loop better than tag-level attributions aggregated post hoc? Is any gain due to control structure, or to grouping per se?
+\item \textbf{RQ2 (time).} Does \TEA{} improve accuracy and temporal stability after the alarm?
+\item \textbf{RQ3 (deadline).} Which explainers deliver correct localizations before a deadline once latency is accounted for?
+\item \textbf{RQ4 (noise).} How robust are localization and stability to sensor noise?
+\item \textbf{RQ5 (decoy).} How robust are they to a decoy manipulation?
+\item \textbf{RQ6 (rigour).} How much does a random window split inflate detection performance?
+\end{itemize}
+Hypotheses and the decision rule (two-sided tests, Holm-corrected $p<0.05$ with the predicted sign) were fixed in the project's design document before the main runs. They are reproduced in \cref{app:design}.
+
+\subsection{Benchmarks}
+\paragraph{HAI 21.03} HAI 21.03 \citep{shin2021hai} is a hardware-in-the-loop testbed coupling a boiler (P1), a turbine (P2) and a water-treatment process (P3) with a simulated steam-turbine and pumped-storage power plant (P4). It records 79 process tags at 1\,Hz: three normal training files (9.5 days) and five test files with 50 attacks (25 single, 25 combined). Its documentation lists, for each attack, the target controller(s) (P1-PC, P1-LC, P1-FC, P2-SC, P2-TC, P3-LC) and the manipulated points.
+\begin{itemize}
+\item \emph{Ground-truth table.} We transcribed this information into a machine-readable table and matched every entry to the label runs in the data. All 50 start times agree within 2\,minutes. Three documented point names differ from the column names in 21.03 and were mapped: \texttt{P2\_SCO}$\to$\texttt{P2\_CO\_rpm}, \texttt{P2\_AutoSD}$\to$\texttt{P2\_ASD}, and the typo \texttt{P2\_LCV01D}$\to$\texttt{P3\_LCV01D}.
+\item \emph{Loop map.} Tags were assigned to ten loop groups from the tag descriptions, before any test data was examined. Assignments that the documentation does not make explicit are marked as engineering judgement in the released configuration.
+\item \emph{Constant tags.} Twenty-two tags are constant throughout normal training and are removed, leaving $d=\HAId$ tags in $L=\HAIL$ non-empty groups. Notably, the manipulated setpoints of the P2 attacks (\texttt{P2\_ASD}, \texttt{P2\_VTR01/02}, \texttt{P2\_RTR}) never change in the recorded data, consistent with attacks that hide setpoint changes from the HMI. Tag-level localization of those points is therefore impossible from the data, whereas loop-level localization is not.
+\end{itemize}
+
+\paragraph{PCL-Sim} The simulator models a supply tank, a transfer valve, a heated tank, a centrifugal pump and a discharge valve, under five PI loops:
+\begin{itemize}
+\item LC1: level of tank 1 via the inlet valve;
+\item FC1: transfer flow via the transfer valve;
+\item LC2: level of tank 2 via pump speed;
+\item TC1: temperature of tank 2 via heater power;
+\item PC1: discharge pressure via the discharge valve.
+\end{itemize}
+The plant model includes first-order actuator dynamics, a pump curve, hydraulic and thermal coupling, sensor noise, random-walk disturbances (inlet temperature, supply pressure) and an operator schedule that changes setpoints every 15--45\,min. It exposes $d=22$ historian tags in $L=6$ groups (five loops plus a disturbance group).
+\begin{itemize}
+\item \emph{Attacks.} Seven primitives mirror HAI: SP, CV offset, PV bias, PV freeze, CV+PV-freeze, SP+PV-freeze and short CV pulses. They are applied to each loop at two magnitudes and four test seeds, for \SimNattacks{} attack episodes of 1\,h with an onset at 25--32\,min and a duration of 5--15\,min.
+\item \emph{Hazard deadlines.} Controllers and the historian see the manipulated values, while the true state is integrated separately. The hazard deadline $D^{\mathrm{haz}}$ is the time to the first violation of a safety limit (tank overflow or dry-run, temperature $>85\,^\circ$C, pressure $>8.5$\,bar). \SimNhaz{} of the \SimNattacks{} attacks are hazardous, with median $D^{\mathrm{haz}}=\SimHazMedian$\,s (range \SimHazMin--\SimHazMax\,s).
+\item \emph{Normal data.} Twelve 6-hour runs (seeds 0--11, disjoint from the test seeds) are used for training and validation.
+\end{itemize}
+
+\subsection{Detectors and leakage control}
+Four forecaster families are trained on normal data only, each with three seeds, window $w=32$, and the persistence-plus-correction form of \cref{sec:problem}:
+\begin{itemize}
+\item a linear autoregressive model (4 lags, closed-form ridge);
+\item an MLP;
+\item a dilated 1D-CNN \citep[cf.][]{kravchik2018cnn};
+\item a GRU.
+\end{itemize}
+The protocol is:
+\begin{itemize}
+\item Normal files are split chronologically (first 80\,\% train, last 20\,\% validation).
+\item Standardisation statistics come from the training portion. Residual scales $\sigma_j$ and the alarm threshold $\theta$ ($q=0.999$ on validation EWMA scores, $\alpha=0.1$) come from validation data only.
+\item No test labels, test files or test seeds are used for any fitting or hyperparameter choice. All hyperparameters were fixed before the evaluation runs and are listed in the released configuration.
+\item The linear model is fitted in closed form on all training windows and is therefore identical across seeds.
+\end{itemize}
+
+\subsection{Explainers}
+All explainers attribute the same score $e(Z_t)$ and, unless stated otherwise, use the same reference segment.
+\begin{itemize}
+\item \emph{Tag-level baselines}, summed per loop:
+\begin{itemize}
+\item raw squared residuals (RE; the ``MSE'' ranking of \citealp{fung2024attributions});
+\item saliency (SM; \citealp{simonyan2014saliency});
+\item integrated gradients from the reference (IG, 32 steps; \citealp{sundararajan2017ig});
+\item KernelSHAP \citep{lundberg2017shap} with $2^L$ coalitions (KS-eq, equal budget to \LX) or 1024 coalitions (KS-1024);
+\item LIME \citep{ribeiro2016lime} with the same two budgets;
+\item the ensemble of \citet{fung2024attributions}: normalised RE + SM + a black-box method, with $\beta=2.5$ for actuators. We use LIME in place of LEMNA \citep{guo2018lemna}.
+\end{itemize}
+\item \emph{Structure controls} (exact Shapley over $L$ groups, with group values spread uniformly over member tags):
+\begin{itemize}
+\item CLX: groups are average-linkage clusters of $1-|\mathrm{corr}|$, akin to Partition/Owen SHAP;
+\item RPX: a random partition with the loop group sizes.
+\end{itemize}
+\item \emph{Reference control.} \LX-bg is \LX{} with an interventional training background of 8 windows, i.e.\ ShaTS-style multi-feature grouping with loops as groups \citep{franco2026shats}.
+\item \emph{ShaTS-sensor.} Feature-grouped stratified-sampling Shapley with $m=20\,|G|$ coalitions per group, as in \citet{franco2026shats}. Its cost ($\approx 2\cdot 20\,d^2$ evaluations) restricts it to practical timing on two detectors.
+\end{itemize}
+Every method is run single-shot and with \TEA.
+
+\subsection{Protocol and metrics}
+\paragraph{Timing} Following \citet{fung2024attributions}, we evaluate at two timings:
+\begin{itemize}
+\item \emph{best-guess}: an oracle window starting at the attack onset, with the reference just before the onset;
+\item \emph{practical}: from the first alarm, every $\Delta=5$\,s for 180\,s; for deadlines beyond this horizon the last explanation is kept.
+\end{itemize}
+
+\paragraph{Metrics}
+\begin{itemize}
+\item \emph{Detection.} Point-wise precision, recall and F1 (no point adjustment; \citealp{kim2022rigorous}), event recall (alarm within the attack or 60\,s after it), median detection delay, and false alarms per hour of attack-free data.
+\item \emph{Localization.} HR@$k$ (a target loop among the top $k$) and normalised rank, using the best-ranked target for two-loop attacks.
+\item \emph{Faithfulness.} Deletion AUC: loops are restored in ranked order, and we take the area under the normalised score curve (lower is better). The restoration uses either the incident reference or the training mean; the latter avoids sharing the value function of \LX.
+\item \emph{Stability.} Top-$k$ agreement between consecutive explanations (temporal), and Jaccard/Spearman agreement under Gaussian input noise ($\sigma=0.1$ in standardised units).
+\item \emph{Cost.} Median wall-clock latency on one CPU thread and number of detector evaluations.
+\item \emph{Timeliness.} DCL@$k(D)$ and the in-time rate with $t_{\mathrm{act}}=30$\,s.
+\end{itemize}
+
+\paragraph{Statistics} The unit of analysis is the attack. Seeds are averaged per attack and detector, and (attack, detector) pairs are the paired units. We report means with 95\,\% bootstrap confidence intervals (10\,000 resamples). We test with a Friedman omnibus and two-sided Wilcoxon signed-rank tests of \LX+\TEA{} against every other configuration, Holm-corrected \citep{demsar2006statistical,holm1979simple}, with matched-pairs rank-biserial effect sizes $r_{\mathrm{rb}}$.
+
+\paragraph{Implementation} Python~3.13 and PyTorch~2.15 on an \CPUmodel{}. Latencies are measured with \texttt{torch.set\_num\_threads(1)} on an otherwise idle machine; evaluation counts are hardware-independent. We did not measure on embedded hardware (\cref{sec:limitations}).
