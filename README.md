@@ -45,13 +45,31 @@ git -C data/raw/hai-src sparse-checkout set hai-21.03 && ln -s hai-src/hai-21.03
 Run the unit tests:
 
 ```bash
-PYTHONPATH=src python3 -m pytest -q tests
+python3 -m pytest -q
 ```
 
 Run every experiment (≈4–6 h on 4 CPU cores; PCL-Sim data is generated deterministically):
 
 ```bash
 bash scripts/run_all.sh
+```
+
+Sensor-noise robustness with the threshold recalibrated on equally noisy validation data (the runs without `--recal` keep the clean threshold, which saturates the detector):
+
+```bash
+bash scripts/run_queue.sh scripts/queue_recal.txt 4
+```
+
+Phase-2 analysis (reference gap, noise, decoy; writes `results/tables/phase2.csv` and `phase2_tests.csv`):
+
+```bash
+python3 scripts/analyze_phase2.py
+```
+
+Edge-hardware sensitivity (every measured latency multiplied by an assumed factor):
+
+```bash
+python3 scripts/analyze.py --datasets sim hai --slowdown 10 && python3 scripts/analyze.py --datasets sim hai --slowdown 100
 ```
 
 Latency benchmark (run on an idle machine) and ShaTS accuracy:

@@ -12,7 +12,8 @@ phase1() {
 }
 phase2() {
   for det in linear cnn; do for s in 0 1 2; do echo "--dataset sim-decoy --detector $det --seed $s"; done; done
-  for ds in sim hai; do for nz in 0.1 0.3; do echo "--dataset $ds --detector cnn --seed 0 --noise $nz"; done
+  for ds in sim hai; do for nz in 0.1 0.3; do echo "--dataset $ds --detector cnn --seed 0 --noise $nz"
+    echo "--dataset $ds --detector cnn --seed 0 --noise $nz --recal --extras"; done
     for rg in 32 120 300; do echo "--dataset $ds --detector cnn --seed 0 --ref-gap $rg"; done; done
 }
 case "${1:-all}" in
@@ -23,4 +24,5 @@ esac
 if [ "${1:-all}" = "all" ]; then
   python3 scripts/run_leakage.py
   python3 scripts/analyze.py --datasets sim hai sim-decoy
+  python3 scripts/analyze_phase2.py
 fi

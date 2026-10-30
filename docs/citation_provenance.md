@@ -10,3 +10,5 @@ Automated verifiers (OpenAlex, Crossref, Semantic Scholar, arXiv API) were **blo
 | Canonical references | `shapley1953value`, `owen1977unions`, `lundberg2017shap`, `ribeiro2016lime`, `sundararajan2017ig`, `simonyan2014saliency`, `guo2018lemna`, `strumbelj2014explaining`, `castro2009sampling`, `slack2020fooling`, `arp2022dos`, `kaufman2012leakage`, `demsar2006statistical`, `holm1979simple`, `cardenas2011attacks`, `urbina2016limiting`, `downs1993tep`, `kravchik2018cnn` | Standard, widely cited works; bibliographic data from the authors' knowledge — **page numbers and DOIs must be machine-checked before submission**. |
 
 No reference was added that was not either read (PDF), listed in the curated spreadsheet, or confirmed by a web search in this session, except the canonical references above.
+
+**Re-check attempt (30 Oct 2026).** `verify_bibtex` (OpenAlex + arXiv backend) was retried on `fung2024attributions` and `franco2026shats`; both returned `unchecked` because the proxy refused the connection (HTTP 403). The status above is therefore unchanged: no entry has been machine-verified against a bibliographic database.
