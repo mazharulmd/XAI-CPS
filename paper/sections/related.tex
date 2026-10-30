@@ -49,6 +49,7 @@ In a concurrent preprint, \citet{mishra2026conditional} compute sensor--time att
 \begin{table}[t]
 \centering\scriptsize
 \caption{Positioning against the closest prior work (``--'': not reported).}\label{tab:positioning}
+\resizebox{\linewidth}{!}{%
 \begin{tabular}{@{}p{2.6cm}p{2.1cm}p{2.2cm}p{2.1cm}p{2.2cm}p{2.4cm}@{}}
 \toprule
  & \citet{fung2024attributions} & ShaTS \citep{franco2026shats} & \citet{oinonen2026substations} & XAI-CPS \citep{rasheed2026xaicps} & \textbf{This work}\\
@@ -61,5 +62,5 @@ Explanation cost & -- & per window (GPU) & per explanation (GPU) & 12.3\,ms (GPU
 Physical deadline & no & no & no & no & yes\\
 Statistical tests & ANOVA/Pearson & -- & -- & mean$\pm$sd & Friedman, Wilcoxon--Holm, bootstrap\\
 \bottomrule
-\end{tabular}
+\end{tabular}}
 \end{table}

@@ -1,0 +1,23 @@
+\begin{table}[t]
+\centering\scriptsize
+\caption{Loop localization on PCL-Sim (pooled over 4 detectors; mean over attacks, seeds averaged). Bold: best in column. Single-shot unless marked \TEA.}\label{tab:loc_sim}
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{@{}lcccccccc@{}}
+\toprule
+& \multicolumn{6}{c}{HR@1} & HR@3 & nRank\\\cmidrule(lr){2-7}\cmidrule(lr){8-8}\cmidrule(lr){9-9} Method & best-guess & alarm & +60\,s & +60\,s\,\TEA & +180\,s & +180\,s\,\TEA & +60\,s\,\TEA & +60\,s\,\TEA\\
+\midrule
+RE & 0.43 & 0.86 & 0.44 & 0.80 & 0.41 & 0.80 & 0.96 & 0.07\\
+SM & 0.44 & 0.65 & 0.43 & 0.70 & 0.40 & 0.69 & 0.95 & 0.10\\
+IG & \textbf{0.68} & 0.86 & \textbf{0.66} & 0.84 & \textbf{0.55} & \textbf{0.83} & 0.96 & \textbf{0.06}\\
+KernelSHAP-eq & 0.46 & 0.80 & 0.47 & 0.71 & 0.40 & 0.69 & 0.90 & 0.13\\
+KernelSHAP-1024 & 0.50 & 0.84 & 0.50 & 0.80 & 0.43 & 0.77 & 0.93 & 0.09\\
+LIME-eq & 0.42 & 0.82 & 0.46 & 0.72 & 0.40 & 0.70 & 0.91 & 0.12\\
+LIME-1024 & 0.50 & 0.85 & 0.52 & 0.82 & 0.45 & 0.81 & 0.95 & 0.07\\
+Fung ens. & 0.48 & \textbf{0.87} & 0.49 & 0.82 & 0.45 & 0.82 & \textbf{0.97} & \textbf{0.06}\\
+CLX (clusters) & 0.12 & 0.27 & 0.16 & 0.23 & 0.14 & 0.23 & 0.78 & 0.31\\
+RPX (random) & 0.35 & 0.54 & 0.35 & 0.58 & 0.32 & 0.58 & 0.90 & 0.16\\
+\LX-bg & 0.54 & \textbf{0.87} & 0.60 & \textbf{0.85} & 0.50 & \textbf{0.83} & 0.96 & \textbf{0.06}\\
+\textbf{\LX{} (ours)} & 0.57 & 0.85 & 0.53 & 0.82 & 0.46 & 0.80 & 0.95 & 0.07\\
+\bottomrule
+\end{tabular}}
+\end{table}

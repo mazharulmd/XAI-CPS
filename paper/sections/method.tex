@@ -4,6 +4,7 @@
 
 \begin{figure}[t]
 \centering
+\resizebox{\linewidth}{!}{%
 \begin{tikzpicture}[font=\footnotesize, node distance=4mm and 6mm,
   box/.style={draw, rounded corners=2pt, align=center, minimum height=9mm, inner sep=3pt, fill=white},
   data/.style={box, fill=black!4},
@@ -22,7 +23,7 @@
 \draw[ar] (lx) -- node[above,font=\scriptsize]{$\phi_t$ every $\Delta$} (tea);
 \draw[ar] (tea) -- (op); \draw[ar] (tea) -- (ref); \draw[ar] (ref) -| (op);
 \draw[ar, dashed] (hist.south) ++(5mm,0) |- ($(lx.west)+(0,-2mm)$);
-\end{tikzpicture}
+\end{tikzpicture}}
 \caption{Deadline-aware localization pipeline. Shaded blue: components proposed in this paper. The detector, the explainer and the delivery schedule together determine whether a correct localization reaches the operator before the deadline $D$.}\label{fig:arch}
 \end{figure}
 

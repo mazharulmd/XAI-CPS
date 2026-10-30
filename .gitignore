@@ -17,3 +17,4 @@ results/logs_phase1.txt
 results/raw/
 results/models/
 results/logs_phase2.txt
+paper/*.toc

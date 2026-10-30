@@ -1,0 +1,20 @@
+\begin{table}[t]
+\centering\scriptsize
+\caption{Detection performance (mean$\pm$sd over 3 seeds; no point adjustment). Event recall: alarm within the attack or 60\,s after it. FA/h: false-alarm runs per hour of attack-free data.}\label{tab:detection}
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{@{}llcccccc@{}}
+\toprule
+Data & Detector & P & R & F1 & Event rec. & Delay [s] & FA/h\\
+\midrule
+PCL-Sim & Linear & 0.79 & 0.17 & 0.28 & 0.96 & 6 & 1.38\\
+ & MLP & 0.81$\pm$0.06 & 0.07$\pm$0.04 & 0.13$\pm$0.07 & 0.76$\pm$0.03 & 226$\pm$176 & 0.31$\pm$0.03\\
+ & CNN & 0.83$\pm$0.03 & 0.19$\pm$0.02 & 0.31$\pm$0.02 & 0.89$\pm$0.00 & 46$\pm$38 & 0.96$\pm$0.06\\
+ & GRU & 0.77$\pm$0.02 & 0.42$\pm$0.01 & 0.54$\pm$0.01 & 0.93$\pm$0.00 & 7$\pm$1 & 0.89$\pm$0.05\\
+\midrule
+HAI 21.03 & Linear & 0.79$\pm$0.00 & 0.60$\pm$0.00 & 0.68$\pm$0.00 & 0.92 & 6 & 0.42$\pm$0.03\\
+ & MLP & 0.75$\pm$0.01 & 0.50$\pm$0.02 & 0.60$\pm$0.02 & 0.90 & 15$\pm$1 & 0.36$\pm$0.04\\
+ & CNN & 0.74$\pm$0.01 & 0.48$\pm$0.01 & 0.58$\pm$0.01 & 0.89$\pm$0.01 & 14$\pm$0 & 0.34$\pm$0.01\\
+ & GRU & 0.78$\pm$0.00 & 0.55$\pm$0.00 & 0.65$\pm$0.00 & 0.90 & 14$\pm$1 & 0.36$\pm$0.02\\
+\bottomrule
+\end{tabular}}
+\end{table}

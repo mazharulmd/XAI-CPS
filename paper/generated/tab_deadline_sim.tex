@@ -1,0 +1,23 @@
+\begin{table}[t]
+\centering\scriptsize
+\caption{Deadline-conditioned localization on PCL-Sim (T = with \TEA). Latency: median measured per explanation during the runs (1 thread, pooled over detectors); Evals: detector evaluations per explanation. In-time: hazard deadline minus a 30\,s operator reserve, hazardous attacks only.}\label{tab:deadline_sim}
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{@{}lcccccccccc@{}}
+\toprule
+Method & \multicolumn{4}{c}{DCL@1($D$)} & DCL@3 & \multicolumn{2}{c}{In-time@1} & In-time@3 & Lat.\,[ms] & Evals\\ & 30\,s\,T & 60\,s & 60\,s\,T & 120\,s\,T & 60\,s\,T & single & T & T & & \\
+\midrule
+RE & 0.49 & 0.21 & 0.49 & 0.50 & \textbf{0.53} & 0.17 & 0.41 & \textbf{0.54} & 0.3 & 1\\
+SM & 0.47 & 0.21 & 0.46 & 0.47 & \textbf{0.53} & 0.19 & 0.40 & \textbf{0.54} & 0.8 & 1\\
+IG & \textbf{0.51} & \textbf{0.34} & \textbf{0.52} & \textbf{0.52} & \textbf{0.53} & \textbf{0.33} & \textbf{0.50} & \textbf{0.54} & 2.2 & 32\\
+KernelSHAP-eq & 0.40 & 0.23 & 0.40 & 0.40 & 0.48 & 0.25 & 0.40 & 0.51 & 2.4 & 64\\
+KernelSHAP-1024 & 0.48 & 0.24 & 0.48 & 0.48 & 0.52 & 0.22 & 0.43 & 0.51 & 24.2 & 1024\\
+LIME-eq & 0.42 & 0.21 & 0.42 & 0.42 & 0.50 & 0.20 & 0.38 & 0.48 & 1.8 & 64\\
+LIME-1024 & 0.50 & 0.24 & 0.50 & 0.50 & \textbf{0.53} & 0.22 & 0.46 & 0.52 & 15.4 & 1024\\
+Fung ens. & 0.50 & 0.23 & 0.50 & 0.50 & \textbf{0.53} & 0.21 & 0.44 & \textbf{0.54} & 3.2 & 66\\
+CLX (clusters) & 0.10 & 0.09 & 0.10 & 0.10 & 0.41 & 0.10 & 0.14 & 0.38 & 1.6 & 64\\
+RPX (random) & 0.32 & 0.17 & 0.33 & 0.35 & 0.51 & 0.17 & 0.29 & 0.50 & 1.5 & 64\\
+\LX-bg & \textbf{0.51} & 0.28 & \textbf{0.52} & \textbf{0.52} & \textbf{0.53} & 0.29 & 0.49 & \textbf{0.54} & 7.3 & 512\\
+\textbf{\LX{} (ours)} & \textbf{0.51} & 0.27 & \textbf{0.52} & 0.51 & \textbf{0.53} & 0.28 & 0.48 & 0.53 & 1.6 & 64\\
+\bottomrule
+\end{tabular}}
+\end{table}
