@@ -20,5 +20,7 @@ case "${1:-all}" in
   2) phase2 | xargs -P "$P" -I{} bash -c 'run {}' ;;
   all) phase1 | xargs -P "$P" -I{} bash -c 'run {}'; phase2 | xargs -P "$P" -I{} bash -c 'run {}' ;;
 esac
-python3 scripts/run_leakage.py
-python3 scripts/analyze.py --datasets sim hai sim-decoy
+if [ "${1:-all}" = "all" ]; then
+  python3 scripts/run_leakage.py
+  python3 scripts/analyze.py --datasets sim hai sim-decoy
+fi
