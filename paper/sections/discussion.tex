@@ -17,7 +17,7 @@ Given loop structure, exact Shapley values (\LX) are the most accurate black-box
 \item no randomness, so the same alarm yields the same explanation;
 \item no gradient access.
 \end{itemize}
-Where gradients are available, integrated gradients aggregated per loop with \TEA{} is an equally strong and cheaper choice in our data. We recommend reporting it as a baseline in future work. The training-background variant (\LX-bg) was slightly better on the simulator and slightly worse at the alarm on HAI. We therefore do not claim a general advantage for the incident-local reference.
+Where gradients are available, integrated gradients aggregated per loop with \TEA{} is an equally strong and cheaper choice in our data. We recommend reporting it as a baseline in future work. The training-background variant (\LX-bg) was slightly better on the simulator and slightly worse at the alarm on HAI. We therefore do not claim a general advantage for the incident-local reference. Nor did \LX+\TEA{} show the hypothesised robustness advantage: under recalibrated sensor noise and a non-adaptive decoy it behaved like the baselines (\cref{sec:ablation}). Under noise, the larger effect was on detection timeliness, which again points to detection as the bottleneck.
 
 \paragraph{Practical recommendations}
 \begin{enumerate}

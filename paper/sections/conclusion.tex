@@ -1,11 +1,12 @@
 \section{Conclusion}\label{sec:conclusion}
 We asked whether the explanations of ML-based ICS intrusion detectors reach operators correctly and in time. We introduced deadline-conditioned evaluation metrics, loop-level exact Shapley attribution with deterministic cost, and temporal evidence accumulation. We evaluated them, with 12 baselines and controls, across four detector families on the public HAI~21.03 testbed, for which we curated loop-level ground truth, and on an open closed-loop simulator with physical hazard deadlines.
 
-Three findings stand out:
+Four findings stand out:
 \begin{itemize}
 \item Single-shot attributions degrade quickly after an alarm as attacks propagate through coupled loops, and temporal accumulation recovers most of this loss for every method.
 \item Attribution grouped by control loops is essential; data-driven groupings fail.
 \item Most deadline failures are detection failures, not explanation failures.
+\item Exact loop attribution (\LX) is the most accurate black-box method at the alarm on real testbed data, but it is not more accurate or more robust than the strongest baselines once evidence is accumulated. Its advantages are a predictable, data-independent cost and gradient-free determinism.
 \end{itemize}
 
 Future work should:

@@ -66,6 +66,8 @@ H2 is supported.
 \item \emph{Determinism.} Its cost is fixed and known before deployment. Equal-budget sampling estimators (KernelSHAP-eq, LIME-eq) are less accurate at the same cost (\cref{tab:loc_hai,tab:loc_sim}). Matching \LX's accuracy with them requires roughly twice the budget (KernelSHAP-1024, LIME-1024).
 \item \emph{Gradient-free.} IG is the cheapest accurate method (32 forward/backward passes), but it requires gradient access to the detector. \LX{} needs only black-box score queries, so it also applies to non-differentiable detectors (rules, trees, PASAD-like statistics).
 \end{itemize}
+\paragraph{Sensitivity to slower hardware} We did not measure on embedded hardware. As a crude proxy, we repeated the deadline analysis with every measured latency multiplied by an assumed factor of 10 or 100; the explanation refresh interval grows accordingly. For \LX+\TEA{} on HAI, DCL@1 at $D=30$\,s is \slowhaixoneLXthirty{} at the measured latency, \slowhaixtenLXthirty{} at $\times10$ and \slowhaixhundredLXthirty{} at $\times100$. On PCL-Sim, the in-time rate is \slowsimxoneLXhaz, \slowsimxtenLXhaz{} and \slowsimxhundredLXhaz. Only \LX-bg on HAI, with 4096 evaluations per explanation, is materially affected: at $D=30$\,s it drops from \slowhaixoneLXbgthirty{} to \slowhaixhundredLXbgthirty{} at $\times100$. All other configurations change by at most 0.04, in either direction (largest for the 1024-sample estimators on HAI). Changes can be positive because a slower explainer refreshes less often, and \TEA{} then accumulates a different subset of windows. At these model sizes, explanation latency is not the binding constraint even with a hundredfold slowdown; detection delay is.
+
 ShaTS-sensor at its published default budget needs $\approx\!2\cdot20\,d^2$ evaluations per explanation ($\evalshaiShaTS$ on HAI), \latshaiShaTScnn\,s for the CNN on one thread. At the alarm on HAI it localizes the attacked loop in \shatshaicnnHR{} of attacks, against \shatshaicnnLXHR{} for \LX{} on the same incidents (CNN, seed 0).
 
 \begin{figure}[t]
@@ -120,7 +122,8 @@ H1 & \LX{} localizes better than tag-level methods & partially: best black-box a
 H2 & \TEA{} improves accuracy after the alarm and temporal stability & supported (both benchmarks, all methods)\\
 H3 & \LX+\TEA{} has deterministic cost and the best DCL / in-time rate & cost: supported; DCL: not supported (tied on HAI; IG/\LX-bg slightly better on PCL-Sim)\\
 H4 & control structure beats data-driven / random grouping & supported ($p<10^{-10}$)\\
-H5a/b & robustness to noise / decoys & see \cref{sec:ablation}\\
+H5a & \LX+\TEA{} degrades less under sensor noise & not supported (no significant differences; \LX{} numerically lower on HAI)\\
+H5b & decoy captures top-1 less often with \LX+\TEA & not supported (decoy ineffective against all methods, $\le$5\,\% with \TEA)\\
 H6 & random splits inflate detection & supported (F1 \leakRandomFOne{} vs.\ \leakBlockedFOne)\\
 \bottomrule
 \end{tabular}
