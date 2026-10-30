@@ -15,6 +15,7 @@ A hypothesis is reported as supported only if the Holm-corrected two-sided $p<0.
 \begin{table}[h]
 \centering\scriptsize
 \caption{Validation protocols stated in reviewed XAI-IDS studies that use time-series CPS/IIoT data (as stated in the papers; ``--'' if not stated in the sections we read). Random proportional splits or $k$-fold CV without a stated chronological or gapped protocol allow overlapping or adjacent windows on both sides of the split.}\label{tab:corpus}
+\resizebox{\linewidth}{!}{%
 \begin{tabular}{@{}lll@{}}
 \toprule
 Study & Data & Stated protocol\\
@@ -31,7 +32,7 @@ Study & Data & Stated protocol\\
 \citet{franco2026shats} & SWaT & padded segment split (leakage-aware)\\
 \citet{fung2024attributions} & SWaT, WADI, TEP & normal-only training, attack test sets\\
 \bottomrule
-\end{tabular}
+\end{tabular}}
 \end{table}
 
 \section{HAI 21.03 loop map}\label{app:loops}

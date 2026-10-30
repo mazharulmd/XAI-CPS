@@ -23,9 +23,10 @@ Consider an attack $i$ with onset $t_{\mathrm{on},i}$, target loops $\mathcal G_
 
 \begin{definition}[DCL]
 The deadline-conditioned localization at depth $k$ is
-\begin{equation}\label{eq:dcl}
-\mathrm{DCL@}k(D)=\frac1N\sum_{i=1}^{N}\mathbb 1\!\left[t_{a,i}\text{ exists},\ \exists\,\text{delivery by }t_{\mathrm{on},i}+D,\ \mathcal G_i^\star\cap\operatorname{top}_k\bm\rho_i(D)\neq\emptyset\right].
-\end{equation}
+\begin{multline}\label{eq:dcl}
+\mathrm{DCL@}k(D)=\frac1N\sum_{i=1}^{N}\mathbb 1\!\Bigl[t_{a,i}\text{ exists},\ \exists\,\text{delivery by }t_{\mathrm{on},i}+D,\\
+\mathcal G_i^\star\cap\operatorname{top}_k\bm\rho_i(D)\neq\emptyset\Bigr].
+\end{multline}
 \end{definition}
 Missed detections, explanations that are not ready, and wrong explanations all count as failures. Hence $\mathrm{DCL@}k$ is upper-bounded by the event recall of the detector.
 
