@@ -1,0 +1,4 @@
+--dataset hai --detector cnn --seed 0 --noise 0.1 --recal --extras
+--dataset hai --detector cnn --seed 0 --noise 0.3 --recal --extras
+--dataset sim --detector cnn --seed 0 --noise 0.1 --recal --extras
+--dataset sim --detector cnn --seed 0 --noise 0.3 --recal --extras

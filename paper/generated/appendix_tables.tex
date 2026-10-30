@@ -1,1 +1,66 @@
-\textbf{[pending]}
+\begin{table}[htbp]
+\centering\scriptsize
+\caption{Loop HR@1 per detector family (``at alarm, single-shot / 60\,s after the alarm with \TEA''; mean over attacks of the per-attack mean over 3 seeds; $n$: attacks detected by at least one seed).}\label{tab:perdet}
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{@{}lllcccccc@{}}
+\toprule
+Data & Detector & $n$ & RE & IG & KernelSHAP-1024 & Fung ens. & \LX-bg & \LX\\
+\midrule
+HAI & linear & 46 & 0.70 / 0.66 & 0.85 / 0.78 & 0.82 / 0.72 & 0.87 / 0.82 & 0.85 / 0.80 & 0.85 / 0.80\\
+ & mlp & 45 & 0.75 / 0.64 & 0.71 / 0.70 & 0.70 / 0.70 & 0.73 / 0.72 & 0.71 / 0.68 & 0.75 / 0.68\\
+ & cnn & 45 & 0.73 / 0.60 & 0.67 / 0.69 & 0.70 / 0.68 & 0.70 / 0.70 & 0.70 / 0.65 & 0.75 / 0.67\\
+ & gru & 45 & 0.66 / 0.53 & 0.76 / 0.73 & 0.74 / 0.65 & 0.72 / 0.64 & 0.70 / 0.70 & 0.81 / 0.63\\
+\midrule
+PCL-Sim & linear & 270 & 0.89 / 0.80 & 0.89 / 0.87 & 0.87 / 0.76 & 0.88 / 0.82 & 0.89 / 0.86 & 0.89 / 0.84\\
+ & mlp & 226 & 0.87 / 0.85 & 0.87 / 0.86 & 0.86 / 0.85 & 0.90 / 0.87 & 0.85 / 0.86 & 0.85 / 0.83\\
+ & cnn & 253 & 0.80 / 0.76 & 0.79 / 0.76 & 0.78 / 0.78 & 0.81 / 0.76 & 0.83 / 0.79 & 0.79 / 0.76\\
+ & gru & 265 & 0.87 / 0.81 & 0.88 / 0.87 & 0.86 / 0.81 & 0.88 / 0.84 & 0.89 / 0.88 & 0.89 / 0.86\\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+\begin{table}[htbp]
+\centering\scriptsize
+\caption{Tag-level localization (HR@1 / HR@3, single-shot at the given time after the alarm). H-\LX{} refines the top loop of \LX{} into tags; the other methods rank all tags directly.}\label{tab:tags}
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{@{}llcccc@{}}
+\toprule
+Data & Method & +0\,s & +30\,s & +60\,s & +120\,s\\
+\midrule
+HAI & RE & 0.23 / 0.40 & 0.13 / 0.27 & 0.13 / 0.27 & 0.02 / 0.11\\
+ & SM & 0.10 / 0.34 & 0.13 / 0.32 & 0.13 / 0.26 & 0.10 / 0.20\\
+ & IG & 0.28 / 0.41 & 0.13 / 0.27 & 0.15 / 0.29 & 0.07 / 0.15\\
+ & KS-1024 & 0.31 / 0.41 & 0.15 / 0.29 & 0.16 / 0.27 & 0.08 / 0.17\\
+ & LIME-1024 & 0.31 / 0.41 & 0.15 / 0.28 & 0.17 / 0.29 & 0.06 / 0.16\\
+ & Fung-ens & 0.36 / 0.48 & 0.23 / 0.37 & 0.22 / 0.36 & 0.10 / 0.19\\
+ & H-\LX & 0.31 / 0.49 & 0.12 / 0.34 & 0.15 / 0.31 & 0.06 / 0.18\\
+\midrule
+PCL-Sim & RE & 0.38 / 0.76 & 0.23 / 0.37 & 0.26 / 0.43 & 0.26 / 0.42\\
+ & SM & 0.20 / 0.53 & 0.18 / 0.37 & 0.17 / 0.38 & 0.16 / 0.37\\
+ & IG & 0.44 / 0.74 & 0.21 / 0.42 & 0.25 / 0.47 & 0.22 / 0.42\\
+ & KS-1024 & 0.44 / 0.73 & 0.14 / 0.31 & 0.19 / 0.37 & 0.18 / 0.33\\
+ & LIME-1024 & 0.44 / 0.73 & 0.15 / 0.32 & 0.21 / 0.40 & 0.20 / 0.36\\
+ & Fung-ens & 0.28 / 0.75 & 0.14 / 0.36 & 0.19 / 0.41 & 0.18 / 0.38\\
+ & H-\LX & 0.45 / 0.76 & 0.17 / 0.32 & 0.21 / 0.39 & 0.19 / 0.36\\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+\begin{table}[htbp]
+\centering\scriptsize
+\caption{PCL-Sim loop HR@1 by attack primitive (at alarm, single-shot / +60\,s with \TEA; $n$: detected (attack, detector) units).}\label{tab:prim}
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{@{}llcccc@{}}
+\toprule
+Primitive & $n$ & RE & IG & \LX-bg & \LX\\
+\midrule
+CV & 135 & 0.87 / 0.82 & 0.86 / 0.84 & 0.87 / 0.82 & 0.88 / 0.83\\
+CV\_PV & 160 & 0.96 / 0.91 & 0.95 / 0.88 & 0.95 / 0.88 & 0.95 / 0.87\\
+CV\_ST & 159 & 0.94 / 0.96 & 0.93 / 0.96 & 0.94 / 0.98 & 0.93 / 0.96\\
+PV\_BIAS & 148 & 0.93 / 0.85 & 0.94 / 0.95 & 0.93 / 0.94 & 0.93 / 0.93\\
+PV\_FREEZE & 115 & 0.56 / 0.54 & 0.51 / 0.49 & 0.56 / 0.54 & 0.50 / 0.46\\
+SP & 137 & 0.86 / 0.82 & 0.90 / 0.89 & 0.90 / 0.87 & 0.90 / 0.86\\
+SP\_PV & 160 & 0.79 / 0.66 & 0.81 / 0.80 & 0.86 / 0.81 & 0.81 / 0.76\\
+\bottomrule
+\end{tabular}}
+\end{table}

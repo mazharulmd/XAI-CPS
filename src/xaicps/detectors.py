@@ -116,7 +116,17 @@ class Detector:
                         break
             self.model.load_state_dict(best_state)
         self.model.eval()
-        # residual scale and alarm threshold from VALIDATION normal data only
+        self.calibrate(val, va_idx)
+        self.train_info = dict(train_time_s=time.time() - t0, val_mse=self._val_mse,
+                               theta=self.theta, n_params=sum(p.numel() for p in self.model.parameters()))
+        return self
+
+    def calibrate(self, val, va_idx=None):
+        """Residual scale and alarm threshold from VALIDATION normal data only (model frozen)."""
+        if va_idx is None:
+            va_idx = _windows(val, self.w, 7)
+            rng = np.random.default_rng(self.seed)
+            va_idx = [va_idx[i] for i in rng.choice(len(va_idx), min(len(va_idx), 20_000), replace=False)]
         res = []
         with torch.no_grad():
             for b in range(0, len(va_idx), 4096):
@@ -127,8 +137,7 @@ class Detector:
         s_val = np.concatenate([self.score_series(v) for v in val])
         s_val = s_val[np.isfinite(s_val)]
         self.theta = float(np.quantile(s_val, self.q))
-        self.train_info = dict(train_time_s=time.time() - t0, val_mse=float((res ** 2).mean()),
-                               theta=self.theta, n_params=sum(p.numel() for p in self.model.parameters()))
+        self._val_mse = float((res ** 2).mean())
         return self
 
     def _val_loss(self, val, idx):

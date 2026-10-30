@@ -19,4 +19,12 @@ We argue that the right question is not ``how accurate is the explanation?'' nor
 \item \textbf{A leakage-free, statistically tested comparison} of 12 attribution methods $\times$ 4 detector families $\times$ 3 seeds on both benchmarks. It covers accuracy over time, deadline-conditioned localization, latency and evaluation cost, faithfulness, temporal and perturbation stability, sensor-noise and decoy robustness, and ablations (\cref{sec:results}). A side experiment quantifies how much a random window split inflates detection results on HAI. Such splits appear in several of the XAI-IDS studies we reviewed.
 \end{enumerate}
 
-\paragraph{Summary of findings} \input{generated/findings_intro.tex}
+\paragraph{Summary of findings} The results are mixed, and we report them as such.
+\begin{itemize}
+\item \emph{Timing dominates method choice.} Single-shot attributions of every method degrade after the alarm as the attack propagates through coupled loops. On HAI, \LX{} falls from \lochaiLXalarmZerosinglehrOne{} top-1 accuracy at the alarm to \lochaiLXalarmOneEightZerosinglehrOne{} after 180\,s. \TEA{} recovers most of this loss for every method (\lochaiLXalarmOneEightZeroteahrOne{} for \LX) and makes the top-1 output temporally stable.
+\item \emph{Control-loop structure is essential.} Exact Shapley values over correlation clusters or random partitions of the same size are far less accurate than over control loops.
+\item \emph{\LX{} is competitive, not dominant.} It is the most accurate black-box method at the alarm on HAI. With \TEA, however, it is statistically tied with integrated gradients and other strong baselines, and on PCL-Sim integrated gradients and a training-background variant are slightly better. Its distinguishing properties are a fixed, data-independent cost and gradient-free determinism.
+\item \emph{Most deadline misses are detection misses.} On hazardous simulated attacks, \intimeFailUndeliveredPct\,\% of the deadline failures of \LX+\TEA{} occur because the attack is detected too late or not at all.
+\item \emph{Leakage matters.} On HAI, a random window split inflates supervised detection F1 from \leakBlockedFOne{} to \leakRandomFOne.
+\end{itemize}
+

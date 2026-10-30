@@ -52,6 +52,13 @@ def table(path, header, rows, colspec, caption, label, note=None, size="\\script
     (GEN / path).write_text("\n".join(lines) + "\n")
 
 
+def table_str(header, rows, colspec, caption, label, size="\\scriptsize"):
+    tmp = "_tmp_table.tex"
+    table(tmp, header, rows, colspec, caption, label, size=size)
+    t = (GEN / tmp).read_text(); (GEN / tmp).unlink()
+    return t.replace("\\begin{table}[t]", "\\begin{table}[htbp]")
+
+
 # ----------------------------------------------------------------------------- datasets / setup macros
 def setup_macros():
     from xaicps import data as D
@@ -228,31 +235,56 @@ def tests_table():
           "tab:tests", size="\\tiny")
 
 
+P2_CONDS = [("ref32", "$\\Delta_{\\mathrm{ref}}$=32\\,s"), ("ref60 (default)", "$\\Delta_{\\mathrm{ref}}$=60\\,s (default)"),
+            ("ref120", "$\\Delta_{\\mathrm{ref}}$=120\\,s"), ("ref300", "$\\Delta_{\\mathrm{ref}}$=300\\,s"),
+            ("noise0.1 recal", "$\\sigma_n$=0.1, recal."), ("noise0.3 recal", "$\\sigma_n$=0.3, recal.")]
+P2_KEY = {"ref32": "refA", "ref60 (default)": "refB", "ref120": "refC", "ref300": "refD", "noise0.1 recal": "noiseA",
+          "noise0.3 recal": "noiseB", "noise0.1 clean-theta": "noiseAclean", "noise0.3 clean-theta": "noiseBclean",
+          "no decoy": "nodecoy", "decoy": "decoy"}
+
+
 def phase2_table():
     d = load("phase2.csv")
     if d is None:
         return
+    # macros: p2<ds><cond><method><variant><offset><metric>
+    for _, r in d.iterrows():
+        if r.condition not in P2_KEY:
+            continue
+        if str(r.metric).startswith("det_"):
+            fmt = "{:.2f}" if r.metric != "det_delay_median_s" else "{:.0f}"
+            mac(f"ptwo{r.dataset}{P2_KEY[r.condition]}{r.metric.replace('_', '')}", float(r["mean"]), fmt)
+        else:
+            mac(f"ptwo{r.dataset}{P2_KEY[r.condition]}{r.method}{r.variant}{int(r.offset)}{r.metric.replace('_', '')}", float(r["mean"]))
+    t = load("phase2_tests.csv")
+    if t is not None:
+        for _, r in t.iterrows():
+            k = f"ptwotest{r.dataset}{P2_KEY[r.condition]}{r.metric.replace('_', '')}{int(r.offset)}{r.method}"
+            mac(k + "p", r.p_holm, "{:.2g}" if r.p_holm < 0.01 else "{:.2f}")
+            mac(k + "r", r.effect_rb)
+            mac(f"ptwotest{r.dataset}{P2_KEY[r.condition]}n", int(r.n), "{}")
     rows = []
     for ds, dn in (("hai", "HAI"), ("sim", "PCL-Sim")):
-        for cond in ["ref32", "ref60 (default)", "ref120", "ref300", "noise0.1", "noise0.3"]:
+        for cond, lab in P2_CONDS:
             sub = d[(d.dataset == ds) & (d.condition == cond) & (d.metric == "hr1")]
             if not len(sub):
                 continue
             cell = lambda m, v, o: f2(first(sub[(sub.method == m) & (sub.variant == v) & (sub.offset == o)]["mean"].values))
-            rows.append(f"{dn} & {cond.replace('ref', '$\\Delta_{\\mathrm{ref}}$=').replace(' (default)', '\\,s (default)').replace('noise', '$\\sigma_n$=')} & "
-                        + " & ".join(cell(m, v, o) for m in ("LX", "IG", "KS-1024", "RE") for v, o in (("single", 0), ("tea", 60))))
+            rows.append(f"{dn} & {lab} & " + " & ".join(cell(m, v, o) for m in ("LX", "IG", "KS-1024", "RE") for v, o in (("single", 0), ("tea", 60))))
         rows.append("\\midrule")
     for cond in ("no decoy", "decoy"):
         sub = d[(d.dataset == "sim") & (d.condition == cond)]
         if not len(sub):
             continue
         for metric, lab in (("hr1", "HR@1"), ("decoy_top1", "decoy@1")):
+            if cond == "no decoy" and metric == "decoy_top1":
+                continue
             s2 = sub[sub.metric == metric]
             cell = lambda m, v, o: f2(first(s2[(s2.method == m) & (s2.variant == v) & (s2.offset == o)]["mean"].values))
             rows.append(f"PCL-Sim & {cond}: {lab} & " + " & ".join(cell(m, v, o) for m in ("LX", "IG", "KS-1024", "RE") for v, o in (("single", 0), ("tea", 60))))
     table("tab_phase2.tex", "Data & Condition & \\multicolumn{2}{c}{\\LX} & \\multicolumn{2}{c}{IG} & \\multicolumn{2}{c}{KS-1024} & \\multicolumn{2}{c}{RE}\\\\ & & alarm & +60\\,T & alarm & +60\\,T & alarm & +60\\,T & alarm & +60\\,T",
           rows, "@{}llcccccccc@{}",
-          "Ablations and robustness (HR@1 unless noted; CNN detector, seed 0 for the reference and noise rows; linear and CNN detectors, 3 seeds, for the decoy rows). decoy@1: share of attacks in which the innocent decoy loop is ranked first. Noise is added to the test data only, so detection also changes (see text).",
+          "Ablations and robustness (HR@1 unless noted; ``alarm'': single shot at the alarm; ``+60\\,T'': 60\\,s after the alarm with \\TEA). Reference-gap and noise rows: CNN detector, seed 0. Noise rows: Gaussian noise of standard deviation $\\sigma_n$ (standardised units) added to the test and validation data, with $\\sigma$ and $\\theta$ recalibrated on the noisy validation data (model weights frozen). Decoy rows: linear and CNN detectors, 3 seeds; decoy@1 is the share of attacks in which the innocent decoy loop is ranked first.",
           "tab:phase2", size="\\tiny")
 
 
@@ -325,13 +357,88 @@ def intime_decomposition():
         x = h[(h.method == m) & h.delivered.astype(bool)]
         mac("intimeDelivered" + "".join(ch for ch in m if ch.isalnum()), float(x.hr1.mean()))
 
+def slowdown_macros():
+    """Edge sensitivity: the same DCL analysis with every measured latency multiplied by a factor."""
+    for ds in ("sim", "hai"):
+        for x, word in ((1, "xone"), (10, "xten"), (100, "xhundred")):
+            d = load(f"dcl_hr1_{ds}.csv" if x == 1 else f"dcl_hr1_{ds}_x{x}.csv")
+            if d is None:
+                continue
+            for m in ("LX", "LX-bg", "IG", "KS-1024", "LIME-1024", "Fung-ens", "RE"):
+                for t, tn in (("dcl:fixed:30", "thirty"), ("dcl:fixed:60", "sixty"), ("dcl:haz:hz", "haz")):
+                    v = first(d[(d.timing == t) & (d.method == m) & (d.variant == "tea")]["mean"].values)
+                    if np.isfinite(v):
+                        mac("slow" + ds + word + "".join(ch for ch in m if ch.isalpha()) + tn, v)
+
+
+def appendix_tables():
+    out = []
+    meths = ["RE", "IG", "KS-1024", "Fung-ens", "LX-bg", "LX"]
+    rows = []
+    for ds, dn in (("hai", "HAI"), ("sim", "PCL-Sim")):
+        p = TAB / f"events_{ds}.csv.gz"
+        if not p.exists():
+            continue
+        ev = pd.read_csv(p)
+        for i, det in enumerate(["linear", "mlp", "cnn", "gru"]):
+            e = ev[ev.detector == det]
+            cells = []
+            for m in meths:
+                a = e[(e.method == m) & (e.timing == "alarm+0") & (e.variant == "single")].groupby("eid").hr1.mean()
+                b = e[(e.method == m) & (e.timing == "alarm+60") & (e.variant == "tea")].groupby("eid").hr1.mean()
+                cells.append(f"{f2(a.mean() if len(a) else np.nan)} / {f2(b.mean() if len(b) else np.nan)}")
+            n = e[(e.method == "LX") & (e.timing == "alarm+0") & (e.variant == "single")].eid.nunique()
+            rows.append(f"{dn if i == 0 else ''} & {det} & {n} & " + " & ".join(cells))
+        rows.append("\\midrule")
+    if rows:
+        out.append(table_str("Data & Detector & $n$ & " + " & ".join(NAME[m].replace("\\textbf{\\LX{} (ours)}", "\\LX") for m in meths), rows[:-1],
+                             "@{}lll" + "c" * len(meths) + "@{}",
+                             "Loop HR@1 per detector family (``at alarm, single-shot / 60\\,s after the alarm with \\TEA''; mean over attacks of the per-attack mean over 3 seeds; $n$: attacks detected by at least one seed).",
+                             "tab:perdet"))
+    rows = []
+    for ds, dn in (("hai", "HAI"), ("sim", "PCL-Sim")):
+        t1, t3 = load(f"tag_hr1_{ds}.csv"), load(f"tag_hr3_{ds}.csv")
+        if t1 is None:
+            continue
+        ms = [m for m in ["RE", "SM", "IG", "KS-1024", "LIME-1024", "Fung-ens", "H-LX"] if m in set(t1.method)]
+        offs = sorted(t1.offset.unique())
+        for i, m in enumerate(ms):
+            c = []
+            for o in offs:
+                a = first(t1[(t1.method == m) & (t1.offset == o)]["mean"].values)
+                b = first(t3[(t3.method == m) & (t3.offset == o)]["mean"].values)
+                c.append(f"{f2(a)} / {f2(b)}")
+            rows.append(f"{dn if i == 0 else ''} & {m.replace('H-LX', 'H-\\LX')} & " + " & ".join(c))
+        rows.append("\\midrule")
+    if rows:
+        out.append(table_str("Data & Method & " + " & ".join(f"+{o}\\,s" for o in offs), rows[:-1], "@{}ll" + "c" * len(offs) + "@{}",
+                             "Tag-level localization (HR@1 / HR@3, single-shot at the given time after the alarm). H-\\LX{} refines the top loop of \\LX{} into tags; the other methods rank all tags directly.",
+                             "tab:tags"))
+    p = TAB / "events_sim.csv.gz"
+    if p.exists():
+        ev = pd.read_csv(p)
+        rows = []
+        for prim in sorted(ev.primitive.dropna().unique()):
+            e = ev[ev.primitive == prim]
+            c = []
+            for m in ["RE", "IG", "LX-bg", "LX"]:
+                a = e[(e.method == m) & (e.timing == "alarm+0") & (e.variant == "single")].groupby(["detector", "eid"]).hr1.mean()
+                b = e[(e.method == m) & (e.timing == "alarm+60") & (e.variant == "tea")].groupby(["detector", "eid"]).hr1.mean()
+                c.append(f"{f2(a.mean() if len(a) else np.nan)} / {f2(b.mean() if len(b) else np.nan)}")
+            n = len(e[(e.method == "LX") & (e.timing == "alarm+0") & (e.variant == "single")].groupby(["detector", "eid"]))
+            rows.append(f"{prim.replace('_', '\\_')} & {n} & " + " & ".join(c))
+        out.append(table_str("Primitive & $n$ & RE & IG & \\LX-bg & \\LX", rows, "@{}llcccc@{}",
+                             "PCL-Sim loop HR@1 by attack primitive (at alarm, single-shot / +60\\,s with \\TEA; $n$: detected (attack, detector) units).",
+                             "tab:prim"))
+    (GEN / "appendix_tables.tex").write_text("\n".join(out) if out else "\\textbf{[pending]}\n")
+
 
 if __name__ == "__main__":
-    setup_macros(); detection_table(); loc_table(); stats_macros(); deadline_table(); quality_table(); tests_table(); phase2_table(); leakage(); latency_table(); shats(); intime_decomposition()
+    setup_macros(); detection_table(); loc_table(); stats_macros(); deadline_table(); quality_table(); tests_table(); phase2_table(); leakage(); latency_table(); shats(); intime_decomposition(); slowdown_macros(); appendix_tables()
     for name in ["evalshaiShaTS", "latshaiShaTScnn", "shatshaicnnHR", "shatshaicnnLXHR"]:
         if name not in macros:
             macros[name] = "\\textbf{??}"; print("WARNING: placeholder for", name)
-    for f in ["phase2_text.tex", "findings_intro.tex", "appendix_tables.tex", "tab_phase2.tex"]:
+    for f in ["appendix_tables.tex", "tab_phase2.tex"]:
         if not (GEN / f).exists():
             (GEN / f).write_text("\\textbf{[pending]}\n"); print("WARNING: stub", f)
     out = ["% generated by scripts/make_numbers.py -- do not edit"]

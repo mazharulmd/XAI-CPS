@@ -23,11 +23,13 @@ CFG = dict(w=32, alpha=0.1, q=0.999, grid_step=5, horizon=180, ref_gap=60, k_bg=
            budget_large=1024, max_windows={"hai": 120_000, "sim": 60_000, "sim-decoy": 60_000})
 
 
-def get_dataset(name, noise=0.0):
+def get_dataset(name, noise=0.0, noisy_val=False):
     D = data.load_hai() if name == "hai" else data.load_sim(decoy=(name == "sim-decoy"))
-    if noise > 0:                                     # RQ4: sensor noise on TEST data only
+    if noise > 0:                                     # RQ4: sensor noise on TEST data (and optionally VAL)
         rng = np.random.default_rng(12345)
         D.test = [(a + noise * rng.standard_normal(a.shape)).astype(np.float32) for a in D.test]
+        if noisy_val:                                 # operator recalibrates sigma/theta on equally noisy data
+            D.val_noisy = [(a + noise * rng.standard_normal(a.shape)).astype(np.float32) for a in D.val]
     return D
 
 
@@ -96,18 +98,22 @@ def main():
     ap.add_argument("--detector", default="cnn")
     ap.add_argument("--seed", type=int, default=0)
     ap.add_argument("--noise", type=float, default=0.0)
+    ap.add_argument("--recal", action="store_true", help="with --noise: recalibrate sigma/theta on noisy validation data")
     ap.add_argument("--ref-gap", type=int, default=CFG["ref_gap"])
     ap.add_argument("--threads", type=int, default=1)
     ap.add_argument("--max-events", type=int, default=0)
     ap.add_argument("--extras", action="store_true", help="tag refinement, fidelity, stability")
     args = ap.parse_args()
     torch.set_num_threads(args.threads)
-    suffix = (f"_noise{args.noise}" if args.noise else "") + (f"_ref{args.ref_gap}" if args.ref_gap != CFG["ref_gap"] else "")
+    suffix = (f"_noise{args.noise}" if args.noise else "") + ("_recal" if args.recal else "") + (f"_ref{args.ref_gap}" if args.ref_gap != CFG["ref_gap"] else "")
     out_p = ROOT / "results" / "raw" / args.dataset / f"{args.detector}_s{args.seed}{suffix}.pkl"
     out_p.parent.mkdir(parents=True, exist_ok=True)
 
-    D = get_dataset(args.dataset, args.noise)
+    D = get_dataset(args.dataset, args.noise, noisy_val=args.recal)
     det = get_detector(D, args.dataset, args.detector, args.seed)
+    if args.recal and args.noise > 0:
+        det.calibrate(D.val_noisy)                    # frozen model; validation-only threshold
+        print(f"recalibrated on noisy validation: theta={det.theta:.3f}", flush=True)
     groups = [np.array(v) for v in D.loops.values()]
     L, w = len(groups), det.w
     partitions = dict(cluster=explain.correlation_clusters(D.train, L), random=explain.random_partition(groups, len(D.tags), args.seed))

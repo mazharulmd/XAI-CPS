@@ -42,8 +42,8 @@ def fig_over_time():
         ax.set_ylim(0, 1)
     axes[0].set_ylabel("HR@1 (attacked loop ranked first)")
     h, l = axes[0].get_legend_handles_labels()
-    fig.legend(h, l, ncol=4, loc="lower center", bbox_to_anchor=(0.5, -0.12), fontsize=7)
-    fig.tight_layout(rect=(0, 0.1, 1, 1)); fig.savefig(FIG / "hr1_over_time.pdf", bbox_inches="tight"); plt.close(fig)
+    fig.legend(h, l, ncol=4, loc="upper center", bbox_to_anchor=(0.5, 0.02), fontsize=7)
+    fig.tight_layout(); fig.savefig(FIG / "hr1_over_time.pdf", bbox_inches="tight"); plt.close(fig)
 
 
 def fig_dcl():
