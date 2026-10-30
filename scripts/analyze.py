@@ -152,7 +152,11 @@ def tag_table(runs):
     for r in runs:
         tags = r["tags"]
         for e in r["events"]:
-            vis = [tags.index(p) for p in e["points"] if p in tags]
+            pts = e["points"]
+            if "primitive" in e["meta"] and e["meta"]["primitive"]:          # PCL-Sim: derive from primitive
+                from xaicps.data import sim_target_tags
+                pts = sim_target_tags(e["loops"][0], e["meta"]["primitive"])
+            vis = [tags.index(p) for p in pts if p in tags]
             if not vis:
                 continue
             for off, d in e.get("tags_at", {}).items():

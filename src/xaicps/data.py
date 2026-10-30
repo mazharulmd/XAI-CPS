@@ -136,6 +136,13 @@ def load_hai(val_frac=0.2, cache=True):
 
 
 # --------------------------------------------------------------------------- PCL-Sim
+def sim_target_tags(loop, primitive):
+    """Historian tags directly manipulated by a PCL-Sim attack primitive."""
+    suffix = {"SP": ["SP"], "CV": ["CMD"], "CV_ST": ["CMD"], "PV_BIAS": ["PV"], "PV_FREEZE": ["PV"],
+              "CV_PV": ["CMD", "PV"], "SP_PV": ["SP", "PV"]}[primitive]
+    return [f"{loop}_{x}" for x in suffix]
+
+
 def load_sim(train_seeds=range(10), val_seeds=(10, 11), test_seeds=(100, 101, 102, 103),
              hours=6, decoy=False, cache=True):
     from . import sim
@@ -162,7 +169,7 @@ def load_sim(train_seeds=range(10), val_seeds=(10, 11), test_seeds=(100, 101, 10
         a = ep["attack"]
         lab = np.zeros(ep["n_steps"], int); lab[a.t_on:a.t_on + a.dur] = 1
         labels.append(lab)
-        events.append(Event(f"S{i:03d}", i, a.t_on, a.t_on + a.dur, [a.loop], [f"{a.loop}_PV"],
+        events.append(Event(f"S{i:03d}", i, a.t_on, a.t_on + a.dur, [a.loop], sim_target_tags(a.loop, a.primitive),
                             dict(primitive=a.primitive, level=ep["level"], seed=ep["seed"],
                                  hazard_D=float(h - a.t_on) if np.isfinite(h) else np.inf,
                                  decoy_loop=a.decoy_loop, n_targets=1)))
