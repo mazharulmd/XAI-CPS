@@ -18,5 +18,12 @@
   "false_positive_rate_targets": [0.01, 0.05],
   "pca_variance": 0.95,
   "pca_max_components": 48,
+  "isolation_forest": {
+    "n_estimators": 500,
+    "max_samples": 512,
+    "random_state": 42,
+    "feature_representation": "robust_scaled_process_state_and_first_difference"
+  },
   "seed": 42
 }
+
