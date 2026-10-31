@@ -1,0 +1,7 @@
+Comparison,AvgRank_Diff,Wilcoxon_p_AvgRank,Cliffs_Delta_Rank,Comp_Diff,Wilcoxon_p_Comp,Cliffs_Delta_Comp,Wilcoxon_p_Stab,Edge_Speedup_x
+PI-CAX vs. Raw-MSE,-0.0992,1.265e-09,0.701,0.0399,0.03592,0.167,0.8916,0.12
+PI-CAX vs. VG,-0.1024,1.117e-09,0.562,0.0759,0.0001026,0.224,0.01523,0.31
+PI-CAX vs. IG,-0.0922,6.306e-09,0.521,0.0551,0.001155,0.182,0.007447,3.5
+PI-CAX vs. LIME,-0.2995,1.1e-09,0.729,0.1892,4.79e-08,0.459,1.753e-11,3.28
+PI-CAX vs. KernelSHAP,-0.3571,5.687e-11,0.779,0.4058,5.91e-11,0.732,1.753e-11,15.54
+PI-CAX vs. ShaTS,-0.2372,6.849e-11,0.695,0.0809,3.13e-05,0.292,2.051e-11,12.13
