@@ -1,0 +1,21 @@
+{
+  "study_title": "PI-CAX: Physics-Informed Causal-Structural and Deadline-Aware Adaptive Explainable Intrusion Detection for Cyber-Physical Systems",
+  "seed": 42,
+  "window_size": 10,
+  "datasets": ["SWaT", "WADI", "HAI"],
+  "detectors": ["VAR-SSM", "TCN-AE", "GRU-Seq", "ST-GDN"],
+  "explainers": ["Raw-MSE", "VG", "IG", "LIME", "KernelSHAP", "ShaTS", "PI-CAX"],
+  "edge_hardware_profile": {
+    "device": "Raspberry Pi 4 Model B (ARM Cortex-A72 @ 1.5 GHz)",
+    "single_core_slowdown_factor": 6.4,
+    "hard_deadline_ms": 10.0,
+    "soft_deadline_ms": 50.0
+  },
+  "pi_cax_hyperparameters": {
+    "scm_ridge_lambda": 1.5,
+    "cross_invariant_ridge_lambda": 2.0,
+    "precision_diagonal_shrinkage": 0.05,
+    "tier2_candidate_budget_k": 5,
+    "sparsity_percentile_floor": 60
+  }
+}
