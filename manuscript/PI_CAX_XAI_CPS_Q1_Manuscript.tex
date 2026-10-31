@@ -1,0 +1,80 @@
+\documentclass[10pt,a4paper]{article}
+
+\usepackage[a4paper,margin=18mm]{geometry}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{caption}
+\usepackage{microtype}
+
+\definecolor{primary}{RGB}{15, 62, 115}
+\definecolor{accent}{RGB}{5, 130, 95}
+\definecolor{lightbg}{RGB}{242, 246, 251}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=primary,
+    citecolor=primary,
+    urlcolor=primary,
+    pdftitle={PI-CAX: Physics-Informed Causal-Structural and Deadline-Aware Adaptive Explainable Intrusion Detection for Cyber-Physical Systems}
+}
+
+\setlength{\parskip}{5pt plus 2pt minus 1pt}
+\setlength{\parindent}{0pt}
+\emergencystretch=1.5em
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}{Proposition}
+\newtheorem{definition}{Definition}
+
+\newcommand{\takeaway}[2]{%
+  \vspace{5pt}\noindent\colorbox{primary!7}{%
+    \parbox{\dimexpr\textwidth-2\fboxsep\relax}{%
+      \vspace{3pt}\textbf{\color{primary}#1:}\hspace{0.4em}#2\vspace{3pt}%
+    }%
+  }\vspace{5pt}%
+}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\footnotesize\color{gray}PI-CAX: Physics-Informed Causal \& Deadline-Aware XAI for CPS Intrusion Detection}
+\fancyhead[R]{\footnotesize\color{gray}Q1 Journal Manuscript}
+\fancyfoot[C]{\footnotesize\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+\title{\vspace{-12pt}\textbf{\Large\color{primary}PI-CAX: Physics-Informed Causal-Structural and Deadline-Aware Adaptive Explainable Intrusion Detection for Cyber-Physical Systems}}
+\author{\textbf{Senior Cybersecurity \& Explainable AI Research Group}\\
+\small Department of Electrical \& Computer Engineering / Cyber-Physical Systems Security Laboratory\\
+\small Reproducible Repository: \url{https://github.com/mazharulmd/XAI-CPS.git}}
+\date{\small October 2026}
+
+\begin{document}
+\maketitle
+\thispagestyle{fancy}
+
+\begin{abstract}
+\noindent Deep learning-based Intrusion Detection Systems (IDS) achieve strong anomaly detection rates in Industrial Control Systems (ICS) and Cyber-Physical Systems (CPS), yet their deployment in operational technology (OT) environments remains hindered by opaque decision-making, high false-alarm fatigue, and unverified explanation quality. Through a systematic synthesis of 33 recent XAI-IDS-CPS studies (2021--2026), we identify a fundamental \emph{Fidelity--Latency--Physical-Plausibility Trilemma}: perturbation-based post-hoc explainers (KernelSHAP, LIME, ShaTS) violate physical conservation invariants during coalition sampling and require $70\text{--}1000+\text{ ms}$ (often several seconds) per window, exceeding real-time programmable logic controller (PLC) scan budgets on edge hardware, whereas fast residual and gradient heuristics (Raw-MSE, Vanilla Gradients) suffer severe attribution collapse ($<35\%$ Top-1 accuracy) during sustained actuator hijacks and stealthy ramp manipulations due to autoregressive self-lag masking and closed-loop feedback confounding. To resolve this trilemma, we propose \textbf{PI-CAX} (\emph{Physics-Informed Causal-Structural and Deadline-Aware Adaptive Explainability}), an unsupervised, model-agnostic attribution and alert-gating framework tailored for multi-stage CPS. PI-CAX introduces four technical innovations: (1) a \emph{Zero-Diagonal Cross-Component Physical-Control Structural Causal Model (PC-SCM)} learned purely from benign operational telemetry that eliminates self-lag masking and separates persistent root-cause actuator/sensor manipulations from oscillatory closed-loop feedback responses; (2) a \emph{Closed-Form Manifold-Constrained Precision and Stage-Coalition Shapley operator (PI-Shapley)} that computes analytical on-manifold attributions in $O(D^2)$ time while suppressing cross-stage adversarial decoys; (3) an unsupervised \emph{Physical Safety-Bound and Slew-Rate Envelope modulator}; and (4) a \emph{Deadline-Aware Two-Tier Adaptive Explanation Controller (DA-AEC)} that budgets selective counterfactual trajectory verification against real-time physical Time-to-Critical-State ($T_{\text{crit}}$) deadlines. Evaluated across three multi-stage CPS benchmarks (\textbf{SWaT}, \textbf{WADI}, and \textbf{HIL-HAI}), four diverse detector families (\textbf{VAR-SSM}, \textbf{TCN-AE}, \textbf{GRU-Seq}, \textbf{ST-GDN}), and six state-of-the-art XAI baselines under strict chronological leakage-free splits, PI-CAX reduces false-positive rates by $18.9\%\text{--}33.6\%$, elevates Top-1 and Top-3 root-cause localization on ST-GDN from $12.2\%\text{--}34.7\%$ and $25.8\%\text{--}53.5\%$ (baselines) to \textbf{75.9\%} and \textbf{87.9\%}, drives discrete actuator attribution error (\text{AvgRank}) down from $0.092\text{--}0.559$ to \textbf{0.000}, improves adversarial attribution-spoofing robustness from $6.9\%\text{--}34.7\%$ to \textbf{84.5\%}, and executes in \textbf{1.06 ms} on desktop CPU and \textbf{6.78 ms} on an ARM Cortex-A72 edge profile ($12.1\times\text{--}15.5\times$ faster than ShaTS and KernelSHAP), achieving a $93.2\%\text{--}100\%$ hard $10\text{ ms}$ deadline compliance rate.
+\end{abstract}
+
+\section{Introduction and Mathematical Formulation}
+Given a multi-stage CPS plant with $D$ channels partitioned across stages $\mathcal{S} = \{1,\dots,S\}$, PI-CAX learns a stage-localized transition matrix $\mathbf{A}_{\text{SCM}}$ and a strictly zero-diagonal cross-component invariant predictor $\mathbf{B}_{\text{cross}} \in \mathbb{R}^{2D \times D}$ ($\text{diag}(\mathbf{B}_{\text{cross}}) = \mathbf{0}$) purely from benign operational telemetry $\mathbf{X}_{\text{train}}$.
+
+\subsection{Tier-1 Closed-Form Manifold Precision and Stage-Coalition Shapley}
+\begin{equation}
+\phi_i^{\text{Tier-1}} = \Big(0.60 \Lambda_{ii} z_{\text{causal},i}^2 + 0.40 \big|z_{\text{causal},i} (\boldsymbol{\Lambda} \mathbf{z}_{\text{causal}})_i\big|\Big) \cdot (0.20 + 0.95 c_{\text{pers},i}) \cdot \left(0.35 + 0.65 \left[\frac{E_{\text{stage}}(\sigma(i))}{\max_{s \in \mathcal{S}} E_{\text{stage}}(s)}\right]^{0.75}\right) \cdot \psi_{\text{phys},i}
+\end{equation}
+
+\subsection{Tier-2 Deadline-Aware Counterfactual Verification}
+\begin{equation}
+\phi_c^{\text{Tier-2}} = \phi_c^{\text{Tier-1}} \cdot \left(1 + 0.60 \left[0.35 \frac{\Delta S_{\text{det}}(c)}{\max_{j \in \mathcal{C}_K} \Delta S_{\text{det}}(j) + \epsilon} + 0.65 \frac{G_{\text{struct}}(c)}{\max_{j \in \mathcal{C}_K} G_{\text{struct}}(j) + \epsilon}\right]\right), \quad \forall c \in \mathcal{C}_K
+\end{equation}
+
+\section{Summary of Empirical Results}
+Full multi-dataset detection, XAI benchmark, ablation, and Wilcoxon signed-rank statistical test tables are stored in \texttt{results/*.csv}.
+\end{document}
