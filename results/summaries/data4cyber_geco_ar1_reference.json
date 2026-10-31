@@ -1,0 +1,2656 @@
+{
+  "study": "Data4Cyber v3 constrained GeCo state-stream reference",
+  "status": "exploratory adapted reference; not reproduction of the companion paper's twelve-detector results",
+  "generated_utc": "2026-10-31T17:05:28.052580+00:00",
+  "upstream": {
+    "repository": "https://github.com/ipal-ids/ipal_ids_framework",
+    "commit": "0d71866b777deb13bd2ee038d5058c2425ec4568",
+    "method_source": "ids/geco/geco.py",
+    "adaptations": [
+      "restrict equation search to each channel's own one-step lag (upstream max_formel_length=0)",
+      "replace upstream fork-only worker pool with a serial NumPy implementation of its length-zero SUM case",
+      "median-impute using training-normal data because upstream GeCo indexes missing state keys",
+      "calibrate a global threshold on normal-only calibration sequences for each nominal FPR target"
+    ]
+  },
+  "runtime": {
+    "python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+    "platform": "Windows-11-10.0.26300-SP0",
+    "processor": "Intel64 Family 6 Model 154 Stepping 4, GenuineIntel",
+    "numpy": "2.3.5",
+    "pandas": "3.0.1"
+  },
+  "config": {
+    "dataset": "Data4Cyber v3",
+    "source_doi": "10.5281/zenodo.22953576",
+    "archive_md5": "20d81c975e5c37f453103cdadb052c9e",
+    "metadata_audit_report": "results/data4cyber_metadata_audit.json",
+    "data_dir": "data/raw/data4cyber/data4cyber_dataset/data4cyber_dataset",
+    "attack_family_folds": {
+      "S1": [
+        "S1_industroyer_pv",
+        "S1_industroyer_pv_alt"
+      ],
+      "S2": [
+        "S2_industroyer_bss"
+      ],
+      "S3": [
+        "S3_arp_spoof_bss_meter_half_values"
+      ],
+      "S4": [
+        "S4_arp_spoof_loads_pv_two_phase"
+      ],
+      "S5": [
+        "S5_arp_spoof_loads_pv_bss_two_phase"
+      ],
+      "S6": [
+        "S6_mqtt_supply_chain_compromise"
+      ]
+    },
+    "normal_only_baseline": "S0_benign_baseline/dataset_benign.csv",
+    "response_target_annotations": "data/annotations/data4cyber_response_targets.csv",
+    "train_fraction_within_normal_scenarios": 0.8,
+    "false_positive_rate_targets": [
+      0.01,
+      0.05
+    ],
+    "pca_variance": 0.95,
+    "pca_max_components": 48,
+    "seed": 42
+  },
+  "dataset_integrity": {
+    "manifest_sha256": "6a8112fcad811eb0f8de3a170e4052d06dbb4ef3545d209fefa2e3aa939018ca",
+    "verified_split_files": {
+      "S0_benign_baseline/dataset_attack.csv": "4fabe627415ede28beae5cfaac89e1f47c340a1c3ca7622fc1cac4cd721b3187",
+      "S0_benign_baseline/dataset_benign.csv": "4fd17df2a7d4d459ce6971feab76cfc4c4e87b99c455a76a22a3c78a4b925af7",
+      "S1_industroyer_pv/dataset_attack.csv": "e4be062587d60fef4deee04fffb5f4592d6410f60df62c32212d2deaccffb486",
+      "S1_industroyer_pv/dataset_benign.csv": "25776157526160dc58335260385186c2dd507493bb3fadb041c5a1f6a1578230",
+      "S1_industroyer_pv_alt/dataset_attack.csv": "e5b9244bc4cba57ec80c71dcafa53cd8e9540e9d542c098cf99a02f71dc2845b",
+      "S1_industroyer_pv_alt/dataset_benign.csv": "71f6f1c6da510086722535dce7fe0ab302e882e29ee7d01520f05a6b2accd98c",
+      "S2_industroyer_bss/dataset_attack.csv": "9b5250b6fc27dff1c11420b105531193a0fb0daaee513bf7d958fa34d9bb18c5",
+      "S2_industroyer_bss/dataset_benign.csv": "b884f5207a316b48b270e85c51a3d3e6b41c9cc7008ea5f6fc81151989e184f1",
+      "S3_arp_spoof_bss_meter_half_values/dataset_attack.csv": "96135d738e041b19335fa7a5d76dfe68079dcb8867b9dec74db69cb39ffe1452",
+      "S3_arp_spoof_bss_meter_half_values/dataset_benign.csv": "9b8d1bed634b4bffb07bd3d20ea88abb55d2fe77ace6afdef39277dec979ce65",
+      "S4_arp_spoof_loads_pv_two_phase/dataset_attack.csv": "f0ba7b8e5589aff8e892106dc5d1698a2329e13c47fa768cce0b4c560063aa0c",
+      "S4_arp_spoof_loads_pv_two_phase/dataset_benign.csv": "97272bab71ac695e2e6b885f6ca0b01ea17d820de61ff0cfcf4e2f2bce63e1a3",
+      "S5_arp_spoof_loads_pv_bss_two_phase/dataset_attack.csv": "1adbc8a5419d945e64aed446a0108038827b212fe5f0411ef1ffca9807187814",
+      "S5_arp_spoof_loads_pv_bss_two_phase/dataset_benign.csv": "6ea52754f50ca1c353dcec71cbbfe7b3b481e028c8e4c0c773632d1300fb94c1",
+      "S6_mqtt_supply_chain_compromise/dataset_attack.csv": "dd768cb9795f1dded4e2052fb535014d0f7aeddfb8f672f010d0e6681b0b2654",
+      "S6_mqtt_supply_chain_compromise/dataset_benign.csv": "e87214a8fefa355a009b012cce2aa30138e6e71004794ea649f78bdc3da4bc8b"
+    },
+    "verified_split_file_count": 16
+  },
+  "archive_aggregate": {
+    "rows": 14354,
+    "attack_active_true": 7586,
+    "attack_active_false": 6768,
+    "empty_numeric_cells": 7569
+  },
+  "heldout_family_results": [
+    {
+      "heldout_family": "S1",
+      "heldout_scenario": "S1_industroyer_pv",
+      "training_scenarios": [
+        "S0_benign_baseline",
+        "S2_industroyer_bss",
+        "S3_arp_spoof_bss_meter_half_values",
+        "S4_arp_spoof_loads_pv_two_phase",
+        "S5_arp_spoof_loads_pv_bss_two_phase",
+        "S6_mqtt_supply_chain_compromise"
+      ],
+      "model": "GeCo-AR1-constrained",
+      "normal_fpr_target": 0.01,
+      "calibration_observed_fpr": 0.00998003992015968,
+      "threshold": 124474638077761.78,
+      "n_features": 145,
+      "train_transitions": 3993,
+      "test_rows": 1798,
+      "attack_rows": 913,
+      "point_metrics": {
+        "tp": 0,
+        "fp": 27,
+        "fn": 913,
+        "tn": 858,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "false_positive_rate": 0.030508474576271188,
+        "specificity": 0.9694915254237289,
+        "average_precision": 0.4676997153564276,
+        "predicted_samples": 27,
+        "threshold": 124474638077761.78
+      },
+      "event_metrics": {
+        "attack_events": 2,
+        "detected_attack_events": 0,
+        "event_recall": 0.0,
+        "mean_detection_delay_seconds": null,
+        "median_detection_delay_seconds": null,
+        "false_alarm_events": 3,
+        "false_alarm_events_per_normal_hour": 12.203389830508476
+      },
+      "explanation_events": [
+        {
+          "event_index": 0,
+          "start_utc": "2026-03-06T10:55:27.510000",
+          "end_utc": "2026-03-06T10:55:37.510000",
+          "phase_at_start": "s1_reconnaissance_nmap_solar_power",
+          "phase_all_at_start": "s1_reconnaissance_nmap_solar_power",
+          "eligible": false,
+          "evidence_tier": "phase_only_reconnaissance",
+          "target_status": "not_applicable",
+          "target_groups": [],
+          "detected": false,
+          "first_alarm_utc": null,
+          "delay_seconds": null,
+          "group_scores": {},
+          "ranked_groups": [],
+          "target_hit_at_1": false,
+          "target_hit_at_3": false,
+          "target_hit_at_5": false,
+          "random_hit_probability_at_1": 0.0,
+          "random_hit_probability_at_3": 0.0,
+          "random_hit_probability_at_5": 0.0
+        },
+        {
+          "event_index": 1,
+          "start_utc": "2026-03-06T11:00:39.510000",
+          "end_utc": "2026-03-06T11:15:40.510000",
+          "phase_at_start": "s1_industroyer_active_solar_power",
+          "phase_all_at_start": "s1_industroyer_active_solar_power",
+          "eligible": true,
+          "evidence_tier": "component_response",
+          "target_status": "indirect_response",
+          "target_groups": [
+            "PV-Inverter-AC-Meter"
+          ],
+          "detected": false,
+          "first_alarm_utc": null,
+          "delay_seconds": null,
+          "group_scores": {},
+          "ranked_groups": [],
+          "target_hit_at_1": false,
+          "target_hit_at_3": false,
+          "target_hit_at_5": false,
+          "random_hit_probability_at_1": 0.0,
+          "random_hit_probability_at_3": 0.0,
+          "random_hit_probability_at_5": 0.0
+        }
+      ],
+      "fit_seconds": 0.038201000017579645,
+      "score_seconds": 0.0158291999832727,
+      "batch_amortized_score_us_per_row": 8.803781970674473,
+      "single_row_score_latency_p50_ms": 0.008100003469735384,
+      "single_row_score_latency_p95_ms": 0.008200004231184721,
+      "model_parameter_bytes": 4640,
+      "equation_search": "one-step self-lag linear SUM only; no cross-sensor inputs"
+    },
+    {
+      "heldout_family": "S1",
+      "heldout_scenario": "S1_industroyer_pv",
+      "training_scenarios": [
+        "S0_benign_baseline",
+        "S2_industroyer_bss",
+        "S3_arp_spoof_bss_meter_half_values",
+        "S4_arp_spoof_loads_pv_two_phase",
+        "S5_arp_spoof_loads_pv_bss_two_phase",
+        "S6_mqtt_supply_chain_compromise"
+      ],
+      "model": "GeCo-AR1-constrained",
+      "normal_fpr_target": 0.05,
+      "calibration_observed_fpr": 0.0499001996007984,
+      "threshold": 64445558524655.98,
+      "n_features": 145,
+      "train_transitions": 3993,
+      "test_rows": 1798,
+      "attack_rows": 913,
+      "point_metrics": {
+        "tp": 14,
+        "fp": 67,
+        "fn": 899,
+        "tn": 818,
+        "precision": 0.1728395061728395,
+        "recall": 0.01533406352683461,
+        "f1": 0.02816901408450704,
+        "false_positive_rate": 0.07570621468926554,
+        "specificity": 0.9242937853107345,
+        "average_precision": 0.4676997153564276,
+        "predicted_samples": 81,
+        "threshold": 64445558524655.98
+      },
+      "event_metrics": {
+        "attack_events": 2,
+        "detected_attack_events": 2,
+        "event_recall": 1.0,
+        "mean_detection_delay_seconds": 32.0,
+        "median_detection_delay_seconds": 32.0,
+        "false_alarm_events": 25,
+        "false_alarm_events_per_normal_hour": 101.69491525423729
+      },
+      "explanation_events": [
+        {
+          "event_index": 0,
+          "start_utc": "2026-03-06T10:55:27.510000",
+          "end_utc": "2026-03-06T10:55:37.510000",
+          "phase_at_start": "s1_reconnaissance_nmap_solar_power",
+          "phase_all_at_start": "s1_reconnaissance_nmap_solar_power",
+          "eligible": false,
+          "evidence_tier": "phase_only_reconnaissance",
+          "target_status": "not_applicable",
+          "target_groups": [],
+          "detected": true,
+          "first_alarm_utc": "2026-03-06T10:55:32.510000",
+          "delay_seconds": 5.0,
+          "group_scores": {
+            "BSS-Inverter-AC-Meter": 417928092250.2205,
+            "Battery-SOC-Reference": 0.0,
+            "Battery-SOC-Reported": 0.0,
+            "Load-A-AC-Meter": 588740504.5617319,
+            "Load-B-AC-Meter": 25185991602.845554,
+            "MQTT-Price-Signal": 0.0,
+            "PV-Inverter-AC-Meter": 84366624384296.94,
+            "Profile": 46947167378.93293,
+            "Substation-AC-Meter": 39528079412184.41
+          },
+          "ranked_groups": [
+            "PV-Inverter-AC-Meter",
+            "Substation-AC-Meter",
+            "BSS-Inverter-AC-Meter",
+            "Profile",
+            "Load-B-AC-Meter",
+            "Load-A-AC-Meter",
+            "Battery-SOC-Reference",
+            "Battery-SOC-Reported",
+            "MQTT-Price-Signal"
+          ],
+          "target_hit_at_1": false,
+          "target_hit_at_3": false,
+          "target_hit_at_5": false,
+          "random_hit_probability_at_1": 0.0,
+          "random_hit_probability_at_3": 0.0,
+          "random_hit_probability_at_5": 0.0
+        },
+        {
+          "event_index": 1,
+          "start_utc": "2026-03-06T11:00:39.510000",
+          "end_utc": "2026-03-06T11:15:40.510000",
+          "phase_at_start": "s1_industroyer_active_solar_power",
+          "phase_all_at_start": "s1_industroyer_active_solar_power",
+          "eligible": true,
+          "evidence_tier": "component_response",
+          "target_status": "indirect_response",
+          "target_groups": [
+            "PV-Inverter-AC-Meter"
+          ],
+          "detected": true,
+          "first_alarm_utc": "2026-03-06T11:01:38.510000",
+          "delay_seconds": 59.0,
+          "group_scores": {
+            "BSS-Inverter-AC-Meter": 38232647827.162895,
+            "Battery-SOC-Reference": 0.0,
+            "Battery-SOC-Reported": 0.0,
+            "Load-A-AC-Meter": 7373400816.761711,
+            "Load-B-AC-Meter": 72525309227675.72,
+            "MQTT-Price-Signal": 0.0,
+            "PV-Inverter-AC-Meter": 68232203236.28448,
+            "Profile": 67832051050.00476,
+            "Substation-AC-Meter": 105465721043032.11
+          },
+          "ranked_groups": [
+            "Substation-AC-Meter",
+            "Load-B-AC-Meter",
+            "PV-Inverter-AC-Meter",
+            "Profile",
+            "BSS-Inverter-AC-Meter",
+            "Load-A-AC-Meter",
+            "Battery-SOC-Reference",
+            "Battery-SOC-Reported",
+            "MQTT-Price-Signal"
+          ],
+          "target_hit_at_1": false,
+          "target_hit_at_3": true,
+          "target_hit_at_5": true,
+          "random_hit_probability_at_1": 0.11111111111111116,
+          "random_hit_probability_at_3": 0.33333333333333337,
+          "random_hit_probability_at_5": 0.5555555555555556
+        }
+      ],
+      "fit_seconds": 0.038201000017579645,
+      "score_seconds": 0.0158291999832727,
+      "batch_amortized_score_us_per_row": 8.803781970674473,
+      "single_row_score_latency_p50_ms": 0.008100003469735384,
+      "single_row_score_latency_p95_ms": 0.008200004231184721,
+      "model_parameter_bytes": 4640,
+      "equation_search": "one-step self-lag linear SUM only; no cross-sensor inputs"
+    },
+    {
+      "heldout_family": "S1",
+      "heldout_scenario": "S1_industroyer_pv_alt",
+      "training_scenarios": [
+        "S0_benign_baseline",
+        "S2_industroyer_bss",
+        "S3_arp_spoof_bss_meter_half_values",
+        "S4_arp_spoof_loads_pv_two_phase",
+        "S5_arp_spoof_loads_pv_bss_two_phase",
+        "S6_mqtt_supply_chain_compromise"
+      ],
+      "model": "GeCo-AR1-constrained",
+      "normal_fpr_target": 0.01,
+      "calibration_observed_fpr": 0.00998003992015968,
+      "threshold": 124474638077761.78,
+      "n_features": 145,
+      "train_transitions": 3993,
+      "test_rows": 1792,
+      "attack_rows": 910,
+      "point_metrics": {
+        "tp": 0,
+        "fp": 10,
+        "fn": 910,
+        "tn": 872,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "false_positive_rate": 0.011337868480725623,
+        "specificity": 0.9886621315192744,
+        "average_precision": 0.4894695508584982,
+        "predicted_samples": 10,
+        "threshold": 124474638077761.78
+      },
+      "event_metrics": {
+        "attack_events": 2,
+        "detected_attack_events": 0,
+        "event_recall": 0.0,
+        "mean_detection_delay_seconds": null,
+        "median_detection_delay_seconds": null,
+        "false_alarm_events": 3,
+        "false_alarm_events_per_normal_hour": 12.244897959183673
+      },
+      "explanation_events": [
+        {
+          "event_index": 0,
+          "start_utc": "2026-03-05T14:28:19.330000",
+          "end_utc": "2026-03-05T14:28:27.330000",
+          "phase_at_start": "s1_alt_reconnaissance_nmap_solar_power",
+          "phase_all_at_start": "s1_alt_reconnaissance_nmap_solar_power",
+          "eligible": false,
+          "evidence_tier": "phase_only_reconnaissance",
+          "target_status": "not_applicable",
+          "target_groups": [],
+          "detected": false,
+          "first_alarm_utc": null,
+          "delay_seconds": null,
+          "group_scores": {},
+          "ranked_groups": [],
+          "target_hit_at_1": false,
+          "target_hit_at_3": false,
+          "target_hit_at_5": false,
+          "random_hit_probability_at_1": 0.0,
+          "random_hit_probability_at_3": 0.0,
+          "random_hit_probability_at_5": 0.0
+        },
+        {
+          "event_index": 1,
+          "start_utc": "2026-03-05T14:34:19.330000",
+          "end_utc": "2026-03-05T14:49:19.330000",
+          "phase_at_start": "s1_alt_industroyer_active_solar_power",
+          "phase_all_at_start": "s1_alt_industroyer_active_solar_power",
+          "eligible": true,
+          "evidence_tier": "component_response",
+          "target_status": "indirect_response",
+          "target_groups": [
+            "PV-Inverter-AC-Meter"
+          ],
+          "detected": false,
+          "first_alarm_utc": null,
+          "delay_seconds": null,
+          "group_scores": {},
+          "ranked_groups": [],
+          "target_hit_at_1": false,
+          "target_hit_at_3": false,
+          "target_hit_at_5": false,
+          "random_hit_probability_at_1": 0.0,
+          "random_hit_probability_at_3": 0.0,
+          "random_hit_probability_at_5": 0.0
+        }
+      ],
+      "fit_seconds": 0.038201000017579645,
+      "score_seconds": 0.015810599987162277,
+      "batch_amortized_score_us_per_row": 8.822879457121806,
+      "single_row_score_latency_p50_ms": 0.008000002708286047,
+      "single_row_score_latency_p95_ms": 0.008100003469735384,
+      "model_parameter_bytes": 4640,
+      "equation_search": "one-step self-lag linear SUM only; no cross-sensor inputs"
+    },
+    {
+      "heldout_family": "S1",
+      "heldout_scenario": "S1_industroyer_pv_alt",
+      "training_scenarios": [
+        "S0_benign_baseline",
+        "S2_industroyer_bss",
+        "S3_arp_spoof_bss_meter_half_values",
+        "S4_arp_spoof_loads_pv_two_phase",
+        "S5_arp_spoof_loads_pv_bss_two_phase",
+        "S6_mqtt_supply_chain_compromise"
+      ],
+      "model": "GeCo-AR1-constrained",
+      "normal_fpr_target": 0.05,
+      "calibration_observed_fpr": 0.0499001996007984,
+      "threshold": 64445558524655.98,
+      "n_features": 145,
+      "train_transitions": 3993,
+      "test_rows": 1792,
+      "attack_rows": 910,
+      "point_metrics": {
+        "tp": 15,
+        "fp": 36,
+        "fn": 895,
+        "tn": 846,
+        "precision": 0.29411764705882354,
+        "recall": 0.016483516483516484,
+        "f1": 0.031217481789802288,
+        "false_positive_rate": 0.04081632653061224,
+        "specificity": 0.9591836734693877,
+        "average_precision": 0.4894695508584982,
+        "predicted_samples": 51,
+        "threshold": 64445558524655.98
+      },
+      "event_metrics": {
+        "attack_events": 2,
+        "detected_attack_events": 2,
+        "event_recall": 1.0,
+        "mean_detection_delay_seconds": 73.5,
+        "median_detection_delay_seconds": 73.5,
+        "false_alarm_events": 15,
+        "false_alarm_events_per_normal_hour": 61.224489795918366
+      },
+      "explanation_events": [
+        {
+          "event_index": 0,
+          "start_utc": "2026-03-05T14:28:19.330000",
+          "end_utc": "2026-03-05T14:28:27.330000",
+          "phase_at_start": "s1_alt_reconnaissance_nmap_solar_power",
+          "phase_all_at_start": "s1_alt_reconnaissance_nmap_solar_power",
+          "eligible": false,
+          "evidence_tier": "phase_only_reconnaissance",
+          "target_status": "not_applicable",
+          "target_groups": [],
+          "detected": true,
+          "first_alarm_utc": "2026-03-05T14:28:25.330000",
+          "delay_seconds": 6.0,
+          "group_scores": {
+            "BSS-Inverter-AC-Meter": 4755126435.871766,
+            "Battery-SOC-Reference": 0.0,
+            "Battery-SOC-Reported": 0.0,
+            "Load-A-AC-Meter": 14703051555.65594,
+            "Load-B-AC-Meter": 13452935759597.553,
+            "MQTT-Price-Signal": 0.0,
+            "PV-Inverter-AC-Meter": 66047150474781.69,
+            "Profile": 77095957585.89963,
+            "Substation-AC-Meter": 28940927314051.11
+          },
+          "ranked_groups": [
+            "PV-Inverter-AC-Meter",
+            "Substation-AC-Meter",
+            "Load-B-AC-Meter",
+            "Profile",
+            "Load-A-AC-Meter",
+            "BSS-Inverter-AC-Meter",
+            "Battery-SOC-Reference",
+            "Battery-SOC-Reported",
+            "MQTT-Price-Signal"
+          ],
+          "target_hit_at_1": false,
+          "target_hit_at_3": false,
+          "target_hit_at_5": false,
+          "random_hit_probability_at_1": 0.0,
+          "random_hit_probability_at_3": 0.0,
+          "random_hit_probability_at_5": 0.0
+        },
+        {
+          "event_index": 1,
+          "start_utc": "2026-03-05T14:34:19.330000",
+          "end_utc": "2026-03-05T14:49:19.330000",
+          "phase_at_start": "s1_alt_industroyer_active_solar_power",
+          "phase_all_at_start": "s1_alt_industroyer_active_solar_power",
+          "eligible": true,
+          "evidence_tier": "component_response",
+          "target_status": "indirect_response",
+          "target_groups": [
+            "PV-Inverter-AC-Meter"
+          ],
+          "detected": true,
+          "first_alarm_utc": "2026-03-05T14:36:40.330000",
+          "delay_seconds": 141.0,
+          "group_scores": {
+            "BSS-Inverter-AC-Meter": 32872039505.249794,
+            "Battery-SOC-Reference": 0.0,
+            "Battery-SOC-Reported": 0.0,
+            "Load-A-AC-Meter": 9349049820.448591,
+            "Load-B-AC-Meter": 65632525638956.06,
+            "MQTT-Price-Signal": 0.0,
+            "PV-Inverter-AC-Meter": 60792198587.38895,
+            "Profile": 50856362287.90884,
+            "Substation-AC-Meter": 75390084487066.72
+          },
+          "ranked_groups": [
+            "Substation-AC-Meter",
+            "Load-B-AC-Meter",
+            "PV-Inverter-AC-Meter",
+            "Profile",
+            "BSS-Inverter-AC-Meter",
+            "Load-A-AC-Meter",
+            "Battery-SOC-Reference",
+            "Battery-SOC-Reported",
+            "MQTT-Price-Signal"
+          ],
+          "target_hit_at_1": false,
+          "target_hit_at_3": true,
+          "target_hit_at_5": true,
+          "random_hit_probability_at_1": 0.11111111111111116,
+          "random_hit_probability_at_3": 0.33333333333333337,
+          "random_hit_probability_at_5": 0.5555555555555556
+        }
+      ],
+      "fit_seconds": 0.038201000017579645,
+      "score_seconds": 0.015810599987162277,
+      "batch_amortized_score_us_per_row": 8.822879457121806,
+      "single_row_score_latency_p50_ms": 0.008000002708286047,
+      "single_row_score_latency_p95_ms": 0.008100003469735384,
+      "model_parameter_bytes": 4640,
+      "equation_search": "one-step self-lag linear SUM only; no cross-sensor inputs"
+    },
+    {
+      "heldout_family": "S2",
+      "heldout_scenario": "S2_industroyer_bss",
+      "training_scenarios": [
+        "S0_benign_baseline",
+        "S1_industroyer_pv",
+        "S1_industroyer_pv_alt",
+        "S3_arp_spoof_bss_meter_half_values",
+        "S4_arp_spoof_loads_pv_two_phase",
+        "S5_arp_spoof_loads_pv_bss_two_phase",
+        "S6_mqtt_supply_chain_compromise"
+      ],
+      "model": "GeCo-AR1-constrained",
+      "normal_fpr_target": 0.01,
+      "calibration_observed_fpr": 0.009298393913778529,
+      "threshold": 121944479264346.28,
+      "n_features": 145,
+      "train_transitions": 4713,
+      "test_rows": 1768,
+      "attack_rows": 903,
+      "point_metrics": {
+        "tp": 4,
+        "fp": 6,
+        "fn": 899,
+        "tn": 859,
+        "precision": 0.4,
+        "recall": 0.004429678848283499,
+        "f1": 0.008762322015334063,
+        "false_positive_rate": 0.006936416184971098,
+        "specificity": 0.9930635838150289,
+        "average_precision": 0.5053740237057991,
+        "predicted_samples": 10,
+        "threshold": 121944479264346.28
+      },
+      "event_metrics": {
+        "attack_events": 2,
+        "detected_attack_events": 1,
+        "event_recall": 0.5,
+        "mean_detection_delay_seconds": 120.0,
+        "median_detection_delay_seconds": 120.0,
+        "false_alarm_events": 4,
+        "false_alarm_events_per_normal_hour": 16.647398843930635
+      },
+      "explanation_events": [
+        {
+          "event_index": 0,
+          "start_utc": "2026-03-05T15:10:29.030000",
+          "end_utc": "2026-03-05T15:10:30.030000",
+          "phase_at_start": "s2_reconnaissance_nmap_battery_storage",
+          "phase_all_at_start": "s2_reconnaissance_nmap_battery_storage",
+          "eligible": false,
+          "evidence_tier": "phase_only_reconnaissance",
+          "target_status": "not_applicable",
+          "target_groups": [],
+          "detected": false,
+          "first_alarm_utc": null,
+          "delay_seconds": null,
+          "group_scores": {},
+          "ranked_groups": [],
+          "target_hit_at_1": false,
+          "target_hit_at_3": false,
+          "target_hit_at_5": false,
+          "random_hit_probability_at_1": 0.0,
+          "random_hit_probability_at_3": 0.0,
+          "random_hit_probability_at_5": 0.0
+        },
+        {
+          "event_index": 1,
+          "start_utc": "2026-03-05T15:15:28.030000",
+          "end_utc": "2026-03-05T15:30:28.030000",
+          "phase_at_start": "s2_industroyer_active_battery_storage",
+          "phase_all_at_start": "s2_industroyer_active_battery_storage",
+          "eligible": true,
+          "evidence_tier": "component_response",
+          "target_status": "indirect_response",
+          "target_groups": [
+            "BSS-Inverter-AC-Meter"
+          ],
+          "detected": true,
+          "first_alarm_utc": "2026-03-05T15:17:28.030000",
+          "delay_seconds": 120.0,
+          "group_scores": {
+            "BSS-Inverter-AC-Meter": 13117125439756.855,
+            "Battery-SOC-Reference": 0.0,
+            "Battery-SOC-Reported": 0.0,
+            "Load-A-AC-Meter": 27164160693.79402,
+            "Load-B-AC-Meter": 50458988452708.11,
+            "MQTT-Price-Signal": 0.0,
+            "PV-Inverter-AC-Meter": 2004969261160.1602,
+            "Profile": 7602542185.5565195,
+            "Substation-AC-Meter": 125235566977743.45
+          },
+          "ranked_groups": [
+            "Substation-AC-Meter",
+            "Load-B-AC-Meter",
+            "BSS-Inverter-AC-Meter",
+            "PV-Inverter-AC-Meter",
+            "Load-A-AC-Meter",
+            "Profile",
+            "Battery-SOC-Reference",
+            "Battery-SOC-Reported",
+            "MQTT-Price-Signal"
+          ],
+          "target_hit_at_1": false,
+          "target_hit_at_3": true,
+          "target_hit_at_5": true,
+          "random_hit_probability_at_1": 0.11111111111111116,
+          "random_hit_probability_at_3": 0.33333333333333337,
+          "random_hit_probability_at_5": 0.5555555555555556
+        }
+      ],
+      "fit_seconds": 0.05107230000430718,
+      "score_seconds": 0.016106199997011572,
+      "batch_amortized_score_us_per_row": 9.109841627268988,
+      "single_row_score_latency_p50_ms": 0.007800001185387373,
+      "single_row_score_latency_p95_ms": 0.01069999416358769,
+      "model_parameter_bytes": 4640,
+      "equation_search": "one-step self-lag linear SUM only; no cross-sensor inputs"
+    },
+    {
+      "heldout_family": "S2",
+      "heldout_scenario": "S2_industroyer_bss",
+      "training_scenarios": [
+        "S0_benign_baseline",
+        "S1_industroyer_pv",
+        "S1_industroyer_pv_alt",
+        "S3_arp_spoof_bss_meter_half_values",
+        "S4_arp_spoof_loads_pv_two_phase",
+        "S5_arp_spoof_loads_pv_bss_two_phase",
+        "S6_mqtt_supply_chain_compromise"
+      ],
+      "model": "GeCo-AR1-constrained",
+      "normal_fpr_target": 0.05,
+      "calibration_observed_fpr": 0.049873203719357564,
+      "threshold": 64973908301424.51,
+      "n_features": 145,
+      "train_transitions": 4713,
+      "test_rows": 1768,
+      "attack_rows": 903,
+      "point_metrics": {
+        "tp": 53,
+        "fp": 62,
+        "fn": 850,
+        "tn": 803,
+        "precision": 0.4608695652173913,
+        "recall": 0.058693244739756366,
+        "f1": 0.10412573673870335,
+        "false_positive_rate": 0.07167630057803469,
+        "specificity": 0.9283236994219654,
+        "average_precision": 0.5053740237057991,
+        "predicted_samples": 115,
+        "threshold": 64973908301424.51
+      },
+      "event_metrics": {
+        "attack_events": 2,
+        "detected_attack_events": 1,
+        "event_recall": 0.5,
+        "mean_detection_delay_seconds": 73.0,
+        "median_detection_delay_seconds": 73.0,
+        "false_alarm_events": 31,
+        "false_alarm_events_per_normal_hour": 129.0173410404624
+      },
+      "explanation_events": [
+        {
+          "event_index": 0,
+          "start_utc": "2026-03-05T15:10:29.030000",
+          "end_utc": "2026-03-05T15:10:30.030000",
+          "phase_at_start": "s2_reconnaissance_nmap_battery_storage",
+          "phase_all_at_start": "s2_reconnaissance_nmap_battery_storage",
+          "eligible": false,
+          "evidence_tier": "phase_only_reconnaissance",
+          "target_status": "not_applicable",
+          "target_groups": [],
+          "detected": false,
+          "first_alarm_utc": null,
+          "delay_seconds": null,
+          "group_scores": {},
+          "ranked_groups": [],
+          "target_hit_at_1": false,
+          "target_hit_at_3": false,
+          "target_hit_at_5": false,
+          "random_hit_probability_at_1": 0.0,
+          "random_hit_probability_at_3": 0.0,
+          "random_hit_probability_at_5": 0.0
+        },
+        {
+          "event_index": 1,
+          "start_utc": "2026-03-05T15:15:28.030000",
+          "end_utc": "2026-03-05T15:30:28.030000",
+          "phase_at_start": "s2_industroyer_active_battery_storage",
+          "phase_all_at_start": "s2_industroyer_active_battery_storage",
+          "eligible": true,
+          "evidence_tier": "component_response",
+          "target_status": "indirect_response",
+          "target_groups": [
+            "BSS-Inverter-AC-Meter"
+          ],
+          "detected": true,
+          "first_alarm_utc": "2026-03-05T15:16:41.030000",
+          "delay_seconds": 73.0,
+          "group_scores": {
+            "BSS-Inverter-AC-Meter": 29422367727.018135,
+            "Battery-SOC-Reference": 0.0,
+            "Battery-SOC-Reported": 0.0,
+            "Load-A-AC-Meter": 5510202827.85402,
+            "Load-B-AC-Meter": 77952242985300.31,
+            "MQTT-Price-Signal": 0.0,
+            "PV-Inverter-AC-Meter": 57585333547.96096,
+            "Profile": 51574620833.18092,
+            "Substation-AC-Meter": 86787446632817.0
+          },
+          "ranked_groups": [
+            "Substation-AC-Meter",
+            "Load-B-AC-Meter",
+            "PV-Inverter-AC-Meter",
+            "Profile",
+            "BSS-Inverter-AC-Meter",
+            "Load-A-AC-Meter",
+            "Battery-SOC-Reference",
+            "Battery-SOC-Reported",
+            "MQTT-Price-Signal"
+          ],
+          "target_hit_at_1": false,
+          "target_hit_at_3": false,
+          "target_hit_at_5": true,
+          "random_hit_probability_at_1": 0.11111111111111116,
+          "random_hit_probability_at_3": 0.33333333333333337,
+          "random_hit_probability_at_5": 0.5555555555555556
+        }
+      ],
+      "fit_seconds": 0.05107230000430718,
+      "score_seconds": 0.016106199997011572,
+      "batch_amortized_score_us_per_row": 9.109841627268988,
+      "single_row_score_latency_p50_ms": 0.007800001185387373,
+      "single_row_score_latency_p95_ms": 0.01069999416358769,
+      "model_parameter_bytes": 4640,
+      "equation_search": "one-step self-lag linear SUM only; no cross-sensor inputs"
+    },
+    {
+      "heldout_family": "S3",
+      "heldout_scenario": "S3_arp_spoof_bss_meter_half_values",
+      "training_scenarios": [
+        "S0_benign_baseline",
+        "S1_industroyer_pv",
+        "S1_industroyer_pv_alt",
+        "S2_industroyer_bss",
+        "S4_arp_spoof_loads_pv_two_phase",
+        "S5_arp_spoof_loads_pv_bss_two_phase",
+        "S6_mqtt_supply_chain_compromise"
+      ],
+      "model": "GeCo-AR1-constrained",
+      "normal_fpr_target": 0.01,
+      "calibration_observed_fpr": 0.00933786078098472,
+      "threshold": 123196865917522.28,
+      "n_features": 145,
+      "train_transitions": 4695,
+      "test_rows": 1800,
+      "attack_rows": 912,
+      "point_metrics": {
+        "tp": 0,
+        "fp": 11,
+        "fn": 912,
+        "tn": 877,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "false_positive_rate": 0.012387387387387387,
+        "specificity": 0.9876126126126126,
+        "average_precision": 0.40612436009106,
+        "predicted_samples": 11,
+        "threshold": 123196865917522.28
+      },
+      "event_metrics": {
+        "attack_events": 2,
+        "detected_attack_events": 0,
+        "event_recall": 0.0,
+        "mean_detection_delay_seconds": null,
+        "median_detection_delay_seconds": null,
+        "false_alarm_events": 5,
+        "false_alarm_events_per_normal_hour": 20.27027027027027
+      },
+      "explanation_events": [
+        {
+          "event_index": 0,
+          "start_utc": "2026-03-05T16:20:12.460000",
+          "end_utc": "2026-03-05T16:20:12.460000",
+          "phase_at_start": "reconnaissance",
+          "phase_all_at_start": "reconnaissance",
+          "eligible": false,
+          "evidence_tier": "phase_only_reconnaissance",
+          "target_status": "not_applicable",
+          "target_groups": [],
+          "detected": false,
+          "first_alarm_utc": null,
+          "delay_seconds": null,
+          "group_scores": {},
+          "ranked_groups": [],
+          "target_hit_at_1": false,
+          "target_hit_at_3": false,
+          "target_hit_at_5": false,
+          "random_hit_probability_at_1": 0.0,
+          "random_hit_probability_at_3": 0.0,
+          "random_hit_probability_at_5": 0.0
+        },
+        {
+          "event_index": 1,
+          "start_utc": "2026-03-05T16:24:49.460000",
+          "end_utc": "2026-03-05T16:39:59.460000",
+          "phase_at_start": "impact",
+          "phase_all_at_start": "impact",
+          "eligible": true,
+          "evidence_tier": "exact_register_to_tag",
+          "target_status": "exact",
+          "target_groups": [
+            "BSS-Inverter-AC-Meter"
+          ],
+          "detected": false,
+          "first_alarm_utc": null,
+          "delay_seconds": null,
+          "group_scores": {},
+          "ranked_groups": [],
+          "target_hit_at_1": false,
+          "target_hit_at_3": false,
+          "target_hit_at_5": false,
+          "random_hit_probability_at_1": 0.0,
+          "random_hit_probability_at_3": 0.0,
+          "random_hit_probability_at_5": 0.0
+        }
+      ],
+      "fit_seconds": 0.0502756999921985,
+      "score_seconds": 0.07635749998735264,
+      "batch_amortized_score_us_per_row": 42.42083332630702,
+      "single_row_score_latency_p50_ms": 0.039300008211284876,
+      "single_row_score_latency_p95_ms": 0.04049998824484646,
+      "model_parameter_bytes": 4640,
+      "equation_search": "one-step self-lag linear SUM only; no cross-sensor inputs"
+    },
+    {
+      "heldout_family": "S3",
+      "heldout_scenario": "S3_arp_spoof_bss_meter_half_values",
+      "training_scenarios": [
+        "S0_benign_baseline",
+        "S1_industroyer_pv",
+        "S1_industroyer_pv_alt",
+        "S2_industroyer_bss",
+        "S4_arp_spoof_loads_pv_two_phase",
+        "S5_arp_spoof_loads_pv_bss_two_phase",
+        "S6_mqtt_supply_chain_compromise"
+      ],
+      "model": "GeCo-AR1-constrained",
+      "normal_fpr_target": 0.05,
+      "calibration_observed_fpr": 0.04923599320882852,
+      "threshold": 65949128506724.8,
+      "n_features": 145,
+      "train_transitions": 4695,
+      "test_rows": 1800,
+      "attack_rows": 912,
+      "point_metrics": {
+        "tp": 10,
+        "fp": 63,
+        "fn": 902,
+        "tn": 825,
+        "precision": 0.136986301369863,
+        "recall": 0.010964912280701754,
+        "f1": 0.02030456852791878,
+        "false_positive_rate": 0.07094594594594594,
+        "specificity": 0.9290540540540541,
+        "average_precision": 0.40612436009106,
+        "predicted_samples": 73,
+        "threshold": 65949128506724.8
+      },
+      "event_metrics": {
+        "attack_events": 2,
+        "detected_attack_events": 1,
+        "event_recall": 0.5,
+        "mean_detection_delay_seconds": 0.0,
+        "median_detection_delay_seconds": 0.0,
+        "false_alarm_events": 31,
+        "false_alarm_events_per_normal_hour": 125.67567567567568
+      },
+      "explanation_events": [
+        {
+          "event_index": 0,
+          "start_utc": "2026-03-05T16:20:12.460000",
+          "end_utc": "2026-03-05T16:20:12.460000",
+          "phase_at_start": "reconnaissance",
+          "phase_all_at_start": "reconnaissance",
+          "eligible": false,
+          "evidence_tier": "phase_only_reconnaissance",
+          "target_status": "not_applicable",
+          "target_groups": [],
+          "detected": false,
+          "first_alarm_utc": null,
+          "delay_seconds": null,
+          "group_scores": {},
+          "ranked_groups": [],
+          "target_hit_at_1": false,
+          "target_hit_at_3": false,
+          "target_hit_at_5": false,
+          "random_hit_probability_at_1": 0.0,
+          "random_hit_probability_at_3": 0.0,
+          "random_hit_probability_at_5": 0.0
+        },
+        {
+          "event_index": 1,
+          "start_utc": "2026-03-05T16:24:49.460000",
+          "end_utc": "2026-03-05T16:39:59.460000",
+          "phase_at_start": "impact",
+          "phase_all_at_start": "impact",
+          "eligible": true,
+          "evidence_tier": "exact_register_to_tag",
+          "target_status": "exact",
+          "target_groups": [
+            "BSS-Inverter-AC-Meter"
+          ],
+          "detected": true,
+          "first_alarm_utc": "2026-03-05T16:24:49.460000",
+          "delay_seconds": 0.0,
+          "group_scores": {
+            "BSS-Inverter-AC-Meter": 33493044788.82654,
+            "Battery-SOC-Reference": 0.0,
+            "Battery-SOC-Reported": 0.0,
+            "Load-A-AC-Meter": 1003712776.1935717,
+            "Load-B-AC-Meter": 385494146996.5814,
+            "MQTT-Price-Signal": 0.0,
+            "PV-Inverter-AC-Meter": 114569873924954.17,
+            "Profile": 0.0,
+            "Substation-AC-Meter": 88521218358028.77
+          },
+          "ranked_groups": [
+            "PV-Inverter-AC-Meter",
+            "Substation-AC-Meter",
+            "Load-B-AC-Meter",
+            "BSS-Inverter-AC-Meter",
+            "Load-A-AC-Meter",
+            "Battery-SOC-Reference",
+            "Battery-SOC-Reported",
+            "MQTT-Price-Signal",
+            "Profile"
+          ],
+          "target_hit_at_1": false,
+          "target_hit_at_3": false,
+          "target_hit_at_5": true,
+          "random_hit_probability_at_1": 0.11111111111111116,
+          "random_hit_probability_at_3": 0.33333333333333337,
+          "random_hit_probability_at_5": 0.5555555555555556
+        }
+      ],
+      "fit_seconds": 0.0502756999921985,
+      "score_seconds": 0.07635749998735264,
+      "batch_amortized_score_us_per_row": 42.42083332630702,
+      "single_row_score_latency_p50_ms": 0.039300008211284876,
+      "single_row_score_latency_p95_ms": 0.04049998824484646,
+      "model_parameter_bytes": 4640,
+      "equation_search": "one-step self-lag linear SUM only; no cross-sensor inputs"
+    },
+    {
+      "heldout_family": "S4",
+      "heldout_scenario": "S4_arp_spoof_loads_pv_two_phase",
+      "training_scenarios": [
+        "S0_benign_baseline",
+        "S1_industroyer_pv",
+        "S1_industroyer_pv_alt",
+        "S2_industroyer_bss",
+        "S3_arp_spoof_bss_meter_half_values",
+        "S5_arp_spoof_loads_pv_bss_two_phase",
+        "S6_mqtt_supply_chain_compromise"
+      ],
+      "model": "GeCo-AR1-constrained",
+      "normal_fpr_target": 0.01,
+      "calibration_observed_fpr": 0.009623095429029671,
+      "threshold": 106668539771947.05,
+      "n_features": 145,
+      "train_transitions": 4973,
+      "test_rows": 1798,
+      "attack_rows": 1257,
+      "point_metrics": {
+        "tp": 607,
+        "fp": 8,
+        "fn": 650,
+        "tn": 533,
+        "precision": 0.9869918699186991,
+        "recall": 0.48289578361177404,
+        "f1": 0.6485042735042734,
+        "false_positive_rate": 0.014787430683918669,
+        "specificity": 0.9852125693160814,
+        "average_precision": 0.8619749333948433,
+        "predicted_samples": 615,
+        "threshold": 106668539771947.05
+      },
+      "event_metrics": {
+        "attack_events": 2,
+        "detected_attack_events": 1,
+        "event_recall": 0.5,
+        "mean_detection_delay_seconds": 2.0,
+        "median_detection_delay_seconds": 2.0,
+        "false_alarm_events": 3,
+        "false_alarm_events_per_normal_hour": 19.963031423290204
+      },
+      "explanation_events": [
+        {
+          "event_index": 0,
+          "start_utc": "2026-03-06T15:18:47.440000",
+          "end_utc": "2026-03-06T15:18:56.440000",
+          "phase_at_start": "s4_reconnaissance_nmap_mitm",
+          "phase_all_at_start": "s4_reconnaissance_nmap_mitm",
+          "eligible": false,
+          "evidence_tier": "phase_only_reconnaissance",
+          "target_status": "not_applicable",
+          "target_groups": [],
+          "detected": false,
+          "first_alarm_utc": null,
+          "delay_seconds": null,
+          "group_scores": {},
+          "ranked_groups": [],
+          "target_hit_at_1": false,
+          "target_hit_at_3": false,
+          "target_hit_at_5": false,
+          "random_hit_probability_at_1": 0.0,
+          "random_hit_probability_at_3": 0.0,
+          "random_hit_probability_at_5": 0.0
+        },
+        {
+          "event_index": 1,
+          "start_utc": "2026-03-06T15:22:10.440000",
+          "end_utc": "2026-03-06T15:42:56.440000",
+          "phase_at_start": "s4_mitm_phase_1",
+          "phase_all_at_start": "s4_mitm_phase_1",
+          "eligible": true,
+          "evidence_tier": "documented_device_group",
+          "target_status": "coarse",
+          "target_groups": [
+            "Load-A-AC-Meter",
+            "Load-B-AC-Meter",
+            "PV-Inverter-AC-Meter"
+          ],
+          "detected": true,
+          "first_alarm_utc": "2026-03-06T15:22:12.440000",
+          "delay_seconds": 2.0,
+          "group_scores": {
+            "BSS-Inverter-AC-Meter": 612232237265.9222,
+            "Battery-SOC-Reference": 0.0,
+            "Battery-SOC-Reported": 0.0,
+            "Load-A-AC-Meter": 43.27773524196377,
+            "Load-B-AC-Meter": 117939584066785.03,
+            "MQTT-Price-Signal": 0.0,
+            "PV-Inverter-AC-Meter": 113309751380561.92,
+            "Profile": 0.0,
+            "Substation-AC-Meter": 2840200180.785648
+          },
+          "ranked_groups": [
+            "Load-B-AC-Meter",
+            "PV-Inverter-AC-Meter",
+            "BSS-Inverter-AC-Meter",
+            "Substation-AC-Meter",
+            "Load-A-AC-Meter",
+            "Battery-SOC-Reference",
+            "Battery-SOC-Reported",
+            "MQTT-Price-Signal",
+            "Profile"
+          ],
+          "target_hit_at_1": true,
+          "target_hit_at_3": true,
+          "target_hit_at_5": true,
+          "random_hit_probability_at_1": 0.33333333333333337,
+          "random_hit_probability_at_3": 0.7619047619047619,
+          "random_hit_probability_at_5": 0.9523809523809523
+        }
+      ],
+      "fit_seconds": 0.18159069999819621,
+      "score_seconds": 0.07382339998730458,
+      "batch_amortized_score_us_per_row": 41.05862068259432,
+      "single_row_score_latency_p50_ms": 0.03679998917505145,
+      "single_row_score_latency_p95_ms": 0.03950000973418355,
+      "model_parameter_bytes": 4640,
+      "equation_search": "one-step self-lag linear SUM only; no cross-sensor inputs"
+    },
+    {
+      "heldout_family": "S4",
+      "heldout_scenario": "S4_arp_spoof_loads_pv_two_phase",
+      "training_scenarios": [
+        "S0_benign_baseline",
+        "S1_industroyer_pv",
+        "S1_industroyer_pv_alt",
+        "S2_industroyer_bss",
+        "S3_arp_spoof_bss_meter_half_values",
+        "S5_arp_spoof_loads_pv_bss_two_phase",
+        "S6_mqtt_supply_chain_compromise"
+      ],
+      "model": "GeCo-AR1-constrained",
+      "normal_fpr_target": 0.05,
+      "calibration_observed_fpr": 0.04971932638331997,
+      "threshold": 57154243015833.24,
+      "n_features": 145,
+      "train_transitions": 4973,
+      "test_rows": 1798,
+      "attack_rows": 1257,
+      "point_metrics": {
+        "tp": 634,
+        "fp": 40,
+        "fn": 623,
+        "tn": 501,
+        "precision": 0.9406528189910979,
+        "recall": 0.5043754972155927,
+        "f1": 0.6566545831175556,
+        "false_positive_rate": 0.07393715341959335,
+        "specificity": 0.9260628465804066,
+        "average_precision": 0.8619749333948433,
+        "predicted_samples": 674,
+        "threshold": 57154243015833.24
+      },
+      "event_metrics": {
+        "attack_events": 2,
+        "detected_attack_events": 1,
+        "event_recall": 0.5,
+        "mean_detection_delay_seconds": 2.0,
+        "median_detection_delay_seconds": 2.0,
+        "false_alarm_events": 20,
+        "false_alarm_events_per_normal_hour": 133.08687615526802
+      },
+      "explanation_events": [
+        {
+          "event_index": 0,
+          "start_utc": "2026-03-06T15:18:47.440000",
+          "end_utc": "2026-03-06T15:18:56.440000",
+          "phase_at_start": "s4_reconnaissance_nmap_mitm",
+          "phase_all_at_start": "s4_reconnaissance_nmap_mitm",
+          "eligible": false,
+          "evidence_tier": "phase_only_reconnaissance",
+          "target_status": "not_applicable",
+          "target_groups": [],
+          "detected": false,
+          "first_alarm_utc": null,
+          "delay_seconds": null,
+          "group_scores": {},
+          "ranked_groups": [],
+          "target_hit_at_1": false,
+          "target_hit_at_3": false,
+          "target_hit_at_5": false,
+          "random_hit_probability_at_1": 0.0,
+          "random_hit_probability_at_3": 0.0,
+          "random_hit_probability_at_5": 0.0
+        },
+        {
+          "event_index": 1,
+          "start_utc": "2026-03-06T15:22:10.440000",
+          "end_utc": "2026-03-06T15:42:56.440000",
+          "phase_at_start": "s4_mitm_phase_1",
+          "phase_all_at_start": "s4_mitm_phase_1",
+          "eligible": true,
+          "evidence_tier": "documented_device_group",
+          "target_status": "coarse",
+          "target_groups": [
+            "Load-A-AC-Meter",
+            "Load-B-AC-Meter",
+            "PV-Inverter-AC-Meter"
+          ],
+          "detected": true,
+          "first_alarm_utc": "2026-03-06T15:22:12.440000",
+          "delay_seconds": 2.0,
+          "group_scores": {
+            "BSS-Inverter-AC-Meter": 612232237265.9222,
+            "Battery-SOC-Reference": 0.0,
+            "Battery-SOC-Reported": 0.0,
+            "Load-A-AC-Meter": 43.27773524196377,
+            "Load-B-AC-Meter": 117939584066785.03,
+            "MQTT-Price-Signal": 0.0,
+            "PV-Inverter-AC-Meter": 113309751380561.92,
+            "Profile": 0.0,
+            "Substation-AC-Meter": 2840200180.785648
+          },
+          "ranked_groups": [
+            "Load-B-AC-Meter",
+            "PV-Inverter-AC-Meter",
+            "BSS-Inverter-AC-Meter",
+            "Substation-AC-Meter",
+            "Load-A-AC-Meter",
+            "Battery-SOC-Reference",
+            "Battery-SOC-Reported",
+            "MQTT-Price-Signal",
+            "Profile"
+          ],
+          "target_hit_at_1": true,
+          "target_hit_at_3": true,
+          "target_hit_at_5": true,
+          "random_hit_probability_at_1": 0.33333333333333337,
+          "random_hit_probability_at_3": 0.7619047619047619,
+          "random_hit_probability_at_5": 0.9523809523809523
+        }
+      ],
+      "fit_seconds": 0.18159069999819621,
+      "score_seconds": 0.07382339998730458,
+      "batch_amortized_score_us_per_row": 41.05862068259432,
+      "single_row_score_latency_p50_ms": 0.03679998917505145,
+      "single_row_score_latency_p95_ms": 0.03950000973418355,
+      "model_parameter_bytes": 4640,
+      "equation_search": "one-step self-lag linear SUM only; no cross-sensor inputs"
+    },
+    {
+      "heldout_family": "S5",
+      "heldout_scenario": "S5_arp_spoof_loads_pv_bss_two_phase",
+      "training_scenarios": [
+        "S0_benign_baseline",
+        "S1_industroyer_pv",
+        "S1_industroyer_pv_alt",
+        "S2_industroyer_bss",
+        "S3_arp_spoof_bss_meter_half_values",
+        "S4_arp_spoof_loads_pv_two_phase",
+        "S6_mqtt_supply_chain_compromise"
+      ],
+      "model": "GeCo-AR1-constrained",
+      "normal_fpr_target": 0.01,
+      "calibration_observed_fpr": 0.00949367088607595,
+      "threshold": 113750023926745.11,
+      "n_features": 145,
+      "train_transitions": 5038,
+      "test_rows": 1800,
+      "attack_rows": 1341,
+      "point_metrics": {
+        "tp": 33,
+        "fp": 6,
+        "fn": 1308,
+        "tn": 453,
+        "precision": 0.8461538461538461,
+        "recall": 0.024608501118568233,
+        "f1": 0.04782608695652174,
+        "false_positive_rate": 0.013071895424836602,
+        "specificity": 0.9869281045751634,
+        "average_precision": 0.7293955475593292,
+        "predicted_samples": 39,
+        "threshold": 113750023926745.11
+      },
+      "event_metrics": {
+        "attack_events": 3,
+        "detected_attack_events": 2,
+        "event_recall": 0.6666666666666666,
+        "mean_detection_delay_seconds": 0.0,
+        "median_detection_delay_seconds": 0.0,
+        "false_alarm_events": 3,
+        "false_alarm_events_per_normal_hour": 23.52941176470588
+      },
+      "explanation_events": [
+        {
+          "event_index": 0,
+          "start_utc": "2026-03-06T16:00:06.430000",
+          "end_utc": "2026-03-06T16:00:15.430000",
+          "phase_at_start": "s5_reconnaissance_nmap_mitm",
+          "phase_all_at_start": "s5_reconnaissance_nmap_mitm",
+          "eligible": false,
+          "evidence_tier": "phase_only_reconnaissance",
+          "target_status": "not_applicable",
+          "target_groups": [],
+          "detected": false,
+          "first_alarm_utc": null,
+          "delay_seconds": null,
+          "group_scores": {},
+          "ranked_groups": [],
+          "target_hit_at_1": false,
+          "target_hit_at_3": false,
+          "target_hit_at_5": false,
+          "random_hit_probability_at_1": 0.0,
+          "random_hit_probability_at_3": 0.0,
+          "random_hit_probability_at_5": 0.0
+        },
+        {
+          "event_index": 1,
+          "start_utc": "2026-03-06T16:03:04.430000",
+          "end_utc": "2026-03-06T16:05:09.430000",
+          "phase_at_start": "s5_mitm_phase_1",
+          "phase_all_at_start": "s5_mitm_phase_1",
+          "eligible": true,
+          "evidence_tier": "documented_device_group",
+          "target_status": "coarse",
+          "target_groups": [
+            "BSS-Inverter-AC-Meter",
+            "Load-A-AC-Meter",
+            "Load-B-AC-Meter",
+            "PV-Inverter-AC-Meter"
+          ],
+          "detected": true,
+          "first_alarm_utc": "2026-03-06T16:03:04.430000",
+          "delay_seconds": 0.0,
+          "group_scores": {
+            "BSS-Inverter-AC-Meter": 20597627122.912636,
+            "Battery-SOC-Reference": 0.0,
+            "Battery-SOC-Reported": 0.0,
+            "Load-A-AC-Meter": 267991893631.91473,
+            "Load-B-AC-Meter": 51704631381761.58,
+            "MQTT-Price-Signal": 0.0,
+            "PV-Inverter-AC-Meter": 234702130690099.12,
+            "Profile": 0.0,
+            "Substation-AC-Meter": 23126348672847.008
+          },
+          "ranked_groups": [
+            "PV-Inverter-AC-Meter",
+            "Load-B-AC-Meter",
+            "Substation-AC-Meter",
+            "Load-A-AC-Meter",
+            "BSS-Inverter-AC-Meter",
+            "Battery-SOC-Reference",
+            "Battery-SOC-Reported",
+            "MQTT-Price-Signal",
+            "Profile"
+          ],
+          "target_hit_at_1": true,
+          "target_hit_at_3": true,
+          "target_hit_at_5": true,
+          "random_hit_probability_at_1": 0.4444444444444444,
+          "random_hit_probability_at_3": 0.8809523809523809,
+          "random_hit_probability_at_5": 0.9920634920634921
+        },
+        {
+          "event_index": 2,
+          "start_utc": "2026-03-06T16:05:55.430000",
+          "end_utc": "2026-03-06T16:25:59.430000",
+          "phase_at_start": "s5_mitm_phase_1",
+          "phase_all_at_start": "s5_mitm_phase_1",
+          "eligible": true,
+          "evidence_tier": "documented_device_group",
+          "target_status": "coarse",
+          "target_groups": [
+            "BSS-Inverter-AC-Meter",
+            "Load-A-AC-Meter",
+            "Load-B-AC-Meter",
+            "PV-Inverter-AC-Meter"
+          ],
+          "detected": true,
+          "first_alarm_utc": "2026-03-06T16:05:55.430000",
+          "delay_seconds": 0.0,
+          "group_scores": {
+            "BSS-Inverter-AC-Meter": 0.8271286855026438,
+            "Battery-SOC-Reference": 0.0,
+            "Battery-SOC-Reported": 0.0,
+            "Load-A-AC-Meter": 3607495963.4643364,
+            "Load-B-AC-Meter": 104361295952153.9,
+            "MQTT-Price-Signal": 0.0,
+            "PV-Inverter-AC-Meter": 213810086344092.1,
+            "Profile": 35241990959.0747,
+            "Substation-AC-Meter": 63835239167056.19
+          },
+          "ranked_groups": [
+            "PV-Inverter-AC-Meter",
+            "Load-B-AC-Meter",
+            "Substation-AC-Meter",
+            "Profile",
+            "Load-A-AC-Meter",
+            "BSS-Inverter-AC-Meter",
+            "Battery-SOC-Reference",
+            "Battery-SOC-Reported",
+            "MQTT-Price-Signal"
+          ],
+          "target_hit_at_1": true,
+          "target_hit_at_3": true,
+          "target_hit_at_5": true,
+          "random_hit_probability_at_1": 0.4444444444444444,
+          "random_hit_probability_at_3": 0.8809523809523809,
+          "random_hit_probability_at_5": 0.9920634920634921
+        }
+      ],
+      "fit_seconds": 0.18210539998835884,
+      "score_seconds": 0.07665599999018013,
+      "batch_amortized_score_us_per_row": 42.58666666121118,
+      "single_row_score_latency_p50_ms": 0.03759999526664615,
+      "single_row_score_latency_p95_ms": 0.04221000126563012,
+      "model_parameter_bytes": 4640,
+      "equation_search": "one-step self-lag linear SUM only; no cross-sensor inputs"
+    },
+    {
+      "heldout_family": "S5",
+      "heldout_scenario": "S5_arp_spoof_loads_pv_bss_two_phase",
+      "training_scenarios": [
+        "S0_benign_baseline",
+        "S1_industroyer_pv",
+        "S1_industroyer_pv_alt",
+        "S2_industroyer_bss",
+        "S3_arp_spoof_bss_meter_half_values",
+        "S4_arp_spoof_loads_pv_two_phase",
+        "S6_mqtt_supply_chain_compromise"
+      ],
+      "model": "GeCo-AR1-constrained",
+      "normal_fpr_target": 0.05,
+      "calibration_observed_fpr": 0.049841772151898736,
+      "threshold": 60915562415887.086,
+      "n_features": 145,
+      "train_transitions": 5038,
+      "test_rows": 1800,
+      "attack_rows": 1341,
+      "point_metrics": {
+        "tp": 91,
+        "fp": 32,
+        "fn": 1250,
+        "tn": 427,
+        "precision": 0.7398373983739838,
+        "recall": 0.06785980611483967,
+        "f1": 0.12431693989071038,
+        "false_positive_rate": 0.06971677559912855,
+        "specificity": 0.9302832244008714,
+        "average_precision": 0.7293955475593292,
+        "predicted_samples": 123,
+        "threshold": 60915562415887.086
+      },
+      "event_metrics": {
+        "attack_events": 3,
+        "detected_attack_events": 2,
+        "event_recall": 0.6666666666666666,
+        "mean_detection_delay_seconds": 0.0,
+        "median_detection_delay_seconds": 0.0,
+        "false_alarm_events": 15,
+        "false_alarm_events_per_normal_hour": 117.6470588235294
+      },
+      "explanation_events": [
+        {
+          "event_index": 0,
+          "start_utc": "2026-03-06T16:00:06.430000",
+          "end_utc": "2026-03-06T16:00:15.430000",
+          "phase_at_start": "s5_reconnaissance_nmap_mitm",
+          "phase_all_at_start": "s5_reconnaissance_nmap_mitm",
+          "eligible": false,
+          "evidence_tier": "phase_only_reconnaissance",
+          "target_status": "not_applicable",
+          "target_groups": [],
+          "detected": false,
+          "first_alarm_utc": null,
+          "delay_seconds": null,
+          "group_scores": {},
+          "ranked_groups": [],
+          "target_hit_at_1": false,
+          "target_hit_at_3": false,
+          "target_hit_at_5": false,
+          "random_hit_probability_at_1": 0.0,
+          "random_hit_probability_at_3": 0.0,
+          "random_hit_probability_at_5": 0.0
+        },
+        {
+          "event_index": 1,
+          "start_utc": "2026-03-06T16:03:04.430000",
+          "end_utc": "2026-03-06T16:05:09.430000",
+          "phase_at_start": "s5_mitm_phase_1",
+          "phase_all_at_start": "s5_mitm_phase_1",
+          "eligible": true,
+          "evidence_tier": "documented_device_group",
+          "target_status": "coarse",
+          "target_groups": [
+            "BSS-Inverter-AC-Meter",
+            "Load-A-AC-Meter",
+            "Load-B-AC-Meter",
+            "PV-Inverter-AC-Meter"
+          ],
+          "detected": true,
+          "first_alarm_utc": "2026-03-06T16:03:04.430000",
+          "delay_seconds": 0.0,
+          "group_scores": {
+            "BSS-Inverter-AC-Meter": 20597627122.912636,
+            "Battery-SOC-Reference": 0.0,
+            "Battery-SOC-Reported": 0.0,
+            "Load-A-AC-Meter": 267991893631.91473,
+            "Load-B-AC-Meter": 51704631381761.58,
+            "MQTT-Price-Signal": 0.0,
+            "PV-Inverter-AC-Meter": 234702130690099.12,
+            "Profile": 0.0,
+            "Substation-AC-Meter": 23126348672847.008
+          },
+          "ranked_groups": [
+            "PV-Inverter-AC-Meter",
+            "Load-B-AC-Meter",
+            "Substation-AC-Meter",
+            "Load-A-AC-Meter",
+            "BSS-Inverter-AC-Meter",
+            "Battery-SOC-Reference",
+            "Battery-SOC-Reported",
+            "MQTT-Price-Signal",
+            "Profile"
+          ],
+          "target_hit_at_1": true,
+          "target_hit_at_3": true,
+          "target_hit_at_5": true,
+          "random_hit_probability_at_1": 0.4444444444444444,
+          "random_hit_probability_at_3": 0.8809523809523809,
+          "random_hit_probability_at_5": 0.9920634920634921
+        },
+        {
+          "event_index": 2,
+          "start_utc": "2026-03-06T16:05:55.430000",
+          "end_utc": "2026-03-06T16:25:59.430000",
+          "phase_at_start": "s5_mitm_phase_1",
+          "phase_all_at_start": "s5_mitm_phase_1",
+          "eligible": true,
+          "evidence_tier": "documented_device_group",
+          "target_status": "coarse",
+          "target_groups": [
+            "BSS-Inverter-AC-Meter",
+            "Load-A-AC-Meter",
+            "Load-B-AC-Meter",
+            "PV-Inverter-AC-Meter"
+          ],
+          "detected": true,
+          "first_alarm_utc": "2026-03-06T16:05:55.430000",
+          "delay_seconds": 0.0,
+          "group_scores": {
+            "BSS-Inverter-AC-Meter": 0.8271286855026438,
+            "Battery-SOC-Reference": 0.0,
+            "Battery-SOC-Reported": 0.0,
+            "Load-A-AC-Meter": 3607495963.4643364,
+            "Load-B-AC-Meter": 104361295952153.9,
+            "MQTT-Price-Signal": 0.0,
+            "PV-Inverter-AC-Meter": 213810086344092.1,
+            "Profile": 35241990959.0747,
+            "Substation-AC-Meter": 63835239167056.19
+          },
+          "ranked_groups": [
+            "PV-Inverter-AC-Meter",
+            "Load-B-AC-Meter",
+            "Substation-AC-Meter",
+            "Profile",
+            "Load-A-AC-Meter",
+            "BSS-Inverter-AC-Meter",
+            "Battery-SOC-Reference",
+            "Battery-SOC-Reported",
+            "MQTT-Price-Signal"
+          ],
+          "target_hit_at_1": true,
+          "target_hit_at_3": true,
+          "target_hit_at_5": true,
+          "random_hit_probability_at_1": 0.4444444444444444,
+          "random_hit_probability_at_3": 0.8809523809523809,
+          "random_hit_probability_at_5": 0.9920634920634921
+        }
+      ],
+      "fit_seconds": 0.18210539998835884,
+      "score_seconds": 0.07665599999018013,
+      "batch_amortized_score_us_per_row": 42.58666666121118,
+      "single_row_score_latency_p50_ms": 0.03759999526664615,
+      "single_row_score_latency_p95_ms": 0.04221000126563012,
+      "model_parameter_bytes": 4640,
+      "equation_search": "one-step self-lag linear SUM only; no cross-sensor inputs"
+    },
+    {
+      "heldout_family": "S6",
+      "heldout_scenario": "S6_mqtt_supply_chain_compromise",
+      "training_scenarios": [
+        "S0_benign_baseline",
+        "S1_industroyer_pv",
+        "S1_industroyer_pv_alt",
+        "S2_industroyer_bss",
+        "S3_arp_spoof_bss_meter_half_values",
+        "S4_arp_spoof_loads_pv_two_phase",
+        "S5_arp_spoof_loads_pv_bss_two_phase"
+      ],
+      "model": "GeCo-AR1-constrained",
+      "normal_fpr_target": 0.01,
+      "calibration_observed_fpr": 0.009478672985781991,
+      "threshold": 103709257481580.42,
+      "n_features": 145,
+      "train_transitions": 5045,
+      "test_rows": 1800,
+      "attack_rows": 1350,
+      "point_metrics": {
+        "tp": 16,
+        "fp": 8,
+        "fn": 1334,
+        "tn": 442,
+        "precision": 0.6666666666666666,
+        "recall": 0.011851851851851851,
+        "f1": 0.023289665211062585,
+        "false_positive_rate": 0.017777777777777778,
+        "specificity": 0.9822222222222222,
+        "average_precision": 0.7378628115270747,
+        "predicted_samples": 24,
+        "threshold": 103709257481580.42
+      },
+      "event_metrics": {
+        "attack_events": 1,
+        "detected_attack_events": 1,
+        "event_recall": 1.0,
+        "mean_detection_delay_seconds": 47.0,
+        "median_detection_delay_seconds": 47.0,
+        "false_alarm_events": 7,
+        "false_alarm_events_per_normal_hour": 56.0
+      },
+      "explanation_events": [
+        {
+          "event_index": 0,
+          "start_utc": "2026-03-06T13:55:18.690000",
+          "end_utc": "2026-03-06T14:17:47.690000",
+          "phase_at_start": "s6_attack_mqtt",
+          "phase_all_at_start": "s6_attack_mqtt",
+          "eligible": true,
+          "evidence_tier": "topic_to_process_semantics",
+          "target_status": "manual_posthoc",
+          "target_groups": [
+            "MQTT-Price-Signal"
+          ],
+          "detected": true,
+          "first_alarm_utc": "2026-03-06T13:56:05.690000",
+          "delay_seconds": 47.0,
+          "group_scores": {
+            "BSS-Inverter-AC-Meter": 64469435599.37335,
+            "Battery-SOC-Reference": 0.0,
+            "Battery-SOC-Reported": 0.0,
+            "Load-A-AC-Meter": 19930103567846.69,
+            "Load-B-AC-Meter": 54420507893515.09,
+            "MQTT-Price-Signal": 20941656410.134995,
+            "PV-Inverter-AC-Meter": 75458909639771.38,
+            "Profile": 4964844912.0586815,
+            "Substation-AC-Meter": 156378982720332.94
+          },
+          "ranked_groups": [
+            "Substation-AC-Meter",
+            "PV-Inverter-AC-Meter",
+            "Load-B-AC-Meter",
+            "Load-A-AC-Meter",
+            "BSS-Inverter-AC-Meter",
+            "MQTT-Price-Signal",
+            "Profile",
+            "Battery-SOC-Reference",
+            "Battery-SOC-Reported"
+          ],
+          "target_hit_at_1": false,
+          "target_hit_at_3": false,
+          "target_hit_at_5": false,
+          "random_hit_probability_at_1": 0.11111111111111116,
+          "random_hit_probability_at_3": 0.33333333333333337,
+          "random_hit_probability_at_5": 0.5555555555555556
+        }
+      ],
+      "fit_seconds": 0.1879260999849066,
+      "score_seconds": 0.07698000001255423,
+      "batch_amortized_score_us_per_row": 42.76666667364124,
+      "single_row_score_latency_p50_ms": 0.039300008211284876,
+      "single_row_score_latency_p95_ms": 0.04149999585933983,
+      "model_parameter_bytes": 4640,
+      "equation_search": "one-step self-lag linear SUM only; no cross-sensor inputs"
+    },
+    {
+      "heldout_family": "S6",
+      "heldout_scenario": "S6_mqtt_supply_chain_compromise",
+      "training_scenarios": [
+        "S0_benign_baseline",
+        "S1_industroyer_pv",
+        "S1_industroyer_pv_alt",
+        "S2_industroyer_bss",
+        "S3_arp_spoof_bss_meter_half_values",
+        "S4_arp_spoof_loads_pv_two_phase",
+        "S5_arp_spoof_loads_pv_bss_two_phase"
+      ],
+      "model": "GeCo-AR1-constrained",
+      "normal_fpr_target": 0.05,
+      "calibration_observed_fpr": 0.04976303317535545,
+      "threshold": 55840867268490.18,
+      "n_features": 145,
+      "train_transitions": 5045,
+      "test_rows": 1800,
+      "attack_rows": 1350,
+      "point_metrics": {
+        "tp": 78,
+        "fp": 45,
+        "fn": 1272,
+        "tn": 405,
+        "precision": 0.6341463414634146,
+        "recall": 0.057777777777777775,
+        "f1": 0.10590631364562118,
+        "false_positive_rate": 0.1,
+        "specificity": 0.9,
+        "average_precision": 0.7378628115270747,
+        "predicted_samples": 123,
+        "threshold": 55840867268490.18
+      },
+      "event_metrics": {
+        "attack_events": 1,
+        "detected_attack_events": 1,
+        "event_recall": 1.0,
+        "mean_detection_delay_seconds": 3.0,
+        "median_detection_delay_seconds": 3.0,
+        "false_alarm_events": 22,
+        "false_alarm_events_per_normal_hour": 176.0
+      },
+      "explanation_events": [
+        {
+          "event_index": 0,
+          "start_utc": "2026-03-06T13:55:18.690000",
+          "end_utc": "2026-03-06T14:17:47.690000",
+          "phase_at_start": "s6_attack_mqtt",
+          "phase_all_at_start": "s6_attack_mqtt",
+          "eligible": true,
+          "evidence_tier": "topic_to_process_semantics",
+          "target_status": "manual_posthoc",
+          "target_groups": [
+            "MQTT-Price-Signal"
+          ],
+          "detected": true,
+          "first_alarm_utc": "2026-03-06T13:55:21.690000",
+          "delay_seconds": 3.0,
+          "group_scores": {
+            "BSS-Inverter-AC-Meter": 15494603123.425007,
+            "Battery-SOC-Reference": 0.0,
+            "Battery-SOC-Reported": 0.0,
+            "Load-A-AC-Meter": 11444224991268.602,
+            "Load-B-AC-Meter": 31445835478651.39,
+            "MQTT-Price-Signal": 21665521476.686527,
+            "PV-Inverter-AC-Meter": 22984744057.83951,
+            "Profile": 1974985951.9560874,
+            "Substation-AC-Meter": 63609179034477.04
+          },
+          "ranked_groups": [
+            "Substation-AC-Meter",
+            "Load-B-AC-Meter",
+            "Load-A-AC-Meter",
+            "PV-Inverter-AC-Meter",
+            "MQTT-Price-Signal",
+            "BSS-Inverter-AC-Meter",
+            "Profile",
+            "Battery-SOC-Reference",
+            "Battery-SOC-Reported"
+          ],
+          "target_hit_at_1": false,
+          "target_hit_at_3": false,
+          "target_hit_at_5": true,
+          "random_hit_probability_at_1": 0.11111111111111116,
+          "random_hit_probability_at_3": 0.33333333333333337,
+          "random_hit_probability_at_5": 0.5555555555555556
+        }
+      ],
+      "fit_seconds": 0.1879260999849066,
+      "score_seconds": 0.07698000001255423,
+      "batch_amortized_score_us_per_row": 42.76666667364124,
+      "single_row_score_latency_p50_ms": 0.039300008211284876,
+      "single_row_score_latency_p95_ms": 0.04149999585933983,
+      "model_parameter_bytes": 4640,
+      "equation_search": "one-step self-lag linear SUM only; no cross-sensor inputs"
+    }
+  ],
+  "family_summary": [
+    {
+      "heldout_family": "S1",
+      "normal_fpr_target": 0.01,
+      "scenarios": [
+        "S1_industroyer_pv",
+        "S1_industroyer_pv_alt"
+      ],
+      "family_mean_average_precision": 0.4785846331074629,
+      "family_mean_f1": 0.0,
+      "family_mean_recall": 0.0,
+      "family_mean_test_benign_fpr": 0.020923171528498406,
+      "eligible_target_events": 2,
+      "detected_target_events": 0,
+      "unconditional_target_hits_at_1": 0.0,
+      "unconditional_target_hits_at_3": 0.0,
+      "unconditional_target_hits_at_5": 0.0
+    },
+    {
+      "heldout_family": "S2",
+      "normal_fpr_target": 0.01,
+      "scenarios": [
+        "S2_industroyer_bss"
+      ],
+      "family_mean_average_precision": 0.5053740237057991,
+      "family_mean_f1": 0.008762322015334063,
+      "family_mean_recall": 0.004429678848283499,
+      "family_mean_test_benign_fpr": 0.006936416184971098,
+      "eligible_target_events": 1,
+      "detected_target_events": 1,
+      "unconditional_target_hits_at_1": 0.0,
+      "unconditional_target_hits_at_3": 1.0,
+      "unconditional_target_hits_at_5": 1.0
+    },
+    {
+      "heldout_family": "S3",
+      "normal_fpr_target": 0.01,
+      "scenarios": [
+        "S3_arp_spoof_bss_meter_half_values"
+      ],
+      "family_mean_average_precision": 0.40612436009106,
+      "family_mean_f1": 0.0,
+      "family_mean_recall": 0.0,
+      "family_mean_test_benign_fpr": 0.012387387387387387,
+      "eligible_target_events": 1,
+      "detected_target_events": 0,
+      "unconditional_target_hits_at_1": 0.0,
+      "unconditional_target_hits_at_3": 0.0,
+      "unconditional_target_hits_at_5": 0.0
+    },
+    {
+      "heldout_family": "S4",
+      "normal_fpr_target": 0.01,
+      "scenarios": [
+        "S4_arp_spoof_loads_pv_two_phase"
+      ],
+      "family_mean_average_precision": 0.8619749333948433,
+      "family_mean_f1": 0.6485042735042734,
+      "family_mean_recall": 0.48289578361177404,
+      "family_mean_test_benign_fpr": 0.014787430683918669,
+      "eligible_target_events": 1,
+      "detected_target_events": 1,
+      "unconditional_target_hits_at_1": 1.0,
+      "unconditional_target_hits_at_3": 1.0,
+      "unconditional_target_hits_at_5": 1.0
+    },
+    {
+      "heldout_family": "S5",
+      "normal_fpr_target": 0.01,
+      "scenarios": [
+        "S5_arp_spoof_loads_pv_bss_two_phase"
+      ],
+      "family_mean_average_precision": 0.7293955475593292,
+      "family_mean_f1": 0.04782608695652174,
+      "family_mean_recall": 0.024608501118568233,
+      "family_mean_test_benign_fpr": 0.013071895424836602,
+      "eligible_target_events": 2,
+      "detected_target_events": 2,
+      "unconditional_target_hits_at_1": 1.0,
+      "unconditional_target_hits_at_3": 1.0,
+      "unconditional_target_hits_at_5": 1.0
+    },
+    {
+      "heldout_family": "S6",
+      "normal_fpr_target": 0.01,
+      "scenarios": [
+        "S6_mqtt_supply_chain_compromise"
+      ],
+      "family_mean_average_precision": 0.7378628115270747,
+      "family_mean_f1": 0.023289665211062585,
+      "family_mean_recall": 0.011851851851851851,
+      "family_mean_test_benign_fpr": 0.017777777777777778,
+      "eligible_target_events": 1,
+      "detected_target_events": 1,
+      "unconditional_target_hits_at_1": 0.0,
+      "unconditional_target_hits_at_3": 0.0,
+      "unconditional_target_hits_at_5": 0.0
+    },
+    {
+      "heldout_family": "S1",
+      "normal_fpr_target": 0.05,
+      "scenarios": [
+        "S1_industroyer_pv",
+        "S1_industroyer_pv_alt"
+      ],
+      "family_mean_average_precision": 0.4785846331074629,
+      "family_mean_f1": 0.029693247937154665,
+      "family_mean_recall": 0.015908790005175547,
+      "family_mean_test_benign_fpr": 0.058261270609938895,
+      "eligible_target_events": 2,
+      "detected_target_events": 2,
+      "unconditional_target_hits_at_1": 0.0,
+      "unconditional_target_hits_at_3": 1.0,
+      "unconditional_target_hits_at_5": 1.0
+    },
+    {
+      "heldout_family": "S2",
+      "normal_fpr_target": 0.05,
+      "scenarios": [
+        "S2_industroyer_bss"
+      ],
+      "family_mean_average_precision": 0.5053740237057991,
+      "family_mean_f1": 0.10412573673870335,
+      "family_mean_recall": 0.058693244739756366,
+      "family_mean_test_benign_fpr": 0.07167630057803469,
+      "eligible_target_events": 1,
+      "detected_target_events": 1,
+      "unconditional_target_hits_at_1": 0.0,
+      "unconditional_target_hits_at_3": 0.0,
+      "unconditional_target_hits_at_5": 1.0
+    },
+    {
+      "heldout_family": "S3",
+      "normal_fpr_target": 0.05,
+      "scenarios": [
+        "S3_arp_spoof_bss_meter_half_values"
+      ],
+      "family_mean_average_precision": 0.40612436009106,
+      "family_mean_f1": 0.02030456852791878,
+      "family_mean_recall": 0.010964912280701754,
+      "family_mean_test_benign_fpr": 0.07094594594594594,
+      "eligible_target_events": 1,
+      "detected_target_events": 1,
+      "unconditional_target_hits_at_1": 0.0,
+      "unconditional_target_hits_at_3": 0.0,
+      "unconditional_target_hits_at_5": 1.0
+    },
+    {
+      "heldout_family": "S4",
+      "normal_fpr_target": 0.05,
+      "scenarios": [
+        "S4_arp_spoof_loads_pv_two_phase"
+      ],
+      "family_mean_average_precision": 0.8619749333948433,
+      "family_mean_f1": 0.6566545831175556,
+      "family_mean_recall": 0.5043754972155927,
+      "family_mean_test_benign_fpr": 0.07393715341959335,
+      "eligible_target_events": 1,
+      "detected_target_events": 1,
+      "unconditional_target_hits_at_1": 1.0,
+      "unconditional_target_hits_at_3": 1.0,
+      "unconditional_target_hits_at_5": 1.0
+    },
+    {
+      "heldout_family": "S5",
+      "normal_fpr_target": 0.05,
+      "scenarios": [
+        "S5_arp_spoof_loads_pv_bss_two_phase"
+      ],
+      "family_mean_average_precision": 0.7293955475593292,
+      "family_mean_f1": 0.12431693989071038,
+      "family_mean_recall": 0.06785980611483967,
+      "family_mean_test_benign_fpr": 0.06971677559912855,
+      "eligible_target_events": 2,
+      "detected_target_events": 2,
+      "unconditional_target_hits_at_1": 1.0,
+      "unconditional_target_hits_at_3": 1.0,
+      "unconditional_target_hits_at_5": 1.0
+    },
+    {
+      "heldout_family": "S6",
+      "normal_fpr_target": 0.05,
+      "scenarios": [
+        "S6_mqtt_supply_chain_compromise"
+      ],
+      "family_mean_average_precision": 0.7378628115270747,
+      "family_mean_f1": 0.10590631364562118,
+      "family_mean_recall": 0.057777777777777775,
+      "family_mean_test_benign_fpr": 0.1,
+      "eligible_target_events": 1,
+      "detected_target_events": 1,
+      "unconditional_target_hits_at_1": 0.0,
+      "unconditional_target_hits_at_3": 0.0,
+      "unconditional_target_hits_at_5": 1.0
+    }
+  ],
+  "paired_family_comparisons_against_existing_pilots": [
+    {
+      "reference_model": "PCA-95",
+      "metric": "average_precision",
+      "normal_fpr_target": 0.01,
+      "n_families": 6,
+      "mean_paired_difference": -0.10790335009176773,
+      "exact_two_sided_sign_flip_p": 0.0625,
+      "family_differences": [
+        {
+          "family": "S1",
+          "geco_minus_reference": -0.2419320063647289,
+          "geco": 0.4785846331074629,
+          "reference": 0.7205166394721918
+        },
+        {
+          "family": "S2",
+          "geco_minus_reference": -0.0980572084218182,
+          "geco": 0.5053740237057991,
+          "reference": 0.6034312321276173
+        },
+        {
+          "family": "S3",
+          "geco_minus_reference": -0.14792396144596864,
+          "geco": 0.40612436009106,
+          "reference": 0.5540483215370287
+        },
+        {
+          "family": "S4",
+          "geco_minus_reference": 0.05699121279428421,
+          "geco": 0.8619749333948433,
+          "reference": 0.8049837206005591
+        },
+        {
+          "family": "S5",
+          "geco_minus_reference": -0.10593442206806869,
+          "geco": 0.7293955475593292,
+          "reference": 0.8353299696273979
+        },
+        {
+          "family": "S6",
+          "geco_minus_reference": -0.11056371504430618,
+          "geco": 0.7378628115270747,
+          "reference": 0.8484265265713808
+        }
+      ],
+      "holm_adjusted_p_within_14_comparisons": 0.8125
+    },
+    {
+      "reference_model": "PCA-95",
+      "metric": "f1",
+      "normal_fpr_target": 0.01,
+      "n_families": 6,
+      "mean_paired_difference": 0.0985647694683164,
+      "exact_two_sided_sign_flip_p": 0.71875,
+      "family_differences": [
+        {
+          "family": "S1",
+          "geco_minus_reference": -0.01928232080971288,
+          "geco": 0.0,
+          "reference": 0.01928232080971288
+        },
+        {
+          "family": "S2",
+          "geco_minus_reference": 0.008762322015334063,
+          "geco": 0.008762322015334063,
+          "reference": 0.0
+        },
+        {
+          "family": "S3",
+          "geco_minus_reference": -0.04453870625662778,
+          "geco": 0.0,
+          "reference": 0.04453870625662778
+        },
+        {
+          "family": "S4",
+          "geco_minus_reference": 0.6280961102389673,
+          "geco": 0.6485042735042734,
+          "reference": 0.02040816326530612
+        },
+        {
+          "family": "S5",
+          "geco_minus_reference": 0.015544355481833555,
+          "geco": 0.04782608695652174,
+          "reference": 0.032281731474688186
+        },
+        {
+          "family": "S6",
+          "geco_minus_reference": 0.0028068561401042823,
+          "geco": 0.023289665211062585,
+          "reference": 0.020482809070958303
+        }
+      ],
+      "holm_adjusted_p_within_14_comparisons": 1.0
+    },
+    {
+      "reference_model": "PCA-95",
+      "metric": "recall",
+      "normal_fpr_target": 0.01,
+      "n_families": 6,
+      "mean_paired_difference": 0.07562791940863497,
+      "exact_two_sided_sign_flip_p": 0.71875,
+      "family_differences": [
+        {
+          "family": "S1",
+          "geco_minus_reference": -0.009873861078680355,
+          "geco": 0.0,
+          "reference": 0.009873861078680355
+        },
+        {
+          "family": "S2",
+          "geco_minus_reference": 0.004429678848283499,
+          "geco": 0.004429678848283499,
+          "reference": 0.0
+        },
+        {
+          "family": "S3",
+          "geco_minus_reference": -0.023026315789473683,
+          "geco": 0.0,
+          "reference": 0.023026315789473683
+        },
+        {
+          "family": "S4",
+          "geco_minus_reference": 0.47255369928400953,
+          "geco": 0.48289578361177404,
+          "reference": 0.010342084327764518
+        },
+        {
+          "family": "S5",
+          "geco_minus_reference": 0.008202833706189412,
+          "geco": 0.024608501118568233,
+          "reference": 0.01640566741237882
+        },
+        {
+          "family": "S6",
+          "geco_minus_reference": 0.0014814814814814812,
+          "geco": 0.011851851851851851,
+          "reference": 0.01037037037037037
+        }
+      ],
+      "holm_adjusted_p_within_14_comparisons": 1.0
+    },
+    {
+      "reference_model": "PCA-95",
+      "metric": "false_positive_rate",
+      "normal_fpr_target": 0.01,
+      "n_families": 6,
+      "mean_paired_difference": 0.006099938920562441,
+      "exact_two_sided_sign_flip_p": 0.09375,
+      "family_differences": [
+        {
+          "family": "S1",
+          "geco_minus_reference": 0.006208924247665167,
+          "geco": 0.020923171528498406,
+          "reference": 0.014714247280833238
+        },
+        {
+          "family": "S2",
+          "geco_minus_reference": -0.0023121387283237,
+          "geco": 0.006936416184971098,
+          "reference": 0.009248554913294798
+        },
+        {
+          "family": "S3",
+          "geco_minus_reference": 0.0011261261261261268,
+          "geco": 0.012387387387387387,
+          "reference": 0.01126126126126126
+        },
+        {
+          "family": "S4",
+          "geco_minus_reference": 0.0073937153419593345,
+          "geco": 0.014787430683918669,
+          "reference": 0.0073937153419593345
+        },
+        {
+          "family": "S5",
+          "geco_minus_reference": 0.013071895424836602,
+          "geco": 0.013071895424836602,
+          "reference": 0.0
+        },
+        {
+          "family": "S6",
+          "geco_minus_reference": 0.01111111111111111,
+          "geco": 0.017777777777777778,
+          "reference": 0.006666666666666667
+        }
+      ],
+      "holm_adjusted_p_within_14_comparisons": 1.0
+    },
+    {
+      "reference_model": "PCA-95",
+      "metric": "f1",
+      "normal_fpr_target": 0.05,
+      "n_families": 6,
+      "mean_paired_difference": -0.07586661493522218,
+      "exact_two_sided_sign_flip_p": 0.71875,
+      "family_differences": [
+        {
+          "family": "S1",
+          "geco_minus_reference": -0.6471696238742873,
+          "geco": 0.029693247937154665,
+          "reference": 0.676862871811442
+        },
+        {
+          "family": "S2",
+          "geco_minus_reference": 0.056308688921655525,
+          "geco": 0.10412573673870335,
+          "reference": 0.04781704781704782
+        },
+        {
+          "family": "S3",
+          "geco_minus_reference": -0.04132565015995398,
+          "geco": 0.02030456852791878,
+          "reference": 0.06163021868787276
+        },
+        {
+          "family": "S4",
+          "geco_minus_reference": 0.21696355519123361,
+          "geco": 0.6566545831175556,
+          "reference": 0.43969102792632203
+        },
+        {
+          "family": "S5",
+          "geco_minus_reference": -0.03230956613338601,
+          "geco": 0.12431693989071038,
+          "reference": 0.1566265060240964
+        },
+        {
+          "family": "S6",
+          "geco_minus_reference": -0.007667093556594881,
+          "geco": 0.10590631364562118,
+          "reference": 0.11357340720221606
+        }
+      ],
+      "holm_adjusted_p_within_14_comparisons": 1.0
+    },
+    {
+      "reference_model": "PCA-95",
+      "metric": "recall",
+      "normal_fpr_target": 0.05,
+      "n_families": 6,
+      "mean_paired_difference": -0.07463004440975703,
+      "exact_two_sided_sign_flip_p": 0.71875,
+      "family_differences": [
+        {
+          "family": "S1",
+          "geco_minus_reference": -0.6456489293838692,
+          "geco": 0.015908790005175547,
+          "reference": 0.6615577193890447
+        },
+        {
+          "family": "S2",
+          "geco_minus_reference": 0.03322259136212624,
+          "geco": 0.058693244739756366,
+          "reference": 0.02547065337763012
+        },
+        {
+          "family": "S3",
+          "geco_minus_reference": -0.023026315789473686,
+          "geco": 0.010964912280701754,
+          "reference": 0.03399122807017544
+        },
+        {
+          "family": "S4",
+          "geco_minus_reference": 0.21002386634844872,
+          "geco": 0.5043754972155927,
+          "reference": 0.294351630867144
+        },
+        {
+          "family": "S5",
+          "geco_minus_reference": -0.01938851603281133,
+          "geco": 0.06785980611483967,
+          "reference": 0.087248322147651
+        },
+        {
+          "family": "S6",
+          "geco_minus_reference": -0.002962962962962966,
+          "geco": 0.057777777777777775,
+          "reference": 0.06074074074074074
+        }
+      ],
+      "holm_adjusted_p_within_14_comparisons": 1.0
+    },
+    {
+      "reference_model": "PCA-95",
+      "metric": "false_positive_rate",
+      "normal_fpr_target": 0.05,
+      "n_families": 6,
+      "mean_paired_difference": -0.029895905732539477,
+      "exact_two_sided_sign_flip_p": 0.75,
+      "family_differences": [
+        {
+          "family": "S1",
+          "geco_minus_reference": -0.24447711287904988,
+          "geco": 0.058261270609938895,
+          "reference": 0.3027383834889888
+        },
+        {
+          "family": "S2",
+          "geco_minus_reference": 0.0300578034682081,
+          "geco": 0.07167630057803469,
+          "reference": 0.04161849710982659
+        },
+        {
+          "family": "S3",
+          "geco_minus_reference": 0.0,
+          "geco": 0.07094594594594594,
+          "reference": 0.07094594594594594
+        },
+        {
+          "family": "S4",
+          "geco_minus_reference": -0.029574861367837338,
+          "geco": 0.07393715341959335,
+          "reference": 0.10351201478743069
+        },
+        {
+          "family": "S5",
+          "geco_minus_reference": -0.00871459694989106,
+          "geco": 0.06971677559912855,
+          "reference": 0.0784313725490196
+        },
+        {
+          "family": "S6",
+          "geco_minus_reference": 0.07333333333333333,
+          "geco": 0.1,
+          "reference": 0.02666666666666667
+        }
+      ],
+      "holm_adjusted_p_within_14_comparisons": 1.0
+    },
+    {
+      "reference_model": "RobustZ",
+      "metric": "average_precision",
+      "normal_fpr_target": 0.01,
+      "n_families": 6,
+      "mean_paired_difference": -0.06125638509246165,
+      "exact_two_sided_sign_flip_p": 0.1875,
+      "family_differences": [
+        {
+          "family": "S1",
+          "geco_minus_reference": -0.15577002905240256,
+          "geco": 0.4785846331074629,
+          "reference": 0.6343546621598655
+        },
+        {
+          "family": "S2",
+          "geco_minus_reference": -0.05207613182147253,
+          "geco": 0.5053740237057991,
+          "reference": 0.5574501555272716
+        },
+        {
+          "family": "S3",
+          "geco_minus_reference": -0.07908254814684568,
+          "geco": 0.40612436009106,
+          "reference": 0.4852069082379057
+        },
+        {
+          "family": "S4",
+          "geco_minus_reference": 0.09765303527155644,
+          "geco": 0.8619749333948433,
+          "reference": 0.7643218981232869
+        },
+        {
+          "family": "S5",
+          "geco_minus_reference": -0.0909121071954253,
+          "geco": 0.7293955475593292,
+          "reference": 0.8203076547547545
+        },
+        {
+          "family": "S6",
+          "geco_minus_reference": -0.0873505296101803,
+          "geco": 0.7378628115270747,
+          "reference": 0.825213341137255
+        }
+      ],
+      "holm_adjusted_p_within_14_comparisons": 1.0
+    },
+    {
+      "reference_model": "RobustZ",
+      "metric": "f1",
+      "normal_fpr_target": 0.01,
+      "n_families": 6,
+      "mean_paired_difference": 0.11047253063247527,
+      "exact_two_sided_sign_flip_p": 0.25,
+      "family_differences": [
+        {
+          "family": "S1",
+          "geco_minus_reference": -0.018683705326843648,
+          "geco": 0.0,
+          "reference": 0.018683705326843648
+        },
+        {
+          "family": "S2",
+          "geco_minus_reference": 0.002358906860584864,
+          "geco": 0.008762322015334063,
+          "reference": 0.0064034151547491995
+        },
+        {
+          "family": "S3",
+          "geco_minus_reference": 0.0,
+          "geco": 0.0,
+          "reference": 0.0
+        },
+        {
+          "family": "S4",
+          "geco_minus_reference": 0.6283804344949855,
+          "geco": 0.6485042735042734,
+          "reference": 0.020123839009287926
+        },
+        {
+          "family": "S5",
+          "geco_minus_reference": 0.03331229885782798,
+          "geco": 0.04782608695652174,
+          "reference": 0.014513788098693758
+        },
+        {
+          "family": "S6",
+          "geco_minus_reference": 0.01746724890829694,
+          "geco": 0.023289665211062585,
+          "reference": 0.005822416302765646
+        }
+      ],
+      "holm_adjusted_p_within_14_comparisons": 1.0
+    },
+    {
+      "reference_model": "RobustZ",
+      "metric": "recall",
+      "normal_fpr_target": 0.01,
+      "n_families": 6,
+      "mean_paired_difference": 0.08163792106229599,
+      "exact_two_sided_sign_flip_p": 0.25,
+      "family_differences": [
+        {
+          "family": "S1",
+          "geco_minus_reference": -0.009873861078680355,
+          "geco": 0.0,
+          "reference": 0.009873861078680355
+        },
+        {
+          "family": "S2",
+          "geco_minus_reference": 0.0011074197120708746,
+          "geco": 0.004429678848283499,
+          "reference": 0.0033222591362126247
+        },
+        {
+          "family": "S3",
+          "geco_minus_reference": 0.0,
+          "geco": 0.0,
+          "reference": 0.0
+        },
+        {
+          "family": "S4",
+          "geco_minus_reference": 0.47255369928400953,
+          "geco": 0.48289578361177404,
+          "reference": 0.010342084327764518
+        },
+        {
+          "family": "S5",
+          "geco_minus_reference": 0.01715137956748695,
+          "geco": 0.024608501118568233,
+          "reference": 0.007457121551081283
+        },
+        {
+          "family": "S6",
+          "geco_minus_reference": 0.008888888888888889,
+          "geco": 0.011851851851851851,
+          "reference": 0.002962962962962963
+        }
+      ],
+      "holm_adjusted_p_within_14_comparisons": 1.0
+    },
+    {
+      "reference_model": "RobustZ",
+      "metric": "false_positive_rate",
+      "normal_fpr_target": 0.01,
+      "n_families": 6,
+      "mean_paired_difference": -0.029763057456325445,
+      "exact_two_sided_sign_flip_p": 0.03125,
+      "family_differences": [
+        {
+          "family": "S1",
+          "geco_minus_reference": -0.027731657634805337,
+          "geco": 0.020923171528498406,
+          "reference": 0.04865482916330374
+        },
+        {
+          "family": "S2",
+          "geco_minus_reference": -0.028901734104046246,
+          "geco": 0.006936416184971098,
+          "reference": 0.035838150289017344
+        },
+        {
+          "family": "S3",
+          "geco_minus_reference": -0.02364864864864865,
+          "geco": 0.012387387387387387,
+          "reference": 0.036036036036036036
+        },
+        {
+          "family": "S4",
+          "geco_minus_reference": -0.025878003696857672,
+          "geco": 0.014787430683918669,
+          "reference": 0.04066543438077634
+        },
+        {
+          "family": "S5",
+          "geco_minus_reference": -0.0457516339869281,
+          "geco": 0.013071895424836602,
+          "reference": 0.058823529411764705
+        },
+        {
+          "family": "S6",
+          "geco_minus_reference": -0.02666666666666667,
+          "geco": 0.017777777777777778,
+          "reference": 0.044444444444444446
+        }
+      ],
+      "holm_adjusted_p_within_14_comparisons": 0.4375
+    },
+    {
+      "reference_model": "RobustZ",
+      "metric": "f1",
+      "normal_fpr_target": 0.05,
+      "n_families": 6,
+      "mean_paired_difference": 0.025805774093409086,
+      "exact_two_sided_sign_flip_p": 0.6875,
+      "family_differences": [
+        {
+          "family": "S1",
+          "geco_minus_reference": -0.6462679404295756,
+          "geco": 0.029693247937154665,
+          "reference": 0.6759611883667302
+        },
+        {
+          "family": "S2",
+          "geco_minus_reference": 0.08714059873445706,
+          "geco": 0.10412573673870335,
+          "reference": 0.016985138004246284
+        },
+        {
+          "family": "S3",
+          "geco_minus_reference": -0.022905308015291094,
+          "geco": 0.02030456852791878,
+          "reference": 0.043209876543209874
+        },
+        {
+          "family": "S4",
+          "geco_minus_reference": 0.6365307441082677,
+          "geco": 0.6566545831175556,
+          "reference": 0.020123839009287926
+        },
+        {
+          "family": "S5",
+          "geco_minus_reference": 0.020366835940606426,
+          "geco": 0.12431693989071038,
+          "reference": 0.10395010395010396
+        },
+        {
+          "family": "S6",
+          "geco_minus_reference": 0.07996971422199006,
+          "geco": 0.10590631364562118,
+          "reference": 0.025936599423631124
+        }
+      ],
+      "holm_adjusted_p_within_14_comparisons": 1.0
+    },
+    {
+      "reference_model": "RobustZ",
+      "metric": "recall",
+      "normal_fpr_target": 0.05,
+      "n_families": 6,
+      "mean_paired_difference": -0.008663920180316085,
+      "exact_two_sided_sign_flip_p": 0.9375,
+      "family_differences": [
+        {
+          "family": "S1",
+          "geco_minus_reference": -0.6401652564303166,
+          "geco": 0.015908790005175547,
+          "reference": 0.6560740464354922
+        },
+        {
+          "family": "S2",
+          "geco_minus_reference": 0.04983388704318937,
+          "geco": 0.058693244739756366,
+          "reference": 0.008859357696566999
+        },
+        {
+          "family": "S3",
+          "geco_minus_reference": -0.01206140350877193,
+          "geco": 0.010964912280701754,
+          "reference": 0.023026315789473683
+        },
+        {
+          "family": "S4",
+          "geco_minus_reference": 0.4940334128878282,
+          "geco": 0.5043754972155927,
+          "reference": 0.010342084327764518
+        },
+        {
+          "family": "S5",
+          "geco_minus_reference": 0.011931394481730057,
+          "geco": 0.06785980611483967,
+          "reference": 0.05592841163310962
+        },
+        {
+          "family": "S6",
+          "geco_minus_reference": 0.04444444444444444,
+          "geco": 0.057777777777777775,
+          "reference": 0.013333333333333334
+        }
+      ],
+      "holm_adjusted_p_within_14_comparisons": 1.0
+    },
+    {
+      "reference_model": "RobustZ",
+      "metric": "false_positive_rate",
+      "normal_fpr_target": 0.05,
+      "n_families": 6,
+      "mean_paired_difference": -0.012234858636597882,
+      "exact_two_sided_sign_flip_p": 1.0,
+      "family_differences": [
+        {
+          "family": "S1",
+          "geco_minus_reference": -0.23599484991736808,
+          "geco": 0.058261270609938895,
+          "reference": 0.294256120527307
+        },
+        {
+          "family": "S2",
+          "geco_minus_reference": 0.035838150289017344,
+          "geco": 0.07167630057803469,
+          "reference": 0.035838150289017344
+        },
+        {
+          "family": "S3",
+          "geco_minus_reference": 0.02702702702702702,
+          "geco": 0.07094594594594594,
+          "reference": 0.04391891891891892
+        },
+        {
+          "family": "S4",
+          "geco_minus_reference": 0.03327171903881701,
+          "geco": 0.07393715341959335,
+          "reference": 0.04066543438077634
+        },
+        {
+          "family": "S5",
+          "geco_minus_reference": 0.010893246187363842,
+          "geco": 0.06971677559912855,
+          "reference": 0.058823529411764705
+        },
+        {
+          "family": "S6",
+          "geco_minus_reference": 0.05555555555555556,
+          "geco": 0.1,
+          "reference": 0.044444444444444446
+        }
+      ],
+      "holm_adjusted_p_within_14_comparisons": 1.0
+    }
+  ],
+  "wall_seconds": 5.36565230000997,
+  "limitations": [
+    "This is a constrained GeCo-style self-lag model, not full cross-sensor GeCo or an exact reproduction of published IPAL baselines.",
+    "Six attack-family folds are from one testbed; all family-level inference is exploratory.",
+    "Target evidence coverage and resolution remain uneven and sparse."
+  ]
+}
+
