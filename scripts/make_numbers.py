@@ -324,7 +324,7 @@ def latency_table():
                         mac(f"lat{ds}ShaTS{k}", r[("wall_ms", k)] / 1000, "{:.1f}")
         rows.append("\\midrule")
     table("tab_latency.tex", "Data & Method & Evals & Linear & MLP & CNN & GRU", rows[:-1], "@{}llrrrrr@{}",
-          "Explanation latency on one CPU thread of an otherwise idle machine (median over 10 incidents $\\times$ 5 repetitions, ms; ShaTS: 2 incidents, 1 repetition). Evals: detector evaluations per explanation.",
+          "Explanation latency on one CPU thread (Intel Xeon at 2.1\\,GHz, 4-core cloud VM; short unrelated jobs ran concurrently during part of the PCL-Sim run) (median over 10 incidents $\\times$ 5 repetitions, ms; ShaTS: 2 incidents, 1 repetition). Evals: detector evaluations per explanation.",
           "tab:latency", size="\\tiny")
 
 
@@ -435,7 +435,7 @@ def appendix_tables():
 
 if __name__ == "__main__":
     setup_macros(); detection_table(); loc_table(); stats_macros(); deadline_table(); quality_table(); tests_table(); phase2_table(); leakage(); latency_table(); shats(); intime_decomposition(); slowdown_macros(); appendix_tables()
-    for name in ["evalshaiShaTS", "latshaiShaTScnn", "shatshaicnnHR", "shatshaicnnLXHR"]:
+    for name in ["evalshaiShaTS", "shatshaicnnHR", "shatshaicnnLXHR"]:
         if name not in macros:
             macros[name] = "\\textbf{??}"; print("WARNING: placeholder for", name)
     for f in ["appendix_tables.tex", "tab_phase2.tex"]:

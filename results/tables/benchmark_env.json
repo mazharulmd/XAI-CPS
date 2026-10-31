@@ -1,0 +1,7 @@
+{
+ "python": "3.13.17",
+ "torch": "2.15.0+cu132",
+ "cpu": "x86_64",
+ "threads": 1,
+ "cpu_model": "Intel(R) Xeon(R) Processor @ 2.10GHz"
+}
