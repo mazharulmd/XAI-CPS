@@ -1,0 +1,22 @@
+{
+  "dataset": "Data4Cyber v3",
+  "source_doi": "10.5281/zenodo.22953576",
+  "archive_md5": "20d81c975e5c37f453103cdadb052c9e",
+  "metadata_audit_report": "results/data4cyber_metadata_audit.json",
+  "data_dir": "data/raw/data4cyber/data4cyber_dataset/data4cyber_dataset",
+  "attack_family_folds": {
+    "S1": ["S1_industroyer_pv", "S1_industroyer_pv_alt"],
+    "S2": ["S2_industroyer_bss"],
+    "S3": ["S3_arp_spoof_bss_meter_half_values"],
+    "S4": ["S4_arp_spoof_loads_pv_two_phase"],
+    "S5": ["S5_arp_spoof_loads_pv_bss_two_phase"],
+    "S6": ["S6_mqtt_supply_chain_compromise"]
+  },
+  "normal_only_baseline": "S0_benign_baseline/dataset_benign.csv",
+  "response_target_annotations": "data/annotations/data4cyber_response_targets.csv",
+  "train_fraction_within_normal_scenarios": 0.8,
+  "false_positive_rate_targets": [0.01, 0.05],
+  "pca_variance": 0.95,
+  "pca_max_components": 48,
+  "seed": 42
+}

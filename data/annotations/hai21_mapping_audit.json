@@ -1,0 +1,154 @@
+{
+  "dataset": "HAI 21.03",
+  "source_manual_url": "https://github.com/icsdataset/hai/blob/2a814cebc9a66b06c9e5cd545e2d72e65d383737/hai_dataset_technical_details.pdf",
+  "source_manual_pdf_sha256": "0668345c4e80331b918fe17c81f8f363b13bd22886831d286e761bc62b71a556",
+  "source_manual_pages_printed": "36-38",
+  "metadata_rows": 50,
+  "mapped_attack_intervals": 50,
+  "attack_intervals_by_file": {
+    "test1.csv.gz": 5,
+    "test2.csv.gz": 20,
+    "test3.csv.gz": 8,
+    "test4.csv.gz": 5,
+    "test5.csv.gz": 12
+  },
+  "all_timestamp_matches_unique": true,
+  "controller_stage_labels_match_all_intervals": true,
+  "duration_discrepancies": [
+    {
+      "attack_id": "A209",
+      "documented_duration_seconds": 159,
+      "observed_labeled_duration_seconds": 199,
+      "duration_difference_seconds": 40
+    }
+  ],
+  "incomplete_target_point_mappings": [
+    {
+      "attack_id": "A104",
+      "documented_target_points": "P2_SCO",
+      "target_points_missing_from_csv": "P2_SCO",
+      "unverified_schema_alias_candidates": "P2_SCO->P2_CO_rpm"
+    },
+    {
+      "attack_id": "A105",
+      "documented_target_points": "P2_AutoSD",
+      "target_points_missing_from_csv": "P2_AutoSD",
+      "unverified_schema_alias_candidates": "P2_AutoSD->P2_ASD"
+    },
+    {
+      "attack_id": "A211",
+      "documented_target_points": "P2_AutoSD",
+      "target_points_missing_from_csv": "P2_AutoSD",
+      "unverified_schema_alias_candidates": "P2_AutoSD->P2_ASD"
+    },
+    {
+      "attack_id": "A212",
+      "documented_target_points": "P2_AutoSD|P2_SIT01",
+      "target_points_missing_from_csv": "P2_AutoSD",
+      "unverified_schema_alias_candidates": "P2_AutoSD->P2_ASD"
+    },
+    {
+      "attack_id": "A215",
+      "documented_target_points": "P2_SCO|P2_SIT01",
+      "target_points_missing_from_csv": "P2_SCO",
+      "unverified_schema_alias_candidates": "P2_SCO->P2_CO_rpm"
+    },
+    {
+      "attack_id": "A220",
+      "documented_target_points": "P2_LCV01D",
+      "target_points_missing_from_csv": "P2_LCV01D",
+      "unverified_schema_alias_candidates": "P2_LCV01D->P3_LCV01D"
+    },
+    {
+      "attack_id": "A304",
+      "documented_target_points": "P2_AutoSD|P2_VTR01",
+      "target_points_missing_from_csv": "P2_AutoSD",
+      "unverified_schema_alias_candidates": "P2_AutoSD->P2_ASD"
+    },
+    {
+      "attack_id": "A305",
+      "documented_target_points": "P2_SCO|P2_VTR02",
+      "target_points_missing_from_csv": "P2_SCO",
+      "unverified_schema_alias_candidates": "P2_SCO->P2_CO_rpm"
+    },
+    {
+      "attack_id": "A306",
+      "documented_target_points": "P1_B2016|P2_AutoSD",
+      "target_points_missing_from_csv": "P2_AutoSD",
+      "unverified_schema_alias_candidates": "P2_AutoSD->P2_ASD"
+    },
+    {
+      "attack_id": "A308",
+      "documented_target_points": "P1_LCV01D|P1_LIT01|P2_AutoSD",
+      "target_points_missing_from_csv": "P2_AutoSD",
+      "unverified_schema_alias_candidates": "P2_AutoSD->P2_ASD"
+    },
+    {
+      "attack_id": "A402",
+      "documented_target_points": "P1_B3005|P1_FT03|P2_LCV01D",
+      "target_points_missing_from_csv": "P2_LCV01D",
+      "unverified_schema_alias_candidates": "P2_LCV01D->P3_LCV01D"
+    },
+    {
+      "attack_id": "A403",
+      "documented_target_points": "P1_B3004|P1_LIT01|P2_LCV01D",
+      "target_points_missing_from_csv": "P2_LCV01D",
+      "unverified_schema_alias_candidates": "P2_LCV01D->P3_LCV01D"
+    },
+    {
+      "attack_id": "A404",
+      "documented_target_points": "P2_SCO|P2_SIT01|P1_LCV01D|P1_LIT01",
+      "target_points_missing_from_csv": "P2_SCO",
+      "unverified_schema_alias_candidates": "P2_SCO->P2_CO_rpm"
+    },
+    {
+      "attack_id": "A405",
+      "documented_target_points": "P2_AutoSD|P2_LCV01D",
+      "target_points_missing_from_csv": "P2_AutoSD|P2_LCV01D",
+      "unverified_schema_alias_candidates": "P2_AutoSD->P2_ASD|P2_LCV01D->P3_LCV01D"
+    },
+    {
+      "attack_id": "A502",
+      "documented_target_points": "P1_FCV03D|P1_FT03|P2_SCO",
+      "target_points_missing_from_csv": "P2_SCO",
+      "unverified_schema_alias_candidates": "P2_SCO->P2_CO_rpm"
+    },
+    {
+      "attack_id": "A503",
+      "documented_target_points": "P1_B3004|P1_LIT01|P2_SCO",
+      "target_points_missing_from_csv": "P2_SCO",
+      "unverified_schema_alias_candidates": "P2_SCO->P2_CO_rpm"
+    },
+    {
+      "attack_id": "A504",
+      "documented_target_points": "P1_FCV03D|P2_LCV01D",
+      "target_points_missing_from_csv": "P2_LCV01D",
+      "unverified_schema_alias_candidates": "P2_LCV01D->P3_LCV01D"
+    },
+    {
+      "attack_id": "A505",
+      "documented_target_points": "P1_B3004|P2_AutoSD",
+      "target_points_missing_from_csv": "P2_AutoSD",
+      "unverified_schema_alias_candidates": "P2_AutoSD->P2_ASD"
+    },
+    {
+      "attack_id": "A506",
+      "documented_target_points": "P2_SCO|P2_SIT01|P2_LCV01D",
+      "target_points_missing_from_csv": "P2_SCO|P2_LCV01D",
+      "unverified_schema_alias_candidates": "P2_SCO->P2_CO_rpm|P2_LCV01D->P3_LCV01D"
+    },
+    {
+      "attack_id": "A507",
+      "documented_target_points": "P2_AutoSD|P2_VTR01",
+      "target_points_missing_from_csv": "P2_AutoSD",
+      "unverified_schema_alias_candidates": "P2_AutoSD->P2_ASD"
+    },
+    {
+      "attack_id": "A511",
+      "documented_target_points": "P2_RTR|P2_LCV01D",
+      "target_points_missing_from_csv": "P2_LCV01D",
+      "unverified_schema_alias_candidates": "P2_LCV01D->P3_LCV01D"
+    }
+  ],
+  "interpretation": "Attack IDs and target points are aligned by the official manual's minute-resolution start time to a unique CSV attack interval. Stage labels are cross-checked against the documented target controller. Manual-listed points absent from this CSV schema remain unresolved and are excluded from tag-level localization; plausible name aliases are emitted only as unverified candidates. Duration differences are preserved as annotation discrepancies; they do not alter timestamp matching."
+}

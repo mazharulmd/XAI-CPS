@@ -1,0 +1,830 @@
+{
+  "runs": [
+    {
+      "run_id": "hai21_seed42_20261031T024747_898999Z",
+      "seed": 42
+    },
+    {
+      "run_id": "hai21_seed43_20261031T024946_195322Z",
+      "seed": 43
+    },
+    {
+      "run_id": "hai21_seed44_20261031T025230_178332Z",
+      "seed": 44
+    },
+    {
+      "run_id": "hai21_seed45_20261031T025421_830799Z",
+      "seed": 45
+    },
+    {
+      "run_id": "hai21_seed46_20261031T025614_604839Z",
+      "seed": 46
+    }
+  ],
+  "models": {
+    "PCA-STATE": {
+      "detector_f1": {
+        "mean": 0.3971398770099633,
+        "range": [
+          0.3935704999409053,
+          0.4013452914798207
+        ]
+      },
+      "event_recall": {
+        "mean": 0.9120000000000001,
+        "range": [
+          0.9,
+          0.92
+        ]
+      },
+      "false_alarm_events_per_normal_hour": {
+        "mean": 17.815996621363773,
+        "range": [
+          17.218832844007757,
+          18.336225188140173
+        ]
+      },
+      "capability_support_success_rate": {
+        "mean": 0.9473429951690822,
+        "range": [
+          0.9333333333333333,
+          0.9565217391304348
+        ]
+      },
+      "greedy_scoreflip_and_support_rate": {
+        "mean": 0.9166183574879228,
+        "range": [
+          0.8888888888888888,
+          0.9347826086956522
+        ]
+      },
+      "median_edited_tags_on_success": {
+        "mean": 1.0,
+        "range": [
+          1.0,
+          1.0
+        ]
+      },
+      "median_norm_cost_proposed_on_success": {
+        "mean": 83.37155447637035,
+        "range": [
+          75.20571968164037,
+          92.71999640271596
+        ]
+      },
+      "median_norm_cost_greedy_on_same_events": {
+        "mean": 95.95754615488188,
+        "range": [
+          95.10319708619993,
+          97.62129592157922
+        ]
+      },
+      "stage_hit_at_1_on_success": {
+        "mean": 0.21315815966978757,
+        "range": [
+          0.20454545454545456,
+          0.23809523809523808
+        ]
+      },
+      "explanation_p95_ms": {
+        "mean": 78.95099300047148,
+        "range": [
+          65.8131999989564,
+          95.70021999825252
+        ]
+      },
+      "capability_group_budget_success_rate": {
+        "1": {
+          "mean": 0.9034782608695652,
+          "range": [
+            0.8888888888888888,
+            0.9347826086956522
+          ]
+        },
+        "2": {
+          "mean": 0.938647342995169,
+          "range": [
+            0.9130434782608695,
+            0.9565217391304348
+          ]
+        },
+        "4": {
+          "mean": 0.9473429951690822,
+          "range": [
+            0.9333333333333333,
+            0.9565217391304348
+          ]
+        }
+      },
+      "capability_tag_budget_success_rate": {
+        "1": {
+          "mean": 0.8596135265700482,
+          "range": [
+            0.8444444444444444,
+            0.8913043478260869
+          ]
+        },
+        "2": {
+          "mean": 0.8947826086956521,
+          "range": [
+            0.8695652173913043,
+            0.9130434782608695
+          ]
+        },
+        "4": {
+          "mean": 0.9254106280193236,
+          "range": [
+            0.9111111111111111,
+            0.9347826086956522
+          ]
+        },
+        "8": {
+          "mean": 0.9473429951690822,
+          "range": [
+            0.9333333333333333,
+            0.9565217391304348
+          ]
+        },
+        "16": {
+          "mean": 0.9473429951690822,
+          "range": [
+            0.9333333333333333,
+            0.9565217391304348
+          ]
+        }
+      }
+    },
+    "PCA-TEMPORAL": {
+      "detector_f1": {
+        "mean": 0.19867852480752785,
+        "range": [
+          0.19845159457347822,
+          0.19896255240531513
+        ]
+      },
+      "event_recall": {
+        "mean": 0.8800000000000001,
+        "range": [
+          0.88,
+          0.88
+        ]
+      },
+      "false_alarm_events_per_normal_hour": {
+        "mean": 25.62125691373792,
+        "range": [
+          25.571798564079604,
+          25.67254705412433
+        ]
+      },
+      "capability_support_success_rate": {
+        "mean": 0.9772727272727273,
+        "range": [
+          0.9545454545454546,
+          1.0
+        ]
+      },
+      "greedy_scoreflip_and_support_rate": {
+        "mean": 0.8636363636363636,
+        "range": [
+          0.7727272727272727,
+          0.9090909090909091
+        ]
+      },
+      "median_edited_tags_on_success": {
+        "mean": 1.0,
+        "range": [
+          1.0,
+          1.0
+        ]
+      },
+      "median_norm_cost_proposed_on_success": {
+        "mean": 292.2303190962894,
+        "range": [
+          286.74394775301795,
+          297.88529397143697
+        ]
+      },
+      "median_norm_cost_greedy_on_same_events": {
+        "mean": 340.8002329827115,
+        "range": [
+          338.844886396485,
+          342.66870700121416
+        ]
+      },
+      "stage_hit_at_1_on_success": {
+        "mean": 0.6930635256216651,
+        "range": [
+          0.6744186046511628,
+          0.7209302325581395
+        ]
+      },
+      "explanation_p95_ms": {
+        "mean": 79.2312209996453,
+        "range": [
+          66.23671999914222,
+          98.16353000205709
+        ]
+      },
+      "capability_group_budget_success_rate": {
+        "1": {
+          "mean": 0.9318181818181819,
+          "range": [
+            0.8863636363636364,
+            1.0
+          ]
+        },
+        "2": {
+          "mean": 0.9545454545454545,
+          "range": [
+            0.9090909090909091,
+            1.0
+          ]
+        },
+        "4": {
+          "mean": 0.9772727272727273,
+          "range": [
+            0.9545454545454546,
+            1.0
+          ]
+        }
+      },
+      "capability_tag_budget_success_rate": {
+        "1": {
+          "mean": 0.7681818181818182,
+          "range": [
+            0.75,
+            0.7727272727272727
+          ]
+        },
+        "2": {
+          "mean": 0.790909090909091,
+          "range": [
+            0.7727272727272727,
+            0.8181818181818182
+          ]
+        },
+        "4": {
+          "mean": 0.8954545454545455,
+          "range": [
+            0.8863636363636364,
+            0.9318181818181818
+          ]
+        },
+        "8": {
+          "mean": 0.9636363636363636,
+          "range": [
+            0.9318181818181818,
+            1.0
+          ]
+        },
+        "16": {
+          "mean": 0.9772727272727273,
+          "range": [
+            0.9545454545454546,
+            1.0
+          ]
+        }
+      }
+    },
+    "RobustZ-TEMPORAL": {
+      "detector_f1": {
+        "mean": 0.010759097603290108,
+        "range": [
+          0.00926829268292683,
+          0.01299017617926443
+        ]
+      },
+      "event_recall": {
+        "mean": 0.18,
+        "range": [
+          0.18,
+          0.18
+        ]
+      },
+      "false_alarm_events_per_normal_hour": {
+        "mean": 4.258913442799791,
+        "range": [
+          4.240595535518931,
+          4.26807239644022
+        ]
+      },
+      "capability_support_success_rate": {
+        "mean": 0.7777777777777778,
+        "range": [
+          0.7777777777777778,
+          0.7777777777777778
+        ]
+      },
+      "greedy_scoreflip_and_support_rate": {
+        "mean": 0.0,
+        "range": [
+          0.0,
+          0.0
+        ]
+      },
+      "median_edited_tags_on_success": {
+        "mean": 2.4,
+        "range": [
+          2.0,
+          3.0
+        ]
+      },
+      "median_norm_cost_proposed_on_success": {
+        "mean": 313.7772046347463,
+        "range": [
+          272.46832999774705,
+          372.1102630016748
+        ]
+      },
+      "median_norm_cost_greedy_on_same_events": {
+        "mean": 2188.8860542007624,
+        "range": [
+          2188.8860542007624,
+          2188.8860542007624
+        ]
+      },
+      "stage_hit_at_1_on_success": {
+        "mean": 0.7142857142857143,
+        "range": [
+          0.7142857142857143,
+          0.7142857142857143
+        ]
+      },
+      "explanation_p95_ms": {
+        "mean": 44.31935599888674,
+        "range": [
+          36.52629999560303,
+          51.66978000197558
+        ]
+      },
+      "capability_group_budget_success_rate": {
+        "1": {
+          "mean": 0.22222222222222224,
+          "range": [
+            0.2222222222222222,
+            0.2222222222222222
+          ]
+        },
+        "2": {
+          "mean": 0.7777777777777778,
+          "range": [
+            0.7777777777777778,
+            0.7777777777777778
+          ]
+        },
+        "4": {
+          "mean": 0.7777777777777778,
+          "range": [
+            0.7777777777777778,
+            0.7777777777777778
+          ]
+        }
+      },
+      "capability_tag_budget_success_rate": {
+        "1": {
+          "mean": 0.0,
+          "range": [
+            0.0,
+            0.0
+          ]
+        },
+        "2": {
+          "mean": 0.3777777777777777,
+          "range": [
+            0.2222222222222222,
+            0.4444444444444444
+          ]
+        },
+        "4": {
+          "mean": 0.7777777777777778,
+          "range": [
+            0.7777777777777778,
+            0.7777777777777778
+          ]
+        },
+        "8": {
+          "mean": 0.7777777777777778,
+          "range": [
+            0.7777777777777778,
+            0.7777777777777778
+          ]
+        },
+        "16": {
+          "mean": 0.7777777777777778,
+          "range": [
+            0.7777777777777778,
+            0.7777777777777778
+          ]
+        }
+      }
+    }
+  },
+  "per_run": [
+    {
+      "run_id": "hai21_seed42_20261031T024747_898999Z",
+      "seed": 42,
+      "models": {
+        "RobustZ-TEMPORAL": {
+          "detector_f1": 0.009270553793608197,
+          "event_recall": 0.18,
+          "false_alarm_events_per_normal_hour": 4.26807239644022,
+          "alarm_events_explained": 9,
+          "capability_support_success_rate": 0.7777777777777778,
+          "greedy_scoreflip_and_support_rate": 0.0,
+          "capability_group_budget_success_rate": {
+            "1": 0.2222222222222222,
+            "2": 0.7777777777777778,
+            "4": 0.7777777777777778
+          },
+          "capability_tag_budget_success_rate": {
+            "1": 0.0,
+            "2": 0.3333333333333333,
+            "4": 0.7777777777777778,
+            "8": 0.7777777777777778,
+            "16": 0.7777777777777778
+          },
+          "median_edited_tags_on_success": 3.0,
+          "median_norm_cost_proposed_on_success": 357.5438479536434,
+          "median_norm_cost_greedy_on_same_events": 2188.8860542007624,
+          "stage_hit_at_1_on_success": 0.7142857142857143,
+          "explanation_p95_ms": 47.810279997065656
+        },
+        "PCA-STATE": {
+          "detector_f1": 0.3935704999409053,
+          "event_recall": 0.9,
+          "false_alarm_events_per_normal_hour": 17.218832844007757,
+          "alarm_events_explained": 45,
+          "capability_support_success_rate": 0.9555555555555556,
+          "greedy_scoreflip_and_support_rate": 0.9333333333333333,
+          "capability_group_budget_success_rate": {
+            "1": 0.9111111111111111,
+            "2": 0.9555555555555556,
+            "4": 0.9555555555555556
+          },
+          "capability_tag_budget_success_rate": {
+            "1": 0.8666666666666667,
+            "2": 0.9111111111111111,
+            "4": 0.9333333333333333,
+            "8": 0.9555555555555556,
+            "16": 0.9555555555555556
+          },
+          "median_edited_tags_on_success": 1.0,
+          "median_norm_cost_proposed_on_success": 84.58114123836505,
+          "median_norm_cost_greedy_on_same_events": 97.62129592157922,
+          "stage_hit_at_1_on_success": 0.20930232558139536,
+          "explanation_p95_ms": 95.70021999825252
+        },
+        "PCA-TEMPORAL": {
+          "detector_f1": 0.19876394118064927,
+          "event_recall": 0.88,
+          "false_alarm_events_per_normal_hour": 25.62675228592218,
+          "alarm_events_explained": 44,
+          "capability_support_success_rate": 0.9545454545454546,
+          "greedy_scoreflip_and_support_rate": 0.8409090909090909,
+          "capability_group_budget_success_rate": {
+            "1": 0.9318181818181818,
+            "2": 0.9545454545454546,
+            "4": 0.9545454545454546
+          },
+          "capability_tag_budget_success_rate": {
+            "1": 0.7727272727272727,
+            "2": 0.7954545454545454,
+            "4": 0.8863636363636364,
+            "8": 0.9545454545454546,
+            "16": 0.9545454545454546
+          },
+          "median_edited_tags_on_success": 1.0,
+          "median_norm_cost_proposed_on_success": 295.06553648489074,
+          "median_norm_cost_greedy_on_same_events": 342.66870700121416,
+          "stage_hit_at_1_on_success": 0.6904761904761905,
+          "explanation_p95_ms": 66.23671999914222
+        }
+      }
+    },
+    {
+      "run_id": "hai21_seed43_20261031T024946_195322Z",
+      "seed": 43,
+      "models": {
+        "RobustZ-TEMPORAL": {
+          "detector_f1": 0.00927734375,
+          "event_recall": 0.18,
+          "false_alarm_events_per_normal_hour": 4.240595535518931,
+          "alarm_events_explained": 9,
+          "capability_support_success_rate": 0.7777777777777778,
+          "greedy_scoreflip_and_support_rate": 0.0,
+          "capability_group_budget_success_rate": {
+            "1": 0.2222222222222222,
+            "2": 0.7777777777777778,
+            "4": 0.7777777777777778
+          },
+          "capability_tag_budget_success_rate": {
+            "1": 0.0,
+            "2": 0.4444444444444444,
+            "4": 0.7777777777777778,
+            "8": 0.7777777777777778,
+            "16": 0.7777777777777778
+          },
+          "median_edited_tags_on_success": 2.0,
+          "median_norm_cost_proposed_on_success": 280.86778566760586,
+          "median_norm_cost_greedy_on_same_events": 2188.8860542007624,
+          "stage_hit_at_1_on_success": 0.7142857142857143,
+          "explanation_p95_ms": 51.66978000197558
+        },
+        "PCA-STATE": {
+          "detector_f1": 0.3977313009571074,
+          "event_recall": 0.92,
+          "false_alarm_events_per_normal_hour": 18.098092393489,
+          "alarm_events_explained": 46,
+          "capability_support_success_rate": 0.9347826086956522,
+          "greedy_scoreflip_and_support_rate": 0.9130434782608695,
+          "capability_group_budget_success_rate": {
+            "1": 0.8913043478260869,
+            "2": 0.9130434782608695,
+            "4": 0.9347826086956522
+          },
+          "capability_tag_budget_success_rate": {
+            "1": 0.8478260869565217,
+            "2": 0.8695652173913043,
+            "4": 0.9130434782608695,
+            "8": 0.9347826086956522,
+            "16": 0.9347826086956522
+          },
+          "median_edited_tags_on_success": 1.0,
+          "median_norm_cost_proposed_on_success": 88.13345923827514,
+          "median_norm_cost_greedy_on_same_events": 95.10319708619993,
+          "stage_hit_at_1_on_success": 0.20930232558139536,
+          "explanation_p95_ms": 78.73085000392166
+        },
+        "PCA-TEMPORAL": {
+          "detector_f1": 0.19896255240531513,
+          "event_recall": 0.88,
+          "false_alarm_events_per_normal_hour": 25.590116471360464,
+          "alarm_events_explained": 44,
+          "capability_support_success_rate": 1.0,
+          "greedy_scoreflip_and_support_rate": 0.9090909090909091,
+          "capability_group_budget_success_rate": {
+            "1": 1.0,
+            "2": 1.0,
+            "4": 1.0
+          },
+          "capability_tag_budget_success_rate": {
+            "1": 0.7727272727272727,
+            "2": 0.8181818181818182,
+            "4": 0.9318181818181818,
+            "8": 1.0,
+            "16": 1.0
+          },
+          "median_edited_tags_on_success": 1.0,
+          "median_norm_cost_proposed_on_success": 290.39719228896354,
+          "median_norm_cost_greedy_on_same_events": 340.22305806175166,
+          "stage_hit_at_1_on_success": 0.6818181818181818,
+          "explanation_p95_ms": 70.01525999367004
+        }
+      }
+    },
+    {
+      "run_id": "hai21_seed44_20261031T025230_178332Z",
+      "seed": 44,
+      "models": {
+        "RobustZ-TEMPORAL": {
+          "detector_f1": 0.00926829268292683,
+          "event_recall": 0.18,
+          "false_alarm_events_per_normal_hour": 4.26807239644022,
+          "alarm_events_explained": 9,
+          "capability_support_success_rate": 0.7777777777777778,
+          "greedy_scoreflip_and_support_rate": 0.0,
+          "capability_group_budget_success_rate": {
+            "1": 0.2222222222222222,
+            "2": 0.7777777777777778,
+            "4": 0.7777777777777778
+          },
+          "capability_tag_budget_success_rate": {
+            "1": 0.0,
+            "2": 0.4444444444444444,
+            "4": 0.7777777777777778,
+            "8": 0.7777777777777778,
+            "16": 0.7777777777777778
+          },
+          "median_edited_tags_on_success": 2.0,
+          "median_norm_cost_proposed_on_success": 372.1102630016748,
+          "median_norm_cost_greedy_on_same_events": 2188.8860542007624,
+          "stage_hit_at_1_on_success": 0.7142857142857143,
+          "explanation_p95_ms": 36.52629999560303
+        },
+        "PCA-STATE": {
+          "detector_f1": 0.39411486646182936,
+          "event_recall": 0.9,
+          "false_alarm_events_per_normal_hour": 17.282945519490763,
+          "alarm_events_explained": 45,
+          "capability_support_success_rate": 0.9333333333333333,
+          "greedy_scoreflip_and_support_rate": 0.8888888888888888,
+          "capability_group_budget_success_rate": {
+            "1": 0.8888888888888888,
+            "2": 0.9333333333333333,
+            "4": 0.9333333333333333
+          },
+          "capability_tag_budget_success_rate": {
+            "1": 0.8444444444444444,
+            "2": 0.8888888888888888,
+            "4": 0.9111111111111111,
+            "8": 0.9333333333333333,
+            "16": 0.9333333333333333
+          },
+          "median_edited_tags_on_success": 1.0,
+          "median_norm_cost_proposed_on_success": 76.21745582085526,
+          "median_norm_cost_greedy_on_same_events": 96.52711220066985,
+          "stage_hit_at_1_on_success": 0.23809523809523808,
+          "explanation_p95_ms": 69.70132000569718
+        },
+        "PCA-TEMPORAL": {
+          "detector_f1": 0.19859365011719585,
+          "event_recall": 0.88,
+          "false_alarm_events_per_normal_hour": 25.67254705412433,
+          "alarm_events_explained": 44,
+          "capability_support_success_rate": 0.9772727272727273,
+          "greedy_scoreflip_and_support_rate": 0.8863636363636364,
+          "capability_group_budget_success_rate": {
+            "1": 0.9090909090909091,
+            "2": 0.9545454545454546,
+            "4": 0.9772727272727273
+          },
+          "capability_tag_budget_success_rate": {
+            "1": 0.7727272727272727,
+            "2": 0.7727272727272727,
+            "4": 0.8863636363636364,
+            "8": 0.9318181818181818,
+            "16": 0.9772727272727273
+          },
+          "median_edited_tags_on_success": 1.0,
+          "median_norm_cost_proposed_on_success": 291.0596249831378,
+          "median_norm_cost_greedy_on_same_events": 342.0553419668151,
+          "stage_hit_at_1_on_success": 0.6744186046511628,
+          "explanation_p95_ms": 98.16353000205709
+        }
+      }
+    },
+    {
+      "run_id": "hai21_seed45_20261031T025421_830799Z",
+      "seed": 45,
+      "models": {
+        "RobustZ-TEMPORAL": {
+          "detector_f1": 0.01299017617926443,
+          "event_recall": 0.18,
+          "false_alarm_events_per_normal_hour": 4.25891344279979,
+          "alarm_events_explained": 9,
+          "capability_support_success_rate": 0.7777777777777778,
+          "greedy_scoreflip_and_support_rate": 0.0,
+          "capability_group_budget_success_rate": {
+            "1": 0.2222222222222222,
+            "2": 0.7777777777777778,
+            "4": 0.7777777777777778
+          },
+          "capability_tag_budget_success_rate": {
+            "1": 0.0,
+            "2": 0.2222222222222222,
+            "4": 0.7777777777777778,
+            "8": 0.7777777777777778,
+            "16": 0.7777777777777778
+          },
+          "median_edited_tags_on_success": 3.0,
+          "median_norm_cost_proposed_on_success": 285.8957965530603,
+          "median_norm_cost_greedy_on_same_events": 2188.8860542007624,
+          "stage_hit_at_1_on_success": 0.7142857142857143,
+          "explanation_p95_ms": 43.42358000576496
+        },
+        "PCA-STATE": {
+          "detector_f1": 0.3989374262101535,
+          "event_recall": 0.92,
+          "false_alarm_events_per_normal_hour": 18.14388716169115,
+          "alarm_events_explained": 46,
+          "capability_support_success_rate": 0.9565217391304348,
+          "greedy_scoreflip_and_support_rate": 0.9347826086956522,
+          "capability_group_budget_success_rate": {
+            "1": 0.9347826086956522,
+            "2": 0.9565217391304348,
+            "4": 0.9565217391304348
+          },
+          "capability_tag_budget_success_rate": {
+            "1": 0.8913043478260869,
+            "2": 0.9130434782608695,
+            "4": 0.9347826086956522,
+            "8": 0.9565217391304348,
+            "16": 0.9565217391304348
+          },
+          "median_edited_tags_on_success": 1.0,
+          "median_norm_cost_proposed_on_success": 75.20571968164037,
+          "median_norm_cost_greedy_on_same_events": 95.2680627829802,
+          "stage_hit_at_1_on_success": 0.20454545454545456,
+          "explanation_p95_ms": 65.8131999989564
+        },
+        "PCA-TEMPORAL": {
+          "detector_f1": 0.19845159457347822,
+          "event_recall": 0.88,
+          "false_alarm_events_per_normal_hour": 25.64507019320304,
+          "alarm_events_explained": 44,
+          "capability_support_success_rate": 0.9772727272727273,
+          "greedy_scoreflip_and_support_rate": 0.9090909090909091,
+          "capability_group_budget_success_rate": {
+            "1": 0.9318181818181818,
+            "2": 0.9545454545454546,
+            "4": 0.9772727272727273
+          },
+          "capability_tag_budget_success_rate": {
+            "1": 0.7727272727272727,
+            "2": 0.7954545454545454,
+            "4": 0.8863636363636364,
+            "8": 0.9772727272727273,
+            "16": 0.9772727272727273
+          },
+          "median_edited_tags_on_success": 1.0,
+          "median_norm_cost_proposed_on_success": 286.74394775301795,
+          "median_norm_cost_greedy_on_same_events": 340.2091714872918,
+          "stage_hit_at_1_on_success": 0.6976744186046512,
+          "explanation_p95_ms": 95.08514999761248
+        }
+      }
+    },
+    {
+      "run_id": "hai21_seed46_20261031T025614_604839Z",
+      "seed": 46,
+      "models": {
+        "RobustZ-TEMPORAL": {
+          "detector_f1": 0.01298912161065108,
+          "event_recall": 0.18,
+          "false_alarm_events_per_normal_hour": 4.25891344279979,
+          "alarm_events_explained": 9,
+          "capability_support_success_rate": 0.7777777777777778,
+          "greedy_scoreflip_and_support_rate": 0.0,
+          "capability_group_budget_success_rate": {
+            "1": 0.2222222222222222,
+            "2": 0.7777777777777778,
+            "4": 0.7777777777777778
+          },
+          "capability_tag_budget_success_rate": {
+            "1": 0.0,
+            "2": 0.4444444444444444,
+            "4": 0.7777777777777778,
+            "8": 0.7777777777777778,
+            "16": 0.7777777777777778
+          },
+          "median_edited_tags_on_success": 2.0,
+          "median_norm_cost_proposed_on_success": 272.46832999774705,
+          "median_norm_cost_greedy_on_same_events": 2188.8860542007624,
+          "stage_hit_at_1_on_success": 0.7142857142857143,
+          "explanation_p95_ms": 42.16683999402448
+        },
+        "PCA-STATE": {
+          "detector_f1": 0.4013452914798207,
+          "event_recall": 0.92,
+          "false_alarm_events_per_normal_hour": 18.336225188140173,
+          "alarm_events_explained": 46,
+          "capability_support_success_rate": 0.9565217391304348,
+          "greedy_scoreflip_and_support_rate": 0.9130434782608695,
+          "capability_group_budget_success_rate": {
+            "1": 0.8913043478260869,
+            "2": 0.9347826086956522,
+            "4": 0.9565217391304348
+          },
+          "capability_tag_budget_success_rate": {
+            "1": 0.8478260869565217,
+            "2": 0.8913043478260869,
+            "4": 0.9347826086956522,
+            "8": 0.9565217391304348,
+            "16": 0.9565217391304348
+          },
+          "median_edited_tags_on_success": 1.0,
+          "median_norm_cost_proposed_on_success": 92.71999640271596,
+          "median_norm_cost_greedy_on_same_events": 95.2680627829802,
+          "stage_hit_at_1_on_success": 0.20454545454545456,
+          "explanation_p95_ms": 84.80937499552965
+        },
+        "PCA-TEMPORAL": {
+          "detector_f1": 0.1986208857610009,
+          "event_recall": 0.88,
+          "false_alarm_events_per_normal_hour": 25.571798564079604,
+          "alarm_events_explained": 44,
+          "capability_support_success_rate": 0.9772727272727273,
+          "greedy_scoreflip_and_support_rate": 0.7727272727272727,
+          "capability_group_budget_success_rate": {
+            "1": 0.8863636363636364,
+            "2": 0.9090909090909091,
+            "4": 0.9772727272727273
+          },
+          "capability_tag_budget_success_rate": {
+            "1": 0.75,
+            "2": 0.7727272727272727,
+            "4": 0.8863636363636364,
+            "8": 0.9545454545454546,
+            "16": 0.9772727272727273
+          },
+          "median_edited_tags_on_success": 1.0,
+          "median_norm_cost_proposed_on_success": 297.88529397143697,
+          "median_norm_cost_greedy_on_same_events": 338.844886396485,
+          "stage_hit_at_1_on_success": 0.7209302325581395,
+          "explanation_p95_ms": 66.65544500574471
+        }
+      }
+    }
+  ],
+  "interpretation": "Descriptive aggregation across supplied runs only; ranges are not confidence intervals."
+}

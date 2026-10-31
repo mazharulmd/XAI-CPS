@@ -1,0 +1,1469 @@
+{
+  "runs": [
+    {
+      "run_id": "hai21_seed42_20261031T051335_879603Z",
+      "seed": 42
+    },
+    {
+      "run_id": "hai21_seed43_20261031T051709_959445Z",
+      "seed": 43
+    },
+    {
+      "run_id": "hai21_seed44_20261031T052039_198005Z",
+      "seed": 44
+    },
+    {
+      "run_id": "hai21_seed45_20261031T052411_161777Z",
+      "seed": 45
+    },
+    {
+      "run_id": "hai21_seed46_20261031T052743_620105Z",
+      "seed": 46
+    }
+  ],
+  "models": {
+    "PCA-STATE": {
+      "detector_f1": {
+        "mean": 0.3971398770099633,
+        "range": [
+          0.3935704999409053,
+          0.4013452914798207
+        ]
+      },
+      "event_recall": {
+        "mean": 0.9120000000000001,
+        "range": [
+          0.9,
+          0.92
+        ]
+      },
+      "false_alarm_events_per_normal_hour": {
+        "mean": 17.815996621363773,
+        "range": [
+          17.218832844007757,
+          18.336225188140173
+        ]
+      },
+      "capability_support_success_rate": {
+        "mean": 0.9473429951690822,
+        "range": [
+          0.9333333333333333,
+          0.9565217391304348
+        ]
+      },
+      "dynamics_constrained_success_rate": {
+        "mean": 0.543671497584541,
+        "range": [
+          0.5111111111111111,
+          0.5869565217391305
+        ]
+      },
+      "dynamics_constrained_stage_hit_at_1_on_success": {
+        "mean": 0.4111787439613527,
+        "range": [
+          0.36,
+          0.4444444444444444
+        ]
+      },
+      "dynamics_constrained_median_edit_count_on_success": {
+        "mean": 1.0,
+        "range": [
+          1.0,
+          1.0
+        ]
+      },
+      "dynamics_constrained_transition_threshold": {
+        "mean": 20.409056841698835,
+        "range": [
+          20.11177907815587,
+          20.57064339738796
+        ]
+      },
+      "dynamics_constrained_search_p95_ms": {
+        "mean": 155.7949670033122,
+        "range": [
+          130.55595000332687,
+          183.41394999879412
+        ]
+      },
+      "greedy_scoreflip_and_support_rate": {
+        "mean": 0.9166183574879228,
+        "range": [
+          0.8888888888888888,
+          0.9347826086956522
+        ]
+      },
+      "median_edited_tags_on_success": {
+        "mean": 1.0,
+        "range": [
+          1.0,
+          1.0
+        ]
+      },
+      "median_norm_cost_proposed_on_success": {
+        "mean": 83.37155447637035,
+        "range": [
+          75.20571968164037,
+          92.71999640271596
+        ]
+      },
+      "median_norm_cost_greedy_on_same_events": {
+        "mean": 95.95754615488188,
+        "range": [
+          95.10319708619993,
+          97.62129592157922
+        ]
+      },
+      "stage_hit_at_1_on_success": {
+        "mean": 0.21315815966978757,
+        "range": [
+          0.20454545454545456,
+          0.23809523809523808
+        ]
+      },
+      "transition_consistency_max_abs_error_on_success": {
+        "mean": null,
+        "range": null
+      },
+      "explanation_p95_ms": {
+        "mean": 279.2689999990398,
+        "range": [
+          247.10427499667276,
+          308.52805000176886
+        ]
+      },
+      "capability_group_budget_success_rate": {
+        "1": {
+          "mean": 0.9034782608695652,
+          "range": [
+            0.8888888888888888,
+            0.9347826086956522
+          ]
+        },
+        "2": {
+          "mean": 0.938647342995169,
+          "range": [
+            0.9130434782608695,
+            0.9565217391304348
+          ]
+        },
+        "4": {
+          "mean": 0.9473429951690822,
+          "range": [
+            0.9333333333333333,
+            0.9565217391304348
+          ]
+        }
+      },
+      "capability_tag_budget_success_rate": {
+        "1": {
+          "mean": 0.8596135265700482,
+          "range": [
+            0.8444444444444444,
+            0.8913043478260869
+          ]
+        },
+        "2": {
+          "mean": 0.8947826086956521,
+          "range": [
+            0.8695652173913043,
+            0.9130434782608695
+          ]
+        },
+        "4": {
+          "mean": 0.9254106280193236,
+          "range": [
+            0.9111111111111111,
+            0.9347826086956522
+          ]
+        },
+        "8": {
+          "mean": 0.9473429951690822,
+          "range": [
+            0.9333333333333333,
+            0.9565217391304348
+          ]
+        },
+        "16": {
+          "mean": 0.9473429951690822,
+          "range": [
+            0.9333333333333333,
+            0.9565217391304348
+          ]
+        }
+      },
+      "false_alarm_explanation_sample": {
+        "total_pure_false_alarm_episodes": {
+          "mean": 1945.2,
+          "range": [
+            1880.0,
+            2002.0
+          ]
+        },
+        "sampled_episodes": {
+          "mean": 100.0,
+          "range": [
+            100.0,
+            100.0
+          ]
+        },
+        "sample_fraction": {
+          "mean": 0.05144451063645668,
+          "range": [
+            0.04995004995004995,
+            0.05319148936170213
+          ]
+        },
+        "sampled_greedy_score_flip_rate": {
+          "mean": 1.0,
+          "range": [
+            1.0,
+            1.0
+          ]
+        },
+        "sampled_capability_support_success_rate": {
+          "mean": 0.9879999999999999,
+          "range": [
+            0.98,
+            1.0
+          ]
+        },
+        "sampled_dynamics_constrained_success_rate": {
+          "mean": 0.898,
+          "range": [
+            0.87,
+            0.94
+          ]
+        },
+        "median_edited_tags_on_success": {
+          "mean": 1.0,
+          "range": [
+            1.0,
+            1.0
+          ]
+        },
+        "explanation_latency_p50_ms": {
+          "mean": 202.75573000108125,
+          "range": [
+            170.2094499996747,
+            215.03980000125011
+          ]
+        },
+        "explanation_latency_p95_ms": {
+          "mean": 309.86102999799186,
+          "range": [
+            260.90143000037637,
+            334.46130498996354
+          ]
+        },
+        "dynamics_explanation_latency_p95_ms": {
+          "mean": 175.30475600011414,
+          "range": [
+            152.98887499739067,
+            187.31084000173723
+          ]
+        }
+      }
+    },
+    "PCA-TEMPORAL": {
+      "detector_f1": {
+        "mean": 0.19867852480752785,
+        "range": [
+          0.19845159457347822,
+          0.19896255240531513
+        ]
+      },
+      "event_recall": {
+        "mean": 0.8800000000000001,
+        "range": [
+          0.88,
+          0.88
+        ]
+      },
+      "false_alarm_events_per_normal_hour": {
+        "mean": 25.62125691373792,
+        "range": [
+          25.571798564079604,
+          25.67254705412433
+        ]
+      },
+      "capability_support_success_rate": {
+        "mean": 0.6136363636363635,
+        "range": [
+          0.5454545454545454,
+          0.6590909090909091
+        ]
+      },
+      "dynamics_constrained_success_rate": {
+        "mean": 0.34545454545454546,
+        "range": [
+          0.3181818181818182,
+          0.36363636363636365
+        ]
+      },
+      "dynamics_constrained_stage_hit_at_1_on_success": {
+        "mean": 1.0,
+        "range": [
+          1.0,
+          1.0
+        ]
+      },
+      "dynamics_constrained_median_edit_count_on_success": {
+        "mean": 1.0,
+        "range": [
+          1.0,
+          1.0
+        ]
+      },
+      "dynamics_constrained_transition_threshold": {
+        "mean": 20.409056841698835,
+        "range": [
+          20.11177907815587,
+          20.57064339738796
+        ]
+      },
+      "dynamics_constrained_search_p95_ms": {
+        "mean": 130.2094790035335,
+        "range": [
+          111.39002000199983,
+          146.35866500320847
+        ]
+      },
+      "greedy_scoreflip_and_support_rate": {
+        "mean": 0.509090909090909,
+        "range": [
+          0.38636363636363635,
+          0.5681818181818182
+        ]
+      },
+      "median_edited_tags_on_success": {
+        "mean": 1.0,
+        "range": [
+          1.0,
+          1.0
+        ]
+      },
+      "median_norm_cost_proposed_on_success": {
+        "mean": 399.5143177710812,
+        "range": [
+          343.5871489735516,
+          425.52431737567554
+        ]
+      },
+      "median_norm_cost_greedy_on_same_events": {
+        "mean": 461.05759765906,
+        "range": [
+          448.13069031265024,
+          480.10325235695547
+        ]
+      },
+      "stage_hit_at_1_on_success": {
+        "mean": 0.7852079912424739,
+        "range": [
+          0.7777777777777778,
+          0.7931034482758621
+        ]
+      },
+      "transition_consistency_max_abs_error_on_success": {
+        "mean": 0.0,
+        "range": [
+          0.0,
+          0.0
+        ]
+      },
+      "explanation_p95_ms": {
+        "mean": 219.85076599754393,
+        "range": [
+          198.1986049991974,
+          240.45759000073306
+        ]
+      },
+      "capability_group_budget_success_rate": {
+        "1": {
+          "mean": 0.6,
+          "range": [
+            0.5227272727272727,
+            0.6363636363636364
+          ]
+        },
+        "2": {
+          "mean": 0.6136363636363635,
+          "range": [
+            0.5454545454545454,
+            0.6590909090909091
+          ]
+        },
+        "4": {
+          "mean": 0.6136363636363635,
+          "range": [
+            0.5454545454545454,
+            0.6590909090909091
+          ]
+        }
+      },
+      "capability_tag_budget_success_rate": {
+        "1": {
+          "mean": 0.4636363636363637,
+          "range": [
+            0.4090909090909091,
+            0.4772727272727273
+          ]
+        },
+        "2": {
+          "mean": 0.4727272727272728,
+          "range": [
+            0.4318181818181818,
+            0.5
+          ]
+        },
+        "4": {
+          "mean": 0.5590909090909092,
+          "range": [
+            0.5,
+            0.5909090909090909
+          ]
+        },
+        "8": {
+          "mean": 0.6136363636363635,
+          "range": [
+            0.5454545454545454,
+            0.6590909090909091
+          ]
+        },
+        "16": {
+          "mean": 0.6136363636363635,
+          "range": [
+            0.5454545454545454,
+            0.6590909090909091
+          ]
+        }
+      },
+      "false_alarm_explanation_sample": {
+        "total_pure_false_alarm_episodes": {
+          "mean": 2797.4,
+          "range": [
+            2792.0,
+            2803.0
+          ]
+        },
+        "sampled_episodes": {
+          "mean": 100.0,
+          "range": [
+            100.0,
+            100.0
+          ]
+        },
+        "sample_fraction": {
+          "mean": 0.03574755216282458,
+          "range": [
+            0.03567606136282554,
+            0.03581661891117478
+          ]
+        },
+        "sampled_greedy_score_flip_rate": {
+          "mean": 0.028000000000000004,
+          "range": [
+            0.0,
+            0.07
+          ]
+        },
+        "sampled_capability_support_success_rate": {
+          "mean": 0.013999999999999999,
+          "range": [
+            0.0,
+            0.03
+          ]
+        },
+        "sampled_dynamics_constrained_success_rate": {
+          "mean": 0.01,
+          "range": [
+            0.0,
+            0.02
+          ]
+        },
+        "median_edited_tags_on_success": {
+          "mean": 1.3333333333333333,
+          "range": [
+            1.0,
+            2.0
+          ]
+        },
+        "explanation_latency_p50_ms": {
+          "mean": 76.9041899999138,
+          "range": [
+            74.1355000063777,
+            80.72349999565631
+          ]
+        },
+        "explanation_latency_p95_ms": {
+          "mean": 118.38456900208257,
+          "range": [
+            110.03980500026955,
+            131.42025000415742
+          ]
+        },
+        "dynamics_explanation_latency_p95_ms": {
+          "mean": 68.29062600241741,
+          "range": [
+            56.913610011542914,
+            76.70261499442859
+          ]
+        }
+      }
+    },
+    "RobustZ-TEMPORAL": {
+      "detector_f1": {
+        "mean": 0.010759097603290108,
+        "range": [
+          0.00926829268292683,
+          0.01299017617926443
+        ]
+      },
+      "event_recall": {
+        "mean": 0.18,
+        "range": [
+          0.18,
+          0.18
+        ]
+      },
+      "false_alarm_events_per_normal_hour": {
+        "mean": 4.258913442799791,
+        "range": [
+          4.240595535518931,
+          4.26807239644022
+        ]
+      },
+      "capability_support_success_rate": {
+        "mean": 0.22222222222222224,
+        "range": [
+          0.1111111111111111,
+          0.3333333333333333
+        ]
+      },
+      "dynamics_constrained_success_rate": {
+        "mean": 0.06666666666666667,
+        "range": [
+          0.0,
+          0.1111111111111111
+        ]
+      },
+      "dynamics_constrained_stage_hit_at_1_on_success": {
+        "mean": 1.0,
+        "range": [
+          1.0,
+          1.0
+        ]
+      },
+      "dynamics_constrained_median_edit_count_on_success": {
+        "mean": 2.0,
+        "range": [
+          2.0,
+          2.0
+        ]
+      },
+      "dynamics_constrained_transition_threshold": {
+        "mean": 20.409056841698835,
+        "range": [
+          20.11177907815587,
+          20.57064339738796
+        ]
+      },
+      "dynamics_constrained_search_p95_ms": {
+        "mean": 45.148924000677646,
+        "range": [
+          36.42047999892384,
+          56.19128000980707
+        ]
+      },
+      "greedy_scoreflip_and_support_rate": {
+        "mean": 0.0,
+        "range": [
+          0.0,
+          0.0
+        ]
+      },
+      "median_edited_tags_on_success": {
+        "mean": 3.0,
+        "range": [
+          2.0,
+          4.0
+        ]
+      },
+      "median_norm_cost_proposed_on_success": {
+        "mean": 738.7021883031887,
+        "range": [
+          385.0189958561564,
+          1277.8847909371973
+        ]
+      },
+      "median_norm_cost_greedy_on_same_events": {
+        "mean": 2354.60931966538,
+        "range": [
+          2353.7992177782676,
+          2355.259739200218
+        ]
+      },
+      "stage_hit_at_1_on_success": {
+        "mean": 0.4333333333333333,
+        "range": [
+          0.0,
+          0.6666666666666666
+        ]
+      },
+      "transition_consistency_max_abs_error_on_success": {
+        "mean": 0.0,
+        "range": [
+          0.0,
+          0.0
+        ]
+      },
+      "explanation_p95_ms": {
+        "mean": 99.32843999646138,
+        "range": [
+          88.0218399950536,
+          117.42369999410583
+        ]
+      },
+      "capability_group_budget_success_rate": {
+        "1": {
+          "mean": 0.0,
+          "range": [
+            0.0,
+            0.0
+          ]
+        },
+        "2": {
+          "mean": 0.22222222222222224,
+          "range": [
+            0.1111111111111111,
+            0.3333333333333333
+          ]
+        },
+        "4": {
+          "mean": 0.22222222222222224,
+          "range": [
+            0.1111111111111111,
+            0.3333333333333333
+          ]
+        }
+      },
+      "capability_tag_budget_success_rate": {
+        "1": {
+          "mean": 0.0,
+          "range": [
+            0.0,
+            0.0
+          ]
+        },
+        "2": {
+          "mean": 0.11111111111111112,
+          "range": [
+            0.0,
+            0.2222222222222222
+          ]
+        },
+        "4": {
+          "mean": 0.22222222222222224,
+          "range": [
+            0.1111111111111111,
+            0.3333333333333333
+          ]
+        },
+        "8": {
+          "mean": 0.22222222222222224,
+          "range": [
+            0.1111111111111111,
+            0.3333333333333333
+          ]
+        },
+        "16": {
+          "mean": 0.22222222222222224,
+          "range": [
+            0.1111111111111111,
+            0.3333333333333333
+          ]
+        }
+      },
+      "false_alarm_explanation_sample": {
+        "total_pure_false_alarm_episodes": {
+          "mean": 465.0,
+          "range": [
+            463.0,
+            466.0
+          ]
+        },
+        "sampled_episodes": {
+          "mean": 100.0,
+          "range": [
+            100.0,
+            100.0
+          ]
+        },
+        "sample_fraction": {
+          "mean": 0.2150549595240466,
+          "range": [
+            0.2145922746781116,
+            0.2159827213822894
+          ]
+        },
+        "sampled_greedy_score_flip_rate": {
+          "mean": 1.0,
+          "range": [
+            1.0,
+            1.0
+          ]
+        },
+        "sampled_capability_support_success_rate": {
+          "mean": 0.5820000000000001,
+          "range": [
+            0.48,
+            0.67
+          ]
+        },
+        "sampled_dynamics_constrained_success_rate": {
+          "mean": 0.522,
+          "range": [
+            0.45,
+            0.64
+          ]
+        },
+        "median_edited_tags_on_success": {
+          "mean": 2.0,
+          "range": [
+            2.0,
+            2.0
+          ]
+        },
+        "explanation_latency_p50_ms": {
+          "mean": 60.53236999869114,
+          "range": [
+            55.7178999952157,
+            62.68774999625748
+          ]
+        },
+        "explanation_latency_p95_ms": {
+          "mean": 89.54350400090333,
+          "range": [
+            81.1131199930969,
+            94.77928000269456
+          ]
+        },
+        "dynamics_explanation_latency_p95_ms": {
+          "mean": 54.22469600001932,
+          "range": [
+            45.07124498995835,
+            60.25349500050652
+          ]
+        }
+      }
+    }
+  },
+  "per_run": [
+    {
+      "run_id": "hai21_seed42_20261031T051335_879603Z",
+      "seed": 42,
+      "models": {
+        "RobustZ-TEMPORAL": {
+          "detector_f1": 0.009270553793608197,
+          "event_recall": 0.18,
+          "false_alarm_events_per_normal_hour": 4.26807239644022,
+          "alarm_events_explained": 9,
+          "capability_support_success_rate": 0.2222222222222222,
+          "dynamics_constrained_success_rate": 0.0,
+          "dynamics_constrained_stage_hit_at_1_on_success": null,
+          "dynamics_constrained_median_edit_count_on_success": null,
+          "dynamics_constrained_transition_threshold": 20.57064339738796,
+          "greedy_scoreflip_and_support_rate": 0.0,
+          "capability_group_budget_success_rate": {
+            "1": 0.0,
+            "2": 0.2222222222222222,
+            "4": 0.2222222222222222
+          },
+          "capability_tag_budget_success_rate": {
+            "1": 0.0,
+            "2": 0.1111111111111111,
+            "4": 0.2222222222222222,
+            "8": 0.2222222222222222,
+            "16": 0.2222222222222222
+          },
+          "median_edited_tags_on_success": 3.0,
+          "median_norm_cost_proposed_on_success": 636.1729220067997,
+          "median_norm_cost_greedy_on_same_events": 2354.5198561896304,
+          "stage_hit_at_1_on_success": 0.5,
+          "transition_consistency_max_abs_error_on_success": 0.0,
+          "false_alarm_explanation_sample": {
+            "total_pure_false_alarm_episodes": 466,
+            "sampled_episodes": 100,
+            "sample_fraction": 0.2145922746781116,
+            "sampled_greedy_score_flip_rate": 1.0,
+            "sampled_capability_support_success_rate": 0.57,
+            "sampled_dynamics_constrained_success_rate": 0.45,
+            "median_edited_tags_on_success": 2.0,
+            "median_edited_tags_dynamics_constrained_success": 2.0,
+            "explanation_latency_p50_ms": 60.844550003821496,
+            "explanation_latency_p95_ms": 83.4123350046866,
+            "dynamics_explanation_latency_p95_ms": 45.07124498995835,
+            "interpretation": "Post-hoc sampled pure false-alarm episodes; no target truth is available, so recourse success is behavior only, not explanation correctness."
+          },
+          "dynamics_constrained_search_p95_ms": 38.56439999653957,
+          "explanation_p95_ms": 103.09822000272105
+        },
+        "PCA-STATE": {
+          "detector_f1": 0.3935704999409053,
+          "event_recall": 0.9,
+          "false_alarm_events_per_normal_hour": 17.218832844007757,
+          "alarm_events_explained": 45,
+          "capability_support_success_rate": 0.9555555555555556,
+          "dynamics_constrained_success_rate": 0.5333333333333333,
+          "dynamics_constrained_stage_hit_at_1_on_success": 0.4166666666666667,
+          "dynamics_constrained_median_edit_count_on_success": 1.0,
+          "dynamics_constrained_transition_threshold": 20.57064339738796,
+          "greedy_scoreflip_and_support_rate": 0.9333333333333333,
+          "capability_group_budget_success_rate": {
+            "1": 0.9111111111111111,
+            "2": 0.9555555555555556,
+            "4": 0.9555555555555556
+          },
+          "capability_tag_budget_success_rate": {
+            "1": 0.8666666666666667,
+            "2": 0.9111111111111111,
+            "4": 0.9333333333333333,
+            "8": 0.9555555555555556,
+            "16": 0.9555555555555556
+          },
+          "median_edited_tags_on_success": 1.0,
+          "median_norm_cost_proposed_on_success": 84.58114123836505,
+          "median_norm_cost_greedy_on_same_events": 97.62129592157922,
+          "stage_hit_at_1_on_success": 0.20930232558139536,
+          "transition_consistency_max_abs_error_on_success": null,
+          "false_alarm_explanation_sample": {
+            "total_pure_false_alarm_episodes": 1880,
+            "sampled_episodes": 100,
+            "sample_fraction": 0.05319148936170213,
+            "sampled_greedy_score_flip_rate": 1.0,
+            "sampled_capability_support_success_rate": 0.98,
+            "sampled_dynamics_constrained_success_rate": 0.87,
+            "median_edited_tags_on_success": 1.0,
+            "median_edited_tags_dynamics_constrained_success": 1.0,
+            "explanation_latency_p50_ms": 204.15494999906514,
+            "explanation_latency_p95_ms": 310.4725699988194,
+            "dynamics_explanation_latency_p95_ms": 174.62874499105965,
+            "interpretation": "Post-hoc sampled pure false-alarm episodes; no target truth is available, so recourse success is behavior only, not explanation correctness."
+          },
+          "dynamics_constrained_search_p95_ms": 136.96320000744888,
+          "explanation_p95_ms": 260.77837999910116
+        },
+        "PCA-TEMPORAL": {
+          "detector_f1": 0.19876394118064927,
+          "event_recall": 0.88,
+          "false_alarm_events_per_normal_hour": 25.62675228592218,
+          "alarm_events_explained": 44,
+          "capability_support_success_rate": 0.6136363636363636,
+          "dynamics_constrained_success_rate": 0.36363636363636365,
+          "dynamics_constrained_stage_hit_at_1_on_success": 1.0,
+          "dynamics_constrained_median_edit_count_on_success": 1.0,
+          "dynamics_constrained_transition_threshold": 20.57064339738796,
+          "greedy_scoreflip_and_support_rate": 0.5,
+          "capability_group_budget_success_rate": {
+            "1": 0.6136363636363636,
+            "2": 0.6136363636363636,
+            "4": 0.6136363636363636
+          },
+          "capability_tag_budget_success_rate": {
+            "1": 0.4772727272727273,
+            "2": 0.4772727272727273,
+            "4": 0.5681818181818182,
+            "8": 0.6136363636363636,
+            "16": 0.6136363636363636
+          },
+          "median_edited_tags_on_success": 1.0,
+          "median_norm_cost_proposed_on_success": 416.7705855397671,
+          "median_norm_cost_greedy_on_same_events": 448.13069031265024,
+          "stage_hit_at_1_on_success": 0.7777777777777778,
+          "transition_consistency_max_abs_error_on_success": 0.0,
+          "false_alarm_explanation_sample": {
+            "total_pure_false_alarm_episodes": 2798,
+            "sampled_episodes": 100,
+            "sample_fraction": 0.035739814152966405,
+            "sampled_greedy_score_flip_rate": 0.0,
+            "sampled_capability_support_success_rate": 0.0,
+            "sampled_dynamics_constrained_success_rate": 0.0,
+            "median_edited_tags_on_success": null,
+            "median_edited_tags_dynamics_constrained_success": null,
+            "explanation_latency_p50_ms": 80.72349999565631,
+            "explanation_latency_p95_ms": 119.31589500745756,
+            "dynamics_explanation_latency_p95_ms": 76.70261499442859,
+            "interpretation": "Post-hoc sampled pure false-alarm episodes; no target truth is available, so recourse success is behavior only, not explanation correctness."
+          },
+          "dynamics_constrained_search_p95_ms": 138.8308500099811,
+          "explanation_p95_ms": 240.45759000073306
+        }
+      }
+    },
+    {
+      "run_id": "hai21_seed43_20261031T051709_959445Z",
+      "seed": 43,
+      "models": {
+        "RobustZ-TEMPORAL": {
+          "detector_f1": 0.00927734375,
+          "event_recall": 0.18,
+          "false_alarm_events_per_normal_hour": 4.240595535518931,
+          "alarm_events_explained": 9,
+          "capability_support_success_rate": 0.2222222222222222,
+          "dynamics_constrained_success_rate": 0.1111111111111111,
+          "dynamics_constrained_stage_hit_at_1_on_success": 1.0,
+          "dynamics_constrained_median_edit_count_on_success": 2.0,
+          "dynamics_constrained_transition_threshold": 20.37847402484805,
+          "greedy_scoreflip_and_support_rate": 0.0,
+          "capability_group_budget_success_rate": {
+            "1": 0.0,
+            "2": 0.2222222222222222,
+            "4": 0.2222222222222222
+          },
+          "capability_tag_budget_success_rate": {
+            "1": 0.0,
+            "2": 0.1111111111111111,
+            "4": 0.2222222222222222,
+            "8": 0.2222222222222222,
+            "16": 0.2222222222222222
+          },
+          "median_edited_tags_on_success": 3.0,
+          "median_norm_cost_proposed_on_success": 681.8633059707533,
+          "median_norm_cost_greedy_on_same_events": 2355.259739200218,
+          "stage_hit_at_1_on_success": 0.5,
+          "transition_consistency_max_abs_error_on_success": 0.0,
+          "false_alarm_explanation_sample": {
+            "total_pure_false_alarm_episodes": 463,
+            "sampled_episodes": 100,
+            "sample_fraction": 0.2159827213822894,
+            "sampled_greedy_score_flip_rate": 1.0,
+            "sampled_capability_support_success_rate": 0.57,
+            "sampled_dynamics_constrained_success_rate": 0.48,
+            "median_edited_tags_on_success": 2.0,
+            "median_edited_tags_dynamics_constrained_success": 2.0,
+            "explanation_latency_p50_ms": 60.957049994613044,
+            "explanation_latency_p95_ms": 81.1131199930969,
+            "dynamics_explanation_latency_p95_ms": 49.43709000799572,
+            "interpretation": "Post-hoc sampled pure false-alarm episodes; no target truth is available, so recourse success is behavior only, not explanation correctness."
+          },
+          "dynamics_constrained_search_p95_ms": 56.19128000980707,
+          "explanation_p95_ms": 117.42369999410583
+        },
+        "PCA-STATE": {
+          "detector_f1": 0.3977313009571074,
+          "event_recall": 0.92,
+          "false_alarm_events_per_normal_hour": 18.098092393489,
+          "alarm_events_explained": 46,
+          "capability_support_success_rate": 0.9347826086956522,
+          "dynamics_constrained_success_rate": 0.5869565217391305,
+          "dynamics_constrained_stage_hit_at_1_on_success": 0.4444444444444444,
+          "dynamics_constrained_median_edit_count_on_success": 1.0,
+          "dynamics_constrained_transition_threshold": 20.37847402484805,
+          "greedy_scoreflip_and_support_rate": 0.9130434782608695,
+          "capability_group_budget_success_rate": {
+            "1": 0.8913043478260869,
+            "2": 0.9130434782608695,
+            "4": 0.9347826086956522
+          },
+          "capability_tag_budget_success_rate": {
+            "1": 0.8478260869565217,
+            "2": 0.8695652173913043,
+            "4": 0.9130434782608695,
+            "8": 0.9347826086956522,
+            "16": 0.9347826086956522
+          },
+          "median_edited_tags_on_success": 1.0,
+          "median_norm_cost_proposed_on_success": 88.13345923827514,
+          "median_norm_cost_greedy_on_same_events": 95.10319708619993,
+          "stage_hit_at_1_on_success": 0.20930232558139536,
+          "transition_consistency_max_abs_error_on_success": null,
+          "false_alarm_explanation_sample": {
+            "total_pure_false_alarm_episodes": 1976,
+            "sampled_episodes": 100,
+            "sample_fraction": 0.05060728744939271,
+            "sampled_greedy_score_flip_rate": 1.0,
+            "sampled_capability_support_success_rate": 1.0,
+            "sampled_dynamics_constrained_success_rate": 0.89,
+            "median_edited_tags_on_success": 1.0,
+            "median_edited_tags_dynamics_constrained_success": 1.0,
+            "explanation_latency_p50_ms": 170.2094499996747,
+            "explanation_latency_p95_ms": 260.90143000037637,
+            "dynamics_explanation_latency_p95_ms": 152.98887499739067,
+            "interpretation": "Post-hoc sampled pure false-alarm episodes; no target truth is available, so recourse success is behavior only, not explanation correctness."
+          },
+          "dynamics_constrained_search_p95_ms": 130.55595000332687,
+          "explanation_p95_ms": 247.10427499667276
+        },
+        "PCA-TEMPORAL": {
+          "detector_f1": 0.19896255240531513,
+          "event_recall": 0.88,
+          "false_alarm_events_per_normal_hour": 25.590116471360464,
+          "alarm_events_explained": 44,
+          "capability_support_success_rate": 0.6590909090909091,
+          "dynamics_constrained_success_rate": 0.3409090909090909,
+          "dynamics_constrained_stage_hit_at_1_on_success": 1.0,
+          "dynamics_constrained_median_edit_count_on_success": 1.0,
+          "dynamics_constrained_transition_threshold": 20.37847402484805,
+          "greedy_scoreflip_and_support_rate": 0.5681818181818182,
+          "capability_group_budget_success_rate": {
+            "1": 0.6363636363636364,
+            "2": 0.6590909090909091,
+            "4": 0.6590909090909091
+          },
+          "capability_tag_budget_success_rate": {
+            "1": 0.4772727272727273,
+            "2": 0.5,
+            "4": 0.5909090909090909,
+            "8": 0.6590909090909091,
+            "16": 0.6590909090909091
+          },
+          "median_edited_tags_on_success": 1.0,
+          "median_norm_cost_proposed_on_success": 425.52431737567554,
+          "median_norm_cost_greedy_on_same_events": 480.10325235695547,
+          "stage_hit_at_1_on_success": 0.7931034482758621,
+          "transition_consistency_max_abs_error_on_success": 0.0,
+          "false_alarm_explanation_sample": {
+            "total_pure_false_alarm_episodes": 2794,
+            "sampled_episodes": 100,
+            "sample_fraction": 0.03579098067287044,
+            "sampled_greedy_score_flip_rate": 0.03,
+            "sampled_capability_support_success_rate": 0.03,
+            "sampled_dynamics_constrained_success_rate": 0.02,
+            "median_edited_tags_on_success": 1.0,
+            "median_edited_tags_dynamics_constrained_success": 1.0,
+            "explanation_latency_p50_ms": 76.7647999964538,
+            "explanation_latency_p95_ms": 131.42025000415742,
+            "dynamics_explanation_latency_p95_ms": 76.2678299914114,
+            "interpretation": "Post-hoc sampled pure false-alarm episodes; no target truth is available, so recourse success is behavior only, not explanation correctness."
+          },
+          "dynamics_constrained_search_p95_ms": 129.78449000584078,
+          "explanation_p95_ms": 212.57142999165808
+        }
+      }
+    },
+    {
+      "run_id": "hai21_seed44_20261031T052039_198005Z",
+      "seed": 44,
+      "models": {
+        "RobustZ-TEMPORAL": {
+          "detector_f1": 0.00926829268292683,
+          "event_recall": 0.18,
+          "false_alarm_events_per_normal_hour": 4.26807239644022,
+          "alarm_events_explained": 9,
+          "capability_support_success_rate": 0.3333333333333333,
+          "dynamics_constrained_success_rate": 0.1111111111111111,
+          "dynamics_constrained_stage_hit_at_1_on_success": 1.0,
+          "dynamics_constrained_median_edit_count_on_success": 2.0,
+          "dynamics_constrained_transition_threshold": 20.432358864443717,
+          "greedy_scoreflip_and_support_rate": 0.0,
+          "capability_group_budget_success_rate": {
+            "1": 0.0,
+            "2": 0.3333333333333333,
+            "4": 0.3333333333333333
+          },
+          "capability_tag_budget_success_rate": {
+            "1": 0.0,
+            "2": 0.2222222222222222,
+            "4": 0.3333333333333333,
+            "8": 0.3333333333333333,
+            "16": 0.3333333333333333
+          },
+          "median_edited_tags_on_success": 2.0,
+          "median_norm_cost_proposed_on_success": 385.0189958561564,
+          "median_norm_cost_greedy_on_same_events": 2354.246798056016,
+          "stage_hit_at_1_on_success": 0.6666666666666666,
+          "transition_consistency_max_abs_error_on_success": 0.0,
+          "false_alarm_explanation_sample": {
+            "total_pure_false_alarm_episodes": 466,
+            "sampled_episodes": 100,
+            "sample_fraction": 0.2145922746781116,
+            "sampled_greedy_score_flip_rate": 1.0,
+            "sampled_capability_support_success_rate": 0.67,
+            "sampled_dynamics_constrained_success_rate": 0.64,
+            "median_edited_tags_on_success": 2.0,
+            "median_edited_tags_dynamics_constrained_success": 2.0,
+            "explanation_latency_p50_ms": 62.68774999625748,
+            "explanation_latency_p95_ms": 94.69525000167776,
+            "dynamics_explanation_latency_p95_ms": 56.93827000213786,
+            "interpretation": "Post-hoc sampled pure false-alarm episodes; no target truth is available, so recourse success is behavior only, not explanation correctness."
+          },
+          "dynamics_constrained_search_p95_ms": 50.05702000053134,
+          "explanation_p95_ms": 90.47667999693658
+        },
+        "PCA-STATE": {
+          "detector_f1": 0.39411486646182936,
+          "event_recall": 0.9,
+          "false_alarm_events_per_normal_hour": 17.282945519490763,
+          "alarm_events_explained": 45,
+          "capability_support_success_rate": 0.9333333333333333,
+          "dynamics_constrained_success_rate": 0.5111111111111111,
+          "dynamics_constrained_stage_hit_at_1_on_success": 0.43478260869565216,
+          "dynamics_constrained_median_edit_count_on_success": 1.0,
+          "dynamics_constrained_transition_threshold": 20.432358864443717,
+          "greedy_scoreflip_and_support_rate": 0.8888888888888888,
+          "capability_group_budget_success_rate": {
+            "1": 0.8888888888888888,
+            "2": 0.9333333333333333,
+            "4": 0.9333333333333333
+          },
+          "capability_tag_budget_success_rate": {
+            "1": 0.8444444444444444,
+            "2": 0.8888888888888888,
+            "4": 0.9111111111111111,
+            "8": 0.9333333333333333,
+            "16": 0.9333333333333333
+          },
+          "median_edited_tags_on_success": 1.0,
+          "median_norm_cost_proposed_on_success": 76.21745582085526,
+          "median_norm_cost_greedy_on_same_events": 96.52711220066985,
+          "stage_hit_at_1_on_success": 0.23809523809523808,
+          "transition_consistency_max_abs_error_on_success": null,
+          "false_alarm_explanation_sample": {
+            "total_pure_false_alarm_episodes": 1887,
+            "sampled_episodes": 100,
+            "sample_fraction": 0.052994170641229466,
+            "sampled_greedy_score_flip_rate": 1.0,
+            "sampled_capability_support_success_rate": 0.99,
+            "sampled_dynamics_constrained_success_rate": 0.89,
+            "median_edited_tags_on_success": 1.0,
+            "median_edited_tags_dynamics_constrained_success": 1.0,
+            "explanation_latency_p50_ms": 215.03980000125011,
+            "explanation_latency_p95_ms": 317.0669899955101,
+            "dynamics_explanation_latency_p95_ms": 185.8569550095126,
+            "interpretation": "Post-hoc sampled pure false-alarm episodes; no target truth is available, so recourse success is behavior only, not explanation correctness."
+          },
+          "dynamics_constrained_search_p95_ms": 152.67906000372022,
+          "explanation_p95_ms": 276.9067199988058
+        },
+        "PCA-TEMPORAL": {
+          "detector_f1": 0.19859365011719585,
+          "event_recall": 0.88,
+          "false_alarm_events_per_normal_hour": 25.67254705412433,
+          "alarm_events_explained": 44,
+          "capability_support_success_rate": 0.6136363636363636,
+          "dynamics_constrained_success_rate": 0.36363636363636365,
+          "dynamics_constrained_stage_hit_at_1_on_success": 1.0,
+          "dynamics_constrained_median_edit_count_on_success": 1.0,
+          "dynamics_constrained_transition_threshold": 20.432358864443717,
+          "greedy_scoreflip_and_support_rate": 0.5227272727272727,
+          "capability_group_budget_success_rate": {
+            "1": 0.6136363636363636,
+            "2": 0.6136363636363636,
+            "4": 0.6136363636363636
+          },
+          "capability_tag_budget_success_rate": {
+            "1": 0.4772727272727273,
+            "2": 0.4772727272727273,
+            "4": 0.5681818181818182,
+            "8": 0.6136363636363636,
+            "16": 0.6136363636363636
+          },
+          "median_edited_tags_on_success": 1.0,
+          "median_norm_cost_proposed_on_success": 343.5871489735516,
+          "median_norm_cost_greedy_on_same_events": 448.8200194219421,
+          "stage_hit_at_1_on_success": 0.7777777777777778,
+          "transition_consistency_max_abs_error_on_success": 0.0,
+          "false_alarm_explanation_sample": {
+            "total_pure_false_alarm_episodes": 2803,
+            "sampled_episodes": 100,
+            "sample_fraction": 0.03567606136282554,
+            "sampled_greedy_score_flip_rate": 0.0,
+            "sampled_capability_support_success_rate": 0.0,
+            "sampled_dynamics_constrained_success_rate": 0.0,
+            "median_edited_tags_on_success": null,
+            "median_edited_tags_dynamics_constrained_success": null,
+            "explanation_latency_p50_ms": 77.66685000387952,
+            "explanation_latency_p95_ms": 115.56711500452366,
+            "dynamics_explanation_latency_p95_ms": 71.71382500455364,
+            "interpretation": "Post-hoc sampled pure false-alarm episodes; no target truth is available, so recourse success is behavior only, not explanation correctness."
+          },
+          "dynamics_constrained_search_p95_ms": 146.35866500320847,
+          "explanation_p95_ms": 240.01630000639128
+        }
+      }
+    },
+    {
+      "run_id": "hai21_seed45_20261031T052411_161777Z",
+      "seed": 45,
+      "models": {
+        "RobustZ-TEMPORAL": {
+          "detector_f1": 0.01299017617926443,
+          "event_recall": 0.18,
+          "false_alarm_events_per_normal_hour": 4.25891344279979,
+          "alarm_events_explained": 9,
+          "capability_support_success_rate": 0.1111111111111111,
+          "dynamics_constrained_success_rate": 0.0,
+          "dynamics_constrained_stage_hit_at_1_on_success": null,
+          "dynamics_constrained_median_edit_count_on_success": null,
+          "dynamics_constrained_transition_threshold": 20.55202884365858,
+          "greedy_scoreflip_and_support_rate": 0.0,
+          "capability_group_budget_success_rate": {
+            "1": 0.0,
+            "2": 0.1111111111111111,
+            "4": 0.1111111111111111
+          },
+          "capability_tag_budget_success_rate": {
+            "1": 0.0,
+            "2": 0.0,
+            "4": 0.1111111111111111,
+            "8": 0.1111111111111111,
+            "16": 0.1111111111111111
+          },
+          "median_edited_tags_on_success": 4.0,
+          "median_norm_cost_proposed_on_success": 1277.8847909371973,
+          "median_norm_cost_greedy_on_same_events": 2355.2209871027685,
+          "stage_hit_at_1_on_success": 0.0,
+          "transition_consistency_max_abs_error_on_success": 0.0,
+          "false_alarm_explanation_sample": {
+            "total_pure_false_alarm_episodes": 465,
+            "sampled_episodes": 100,
+            "sample_fraction": 0.21505376344086022,
+            "sampled_greedy_score_flip_rate": 1.0,
+            "sampled_capability_support_success_rate": 0.48,
+            "sampled_dynamics_constrained_success_rate": 0.48,
+            "median_edited_tags_on_success": 2.0,
+            "median_edited_tags_dynamics_constrained_success": 2.0,
+            "explanation_latency_p50_ms": 62.45460000354797,
+            "explanation_latency_p95_ms": 93.7175350023608,
+            "dynamics_explanation_latency_p95_ms": 59.42337999949814,
+            "interpretation": "Post-hoc sampled pure false-alarm episodes; no target truth is available, so recourse success is behavior only, not explanation correctness."
+          },
+          "dynamics_constrained_search_p95_ms": 36.42047999892384,
+          "explanation_p95_ms": 97.62175999348982
+        },
+        "PCA-STATE": {
+          "detector_f1": 0.3989374262101535,
+          "event_recall": 0.92,
+          "false_alarm_events_per_normal_hour": 18.14388716169115,
+          "alarm_events_explained": 46,
+          "capability_support_success_rate": 0.9565217391304348,
+          "dynamics_constrained_success_rate": 0.5434782608695652,
+          "dynamics_constrained_stage_hit_at_1_on_success": 0.36,
+          "dynamics_constrained_median_edit_count_on_success": 1.0,
+          "dynamics_constrained_transition_threshold": 20.55202884365858,
+          "greedy_scoreflip_and_support_rate": 0.9347826086956522,
+          "capability_group_budget_success_rate": {
+            "1": 0.9347826086956522,
+            "2": 0.9565217391304348,
+            "4": 0.9565217391304348
+          },
+          "capability_tag_budget_success_rate": {
+            "1": 0.8913043478260869,
+            "2": 0.9130434782608695,
+            "4": 0.9347826086956522,
+            "8": 0.9565217391304348,
+            "16": 0.9565217391304348
+          },
+          "median_edited_tags_on_success": 1.0,
+          "median_norm_cost_proposed_on_success": 75.20571968164037,
+          "median_norm_cost_greedy_on_same_events": 95.2680627829802,
+          "stage_hit_at_1_on_success": 0.20454545454545456,
+          "transition_consistency_max_abs_error_on_success": null,
+          "false_alarm_explanation_sample": {
+            "total_pure_false_alarm_episodes": 1981,
+            "sampled_episodes": 100,
+            "sample_fraction": 0.05047955577990914,
+            "sampled_greedy_score_flip_rate": 1.0,
+            "sampled_capability_support_success_rate": 0.98,
+            "sampled_dynamics_constrained_success_rate": 0.9,
+            "median_edited_tags_on_success": 1.0,
+            "median_edited_tags_dynamics_constrained_success": 1.0,
+            "explanation_latency_p50_ms": 210.02440000302158,
+            "explanation_latency_p95_ms": 326.4028550052899,
+            "dynamics_explanation_latency_p95_ms": 187.31084000173723,
+            "interpretation": "Post-hoc sampled pure false-alarm episodes; no target truth is available, so recourse success is behavior only, not explanation correctness."
+          },
+          "dynamics_constrained_search_p95_ms": 175.36267500327085,
+          "explanation_p95_ms": 303.02757499885047
+        },
+        "PCA-TEMPORAL": {
+          "detector_f1": 0.19845159457347822,
+          "event_recall": 0.88,
+          "false_alarm_events_per_normal_hour": 25.64507019320304,
+          "alarm_events_explained": 44,
+          "capability_support_success_rate": 0.6363636363636364,
+          "dynamics_constrained_success_rate": 0.3409090909090909,
+          "dynamics_constrained_stage_hit_at_1_on_success": 1.0,
+          "dynamics_constrained_median_edit_count_on_success": 1.0,
+          "dynamics_constrained_transition_threshold": 20.55202884365858,
+          "greedy_scoreflip_and_support_rate": 0.5681818181818182,
+          "capability_group_budget_success_rate": {
+            "1": 0.6136363636363636,
+            "2": 0.6363636363636364,
+            "4": 0.6363636363636364
+          },
+          "capability_tag_budget_success_rate": {
+            "1": 0.4772727272727273,
+            "2": 0.4772727272727273,
+            "4": 0.5681818181818182,
+            "8": 0.6363636363636364,
+            "16": 0.6363636363636364
+          },
+          "median_edited_tags_on_success": 1.0,
+          "median_norm_cost_proposed_on_success": 402.83073121893403,
+          "median_norm_cost_greedy_on_same_events": 464.9860624704253,
+          "stage_hit_at_1_on_success": 0.7857142857142857,
+          "transition_consistency_max_abs_error_on_success": 0.0,
+          "false_alarm_explanation_sample": {
+            "total_pure_false_alarm_episodes": 2800,
+            "sampled_episodes": 100,
+            "sample_fraction": 0.03571428571428571,
+            "sampled_greedy_score_flip_rate": 0.04,
+            "sampled_capability_support_success_rate": 0.03,
+            "sampled_dynamics_constrained_success_rate": 0.02,
+            "median_edited_tags_on_success": 2.0,
+            "median_edited_tags_dynamics_constrained_success": 1.5,
+            "explanation_latency_p50_ms": 74.1355000063777,
+            "explanation_latency_p95_ms": 110.03980500026955,
+            "dynamics_explanation_latency_p95_ms": 59.855250010150485,
+            "interpretation": "Post-hoc sampled pure false-alarm episodes; no target truth is available, so recourse success is behavior only, not explanation correctness."
+          },
+          "dynamics_constrained_search_p95_ms": 124.68336999663734,
+          "explanation_p95_ms": 208.0099049897399
+        }
+      }
+    },
+    {
+      "run_id": "hai21_seed46_20261031T052743_620105Z",
+      "seed": 46,
+      "models": {
+        "RobustZ-TEMPORAL": {
+          "detector_f1": 0.01298912161065108,
+          "event_recall": 0.18,
+          "false_alarm_events_per_normal_hour": 4.25891344279979,
+          "alarm_events_explained": 9,
+          "capability_support_success_rate": 0.2222222222222222,
+          "dynamics_constrained_success_rate": 0.1111111111111111,
+          "dynamics_constrained_stage_hit_at_1_on_success": 1.0,
+          "dynamics_constrained_median_edit_count_on_success": 2.0,
+          "dynamics_constrained_transition_threshold": 20.11177907815587,
+          "greedy_scoreflip_and_support_rate": 0.0,
+          "capability_group_budget_success_rate": {
+            "1": 0.0,
+            "2": 0.2222222222222222,
+            "4": 0.2222222222222222
+          },
+          "capability_tag_budget_success_rate": {
+            "1": 0.0,
+            "2": 0.1111111111111111,
+            "4": 0.2222222222222222,
+            "8": 0.2222222222222222,
+            "16": 0.2222222222222222
+          },
+          "median_edited_tags_on_success": 3.0,
+          "median_norm_cost_proposed_on_success": 712.570926745037,
+          "median_norm_cost_greedy_on_same_events": 2353.7992177782676,
+          "stage_hit_at_1_on_success": 0.5,
+          "transition_consistency_max_abs_error_on_success": 0.0,
+          "false_alarm_explanation_sample": {
+            "total_pure_false_alarm_episodes": 465,
+            "sampled_episodes": 100,
+            "sample_fraction": 0.21505376344086022,
+            "sampled_greedy_score_flip_rate": 1.0,
+            "sampled_capability_support_success_rate": 0.62,
+            "sampled_dynamics_constrained_success_rate": 0.56,
+            "median_edited_tags_on_success": 2.0,
+            "median_edited_tags_dynamics_constrained_success": 2.0,
+            "explanation_latency_p50_ms": 55.7178999952157,
+            "explanation_latency_p95_ms": 94.77928000269456,
+            "dynamics_explanation_latency_p95_ms": 60.25349500050652,
+            "interpretation": "Post-hoc sampled pure false-alarm episodes; no target truth is available, so recourse success is behavior only, not explanation correctness."
+          },
+          "dynamics_constrained_search_p95_ms": 44.51143999758642,
+          "explanation_p95_ms": 88.0218399950536
+        },
+        "PCA-STATE": {
+          "detector_f1": 0.4013452914798207,
+          "event_recall": 0.92,
+          "false_alarm_events_per_normal_hour": 18.336225188140173,
+          "alarm_events_explained": 46,
+          "capability_support_success_rate": 0.9565217391304348,
+          "dynamics_constrained_success_rate": 0.5434782608695652,
+          "dynamics_constrained_stage_hit_at_1_on_success": 0.4,
+          "dynamics_constrained_median_edit_count_on_success": 1.0,
+          "dynamics_constrained_transition_threshold": 20.11177907815587,
+          "greedy_scoreflip_and_support_rate": 0.9130434782608695,
+          "capability_group_budget_success_rate": {
+            "1": 0.8913043478260869,
+            "2": 0.9347826086956522,
+            "4": 0.9565217391304348
+          },
+          "capability_tag_budget_success_rate": {
+            "1": 0.8478260869565217,
+            "2": 0.8913043478260869,
+            "4": 0.9347826086956522,
+            "8": 0.9565217391304348,
+            "16": 0.9565217391304348
+          },
+          "median_edited_tags_on_success": 1.0,
+          "median_norm_cost_proposed_on_success": 92.71999640271596,
+          "median_norm_cost_greedy_on_same_events": 95.2680627829802,
+          "stage_hit_at_1_on_success": 0.20454545454545456,
+          "transition_consistency_max_abs_error_on_success": null,
+          "false_alarm_explanation_sample": {
+            "total_pure_false_alarm_episodes": 2002,
+            "sampled_episodes": 100,
+            "sample_fraction": 0.04995004995004995,
+            "sampled_greedy_score_flip_rate": 1.0,
+            "sampled_capability_support_success_rate": 0.99,
+            "sampled_dynamics_constrained_success_rate": 0.94,
+            "median_edited_tags_on_success": 1.0,
+            "median_edited_tags_dynamics_constrained_success": 1.0,
+            "explanation_latency_p50_ms": 214.3500500023947,
+            "explanation_latency_p95_ms": 334.46130498996354,
+            "dynamics_explanation_latency_p95_ms": 175.73836500087054,
+            "interpretation": "Post-hoc sampled pure false-alarm episodes; no target truth is available, so recourse success is behavior only, not explanation correctness."
+          },
+          "dynamics_constrained_search_p95_ms": 183.41394999879412,
+          "explanation_p95_ms": 308.52805000176886
+        },
+        "PCA-TEMPORAL": {
+          "detector_f1": 0.1986208857610009,
+          "event_recall": 0.88,
+          "false_alarm_events_per_normal_hour": 25.571798564079604,
+          "alarm_events_explained": 44,
+          "capability_support_success_rate": 0.5454545454545454,
+          "dynamics_constrained_success_rate": 0.3181818181818182,
+          "dynamics_constrained_stage_hit_at_1_on_success": 1.0,
+          "dynamics_constrained_median_edit_count_on_success": 1.0,
+          "dynamics_constrained_transition_threshold": 20.11177907815587,
+          "greedy_scoreflip_and_support_rate": 0.38636363636363635,
+          "capability_group_budget_success_rate": {
+            "1": 0.5227272727272727,
+            "2": 0.5454545454545454,
+            "4": 0.5454545454545454
+          },
+          "capability_tag_budget_success_rate": {
+            "1": 0.4090909090909091,
+            "2": 0.4318181818181818,
+            "4": 0.5,
+            "8": 0.5454545454545454,
+            "16": 0.5454545454545454
+          },
+          "median_edited_tags_on_success": 1.0,
+          "median_norm_cost_proposed_on_success": 408.85880574747756,
+          "median_norm_cost_greedy_on_same_events": 463.2479637333266,
+          "stage_hit_at_1_on_success": 0.7916666666666666,
+          "transition_consistency_max_abs_error_on_success": 0.0,
+          "false_alarm_explanation_sample": {
+            "total_pure_false_alarm_episodes": 2792,
+            "sampled_episodes": 100,
+            "sample_fraction": 0.03581661891117478,
+            "sampled_greedy_score_flip_rate": 0.07,
+            "sampled_capability_support_success_rate": 0.01,
+            "sampled_dynamics_constrained_success_rate": 0.01,
+            "median_edited_tags_on_success": 1.0,
+            "median_edited_tags_dynamics_constrained_success": 1.0,
+            "explanation_latency_p50_ms": 75.23029999720166,
+            "explanation_latency_p95_ms": 115.57977999400464,
+            "dynamics_explanation_latency_p95_ms": 56.913610011542914,
+            "interpretation": "Post-hoc sampled pure false-alarm episodes; no target truth is available, so recourse success is behavior only, not explanation correctness."
+          },
+          "dynamics_constrained_search_p95_ms": 111.39002000199983,
+          "explanation_p95_ms": 198.1986049991974
+        }
+      }
+    }
+  ],
+  "interpretation": "Descriptive aggregation across supplied runs only; ranges are not confidence intervals."
+}

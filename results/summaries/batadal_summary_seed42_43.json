@@ -1,0 +1,163 @@
+{
+  "runs": [
+    {
+      "run_id": "batadal_seed42_20261031T024143_311772Z",
+      "seed": 42
+    },
+    {
+      "run_id": "batadal_seed43_20261031T024338_302964Z",
+      "seed": 43
+    }
+  ],
+  "label_scope": "Approximate positive annotations only; unknown rows are not treated as negatives.",
+  "models": {
+    "PCA-STATE": {
+      "known_attack_positive_point_recall": {
+        "mean": 0.4885844748858447,
+        "range": [
+          0.4885844748858447,
+          0.4885844748858447
+        ]
+      },
+      "approx_labeled_event_recall": {
+        "mean": 1.0,
+        "range": [
+          1.0,
+          1.0
+        ]
+      },
+      "approx_label_mean_detection_delay_seconds": {
+        "mean": 17280.0,
+        "range": [
+          17280.0,
+          17280.0
+        ]
+      },
+      "capability_support_scoreflip_rate": {
+        "mean": 0.8,
+        "range": [
+          0.8,
+          0.8
+        ]
+      },
+      "validation_point_fpr": {
+        "mean": 0.010041077133728891,
+        "range": [
+          0.010041077133728891,
+          0.010041077133728891
+        ]
+      },
+      "explanation_p95_ms": {
+        "mean": 29.741589997138362,
+        "range": [
+          27.95169999881182,
+          31.531479995464906
+        ]
+      },
+      "labeled_event_counts": [
+        5,
+        5
+      ],
+      "test_precision_f1_fpr": "not estimable: all non-positive ATT_FLAG rows are unknown"
+    },
+    "PCA-TEMPORAL": {
+      "known_attack_positive_point_recall": {
+        "mean": 0.0228310502283105,
+        "range": [
+          0.0228310502283105,
+          0.0228310502283105
+        ]
+      },
+      "approx_labeled_event_recall": {
+        "mean": 0.4,
+        "range": [
+          0.4,
+          0.4
+        ]
+      },
+      "approx_label_mean_detection_delay_seconds": {
+        "mean": 57600.0,
+        "range": [
+          57600.0,
+          57600.0
+        ]
+      },
+      "capability_support_scoreflip_rate": {
+        "mean": 1.0,
+        "range": [
+          1.0,
+          1.0
+        ]
+      },
+      "validation_point_fpr": {
+        "mean": 0.010041077133728891,
+        "range": [
+          0.010041077133728891,
+          0.010041077133728891
+        ]
+      },
+      "explanation_p95_ms": {
+        "mean": 34.87224500349839,
+        "range": [
+          25.026355001318734,
+          44.71813500567805
+        ]
+      },
+      "labeled_event_counts": [
+        5,
+        5
+      ],
+      "test_precision_f1_fpr": "not estimable: all non-positive ATT_FLAG rows are unknown"
+    },
+    "RobustZ-TEMPORAL": {
+      "known_attack_positive_point_recall": {
+        "mean": 0.0273972602739726,
+        "range": [
+          0.0273972602739726,
+          0.0273972602739726
+        ]
+      },
+      "approx_labeled_event_recall": {
+        "mean": 0.6,
+        "range": [
+          0.6,
+          0.6
+        ]
+      },
+      "approx_label_mean_detection_delay_seconds": {
+        "mean": 92400.0,
+        "range": [
+          92400.0,
+          92400.0
+        ]
+      },
+      "capability_support_scoreflip_rate": {
+        "mean": 1.0,
+        "range": [
+          1.0,
+          1.0
+        ]
+      },
+      "validation_point_fpr": {
+        "mean": 0.010041077133728891,
+        "range": [
+          0.010041077133728891,
+          0.010041077133728891
+        ]
+      },
+      "explanation_p95_ms": {
+        "mean": 28.708669993648073,
+        "range": [
+          27.496849991439376,
+          29.92048999585677
+        ]
+      },
+      "labeled_event_counts": [
+        5,
+        5
+      ],
+      "test_precision_f1_fpr": "not estimable: all non-positive ATT_FLAG rows are unknown"
+    }
+  },
+  "interpretation": "Descriptive aggregation only; two runs and five labeled intervals do not support inferential claims."
+}

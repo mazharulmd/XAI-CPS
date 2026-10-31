@@ -1,0 +1,20 @@
+# User supplied research data (do not redistribute)
+/data/raw/
+/data/processed/
+*.csv.gz
+*.parquet
+*.pt
+*.pth
+*.joblib
+*.pkl
+tmp/
+
+# Python environments and caches
+.venv/
+.venv-*/
+__pycache__/
+*.py[cod]
+*.egg-info/
+
+# Full-resolution per-timestep predictions are reproducible and stay local
+/results/runs/*/predictions.csv.gz

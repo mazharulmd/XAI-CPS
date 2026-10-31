@@ -1,0 +1,6 @@
+event_id,start_date_inclusive,end_date_inclusive,target_pumps,annotation_level,source_url,notes
+BAT01,2016-09-14,2016-09-15,PU10|PU11,pump_component,https://www.batadal.net/faq.html,"FAQ reports pump-control inconsistencies for this interval; dates are day-level and do not identify exact manipulated telemetry channels."
+BAT02,2016-10-09,2016-10-11,PU2,pump_component,https://www.batadal.net/faq.html,"FAQ reports pump PU2 control inconsistencies; dates are day-level and do not identify exact manipulated telemetry channels."
+BAT03,2016-10-30,2016-11-01,PU2,pump_component,https://www.batadal.net/faq.html,"FAQ reports pump PU2 control inconsistencies; dates are day-level and do not identify exact manipulated telemetry channels."
+BAT04,2016-11-27,2016-11-27,PU7,pump_component,https://www.batadal.net/faq.html,"FAQ identifies an attack directed at PU7; dates are day-level and do not identify exact manipulated telemetry channels."
+BAT05,2016-12-06,2016-12-09,PU6|PU7,pump_component,https://www.batadal.net/faq.html,"FAQ reports pump-control inconsistencies for this interval; dates are day-level and do not identify exact manipulated telemetry channels."

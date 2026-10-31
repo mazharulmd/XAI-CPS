@@ -1,0 +1,3418 @@
+{
+  "study": "BATADAL approximate-label pump-component target localization",
+  "source_url": "https://www.batadal.net/faq.html",
+  "annotation_file": "data\\annotations\\batadal_attack_target_map.csv",
+  "label_scope": "Five approximate positive intervals; target annotations identify pump components, not exact manipulated channels or causal roots.",
+  "evaluation": "Post-hoc only. Dataset annotations are never supplied to detectors or explainers. Missed events count as localization misses. Seeds are averaged only descriptively; five unique intervals do not support confirmatory inference.",
+  "events": [
+    {
+      "event_id": "BAT01",
+      "start_date_inclusive": "2016-09-14",
+      "end_date_inclusive": "2016-09-15",
+      "target_pumps": "PU10|PU11",
+      "annotation_level": "pump_component",
+      "source_url": "https://www.batadal.net/faq.html",
+      "notes": "FAQ reports pump-control inconsistencies for this interval; dates are day-level and do not identify exact manipulated telemetry channels.",
+      "event_index": 0,
+      "start_row": 1731,
+      "end_row_exclusive": 1773,
+      "observed_start": "2016-09-14T03:00:00.000000",
+      "observed_end_inclusive": "2016-09-15T20:00:00.000000",
+      "positive_rows": 42,
+      "targets": [
+        "PU10",
+        "PU11"
+      ]
+    },
+    {
+      "event_id": "BAT02",
+      "start_date_inclusive": "2016-10-09",
+      "end_date_inclusive": "2016-10-11",
+      "target_pumps": "PU2",
+      "annotation_level": "pump_component",
+      "source_url": "https://www.batadal.net/faq.html",
+      "notes": "FAQ reports pump PU2 control inconsistencies; dates are day-level and do not identify exact manipulated telemetry channels.",
+      "event_index": 1,
+      "start_row": 2337,
+      "end_row_exclusive": 2397,
+      "observed_start": "2016-10-09T09:00:00.000000",
+      "observed_end_inclusive": "2016-10-11T20:00:00.000000",
+      "positive_rows": 60,
+      "targets": [
+        "PU2"
+      ]
+    },
+    {
+      "event_id": "BAT03",
+      "start_date_inclusive": "2016-10-30",
+      "end_date_inclusive": "2016-11-01",
+      "target_pumps": "PU2",
+      "annotation_level": "pump_component",
+      "source_url": "https://www.batadal.net/faq.html",
+      "notes": "FAQ reports pump PU2 control inconsistencies; dates are day-level and do not identify exact manipulated telemetry channels.",
+      "event_index": 2,
+      "start_row": 2851,
+      "end_row_exclusive": 2888,
+      "observed_start": "2016-10-30T19:00:00.000000",
+      "observed_end_inclusive": "2016-11-01T07:00:00.000000",
+      "positive_rows": 37,
+      "targets": [
+        "PU2"
+      ]
+    },
+    {
+      "event_id": "BAT04",
+      "start_date_inclusive": "2016-11-27",
+      "end_date_inclusive": "2016-11-27",
+      "target_pumps": "PU7",
+      "annotation_level": "pump_component",
+      "source_url": "https://www.batadal.net/faq.html",
+      "notes": "FAQ identifies an attack directed at PU7; dates are day-level and do not identify exact manipulated telemetry channels.",
+      "event_index": 3,
+      "start_row": 3508,
+      "end_row_exclusive": 3515,
+      "observed_start": "2016-11-27T04:00:00.000000",
+      "observed_end_inclusive": "2016-11-27T10:00:00.000000",
+      "positive_rows": 7,
+      "targets": [
+        "PU7"
+      ]
+    },
+    {
+      "event_id": "BAT05",
+      "start_date_inclusive": "2016-12-06",
+      "end_date_inclusive": "2016-12-09",
+      "target_pumps": "PU6|PU7",
+      "annotation_level": "pump_component",
+      "source_url": "https://www.batadal.net/faq.html",
+      "notes": "FAQ reports pump-control inconsistencies for this interval; dates are day-level and do not identify exact manipulated telemetry channels.",
+      "event_index": 4,
+      "start_row": 3741,
+      "end_row_exclusive": 3814,
+      "observed_start": "2016-12-06T21:00:00.000000",
+      "observed_end_inclusive": "2016-12-09T21:00:00.000000",
+      "positive_rows": 73,
+      "targets": [
+        "PU6",
+        "PU7"
+      ]
+    }
+  ],
+  "dataset_manifest": {
+    "citation": "Taormina et al., The Battle Of The Attack Detection Algorithms: Disclosing Cyber Attacks On Water Distribution Networks, Journal of Water Resources Planning and Management, 144(8), 2018.",
+    "dataset": "BATADAL",
+    "dataset_page": "https://www.batadal.net/data.html",
+    "files": [
+      {
+        "bytes": 2940389,
+        "file": "BATADAL_dataset03.csv",
+        "sha256": "8ca6cb851242254d2605b5a53ba3ba5009e2213a545d65396615f1ce0b426e1b",
+        "source": "https://www.batadal.net/data/BATADAL_dataset03.csv"
+      },
+      {
+        "bytes": 1225392,
+        "file": "BATADAL_dataset04.csv",
+        "sha256": "4746beab2cfcdb5e68c7fa197a7522aecb70189d61dcc3eb1f870d2ce387068b",
+        "source": "https://www.batadal.net/data/BATADAL_dataset04.csv"
+      }
+    ],
+    "label_note": "ATT_FLAG=-999 is unknown; only ATT_FLAG=1 is treated as a labeled attack",
+    "labels": "Dataset03 is normal-only; Dataset04 contains ATT_FLAG=1 approximate attack labels and ATT_FLAG=-999 unknown rows."
+  },
+  "runs": [
+    {
+      "run_id": "batadal_seed42_20261031T060214_121348Z",
+      "seed": 42
+    },
+    {
+      "run_id": "batadal_seed43_20261031T060218_141583Z",
+      "seed": 43
+    },
+    {
+      "run_id": "batadal_seed44_20261031T060222_008634Z",
+      "seed": 44
+    },
+    {
+      "run_id": "batadal_seed45_20261031T060225_873843Z",
+      "seed": 45
+    },
+    {
+      "run_id": "batadal_seed46_20261031T060229_777700Z",
+      "seed": 46
+    }
+  ],
+  "models": {
+    "PCA-STATE": {
+      "n_seed_event_rows": 25,
+      "n_unique_events": 5,
+      "event_recall": 1.0,
+      "recourse_pass_rate": 0.8,
+      "recourse_target_hit_conditional": 0.5,
+      "recourse_success_seed_event_rows": 20,
+      "recourse_target_hit_success_rows": 10,
+      "native_hit_at_1": {
+        "mean": 0.8,
+        "seed_range": [
+          0.8,
+          0.8,
+          0.8,
+          0.8,
+          0.8
+        ]
+      },
+      "native_hit_at_3": {
+        "mean": 1.0,
+        "seed_range": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "native_hit_at_5": {
+        "mean": 1.0,
+        "seed_range": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "grouped_ablation_hit_at_1": {
+        "mean": 0.6,
+        "seed_range": [
+          0.6,
+          0.6,
+          0.6,
+          0.6,
+          0.6
+        ]
+      },
+      "grouped_ablation_hit_at_3": {
+        "mean": 0.6,
+        "seed_range": [
+          0.6,
+          0.6,
+          0.6,
+          0.6,
+          0.6
+        ]
+      },
+      "grouped_ablation_hit_at_5": {
+        "mean": 0.8,
+        "seed_range": [
+          0.8,
+          0.8,
+          0.8,
+          0.8,
+          0.8
+        ]
+      },
+      "recourse_target_hit_unconditional": {
+        "mean": 0.4,
+        "seed_range": [
+          0.4,
+          0.4,
+          0.4,
+          0.4,
+          0.4
+        ]
+      }
+    },
+    "PCA-TEMPORAL": {
+      "n_seed_event_rows": 25,
+      "n_unique_events": 5,
+      "event_recall": 0.4,
+      "recourse_pass_rate": 0.2,
+      "recourse_target_hit_conditional": 1.0,
+      "recourse_success_seed_event_rows": 5,
+      "recourse_target_hit_success_rows": 5,
+      "native_hit_at_1": {
+        "mean": 0.0,
+        "seed_range": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "native_hit_at_3": {
+        "mean": 0.4,
+        "seed_range": [
+          0.4,
+          0.4,
+          0.4,
+          0.4,
+          0.4
+        ]
+      },
+      "native_hit_at_5": {
+        "mean": 0.4,
+        "seed_range": [
+          0.4,
+          0.4,
+          0.4,
+          0.4,
+          0.4
+        ]
+      },
+      "grouped_ablation_hit_at_1": {
+        "mean": 0.0,
+        "seed_range": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "grouped_ablation_hit_at_3": {
+        "mean": 0.2,
+        "seed_range": [
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2
+        ]
+      },
+      "grouped_ablation_hit_at_5": {
+        "mean": 0.4,
+        "seed_range": [
+          0.4,
+          0.4,
+          0.4,
+          0.4,
+          0.4
+        ]
+      },
+      "recourse_target_hit_unconditional": {
+        "mean": 0.2,
+        "seed_range": [
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2
+        ]
+      }
+    },
+    "RobustZ-TEMPORAL": {
+      "n_seed_event_rows": 25,
+      "n_unique_events": 5,
+      "event_recall": 0.6,
+      "recourse_pass_rate": 0.48,
+      "recourse_target_hit_conditional": 0.4166666666666667,
+      "recourse_success_seed_event_rows": 12,
+      "recourse_target_hit_success_rows": 5,
+      "native_hit_at_1": {
+        "mean": 0.0,
+        "seed_range": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "native_hit_at_3": {
+        "mean": 0.2,
+        "seed_range": [
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2
+        ]
+      },
+      "native_hit_at_5": {
+        "mean": 0.6,
+        "seed_range": [
+          0.6,
+          0.6,
+          0.6,
+          0.6,
+          0.6
+        ]
+      },
+      "grouped_ablation_hit_at_1": {
+        "mean": 0.0,
+        "seed_range": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "grouped_ablation_hit_at_3": {
+        "mean": 0.2,
+        "seed_range": [
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2
+        ]
+      },
+      "grouped_ablation_hit_at_5": {
+        "mean": 0.2,
+        "seed_range": [
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2
+        ]
+      },
+      "recourse_target_hit_unconditional": {
+        "mean": 0.2,
+        "seed_range": [
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2
+        ]
+      }
+    }
+  },
+  "records": [
+    {
+      "run_id": "batadal_seed42_20261031T060214_121348Z",
+      "seed": 42,
+      "model": "RobustZ-TEMPORAL",
+      "event_id": "BAT01",
+      "event_index": 0,
+      "targets": [
+        "PU10",
+        "PU11"
+      ],
+      "detected": true,
+      "native_component_ranking": [
+        "PU4",
+        "PU11",
+        "PU10",
+        "PU8",
+        "PU2",
+        "PU1",
+        "PU7",
+        "PU3",
+        "PU5",
+        "PU6",
+        "PU9"
+      ],
+      "grouped_ablation_component_ranking": [
+        "PU4",
+        "PU11",
+        "PU1",
+        "PU10",
+        "PU2",
+        "PU3",
+        "PU5",
+        "PU6",
+        "PU7",
+        "PU8",
+        "PU9"
+      ],
+      "native_hit_at_1": false,
+      "native_hit_at_3": true,
+      "native_hit_at_5": true,
+      "grouped_ablation_hit_at_1": false,
+      "grouped_ablation_hit_at_3": true,
+      "grouped_ablation_hit_at_5": true,
+      "recourse_passed": true,
+      "recourse_edited_pumps": [
+        "PU11",
+        "PU4"
+      ],
+      "recourse_target_hit_unconditional": true,
+      "recourse_target_hit_if_pass": true
+    },
+    {
+      "run_id": "batadal_seed42_20261031T060214_121348Z",
+      "seed": 42,
+      "model": "RobustZ-TEMPORAL",
+      "event_id": "BAT02",
+      "event_index": 1,
+      "targets": [
+        "PU2"
+      ],
+      "detected": true,
+      "native_component_ranking": [
+        "PU4",
+        "PU8",
+        "PU7",
+        "PU2",
+        "PU1",
+        "PU10",
+        "PU11",
+        "PU3",
+        "PU5",
+        "PU6",
+        "PU9"
+      ],
+      "grouped_ablation_component_ranking": [
+        "PU8",
+        "PU7",
+        "PU1",
+        "PU10",
+        "PU11",
+        "PU2",
+        "PU3",
+        "PU4",
+        "PU5",
+        "PU6",
+        "PU9"
+      ],
+      "native_hit_at_1": false,
+      "native_hit_at_3": false,
+      "native_hit_at_5": true,
+      "grouped_ablation_hit_at_1": false,
+      "grouped_ablation_hit_at_3": false,
+      "grouped_ablation_hit_at_5": false,
+      "recourse_passed": true,
+      "recourse_edited_pumps": [
+        "PU8"
+      ],
+      "recourse_target_hit_unconditional": false,
+      "recourse_target_hit_if_pass": false
+    },
+    {
+      "run_id": "batadal_seed42_20261031T060214_121348Z",
+      "seed": 42,
+      "model": "RobustZ-TEMPORAL",
+      "event_id": "BAT03",
+      "event_index": 2,
+      "targets": [
+        "PU2"
+      ],
+      "detected": true,
+      "native_component_ranking": [
+        "PU4",
+        "PU8",
+        "PU10",
+        "PU2",
+        "PU1",
+        "PU7",
+        "PU11",
+        "PU3",
+        "PU5",
+        "PU6",
+        "PU9"
+      ],
+      "grouped_ablation_component_ranking": [
+        "PU4",
+        "PU8",
+        "PU10",
+        "PU1",
+        "PU11",
+        "PU2",
+        "PU3",
+        "PU5",
+        "PU6",
+        "PU7",
+        "PU9"
+      ],
+      "native_hit_at_1": false,
+      "native_hit_at_3": false,
+      "native_hit_at_5": true,
+      "grouped_ablation_hit_at_1": false,
+      "grouped_ablation_hit_at_3": false,
+      "grouped_ablation_hit_at_5": false,
+      "recourse_passed": false,
+      "recourse_edited_pumps": [],
+      "recourse_target_hit_unconditional": false,
+      "recourse_target_hit_if_pass": null
+    },
+    {
+      "run_id": "batadal_seed42_20261031T060214_121348Z",
+      "seed": 42,
+      "model": "RobustZ-TEMPORAL",
+      "event_id": "BAT04",
+      "event_index": 3,
+      "targets": [
+        "PU7"
+      ],
+      "detected": false,
+      "native_component_ranking": [],
+      "grouped_ablation_component_ranking": [],
+      "native_hit_at_1": false,
+      "native_hit_at_3": false,
+      "native_hit_at_5": false,
+      "grouped_ablation_hit_at_1": false,
+      "grouped_ablation_hit_at_3": false,
+      "grouped_ablation_hit_at_5": false,
+      "recourse_passed": false,
+      "recourse_edited_pumps": [],
+      "recourse_target_hit_unconditional": false,
+      "recourse_target_hit_if_pass": null
+    },
+    {
+      "run_id": "batadal_seed42_20261031T060214_121348Z",
+      "seed": 42,
+      "model": "RobustZ-TEMPORAL",
+      "event_id": "BAT05",
+      "event_index": 4,
+      "targets": [
+        "PU6",
+        "PU7"
+      ],
+      "detected": false,
+      "native_component_ranking": [],
+      "grouped_ablation_component_ranking": [],
+      "native_hit_at_1": false,
+      "native_hit_at_3": false,
+      "native_hit_at_5": false,
+      "grouped_ablation_hit_at_1": false,
+      "grouped_ablation_hit_at_3": false,
+      "grouped_ablation_hit_at_5": false,
+      "recourse_passed": false,
+      "recourse_edited_pumps": [],
+      "recourse_target_hit_unconditional": false,
+      "recourse_target_hit_if_pass": null
+    },
+    {
+      "run_id": "batadal_seed42_20261031T060214_121348Z",
+      "seed": 42,
+      "model": "PCA-STATE",
+      "event_id": "BAT01",
+      "event_index": 0,
+      "targets": [
+        "PU10",
+        "PU11"
+      ],
+      "detected": true,
+      "native_component_ranking": [
+        "PU11",
+        "PU4",
+        "PU10",
+        "PU1",
+        "PU7",
+        "PU6",
+        "PU2",
+        "PU8",
+        "PU3",
+        "PU5",
+        "PU9"
+      ],
+      "grouped_ablation_component_ranking": [
+        "PU11",
+        "PU10",
+        "PU1",
+        "PU7",
+        "PU2",
+        "PU3",
+        "PU4",
+        "PU5",
+        "PU6",
+        "PU8",
+        "PU9"
+      ],
+      "native_hit_at_1": true,
+      "native_hit_at_3": true,
+      "native_hit_at_5": true,
+      "grouped_ablation_hit_at_1": true,
+      "grouped_ablation_hit_at_3": true,
+      "grouped_ablation_hit_at_5": true,
+      "recourse_passed": true,
+      "recourse_edited_pumps": [
+        "PU10",
+        "PU11"
+      ],
+      "recourse_target_hit_unconditional": true,
+      "recourse_target_hit_if_pass": true
+    },
+    {
+      "run_id": "batadal_seed42_20261031T060214_121348Z",
+      "seed": 42,
+      "model": "PCA-STATE",
+      "event_id": "BAT02",
+      "event_index": 1,
+      "targets": [
+        "PU2"
+      ],
+      "detected": true,
+      "native_component_ranking": [
+        "PU4",
+        "PU1",
+        "PU2",
+        "PU8",
+        "PU7",
+        "PU10",
+        "PU6",
+        "PU11",
+        "PU3",
+        "PU5",
+        "PU9"
+      ],
+      "grouped_ablation_component_ranking": [
+        "PU4",
+        "PU1",
+        "PU7",
+        "PU10",
+        "PU11",
+        "PU2",
+        "PU3",
+        "PU5",
+        "PU6",
+        "PU8",
+        "PU9"
+      ],
+      "native_hit_at_1": false,
+      "native_hit_at_3": true,
+      "native_hit_at_5": true,
+      "grouped_ablation_hit_at_1": false,
+      "grouped_ablation_hit_at_3": false,
+      "grouped_ablation_hit_at_5": false,
+      "recourse_passed": true,
+      "recourse_edited_pumps": [],
+      "recourse_target_hit_unconditional": false,
+      "recourse_target_hit_if_pass": false
+    },
+    {
+      "run_id": "batadal_seed42_20261031T060214_121348Z",
+      "seed": 42,
+      "model": "PCA-STATE",
+      "event_id": "BAT03",
+      "event_index": 2,
+      "targets": [
+        "PU2"
+      ],
+      "detected": true,
+      "native_component_ranking": [
+        "PU2",
+        "PU1",
+        "PU8",
+        "PU10",
+        "PU4",
+        "PU7",
+        "PU6",
+        "PU11",
+        "PU3",
+        "PU5",
+        "PU9"
+      ],
+      "grouped_ablation_component_ranking": [
+        "PU10",
+        "PU7",
+        "PU1",
+        "PU11",
+        "PU2",
+        "PU3",
+        "PU4",
+        "PU5",
+        "PU6",
+        "PU8",
+        "PU9"
+      ],
+      "native_hit_at_1": true,
+      "native_hit_at_3": true,
+      "native_hit_at_5": true,
+      "grouped_ablation_hit_at_1": false,
+      "grouped_ablation_hit_at_3": false,
+      "grouped_ablation_hit_at_5": true,
+      "recourse_passed": true,
+      "recourse_edited_pumps": [],
+      "recourse_target_hit_unconditional": false,
+      "recourse_target_hit_if_pass": false
+    },
+    {
+      "run_id": "batadal_seed42_20261031T060214_121348Z",
+      "seed": 42,
+      "model": "PCA-STATE",
+      "event_id": "BAT04",
+      "event_index": 3,
+      "targets": [
+        "PU7"
+      ],
+      "detected": true,
+      "native_component_ranking": [
+        "PU7",
+        "PU1",
+        "PU4",
+        "PU10",
+        "PU8",
+        "PU2",
+        "PU6",
+        "PU11",
+        "PU3",
+        "PU5",
+        "PU9"
+      ],
+      "grouped_ablation_component_ranking": [
+        "PU7",
+        "PU10",
+        "PU1",
+        "PU2",
+        "PU11",
+        "PU3",
+        "PU4",
+        "PU5",
+        "PU6",
+        "PU8",
+        "PU9"
+      ],
+      "native_hit_at_1": true,
+      "native_hit_at_3": true,
+      "native_hit_at_5": true,
+      "grouped_ablation_hit_at_1": true,
+      "grouped_ablation_hit_at_3": true,
+      "grouped_ablation_hit_at_5": true,
+      "recourse_passed": true,
+      "recourse_edited_pumps": [
+        "PU7"
+      ],
+      "recourse_target_hit_unconditional": true,
+      "recourse_target_hit_if_pass": true
+    },
+    {
+      "run_id": "batadal_seed42_20261031T060214_121348Z",
+      "seed": 42,
+      "model": "PCA-STATE",
+      "event_id": "BAT05",
+      "event_index": 4,
+      "targets": [
+        "PU6",
+        "PU7"
+      ],
+      "detected": true,
+      "native_component_ranking": [
+        "PU6",
+        "PU7",
+        "PU4",
+        "PU2",
+        "PU10",
+        "PU1",
+        "PU8",
+        "PU11",
+        "PU3",
+        "PU5",
+        "PU9"
+      ],
+      "grouped_ablation_component_ranking": [
+        "PU6",
+        "PU7",
+        "PU10",
+        "PU8",
+        "PU11",
+        "PU3",
+        "PU4",
+        "PU5",
+        "PU9",
+        "PU1",
+        "PU2"
+      ],
+      "native_hit_at_1": true,
+      "native_hit_at_3": true,
+      "native_hit_at_5": true,
+      "grouped_ablation_hit_at_1": true,
+      "grouped_ablation_hit_at_3": true,
+      "grouped_ablation_hit_at_5": true,
+      "recourse_passed": false,
+      "recourse_edited_pumps": [],
+      "recourse_target_hit_unconditional": false,
+      "recourse_target_hit_if_pass": null
+    },
+    {
+      "run_id": "batadal_seed42_20261031T060214_121348Z",
+      "seed": 42,
+      "model": "PCA-TEMPORAL",
+      "event_id": "BAT01",
+      "event_index": 0,
+      "targets": [
+        "PU10",
+        "PU11"
+      ],
+      "detected": true,
+      "native_component_ranking": [
+        "PU2",
+        "PU11",
+        "PU10",
+        "PU1",
+        "PU8",
+        "PU7",
+        "PU4",
+        "PU6",
+        "PU3",
+        "PU5",
+        "PU9"
+      ],
+      "grouped_ablation_component_ranking": [
+        "PU2",
+        "PU11",
+        "PU1",
+        "PU7",
+        "PU10",
+        "PU3",
+        "PU4",
+        "PU5",
+        "PU6",
+        "PU8",
+        "PU9"
+      ],
+      "native_hit_at_1": false,
+      "native_hit_at_3": true,
+      "native_hit_at_5": true,
+      "grouped_ablation_hit_at_1": false,
+      "grouped_ablation_hit_at_3": true,
+      "grouped_ablation_hit_at_5": true,
+      "recourse_passed": true,
+      "recourse_edited_pumps": [
+        "PU1",
+        "PU11",
+        "PU2",
+        "PU3",
+        "PU4",
+        "PU7"
+      ],
+      "recourse_target_hit_unconditional": true,
+      "recourse_target_hit_if_pass": true
+    },
+    {
+      "run_id": "batadal_seed42_20261031T060214_121348Z",
+      "seed": 42,
+      "model": "PCA-TEMPORAL",
+      "event_id": "BAT02",
+      "event_index": 1,
+      "targets": [
+        "PU2"
+      ],
+      "detected": false,
+      "native_component_ranking": [],
+      "grouped_ablation_component_ranking": [],
+      "native_hit_at_1": false,
+      "native_hit_at_3": false,
+      "native_hit_at_5": false,
+      "grouped_ablation_hit_at_1": false,
+      "grouped_ablation_hit_at_3": false,
+      "grouped_ablation_hit_at_5": false,
+      "recourse_passed": false,
+      "recourse_edited_pumps": [],
+      "recourse_target_hit_unconditional": false,
+      "recourse_target_hit_if_pass": null
+    },
+    {
+      "run_id": "batadal_seed42_20261031T060214_121348Z",
+      "seed": 42,
+      "model": "PCA-TEMPORAL",
+      "event_id": "BAT03",
+      "event_index": 2,
+      "targets": [
+        "PU2"
+      ],
+      "detected": false,
+      "native_component_ranking": [],
+      "grouped_ablation_component_ranking": [],
+      "native_hit_at_1": false,
+      "native_hit_at_3": false,
+      "native_hit_at_5": false,
+      "grouped_ablation_hit_at_1": false,
+      "grouped_ablation_hit_at_3": false,
+      "grouped_ablation_hit_at_5": false,
+      "recourse_passed": false,
+      "recourse_edited_pumps": [],
+      "recourse_target_hit_unconditional": false,
+      "recourse_target_hit_if_pass": null
+    },
+    {
+      "run_id": "batadal_seed42_20261031T060214_121348Z",
+      "seed": 42,
+      "model": "PCA-TEMPORAL",
+      "event_id": "BAT04",
+      "event_index": 3,
+      "targets": [
+        "PU7"
+      ],
+      "detected": false,
+      "native_component_ranking": [],
+      "grouped_ablation_component_ranking": [],
+      "native_hit_at_1": false,
+      "native_hit_at_3": false,
+      "native_hit_at_5": false,
+      "grouped_ablation_hit_at_1": false,
+      "grouped_ablation_hit_at_3": false,
+      "grouped_ablation_hit_at_5": false,
+      "recourse_passed": false,
+      "recourse_edited_pumps": [],
+      "recourse_target_hit_unconditional": false,
+      "recourse_target_hit_if_pass": null
+    },
+    {
+      "run_id": "batadal_seed42_20261031T060214_121348Z",
+      "seed": 42,
+      "model": "PCA-TEMPORAL",
+      "event_id": "BAT05",
+      "event_index": 4,
+      "targets": [
+        "PU6",
+        "PU7"
+      ],
+      "detected": true,
+      "native_component_ranking": [
+        "PU2",
+        "PU10",
+        "PU6",
+        "PU7",
+        "PU1",
+        "PU8",
+        "PU4",
+        "PU11",
+        "PU3",
+        "PU5",
+        "PU9"
+      ],
+      "grouped_ablation_component_ranking": [
+        "PU2",
+        "PU10",
+        "PU4",
+        "PU8",
+        "PU7",
+        "PU1",
+        "PU11",
+        "PU3",
+        "PU5",
+        "PU6",
+        "PU9"
+      ],
+      "native_hit_at_1": false,
+      "native_hit_at_3": true,
+      "native_hit_at_5": true,
+      "grouped_ablation_hit_at_1": false,
+      "grouped_ablation_hit_at_3": false,
+      "grouped_ablation_hit_at_5": true,
+      "recourse_passed": false,
+      "recourse_edited_pumps": [],
+      "recourse_target_hit_unconditional": false,
+      "recourse_target_hit_if_pass": null
+    },
+    {
+      "run_id": "batadal_seed43_20261031T060218_141583Z",
+      "seed": 43,
+      "model": "RobustZ-TEMPORAL",
+      "event_id": "BAT01",
+      "event_index": 0,
+      "targets": [
+        "PU10",
+        "PU11"
+      ],
+      "detected": true,
+      "native_component_ranking": [
+        "PU4",
+        "PU11",
+        "PU10",
+        "PU8",
+        "PU2",
+        "PU1",
+        "PU7",
+        "PU3",
+        "PU5",
+        "PU6",
+        "PU9"
+      ],
+      "grouped_ablation_component_ranking": [
+        "PU4",
+        "PU11",
+        "PU1",
+        "PU10",
+        "PU2",
+        "PU3",
+        "PU5",
+        "PU6",
+        "PU7",
+        "PU8",
+        "PU9"
+      ],
+      "native_hit_at_1": false,
+      "native_hit_at_3": true,
+      "native_hit_at_5": true,
+      "grouped_ablation_hit_at_1": false,
+      "grouped_ablation_hit_at_3": true,
+      "grouped_ablation_hit_at_5": true,
+      "recourse_passed": true,
+      "recourse_edited_pumps": [
+        "PU11",
+        "PU4"
+      ],
+      "recourse_target_hit_unconditional": true,
+      "recourse_target_hit_if_pass": true
+    },
+    {
+      "run_id": "batadal_seed43_20261031T060218_141583Z",
+      "seed": 43,
+      "model": "RobustZ-TEMPORAL",
+      "event_id": "BAT02",
+      "event_index": 1,
+      "targets": [
+        "PU2"
+      ],
+      "detected": true,
+      "native_component_ranking": [
+        "PU4",
+        "PU8",
+        "PU7",
+        "PU2",
+        "PU1",
+        "PU10",
+        "PU11",
+        "PU3",
+        "PU5",
+        "PU6",
+        "PU9"
+      ],
+      "grouped_ablation_component_ranking": [
+        "PU8",
+        "PU7",
+        "PU1",
+        "PU10",
+        "PU11",
+        "PU2",
+        "PU3",
+        "PU4",
+        "PU5",
+        "PU6",
+        "PU9"
+      ],
+      "native_hit_at_1": false,
+      "native_hit_at_3": false,
+      "native_hit_at_5": true,
+      "grouped_ablation_hit_at_1": false,
+      "grouped_ablation_hit_at_3": false,
+      "grouped_ablation_hit_at_5": false,
+      "recourse_passed": true,
+      "recourse_edited_pumps": [
+        "PU7",
+        "PU8"
+      ],
+      "recourse_target_hit_unconditional": false,
+      "recourse_target_hit_if_pass": false
+    },
+    {
+      "run_id": "batadal_seed43_20261031T060218_141583Z",
+      "seed": 43,
+      "model": "RobustZ-TEMPORAL",
+      "event_id": "BAT03",
+      "event_index": 2,
+      "targets": [
+        "PU2"
+      ],
+      "detected": true,
+      "native_component_ranking": [
+        "PU4",
+        "PU8",
+        "PU10",
+        "PU2",
+        "PU1",
+        "PU7",
+        "PU11",
+        "PU3",
+        "PU5",
+        "PU6",
+        "PU9"
+      ],
+      "grouped_ablation_component_ranking": [
+        "PU4",
+        "PU8",
+        "PU10",
+        "PU1",
+        "PU11",
+        "PU2",
+        "PU3",
+        "PU5",
+        "PU6",
+        "PU7",
+        "PU9"
+      ],
+      "native_hit_at_1": false,
+      "native_hit_at_3": false,
+      "native_hit_at_5": true,
+      "grouped_ablation_hit_at_1": false,
+      "grouped_ablation_hit_at_3": false,
+      "grouped_ablation_hit_at_5": false,
+      "recourse_passed": false,
+      "recourse_edited_pumps": [],
+      "recourse_target_hit_unconditional": false,
+      "recourse_target_hit_if_pass": null
+    },
+    {
+      "run_id": "batadal_seed43_20261031T060218_141583Z",
+      "seed": 43,
+      "model": "RobustZ-TEMPORAL",
+      "event_id": "BAT04",
+      "event_index": 3,
+      "targets": [
+        "PU7"
+      ],
+      "detected": false,
+      "native_component_ranking": [],
+      "grouped_ablation_component_ranking": [],
+      "native_hit_at_1": false,
+      "native_hit_at_3": false,
+      "native_hit_at_5": false,
+      "grouped_ablation_hit_at_1": false,
+      "grouped_ablation_hit_at_3": false,
+      "grouped_ablation_hit_at_5": false,
+      "recourse_passed": false,
+      "recourse_edited_pumps": [],
+      "recourse_target_hit_unconditional": false,
+      "recourse_target_hit_if_pass": null
+    },
+    {
+      "run_id": "batadal_seed43_20261031T060218_141583Z",
+      "seed": 43,
+      "model": "RobustZ-TEMPORAL",
+      "event_id": "BAT05",
+      "event_index": 4,
+      "targets": [
+        "PU6",
+        "PU7"
+      ],
+      "detected": false,
+      "native_component_ranking": [],
+      "grouped_ablation_component_ranking": [],
+      "native_hit_at_1": false,
+      "native_hit_at_3": false,
+      "native_hit_at_5": false,
+      "grouped_ablation_hit_at_1": false,
+      "grouped_ablation_hit_at_3": false,
+      "grouped_ablation_hit_at_5": false,
+      "recourse_passed": false,
+      "recourse_edited_pumps": [],
+      "recourse_target_hit_unconditional": false,
+      "recourse_target_hit_if_pass": null
+    },
+    {
+      "run_id": "batadal_seed43_20261031T060218_141583Z",
+      "seed": 43,
+      "model": "PCA-STATE",
+      "event_id": "BAT01",
+      "event_index": 0,
+      "targets": [
+        "PU10",
+        "PU11"
+      ],
+      "detected": true,
+      "native_component_ranking": [
+        "PU11",
+        "PU4",
+        "PU10",
+        "PU1",
+        "PU7",
+        "PU6",
+        "PU2",
+        "PU8",
+        "PU3",
+        "PU5",
+        "PU9"
+      ],
+      "grouped_ablation_component_ranking": [
+        "PU11",
+        "PU10",
+        "PU1",
+        "PU7",
+        "PU2",
+        "PU3",
+        "PU4",
+        "PU5",
+        "PU6",
+        "PU8",
+        "PU9"
+      ],
+      "native_hit_at_1": true,
+      "native_hit_at_3": true,
+      "native_hit_at_5": true,
+      "grouped_ablation_hit_at_1": true,
+      "grouped_ablation_hit_at_3": true,
+      "grouped_ablation_hit_at_5": true,
+      "recourse_passed": true,
+      "recourse_edited_pumps": [
+        "PU10",
+        "PU11"
+      ],
+      "recourse_target_hit_unconditional": true,
+      "recourse_target_hit_if_pass": true
+    },
+    {
+      "run_id": "batadal_seed43_20261031T060218_141583Z",
+      "seed": 43,
+      "model": "PCA-STATE",
+      "event_id": "BAT02",
+      "event_index": 1,
+      "targets": [
+        "PU2"
+      ],
+      "detected": true,
+      "native_component_ranking": [
+        "PU4",
+        "PU1",
+        "PU2",
+        "PU8",
+        "PU7",
+        "PU10",
+        "PU6",
+        "PU11",
+        "PU3",
+        "PU5",
+        "PU9"
+      ],
+      "grouped_ablation_component_ranking": [
+        "PU4",
+        "PU1",
+        "PU7",
+        "PU10",
+        "PU11",
+        "PU2",
+        "PU3",
+        "PU5",
+        "PU6",
+        "PU8",
+        "PU9"
+      ],
+      "native_hit_at_1": false,
+      "native_hit_at_3": true,
+      "native_hit_at_5": true,
+      "grouped_ablation_hit_at_1": false,
+      "grouped_ablation_hit_at_3": false,
+      "grouped_ablation_hit_at_5": false,
+      "recourse_passed": true,
+      "recourse_edited_pumps": [],
+      "recourse_target_hit_unconditional": false,
+      "recourse_target_hit_if_pass": false
+    },
+    {
+      "run_id": "batadal_seed43_20261031T060218_141583Z",
+      "seed": 43,
+      "model": "PCA-STATE",
+      "event_id": "BAT03",
+      "event_index": 2,
+      "targets": [
+        "PU2"
+      ],
+      "detected": true,
+      "native_component_ranking": [
+        "PU2",
+        "PU1",
+        "PU8",
+        "PU10",
+        "PU4",
+        "PU7",
+        "PU6",
+        "PU11",
+        "PU3",
+        "PU5",
+        "PU9"
+      ],
+      "grouped_ablation_component_ranking": [
+        "PU10",
+        "PU7",
+        "PU1",
+        "PU11",
+        "PU2",
+        "PU3",
+        "PU4",
+        "PU5",
+        "PU6",
+        "PU8",
+        "PU9"
+      ],
+      "native_hit_at_1": true,
+      "native_hit_at_3": true,
+      "native_hit_at_5": true,
+      "grouped_ablation_hit_at_1": false,
+      "grouped_ablation_hit_at_3": false,
+      "grouped_ablation_hit_at_5": true,
+      "recourse_passed": true,
+      "recourse_edited_pumps": [
+        "PU10"
+      ],
+      "recourse_target_hit_unconditional": false,
+      "recourse_target_hit_if_pass": false
+    },
+    {
+      "run_id": "batadal_seed43_20261031T060218_141583Z",
+      "seed": 43,
+      "model": "PCA-STATE",
+      "event_id": "BAT04",
+      "event_index": 3,
+      "targets": [
+        "PU7"
+      ],
+      "detected": true,
+      "native_component_ranking": [
+        "PU7",
+        "PU1",
+        "PU4",
+        "PU10",
+        "PU8",
+        "PU2",
+        "PU6",
+        "PU11",
+        "PU3",
+        "PU5",
+        "PU9"
+      ],
+      "grouped_ablation_component_ranking": [
+        "PU7",
+        "PU10",
+        "PU1",
+        "PU2",
+        "PU11",
+        "PU3",
+        "PU4",
+        "PU5",
+        "PU6",
+        "PU8",
+        "PU9"
+      ],
+      "native_hit_at_1": true,
+      "native_hit_at_3": true,
+      "native_hit_at_5": true,
+      "grouped_ablation_hit_at_1": true,
+      "grouped_ablation_hit_at_3": true,
+      "grouped_ablation_hit_at_5": true,
+      "recourse_passed": true,
+      "recourse_edited_pumps": [
+        "PU7"
+      ],
+      "recourse_target_hit_unconditional": true,
+      "recourse_target_hit_if_pass": true
+    },
+    {
+      "run_id": "batadal_seed43_20261031T060218_141583Z",
+      "seed": 43,
+      "model": "PCA-STATE",
+      "event_id": "BAT05",
+      "event_index": 4,
+      "targets": [
+        "PU6",
+        "PU7"
+      ],
+      "detected": true,
+      "native_component_ranking": [
+        "PU6",
+        "PU7",
+        "PU4",
+        "PU2",
+        "PU10",
+        "PU1",
+        "PU8",
+        "PU11",
+        "PU3",
+        "PU5",
+        "PU9"
+      ],
+      "grouped_ablation_component_ranking": [
+        "PU6",
+        "PU7",
+        "PU10",
+        "PU8",
+        "PU11",
+        "PU3",
+        "PU4",
+        "PU5",
+        "PU9",
+        "PU1",
+        "PU2"
+      ],
+      "native_hit_at_1": true,
+      "native_hit_at_3": true,
+      "native_hit_at_5": true,
+      "grouped_ablation_hit_at_1": true,
+      "grouped_ablation_hit_at_3": true,
+      "grouped_ablation_hit_at_5": true,
+      "recourse_passed": false,
+      "recourse_edited_pumps": [],
+      "recourse_target_hit_unconditional": false,
+      "recourse_target_hit_if_pass": null
+    },
+    {
+      "run_id": "batadal_seed43_20261031T060218_141583Z",
+      "seed": 43,
+      "model": "PCA-TEMPORAL",
+      "event_id": "BAT01",
+      "event_index": 0,
+      "targets": [
+        "PU10",
+        "PU11"
+      ],
+      "detected": true,
+      "native_component_ranking": [
+        "PU2",
+        "PU11",
+        "PU10",
+        "PU1",
+        "PU8",
+        "PU7",
+        "PU4",
+        "PU6",
+        "PU3",
+        "PU5",
+        "PU9"
+      ],
+      "grouped_ablation_component_ranking": [
+        "PU2",
+        "PU11",
+        "PU1",
+        "PU7",
+        "PU10",
+        "PU3",
+        "PU4",
+        "PU5",
+        "PU6",
+        "PU8",
+        "PU9"
+      ],
+      "native_hit_at_1": false,
+      "native_hit_at_3": true,
+      "native_hit_at_5": true,
+      "grouped_ablation_hit_at_1": false,
+      "grouped_ablation_hit_at_3": true,
+      "grouped_ablation_hit_at_5": true,
+      "recourse_passed": true,
+      "recourse_edited_pumps": [
+        "PU11",
+        "PU2"
+      ],
+      "recourse_target_hit_unconditional": true,
+      "recourse_target_hit_if_pass": true
+    },
+    {
+      "run_id": "batadal_seed43_20261031T060218_141583Z",
+      "seed": 43,
+      "model": "PCA-TEMPORAL",
+      "event_id": "BAT02",
+      "event_index": 1,
+      "targets": [
+        "PU2"
+      ],
+      "detected": false,
+      "native_component_ranking": [],
+      "grouped_ablation_component_ranking": [],
+      "native_hit_at_1": false,
+      "native_hit_at_3": false,
+      "native_hit_at_5": false,
+      "grouped_ablation_hit_at_1": false,
+      "grouped_ablation_hit_at_3": false,
+      "grouped_ablation_hit_at_5": false,
+      "recourse_passed": false,
+      "recourse_edited_pumps": [],
+      "recourse_target_hit_unconditional": false,
+      "recourse_target_hit_if_pass": null
+    },
+    {
+      "run_id": "batadal_seed43_20261031T060218_141583Z",
+      "seed": 43,
+      "model": "PCA-TEMPORAL",
+      "event_id": "BAT03",
+      "event_index": 2,
+      "targets": [
+        "PU2"
+      ],
+      "detected": false,
+      "native_component_ranking": [],
+      "grouped_ablation_component_ranking": [],
+      "native_hit_at_1": false,
+      "native_hit_at_3": false,
+      "native_hit_at_5": false,
+      "grouped_ablation_hit_at_1": false,
+      "grouped_ablation_hit_at_3": false,
+      "grouped_ablation_hit_at_5": false,
+      "recourse_passed": false,
+      "recourse_edited_pumps": [],
+      "recourse_target_hit_unconditional": false,
+      "recourse_target_hit_if_pass": null
+    },
+    {
+      "run_id": "batadal_seed43_20261031T060218_141583Z",
+      "seed": 43,
+      "model": "PCA-TEMPORAL",
+      "event_id": "BAT04",
+      "event_index": 3,
+      "targets": [
+        "PU7"
+      ],
+      "detected": false,
+      "native_component_ranking": [],
+      "grouped_ablation_component_ranking": [],
+      "native_hit_at_1": false,
+      "native_hit_at_3": false,
+      "native_hit_at_5": false,
+      "grouped_ablation_hit_at_1": false,
+      "grouped_ablation_hit_at_3": false,
+      "grouped_ablation_hit_at_5": false,
+      "recourse_passed": false,
+      "recourse_edited_pumps": [],
+      "recourse_target_hit_unconditional": false,
+      "recourse_target_hit_if_pass": null
+    },
+    {
+      "run_id": "batadal_seed43_20261031T060218_141583Z",
+      "seed": 43,
+      "model": "PCA-TEMPORAL",
+      "event_id": "BAT05",
+      "event_index": 4,
+      "targets": [
+        "PU6",
+        "PU7"
+      ],
+      "detected": true,
+      "native_component_ranking": [
+        "PU2",
+        "PU10",
+        "PU6",
+        "PU7",
+        "PU1",
+        "PU8",
+        "PU4",
+        "PU11",
+        "PU3",
+        "PU5",
+        "PU9"
+      ],
+      "grouped_ablation_component_ranking": [
+        "PU2",
+        "PU10",
+        "PU4",
+        "PU8",
+        "PU7",
+        "PU1",
+        "PU11",
+        "PU3",
+        "PU5",
+        "PU6",
+        "PU9"
+      ],
+      "native_hit_at_1": false,
+      "native_hit_at_3": true,
+      "native_hit_at_5": true,
+      "grouped_ablation_hit_at_1": false,
+      "grouped_ablation_hit_at_3": false,
+      "grouped_ablation_hit_at_5": true,
+      "recourse_passed": false,
+      "recourse_edited_pumps": [],
+      "recourse_target_hit_unconditional": false,
+      "recourse_target_hit_if_pass": null
+    },
+    {
+      "run_id": "batadal_seed44_20261031T060222_008634Z",
+      "seed": 44,
+      "model": "RobustZ-TEMPORAL",
+      "event_id": "BAT01",
+      "event_index": 0,
+      "targets": [
+        "PU10",
+        "PU11"
+      ],
+      "detected": true,
+      "native_component_ranking": [
+        "PU4",
+        "PU11",
+        "PU10",
+        "PU8",
+        "PU2",
+        "PU1",
+        "PU7",
+        "PU3",
+        "PU5",
+        "PU6",
+        "PU9"
+      ],
+      "grouped_ablation_component_ranking": [
+        "PU4",
+        "PU11",
+        "PU1",
+        "PU10",
+        "PU2",
+        "PU3",
+        "PU5",
+        "PU6",
+        "PU7",
+        "PU8",
+        "PU9"
+      ],
+      "native_hit_at_1": false,
+      "native_hit_at_3": true,
+      "native_hit_at_5": true,
+      "grouped_ablation_hit_at_1": false,
+      "grouped_ablation_hit_at_3": true,
+      "grouped_ablation_hit_at_5": true,
+      "recourse_passed": true,
+      "recourse_edited_pumps": [
+        "PU11",
+        "PU4"
+      ],
+      "recourse_target_hit_unconditional": true,
+      "recourse_target_hit_if_pass": true
+    },
+    {
+      "run_id": "batadal_seed44_20261031T060222_008634Z",
+      "seed": 44,
+      "model": "RobustZ-TEMPORAL",
+      "event_id": "BAT02",
+      "event_index": 1,
+      "targets": [
+        "PU2"
+      ],
+      "detected": true,
+      "native_component_ranking": [
+        "PU4",
+        "PU8",
+        "PU7",
+        "PU2",
+        "PU1",
+        "PU10",
+        "PU11",
+        "PU3",
+        "PU5",
+        "PU6",
+        "PU9"
+      ],
+      "grouped_ablation_component_ranking": [
+        "PU8",
+        "PU7",
+        "PU1",
+        "PU10",
+        "PU11",
+        "PU2",
+        "PU3",
+        "PU4",
+        "PU5",
+        "PU6",
+        "PU9"
+      ],
+      "native_hit_at_1": false,
+      "native_hit_at_3": false,
+      "native_hit_at_5": true,
+      "grouped_ablation_hit_at_1": false,
+      "grouped_ablation_hit_at_3": false,
+      "grouped_ablation_hit_at_5": false,
+      "recourse_passed": false,
+      "recourse_edited_pumps": [],
+      "recourse_target_hit_unconditional": false,
+      "recourse_target_hit_if_pass": null
+    },
+    {
+      "run_id": "batadal_seed44_20261031T060222_008634Z",
+      "seed": 44,
+      "model": "RobustZ-TEMPORAL",
+      "event_id": "BAT03",
+      "event_index": 2,
+      "targets": [
+        "PU2"
+      ],
+      "detected": true,
+      "native_component_ranking": [
+        "PU4",
+        "PU8",
+        "PU10",
+        "PU2",
+        "PU1",
+        "PU7",
+        "PU11",
+        "PU3",
+        "PU5",
+        "PU6",
+        "PU9"
+      ],
+      "grouped_ablation_component_ranking": [
+        "PU4",
+        "PU8",
+        "PU10",
+        "PU1",
+        "PU11",
+        "PU2",
+        "PU3",
+        "PU5",
+        "PU6",
+        "PU7",
+        "PU9"
+      ],
+      "native_hit_at_1": false,
+      "native_hit_at_3": false,
+      "native_hit_at_5": true,
+      "grouped_ablation_hit_at_1": false,
+      "grouped_ablation_hit_at_3": false,
+      "grouped_ablation_hit_at_5": false,
+      "recourse_passed": true,
+      "recourse_edited_pumps": [
+        "PU10",
+        "PU4",
+        "PU8"
+      ],
+      "recourse_target_hit_unconditional": false,
+      "recourse_target_hit_if_pass": false
+    },
+    {
+      "run_id": "batadal_seed44_20261031T060222_008634Z",
+      "seed": 44,
+      "model": "RobustZ-TEMPORAL",
+      "event_id": "BAT04",
+      "event_index": 3,
+      "targets": [
+        "PU7"
+      ],
+      "detected": false,
+      "native_component_ranking": [],
+      "grouped_ablation_component_ranking": [],
+      "native_hit_at_1": false,
+      "native_hit_at_3": false,
+      "native_hit_at_5": false,
+      "grouped_ablation_hit_at_1": false,
+      "grouped_ablation_hit_at_3": false,
+      "grouped_ablation_hit_at_5": false,
+      "recourse_passed": false,
+      "recourse_edited_pumps": [],
+      "recourse_target_hit_unconditional": false,
+      "recourse_target_hit_if_pass": null
+    },
+    {
+      "run_id": "batadal_seed44_20261031T060222_008634Z",
+      "seed": 44,
+      "model": "RobustZ-TEMPORAL",
+      "event_id": "BAT05",
+      "event_index": 4,
+      "targets": [
+        "PU6",
+        "PU7"
+      ],
+      "detected": false,
+      "native_component_ranking": [],
+      "grouped_ablation_component_ranking": [],
+      "native_hit_at_1": false,
+      "native_hit_at_3": false,
+      "native_hit_at_5": false,
+      "grouped_ablation_hit_at_1": false,
+      "grouped_ablation_hit_at_3": false,
+      "grouped_ablation_hit_at_5": false,
+      "recourse_passed": false,
+      "recourse_edited_pumps": [],
+      "recourse_target_hit_unconditional": false,
+      "recourse_target_hit_if_pass": null
+    },
+    {
+      "run_id": "batadal_seed44_20261031T060222_008634Z",
+      "seed": 44,
+      "model": "PCA-STATE",
+      "event_id": "BAT01",
+      "event_index": 0,
+      "targets": [
+        "PU10",
+        "PU11"
+      ],
+      "detected": true,
+      "native_component_ranking": [
+        "PU11",
+        "PU4",
+        "PU10",
+        "PU1",
+        "PU7",
+        "PU6",
+        "PU2",
+        "PU8",
+        "PU3",
+        "PU5",
+        "PU9"
+      ],
+      "grouped_ablation_component_ranking": [
+        "PU11",
+        "PU10",
+        "PU1",
+        "PU7",
+        "PU2",
+        "PU3",
+        "PU4",
+        "PU5",
+        "PU6",
+        "PU8",
+        "PU9"
+      ],
+      "native_hit_at_1": true,
+      "native_hit_at_3": true,
+      "native_hit_at_5": true,
+      "grouped_ablation_hit_at_1": true,
+      "grouped_ablation_hit_at_3": true,
+      "grouped_ablation_hit_at_5": true,
+      "recourse_passed": true,
+      "recourse_edited_pumps": [
+        "PU10",
+        "PU11"
+      ],
+      "recourse_target_hit_unconditional": true,
+      "recourse_target_hit_if_pass": true
+    },
+    {
+      "run_id": "batadal_seed44_20261031T060222_008634Z",
+      "seed": 44,
+      "model": "PCA-STATE",
+      "event_id": "BAT02",
+      "event_index": 1,
+      "targets": [
+        "PU2"
+      ],
+      "detected": true,
+      "native_component_ranking": [
+        "PU4",
+        "PU1",
+        "PU2",
+        "PU8",
+        "PU7",
+        "PU10",
+        "PU6",
+        "PU11",
+        "PU3",
+        "PU5",
+        "PU9"
+      ],
+      "grouped_ablation_component_ranking": [
+        "PU4",
+        "PU1",
+        "PU7",
+        "PU10",
+        "PU11",
+        "PU2",
+        "PU3",
+        "PU5",
+        "PU6",
+        "PU8",
+        "PU9"
+      ],
+      "native_hit_at_1": false,
+      "native_hit_at_3": true,
+      "native_hit_at_5": true,
+      "grouped_ablation_hit_at_1": false,
+      "grouped_ablation_hit_at_3": false,
+      "grouped_ablation_hit_at_5": false,
+      "recourse_passed": true,
+      "recourse_edited_pumps": [],
+      "recourse_target_hit_unconditional": false,
+      "recourse_target_hit_if_pass": false
+    },
+    {
+      "run_id": "batadal_seed44_20261031T060222_008634Z",
+      "seed": 44,
+      "model": "PCA-STATE",
+      "event_id": "BAT03",
+      "event_index": 2,
+      "targets": [
+        "PU2"
+      ],
+      "detected": true,
+      "native_component_ranking": [
+        "PU2",
+        "PU1",
+        "PU8",
+        "PU10",
+        "PU4",
+        "PU7",
+        "PU6",
+        "PU11",
+        "PU3",
+        "PU5",
+        "PU9"
+      ],
+      "grouped_ablation_component_ranking": [
+        "PU10",
+        "PU7",
+        "PU1",
+        "PU11",
+        "PU2",
+        "PU3",
+        "PU4",
+        "PU5",
+        "PU6",
+        "PU8",
+        "PU9"
+      ],
+      "native_hit_at_1": true,
+      "native_hit_at_3": true,
+      "native_hit_at_5": true,
+      "grouped_ablation_hit_at_1": false,
+      "grouped_ablation_hit_at_3": false,
+      "grouped_ablation_hit_at_5": true,
+      "recourse_passed": true,
+      "recourse_edited_pumps": [],
+      "recourse_target_hit_unconditional": false,
+      "recourse_target_hit_if_pass": false
+    },
+    {
+      "run_id": "batadal_seed44_20261031T060222_008634Z",
+      "seed": 44,
+      "model": "PCA-STATE",
+      "event_id": "BAT04",
+      "event_index": 3,
+      "targets": [
+        "PU7"
+      ],
+      "detected": true,
+      "native_component_ranking": [
+        "PU7",
+        "PU1",
+        "PU4",
+        "PU10",
+        "PU8",
+        "PU2",
+        "PU6",
+        "PU11",
+        "PU3",
+        "PU5",
+        "PU9"
+      ],
+      "grouped_ablation_component_ranking": [
+        "PU7",
+        "PU10",
+        "PU1",
+        "PU2",
+        "PU11",
+        "PU3",
+        "PU4",
+        "PU5",
+        "PU6",
+        "PU8",
+        "PU9"
+      ],
+      "native_hit_at_1": true,
+      "native_hit_at_3": true,
+      "native_hit_at_5": true,
+      "grouped_ablation_hit_at_1": true,
+      "grouped_ablation_hit_at_3": true,
+      "grouped_ablation_hit_at_5": true,
+      "recourse_passed": true,
+      "recourse_edited_pumps": [
+        "PU7"
+      ],
+      "recourse_target_hit_unconditional": true,
+      "recourse_target_hit_if_pass": true
+    },
+    {
+      "run_id": "batadal_seed44_20261031T060222_008634Z",
+      "seed": 44,
+      "model": "PCA-STATE",
+      "event_id": "BAT05",
+      "event_index": 4,
+      "targets": [
+        "PU6",
+        "PU7"
+      ],
+      "detected": true,
+      "native_component_ranking": [
+        "PU6",
+        "PU7",
+        "PU4",
+        "PU2",
+        "PU10",
+        "PU1",
+        "PU8",
+        "PU11",
+        "PU3",
+        "PU5",
+        "PU9"
+      ],
+      "grouped_ablation_component_ranking": [
+        "PU6",
+        "PU7",
+        "PU10",
+        "PU8",
+        "PU11",
+        "PU3",
+        "PU4",
+        "PU5",
+        "PU9",
+        "PU1",
+        "PU2"
+      ],
+      "native_hit_at_1": true,
+      "native_hit_at_3": true,
+      "native_hit_at_5": true,
+      "grouped_ablation_hit_at_1": true,
+      "grouped_ablation_hit_at_3": true,
+      "grouped_ablation_hit_at_5": true,
+      "recourse_passed": false,
+      "recourse_edited_pumps": [],
+      "recourse_target_hit_unconditional": false,
+      "recourse_target_hit_if_pass": null
+    },
+    {
+      "run_id": "batadal_seed44_20261031T060222_008634Z",
+      "seed": 44,
+      "model": "PCA-TEMPORAL",
+      "event_id": "BAT01",
+      "event_index": 0,
+      "targets": [
+        "PU10",
+        "PU11"
+      ],
+      "detected": true,
+      "native_component_ranking": [
+        "PU2",
+        "PU11",
+        "PU10",
+        "PU1",
+        "PU8",
+        "PU7",
+        "PU4",
+        "PU6",
+        "PU3",
+        "PU5",
+        "PU9"
+      ],
+      "grouped_ablation_component_ranking": [
+        "PU2",
+        "PU11",
+        "PU1",
+        "PU7",
+        "PU10",
+        "PU3",
+        "PU4",
+        "PU5",
+        "PU6",
+        "PU8",
+        "PU9"
+      ],
+      "native_hit_at_1": false,
+      "native_hit_at_3": true,
+      "native_hit_at_5": true,
+      "grouped_ablation_hit_at_1": false,
+      "grouped_ablation_hit_at_3": true,
+      "grouped_ablation_hit_at_5": true,
+      "recourse_passed": true,
+      "recourse_edited_pumps": [
+        "PU11",
+        "PU2"
+      ],
+      "recourse_target_hit_unconditional": true,
+      "recourse_target_hit_if_pass": true
+    },
+    {
+      "run_id": "batadal_seed44_20261031T060222_008634Z",
+      "seed": 44,
+      "model": "PCA-TEMPORAL",
+      "event_id": "BAT02",
+      "event_index": 1,
+      "targets": [
+        "PU2"
+      ],
+      "detected": false,
+      "native_component_ranking": [],
+      "grouped_ablation_component_ranking": [],
+      "native_hit_at_1": false,
+      "native_hit_at_3": false,
+      "native_hit_at_5": false,
+      "grouped_ablation_hit_at_1": false,
+      "grouped_ablation_hit_at_3": false,
+      "grouped_ablation_hit_at_5": false,
+      "recourse_passed": false,
+      "recourse_edited_pumps": [],
+      "recourse_target_hit_unconditional": false,
+      "recourse_target_hit_if_pass": null
+    },
+    {
+      "run_id": "batadal_seed44_20261031T060222_008634Z",
+      "seed": 44,
+      "model": "PCA-TEMPORAL",
+      "event_id": "BAT03",
+      "event_index": 2,
+      "targets": [
+        "PU2"
+      ],
+      "detected": false,
+      "native_component_ranking": [],
+      "grouped_ablation_component_ranking": [],
+      "native_hit_at_1": false,
+      "native_hit_at_3": false,
+      "native_hit_at_5": false,
+      "grouped_ablation_hit_at_1": false,
+      "grouped_ablation_hit_at_3": false,
+      "grouped_ablation_hit_at_5": false,
+      "recourse_passed": false,
+      "recourse_edited_pumps": [],
+      "recourse_target_hit_unconditional": false,
+      "recourse_target_hit_if_pass": null
+    },
+    {
+      "run_id": "batadal_seed44_20261031T060222_008634Z",
+      "seed": 44,
+      "model": "PCA-TEMPORAL",
+      "event_id": "BAT04",
+      "event_index": 3,
+      "targets": [
+        "PU7"
+      ],
+      "detected": false,
+      "native_component_ranking": [],
+      "grouped_ablation_component_ranking": [],
+      "native_hit_at_1": false,
+      "native_hit_at_3": false,
+      "native_hit_at_5": false,
+      "grouped_ablation_hit_at_1": false,
+      "grouped_ablation_hit_at_3": false,
+      "grouped_ablation_hit_at_5": false,
+      "recourse_passed": false,
+      "recourse_edited_pumps": [],
+      "recourse_target_hit_unconditional": false,
+      "recourse_target_hit_if_pass": null
+    },
+    {
+      "run_id": "batadal_seed44_20261031T060222_008634Z",
+      "seed": 44,
+      "model": "PCA-TEMPORAL",
+      "event_id": "BAT05",
+      "event_index": 4,
+      "targets": [
+        "PU6",
+        "PU7"
+      ],
+      "detected": true,
+      "native_component_ranking": [
+        "PU2",
+        "PU10",
+        "PU6",
+        "PU7",
+        "PU1",
+        "PU8",
+        "PU4",
+        "PU11",
+        "PU3",
+        "PU5",
+        "PU9"
+      ],
+      "grouped_ablation_component_ranking": [
+        "PU2",
+        "PU10",
+        "PU4",
+        "PU8",
+        "PU7",
+        "PU1",
+        "PU11",
+        "PU3",
+        "PU5",
+        "PU6",
+        "PU9"
+      ],
+      "native_hit_at_1": false,
+      "native_hit_at_3": true,
+      "native_hit_at_5": true,
+      "grouped_ablation_hit_at_1": false,
+      "grouped_ablation_hit_at_3": false,
+      "grouped_ablation_hit_at_5": true,
+      "recourse_passed": false,
+      "recourse_edited_pumps": [],
+      "recourse_target_hit_unconditional": false,
+      "recourse_target_hit_if_pass": null
+    },
+    {
+      "run_id": "batadal_seed45_20261031T060225_873843Z",
+      "seed": 45,
+      "model": "RobustZ-TEMPORAL",
+      "event_id": "BAT01",
+      "event_index": 0,
+      "targets": [
+        "PU10",
+        "PU11"
+      ],
+      "detected": true,
+      "native_component_ranking": [
+        "PU4",
+        "PU11",
+        "PU10",
+        "PU8",
+        "PU2",
+        "PU1",
+        "PU7",
+        "PU3",
+        "PU5",
+        "PU6",
+        "PU9"
+      ],
+      "grouped_ablation_component_ranking": [
+        "PU4",
+        "PU11",
+        "PU1",
+        "PU10",
+        "PU2",
+        "PU3",
+        "PU5",
+        "PU6",
+        "PU7",
+        "PU8",
+        "PU9"
+      ],
+      "native_hit_at_1": false,
+      "native_hit_at_3": true,
+      "native_hit_at_5": true,
+      "grouped_ablation_hit_at_1": false,
+      "grouped_ablation_hit_at_3": true,
+      "grouped_ablation_hit_at_5": true,
+      "recourse_passed": true,
+      "recourse_edited_pumps": [
+        "PU11",
+        "PU4"
+      ],
+      "recourse_target_hit_unconditional": true,
+      "recourse_target_hit_if_pass": true
+    },
+    {
+      "run_id": "batadal_seed45_20261031T060225_873843Z",
+      "seed": 45,
+      "model": "RobustZ-TEMPORAL",
+      "event_id": "BAT02",
+      "event_index": 1,
+      "targets": [
+        "PU2"
+      ],
+      "detected": true,
+      "native_component_ranking": [
+        "PU4",
+        "PU8",
+        "PU7",
+        "PU2",
+        "PU1",
+        "PU10",
+        "PU11",
+        "PU3",
+        "PU5",
+        "PU6",
+        "PU9"
+      ],
+      "grouped_ablation_component_ranking": [
+        "PU8",
+        "PU7",
+        "PU1",
+        "PU10",
+        "PU11",
+        "PU2",
+        "PU3",
+        "PU4",
+        "PU5",
+        "PU6",
+        "PU9"
+      ],
+      "native_hit_at_1": false,
+      "native_hit_at_3": false,
+      "native_hit_at_5": true,
+      "grouped_ablation_hit_at_1": false,
+      "grouped_ablation_hit_at_3": false,
+      "grouped_ablation_hit_at_5": false,
+      "recourse_passed": true,
+      "recourse_edited_pumps": [
+        "PU8"
+      ],
+      "recourse_target_hit_unconditional": false,
+      "recourse_target_hit_if_pass": false
+    },
+    {
+      "run_id": "batadal_seed45_20261031T060225_873843Z",
+      "seed": 45,
+      "model": "RobustZ-TEMPORAL",
+      "event_id": "BAT03",
+      "event_index": 2,
+      "targets": [
+        "PU2"
+      ],
+      "detected": true,
+      "native_component_ranking": [
+        "PU4",
+        "PU8",
+        "PU10",
+        "PU2",
+        "PU1",
+        "PU7",
+        "PU11",
+        "PU3",
+        "PU5",
+        "PU6",
+        "PU9"
+      ],
+      "grouped_ablation_component_ranking": [
+        "PU4",
+        "PU8",
+        "PU10",
+        "PU1",
+        "PU11",
+        "PU2",
+        "PU3",
+        "PU5",
+        "PU6",
+        "PU7",
+        "PU9"
+      ],
+      "native_hit_at_1": false,
+      "native_hit_at_3": false,
+      "native_hit_at_5": true,
+      "grouped_ablation_hit_at_1": false,
+      "grouped_ablation_hit_at_3": false,
+      "grouped_ablation_hit_at_5": false,
+      "recourse_passed": true,
+      "recourse_edited_pumps": [
+        "PU4"
+      ],
+      "recourse_target_hit_unconditional": false,
+      "recourse_target_hit_if_pass": false
+    },
+    {
+      "run_id": "batadal_seed45_20261031T060225_873843Z",
+      "seed": 45,
+      "model": "RobustZ-TEMPORAL",
+      "event_id": "BAT04",
+      "event_index": 3,
+      "targets": [
+        "PU7"
+      ],
+      "detected": false,
+      "native_component_ranking": [],
+      "grouped_ablation_component_ranking": [],
+      "native_hit_at_1": false,
+      "native_hit_at_3": false,
+      "native_hit_at_5": false,
+      "grouped_ablation_hit_at_1": false,
+      "grouped_ablation_hit_at_3": false,
+      "grouped_ablation_hit_at_5": false,
+      "recourse_passed": false,
+      "recourse_edited_pumps": [],
+      "recourse_target_hit_unconditional": false,
+      "recourse_target_hit_if_pass": null
+    },
+    {
+      "run_id": "batadal_seed45_20261031T060225_873843Z",
+      "seed": 45,
+      "model": "RobustZ-TEMPORAL",
+      "event_id": "BAT05",
+      "event_index": 4,
+      "targets": [
+        "PU6",
+        "PU7"
+      ],
+      "detected": false,
+      "native_component_ranking": [],
+      "grouped_ablation_component_ranking": [],
+      "native_hit_at_1": false,
+      "native_hit_at_3": false,
+      "native_hit_at_5": false,
+      "grouped_ablation_hit_at_1": false,
+      "grouped_ablation_hit_at_3": false,
+      "grouped_ablation_hit_at_5": false,
+      "recourse_passed": false,
+      "recourse_edited_pumps": [],
+      "recourse_target_hit_unconditional": false,
+      "recourse_target_hit_if_pass": null
+    },
+    {
+      "run_id": "batadal_seed45_20261031T060225_873843Z",
+      "seed": 45,
+      "model": "PCA-STATE",
+      "event_id": "BAT01",
+      "event_index": 0,
+      "targets": [
+        "PU10",
+        "PU11"
+      ],
+      "detected": true,
+      "native_component_ranking": [
+        "PU11",
+        "PU4",
+        "PU10",
+        "PU1",
+        "PU7",
+        "PU6",
+        "PU2",
+        "PU8",
+        "PU3",
+        "PU5",
+        "PU9"
+      ],
+      "grouped_ablation_component_ranking": [
+        "PU11",
+        "PU10",
+        "PU1",
+        "PU7",
+        "PU2",
+        "PU3",
+        "PU4",
+        "PU5",
+        "PU6",
+        "PU8",
+        "PU9"
+      ],
+      "native_hit_at_1": true,
+      "native_hit_at_3": true,
+      "native_hit_at_5": true,
+      "grouped_ablation_hit_at_1": true,
+      "grouped_ablation_hit_at_3": true,
+      "grouped_ablation_hit_at_5": true,
+      "recourse_passed": true,
+      "recourse_edited_pumps": [
+        "PU10",
+        "PU11"
+      ],
+      "recourse_target_hit_unconditional": true,
+      "recourse_target_hit_if_pass": true
+    },
+    {
+      "run_id": "batadal_seed45_20261031T060225_873843Z",
+      "seed": 45,
+      "model": "PCA-STATE",
+      "event_id": "BAT02",
+      "event_index": 1,
+      "targets": [
+        "PU2"
+      ],
+      "detected": true,
+      "native_component_ranking": [
+        "PU4",
+        "PU1",
+        "PU2",
+        "PU8",
+        "PU7",
+        "PU10",
+        "PU6",
+        "PU11",
+        "PU3",
+        "PU5",
+        "PU9"
+      ],
+      "grouped_ablation_component_ranking": [
+        "PU4",
+        "PU1",
+        "PU7",
+        "PU10",
+        "PU11",
+        "PU2",
+        "PU3",
+        "PU5",
+        "PU6",
+        "PU8",
+        "PU9"
+      ],
+      "native_hit_at_1": false,
+      "native_hit_at_3": true,
+      "native_hit_at_5": true,
+      "grouped_ablation_hit_at_1": false,
+      "grouped_ablation_hit_at_3": false,
+      "grouped_ablation_hit_at_5": false,
+      "recourse_passed": true,
+      "recourse_edited_pumps": [],
+      "recourse_target_hit_unconditional": false,
+      "recourse_target_hit_if_pass": false
+    },
+    {
+      "run_id": "batadal_seed45_20261031T060225_873843Z",
+      "seed": 45,
+      "model": "PCA-STATE",
+      "event_id": "BAT03",
+      "event_index": 2,
+      "targets": [
+        "PU2"
+      ],
+      "detected": true,
+      "native_component_ranking": [
+        "PU2",
+        "PU1",
+        "PU8",
+        "PU10",
+        "PU4",
+        "PU7",
+        "PU6",
+        "PU11",
+        "PU3",
+        "PU5",
+        "PU9"
+      ],
+      "grouped_ablation_component_ranking": [
+        "PU10",
+        "PU7",
+        "PU1",
+        "PU11",
+        "PU2",
+        "PU3",
+        "PU4",
+        "PU5",
+        "PU6",
+        "PU8",
+        "PU9"
+      ],
+      "native_hit_at_1": true,
+      "native_hit_at_3": true,
+      "native_hit_at_5": true,
+      "grouped_ablation_hit_at_1": false,
+      "grouped_ablation_hit_at_3": false,
+      "grouped_ablation_hit_at_5": true,
+      "recourse_passed": true,
+      "recourse_edited_pumps": [],
+      "recourse_target_hit_unconditional": false,
+      "recourse_target_hit_if_pass": false
+    },
+    {
+      "run_id": "batadal_seed45_20261031T060225_873843Z",
+      "seed": 45,
+      "model": "PCA-STATE",
+      "event_id": "BAT04",
+      "event_index": 3,
+      "targets": [
+        "PU7"
+      ],
+      "detected": true,
+      "native_component_ranking": [
+        "PU7",
+        "PU1",
+        "PU4",
+        "PU10",
+        "PU8",
+        "PU2",
+        "PU6",
+        "PU11",
+        "PU3",
+        "PU5",
+        "PU9"
+      ],
+      "grouped_ablation_component_ranking": [
+        "PU7",
+        "PU10",
+        "PU1",
+        "PU2",
+        "PU11",
+        "PU3",
+        "PU4",
+        "PU5",
+        "PU6",
+        "PU8",
+        "PU9"
+      ],
+      "native_hit_at_1": true,
+      "native_hit_at_3": true,
+      "native_hit_at_5": true,
+      "grouped_ablation_hit_at_1": true,
+      "grouped_ablation_hit_at_3": true,
+      "grouped_ablation_hit_at_5": true,
+      "recourse_passed": true,
+      "recourse_edited_pumps": [
+        "PU7"
+      ],
+      "recourse_target_hit_unconditional": true,
+      "recourse_target_hit_if_pass": true
+    },
+    {
+      "run_id": "batadal_seed45_20261031T060225_873843Z",
+      "seed": 45,
+      "model": "PCA-STATE",
+      "event_id": "BAT05",
+      "event_index": 4,
+      "targets": [
+        "PU6",
+        "PU7"
+      ],
+      "detected": true,
+      "native_component_ranking": [
+        "PU6",
+        "PU7",
+        "PU4",
+        "PU2",
+        "PU10",
+        "PU1",
+        "PU8",
+        "PU11",
+        "PU3",
+        "PU5",
+        "PU9"
+      ],
+      "grouped_ablation_component_ranking": [
+        "PU6",
+        "PU7",
+        "PU10",
+        "PU8",
+        "PU11",
+        "PU3",
+        "PU4",
+        "PU5",
+        "PU9",
+        "PU1",
+        "PU2"
+      ],
+      "native_hit_at_1": true,
+      "native_hit_at_3": true,
+      "native_hit_at_5": true,
+      "grouped_ablation_hit_at_1": true,
+      "grouped_ablation_hit_at_3": true,
+      "grouped_ablation_hit_at_5": true,
+      "recourse_passed": false,
+      "recourse_edited_pumps": [],
+      "recourse_target_hit_unconditional": false,
+      "recourse_target_hit_if_pass": null
+    },
+    {
+      "run_id": "batadal_seed45_20261031T060225_873843Z",
+      "seed": 45,
+      "model": "PCA-TEMPORAL",
+      "event_id": "BAT01",
+      "event_index": 0,
+      "targets": [
+        "PU10",
+        "PU11"
+      ],
+      "detected": true,
+      "native_component_ranking": [
+        "PU2",
+        "PU11",
+        "PU10",
+        "PU1",
+        "PU8",
+        "PU7",
+        "PU4",
+        "PU6",
+        "PU3",
+        "PU5",
+        "PU9"
+      ],
+      "grouped_ablation_component_ranking": [
+        "PU2",
+        "PU11",
+        "PU1",
+        "PU7",
+        "PU10",
+        "PU3",
+        "PU4",
+        "PU5",
+        "PU6",
+        "PU8",
+        "PU9"
+      ],
+      "native_hit_at_1": false,
+      "native_hit_at_3": true,
+      "native_hit_at_5": true,
+      "grouped_ablation_hit_at_1": false,
+      "grouped_ablation_hit_at_3": true,
+      "grouped_ablation_hit_at_5": true,
+      "recourse_passed": true,
+      "recourse_edited_pumps": [
+        "PU11",
+        "PU2"
+      ],
+      "recourse_target_hit_unconditional": true,
+      "recourse_target_hit_if_pass": true
+    },
+    {
+      "run_id": "batadal_seed45_20261031T060225_873843Z",
+      "seed": 45,
+      "model": "PCA-TEMPORAL",
+      "event_id": "BAT02",
+      "event_index": 1,
+      "targets": [
+        "PU2"
+      ],
+      "detected": false,
+      "native_component_ranking": [],
+      "grouped_ablation_component_ranking": [],
+      "native_hit_at_1": false,
+      "native_hit_at_3": false,
+      "native_hit_at_5": false,
+      "grouped_ablation_hit_at_1": false,
+      "grouped_ablation_hit_at_3": false,
+      "grouped_ablation_hit_at_5": false,
+      "recourse_passed": false,
+      "recourse_edited_pumps": [],
+      "recourse_target_hit_unconditional": false,
+      "recourse_target_hit_if_pass": null
+    },
+    {
+      "run_id": "batadal_seed45_20261031T060225_873843Z",
+      "seed": 45,
+      "model": "PCA-TEMPORAL",
+      "event_id": "BAT03",
+      "event_index": 2,
+      "targets": [
+        "PU2"
+      ],
+      "detected": false,
+      "native_component_ranking": [],
+      "grouped_ablation_component_ranking": [],
+      "native_hit_at_1": false,
+      "native_hit_at_3": false,
+      "native_hit_at_5": false,
+      "grouped_ablation_hit_at_1": false,
+      "grouped_ablation_hit_at_3": false,
+      "grouped_ablation_hit_at_5": false,
+      "recourse_passed": false,
+      "recourse_edited_pumps": [],
+      "recourse_target_hit_unconditional": false,
+      "recourse_target_hit_if_pass": null
+    },
+    {
+      "run_id": "batadal_seed45_20261031T060225_873843Z",
+      "seed": 45,
+      "model": "PCA-TEMPORAL",
+      "event_id": "BAT04",
+      "event_index": 3,
+      "targets": [
+        "PU7"
+      ],
+      "detected": false,
+      "native_component_ranking": [],
+      "grouped_ablation_component_ranking": [],
+      "native_hit_at_1": false,
+      "native_hit_at_3": false,
+      "native_hit_at_5": false,
+      "grouped_ablation_hit_at_1": false,
+      "grouped_ablation_hit_at_3": false,
+      "grouped_ablation_hit_at_5": false,
+      "recourse_passed": false,
+      "recourse_edited_pumps": [],
+      "recourse_target_hit_unconditional": false,
+      "recourse_target_hit_if_pass": null
+    },
+    {
+      "run_id": "batadal_seed45_20261031T060225_873843Z",
+      "seed": 45,
+      "model": "PCA-TEMPORAL",
+      "event_id": "BAT05",
+      "event_index": 4,
+      "targets": [
+        "PU6",
+        "PU7"
+      ],
+      "detected": true,
+      "native_component_ranking": [
+        "PU2",
+        "PU10",
+        "PU6",
+        "PU7",
+        "PU1",
+        "PU8",
+        "PU4",
+        "PU11",
+        "PU3",
+        "PU5",
+        "PU9"
+      ],
+      "grouped_ablation_component_ranking": [
+        "PU2",
+        "PU10",
+        "PU4",
+        "PU8",
+        "PU7",
+        "PU1",
+        "PU11",
+        "PU3",
+        "PU5",
+        "PU6",
+        "PU9"
+      ],
+      "native_hit_at_1": false,
+      "native_hit_at_3": true,
+      "native_hit_at_5": true,
+      "grouped_ablation_hit_at_1": false,
+      "grouped_ablation_hit_at_3": false,
+      "grouped_ablation_hit_at_5": true,
+      "recourse_passed": false,
+      "recourse_edited_pumps": [],
+      "recourse_target_hit_unconditional": false,
+      "recourse_target_hit_if_pass": null
+    },
+    {
+      "run_id": "batadal_seed46_20261031T060229_777700Z",
+      "seed": 46,
+      "model": "RobustZ-TEMPORAL",
+      "event_id": "BAT01",
+      "event_index": 0,
+      "targets": [
+        "PU10",
+        "PU11"
+      ],
+      "detected": true,
+      "native_component_ranking": [
+        "PU4",
+        "PU11",
+        "PU10",
+        "PU8",
+        "PU2",
+        "PU1",
+        "PU7",
+        "PU3",
+        "PU5",
+        "PU6",
+        "PU9"
+      ],
+      "grouped_ablation_component_ranking": [
+        "PU4",
+        "PU11",
+        "PU1",
+        "PU10",
+        "PU2",
+        "PU3",
+        "PU5",
+        "PU6",
+        "PU7",
+        "PU8",
+        "PU9"
+      ],
+      "native_hit_at_1": false,
+      "native_hit_at_3": true,
+      "native_hit_at_5": true,
+      "grouped_ablation_hit_at_1": false,
+      "grouped_ablation_hit_at_3": true,
+      "grouped_ablation_hit_at_5": true,
+      "recourse_passed": true,
+      "recourse_edited_pumps": [
+        "PU11",
+        "PU4"
+      ],
+      "recourse_target_hit_unconditional": true,
+      "recourse_target_hit_if_pass": true
+    },
+    {
+      "run_id": "batadal_seed46_20261031T060229_777700Z",
+      "seed": 46,
+      "model": "RobustZ-TEMPORAL",
+      "event_id": "BAT02",
+      "event_index": 1,
+      "targets": [
+        "PU2"
+      ],
+      "detected": true,
+      "native_component_ranking": [
+        "PU4",
+        "PU8",
+        "PU7",
+        "PU2",
+        "PU1",
+        "PU10",
+        "PU11",
+        "PU3",
+        "PU5",
+        "PU6",
+        "PU9"
+      ],
+      "grouped_ablation_component_ranking": [
+        "PU8",
+        "PU7",
+        "PU1",
+        "PU10",
+        "PU11",
+        "PU2",
+        "PU3",
+        "PU4",
+        "PU5",
+        "PU6",
+        "PU9"
+      ],
+      "native_hit_at_1": false,
+      "native_hit_at_3": false,
+      "native_hit_at_5": true,
+      "grouped_ablation_hit_at_1": false,
+      "grouped_ablation_hit_at_3": false,
+      "grouped_ablation_hit_at_5": false,
+      "recourse_passed": true,
+      "recourse_edited_pumps": [
+        "PU8"
+      ],
+      "recourse_target_hit_unconditional": false,
+      "recourse_target_hit_if_pass": false
+    },
+    {
+      "run_id": "batadal_seed46_20261031T060229_777700Z",
+      "seed": 46,
+      "model": "RobustZ-TEMPORAL",
+      "event_id": "BAT03",
+      "event_index": 2,
+      "targets": [
+        "PU2"
+      ],
+      "detected": true,
+      "native_component_ranking": [
+        "PU4",
+        "PU8",
+        "PU10",
+        "PU2",
+        "PU1",
+        "PU7",
+        "PU11",
+        "PU3",
+        "PU5",
+        "PU6",
+        "PU9"
+      ],
+      "grouped_ablation_component_ranking": [
+        "PU4",
+        "PU8",
+        "PU10",
+        "PU1",
+        "PU11",
+        "PU2",
+        "PU3",
+        "PU5",
+        "PU6",
+        "PU7",
+        "PU9"
+      ],
+      "native_hit_at_1": false,
+      "native_hit_at_3": false,
+      "native_hit_at_5": true,
+      "grouped_ablation_hit_at_1": false,
+      "grouped_ablation_hit_at_3": false,
+      "grouped_ablation_hit_at_5": false,
+      "recourse_passed": true,
+      "recourse_edited_pumps": [
+        "PU4"
+      ],
+      "recourse_target_hit_unconditional": false,
+      "recourse_target_hit_if_pass": false
+    },
+    {
+      "run_id": "batadal_seed46_20261031T060229_777700Z",
+      "seed": 46,
+      "model": "RobustZ-TEMPORAL",
+      "event_id": "BAT04",
+      "event_index": 3,
+      "targets": [
+        "PU7"
+      ],
+      "detected": false,
+      "native_component_ranking": [],
+      "grouped_ablation_component_ranking": [],
+      "native_hit_at_1": false,
+      "native_hit_at_3": false,
+      "native_hit_at_5": false,
+      "grouped_ablation_hit_at_1": false,
+      "grouped_ablation_hit_at_3": false,
+      "grouped_ablation_hit_at_5": false,
+      "recourse_passed": false,
+      "recourse_edited_pumps": [],
+      "recourse_target_hit_unconditional": false,
+      "recourse_target_hit_if_pass": null
+    },
+    {
+      "run_id": "batadal_seed46_20261031T060229_777700Z",
+      "seed": 46,
+      "model": "RobustZ-TEMPORAL",
+      "event_id": "BAT05",
+      "event_index": 4,
+      "targets": [
+        "PU6",
+        "PU7"
+      ],
+      "detected": false,
+      "native_component_ranking": [],
+      "grouped_ablation_component_ranking": [],
+      "native_hit_at_1": false,
+      "native_hit_at_3": false,
+      "native_hit_at_5": false,
+      "grouped_ablation_hit_at_1": false,
+      "grouped_ablation_hit_at_3": false,
+      "grouped_ablation_hit_at_5": false,
+      "recourse_passed": false,
+      "recourse_edited_pumps": [],
+      "recourse_target_hit_unconditional": false,
+      "recourse_target_hit_if_pass": null
+    },
+    {
+      "run_id": "batadal_seed46_20261031T060229_777700Z",
+      "seed": 46,
+      "model": "PCA-STATE",
+      "event_id": "BAT01",
+      "event_index": 0,
+      "targets": [
+        "PU10",
+        "PU11"
+      ],
+      "detected": true,
+      "native_component_ranking": [
+        "PU11",
+        "PU4",
+        "PU10",
+        "PU1",
+        "PU7",
+        "PU6",
+        "PU2",
+        "PU8",
+        "PU3",
+        "PU5",
+        "PU9"
+      ],
+      "grouped_ablation_component_ranking": [
+        "PU11",
+        "PU10",
+        "PU1",
+        "PU7",
+        "PU2",
+        "PU3",
+        "PU4",
+        "PU5",
+        "PU6",
+        "PU8",
+        "PU9"
+      ],
+      "native_hit_at_1": true,
+      "native_hit_at_3": true,
+      "native_hit_at_5": true,
+      "grouped_ablation_hit_at_1": true,
+      "grouped_ablation_hit_at_3": true,
+      "grouped_ablation_hit_at_5": true,
+      "recourse_passed": true,
+      "recourse_edited_pumps": [
+        "PU10",
+        "PU11"
+      ],
+      "recourse_target_hit_unconditional": true,
+      "recourse_target_hit_if_pass": true
+    },
+    {
+      "run_id": "batadal_seed46_20261031T060229_777700Z",
+      "seed": 46,
+      "model": "PCA-STATE",
+      "event_id": "BAT02",
+      "event_index": 1,
+      "targets": [
+        "PU2"
+      ],
+      "detected": true,
+      "native_component_ranking": [
+        "PU4",
+        "PU1",
+        "PU2",
+        "PU8",
+        "PU7",
+        "PU10",
+        "PU6",
+        "PU11",
+        "PU3",
+        "PU5",
+        "PU9"
+      ],
+      "grouped_ablation_component_ranking": [
+        "PU4",
+        "PU1",
+        "PU7",
+        "PU10",
+        "PU11",
+        "PU2",
+        "PU3",
+        "PU5",
+        "PU6",
+        "PU8",
+        "PU9"
+      ],
+      "native_hit_at_1": false,
+      "native_hit_at_3": true,
+      "native_hit_at_5": true,
+      "grouped_ablation_hit_at_1": false,
+      "grouped_ablation_hit_at_3": false,
+      "grouped_ablation_hit_at_5": false,
+      "recourse_passed": true,
+      "recourse_edited_pumps": [],
+      "recourse_target_hit_unconditional": false,
+      "recourse_target_hit_if_pass": false
+    },
+    {
+      "run_id": "batadal_seed46_20261031T060229_777700Z",
+      "seed": 46,
+      "model": "PCA-STATE",
+      "event_id": "BAT03",
+      "event_index": 2,
+      "targets": [
+        "PU2"
+      ],
+      "detected": true,
+      "native_component_ranking": [
+        "PU2",
+        "PU1",
+        "PU8",
+        "PU10",
+        "PU4",
+        "PU7",
+        "PU6",
+        "PU11",
+        "PU3",
+        "PU5",
+        "PU9"
+      ],
+      "grouped_ablation_component_ranking": [
+        "PU10",
+        "PU7",
+        "PU1",
+        "PU11",
+        "PU2",
+        "PU3",
+        "PU4",
+        "PU5",
+        "PU6",
+        "PU8",
+        "PU9"
+      ],
+      "native_hit_at_1": true,
+      "native_hit_at_3": true,
+      "native_hit_at_5": true,
+      "grouped_ablation_hit_at_1": false,
+      "grouped_ablation_hit_at_3": false,
+      "grouped_ablation_hit_at_5": true,
+      "recourse_passed": true,
+      "recourse_edited_pumps": [],
+      "recourse_target_hit_unconditional": false,
+      "recourse_target_hit_if_pass": false
+    },
+    {
+      "run_id": "batadal_seed46_20261031T060229_777700Z",
+      "seed": 46,
+      "model": "PCA-STATE",
+      "event_id": "BAT04",
+      "event_index": 3,
+      "targets": [
+        "PU7"
+      ],
+      "detected": true,
+      "native_component_ranking": [
+        "PU7",
+        "PU1",
+        "PU4",
+        "PU10",
+        "PU8",
+        "PU2",
+        "PU6",
+        "PU11",
+        "PU3",
+        "PU5",
+        "PU9"
+      ],
+      "grouped_ablation_component_ranking": [
+        "PU7",
+        "PU10",
+        "PU1",
+        "PU2",
+        "PU11",
+        "PU3",
+        "PU4",
+        "PU5",
+        "PU6",
+        "PU8",
+        "PU9"
+      ],
+      "native_hit_at_1": true,
+      "native_hit_at_3": true,
+      "native_hit_at_5": true,
+      "grouped_ablation_hit_at_1": true,
+      "grouped_ablation_hit_at_3": true,
+      "grouped_ablation_hit_at_5": true,
+      "recourse_passed": true,
+      "recourse_edited_pumps": [
+        "PU7"
+      ],
+      "recourse_target_hit_unconditional": true,
+      "recourse_target_hit_if_pass": true
+    },
+    {
+      "run_id": "batadal_seed46_20261031T060229_777700Z",
+      "seed": 46,
+      "model": "PCA-STATE",
+      "event_id": "BAT05",
+      "event_index": 4,
+      "targets": [
+        "PU6",
+        "PU7"
+      ],
+      "detected": true,
+      "native_component_ranking": [
+        "PU6",
+        "PU7",
+        "PU4",
+        "PU2",
+        "PU10",
+        "PU1",
+        "PU8",
+        "PU11",
+        "PU3",
+        "PU5",
+        "PU9"
+      ],
+      "grouped_ablation_component_ranking": [
+        "PU6",
+        "PU7",
+        "PU10",
+        "PU8",
+        "PU11",
+        "PU3",
+        "PU4",
+        "PU5",
+        "PU9",
+        "PU1",
+        "PU2"
+      ],
+      "native_hit_at_1": true,
+      "native_hit_at_3": true,
+      "native_hit_at_5": true,
+      "grouped_ablation_hit_at_1": true,
+      "grouped_ablation_hit_at_3": true,
+      "grouped_ablation_hit_at_5": true,
+      "recourse_passed": false,
+      "recourse_edited_pumps": [],
+      "recourse_target_hit_unconditional": false,
+      "recourse_target_hit_if_pass": null
+    },
+    {
+      "run_id": "batadal_seed46_20261031T060229_777700Z",
+      "seed": 46,
+      "model": "PCA-TEMPORAL",
+      "event_id": "BAT01",
+      "event_index": 0,
+      "targets": [
+        "PU10",
+        "PU11"
+      ],
+      "detected": true,
+      "native_component_ranking": [
+        "PU2",
+        "PU11",
+        "PU10",
+        "PU1",
+        "PU8",
+        "PU7",
+        "PU4",
+        "PU6",
+        "PU3",
+        "PU5",
+        "PU9"
+      ],
+      "grouped_ablation_component_ranking": [
+        "PU2",
+        "PU11",
+        "PU1",
+        "PU7",
+        "PU10",
+        "PU3",
+        "PU4",
+        "PU5",
+        "PU6",
+        "PU8",
+        "PU9"
+      ],
+      "native_hit_at_1": false,
+      "native_hit_at_3": true,
+      "native_hit_at_5": true,
+      "grouped_ablation_hit_at_1": false,
+      "grouped_ablation_hit_at_3": true,
+      "grouped_ablation_hit_at_5": true,
+      "recourse_passed": true,
+      "recourse_edited_pumps": [
+        "PU11",
+        "PU2"
+      ],
+      "recourse_target_hit_unconditional": true,
+      "recourse_target_hit_if_pass": true
+    },
+    {
+      "run_id": "batadal_seed46_20261031T060229_777700Z",
+      "seed": 46,
+      "model": "PCA-TEMPORAL",
+      "event_id": "BAT02",
+      "event_index": 1,
+      "targets": [
+        "PU2"
+      ],
+      "detected": false,
+      "native_component_ranking": [],
+      "grouped_ablation_component_ranking": [],
+      "native_hit_at_1": false,
+      "native_hit_at_3": false,
+      "native_hit_at_5": false,
+      "grouped_ablation_hit_at_1": false,
+      "grouped_ablation_hit_at_3": false,
+      "grouped_ablation_hit_at_5": false,
+      "recourse_passed": false,
+      "recourse_edited_pumps": [],
+      "recourse_target_hit_unconditional": false,
+      "recourse_target_hit_if_pass": null
+    },
+    {
+      "run_id": "batadal_seed46_20261031T060229_777700Z",
+      "seed": 46,
+      "model": "PCA-TEMPORAL",
+      "event_id": "BAT03",
+      "event_index": 2,
+      "targets": [
+        "PU2"
+      ],
+      "detected": false,
+      "native_component_ranking": [],
+      "grouped_ablation_component_ranking": [],
+      "native_hit_at_1": false,
+      "native_hit_at_3": false,
+      "native_hit_at_5": false,
+      "grouped_ablation_hit_at_1": false,
+      "grouped_ablation_hit_at_3": false,
+      "grouped_ablation_hit_at_5": false,
+      "recourse_passed": false,
+      "recourse_edited_pumps": [],
+      "recourse_target_hit_unconditional": false,
+      "recourse_target_hit_if_pass": null
+    },
+    {
+      "run_id": "batadal_seed46_20261031T060229_777700Z",
+      "seed": 46,
+      "model": "PCA-TEMPORAL",
+      "event_id": "BAT04",
+      "event_index": 3,
+      "targets": [
+        "PU7"
+      ],
+      "detected": false,
+      "native_component_ranking": [],
+      "grouped_ablation_component_ranking": [],
+      "native_hit_at_1": false,
+      "native_hit_at_3": false,
+      "native_hit_at_5": false,
+      "grouped_ablation_hit_at_1": false,
+      "grouped_ablation_hit_at_3": false,
+      "grouped_ablation_hit_at_5": false,
+      "recourse_passed": false,
+      "recourse_edited_pumps": [],
+      "recourse_target_hit_unconditional": false,
+      "recourse_target_hit_if_pass": null
+    },
+    {
+      "run_id": "batadal_seed46_20261031T060229_777700Z",
+      "seed": 46,
+      "model": "PCA-TEMPORAL",
+      "event_id": "BAT05",
+      "event_index": 4,
+      "targets": [
+        "PU6",
+        "PU7"
+      ],
+      "detected": true,
+      "native_component_ranking": [
+        "PU2",
+        "PU10",
+        "PU6",
+        "PU7",
+        "PU1",
+        "PU8",
+        "PU4",
+        "PU11",
+        "PU3",
+        "PU5",
+        "PU9"
+      ],
+      "grouped_ablation_component_ranking": [
+        "PU2",
+        "PU10",
+        "PU4",
+        "PU8",
+        "PU7",
+        "PU1",
+        "PU11",
+        "PU3",
+        "PU5",
+        "PU6",
+        "PU9"
+      ],
+      "native_hit_at_1": false,
+      "native_hit_at_3": true,
+      "native_hit_at_5": true,
+      "grouped_ablation_hit_at_1": false,
+      "grouped_ablation_hit_at_3": false,
+      "grouped_ablation_hit_at_5": true,
+      "recourse_passed": false,
+      "recourse_edited_pumps": [],
+      "recourse_target_hit_unconditional": false,
+      "recourse_target_hit_if_pass": null
+    }
+  ]
+}

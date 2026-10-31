@@ -1,0 +1,19 @@
+{
+  "dataset": "BATADAL development data",
+  "data_dir": "data/raw/batadal",
+  "normal_file": "BATADAL_dataset03.csv",
+  "partial_label_file": "BATADAL_dataset04.csv",
+  "train_fraction": 0.75,
+  "attack_label_column": "ATT_FLAG",
+  "unknown_label_value": -999,
+  "random_seed": 42,
+  "validation_false_positive_rate": 0.01,
+  "max_components": 24,
+  "variance_explained": 0.95,
+  "stability_perturbations": 5,
+  "capability_groups": ["L", "F", "S", "P"],
+  "capability_max_groups": 4,
+  "capability_max_tags": 16,
+  "capability_donor_count": 4,
+  "normal_reference_count": 256
+}

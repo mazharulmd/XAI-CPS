@@ -1,0 +1,863 @@
+{
+  "runs": [
+    {
+      "run_id": "hai21_seed42_20261031T033256_054947Z",
+      "seed": 42
+    },
+    {
+      "run_id": "hai21_seed43_20261031T033424_387505Z",
+      "seed": 43
+    },
+    {
+      "run_id": "hai21_seed44_20261031T033554_412263Z",
+      "seed": 44
+    },
+    {
+      "run_id": "hai21_seed45_20261031T033721_596293Z",
+      "seed": 45
+    },
+    {
+      "run_id": "hai21_seed46_20261031T033830_980820Z",
+      "seed": 46
+    }
+  ],
+  "models": {
+    "PCA-STATE": {
+      "detector_f1": {
+        "mean": 0.3971398770099633,
+        "range": [
+          0.3935704999409053,
+          0.4013452914798207
+        ]
+      },
+      "event_recall": {
+        "mean": 0.9120000000000001,
+        "range": [
+          0.9,
+          0.92
+        ]
+      },
+      "false_alarm_events_per_normal_hour": {
+        "mean": 17.815996621363773,
+        "range": [
+          17.218832844007757,
+          18.336225188140173
+        ]
+      },
+      "capability_support_success_rate": {
+        "mean": 0.9473429951690822,
+        "range": [
+          0.9333333333333333,
+          0.9565217391304348
+        ]
+      },
+      "greedy_scoreflip_and_support_rate": {
+        "mean": 0.9166183574879228,
+        "range": [
+          0.8888888888888888,
+          0.9347826086956522
+        ]
+      },
+      "median_edited_tags_on_success": {
+        "mean": 1.0,
+        "range": [
+          1.0,
+          1.0
+        ]
+      },
+      "median_norm_cost_proposed_on_success": {
+        "mean": 83.37155447637035,
+        "range": [
+          75.20571968164037,
+          92.71999640271596
+        ]
+      },
+      "median_norm_cost_greedy_on_same_events": {
+        "mean": 95.95754615488188,
+        "range": [
+          95.10319708619993,
+          97.62129592157922
+        ]
+      },
+      "stage_hit_at_1_on_success": {
+        "mean": 0.21315815966978757,
+        "range": [
+          0.20454545454545456,
+          0.23809523809523808
+        ]
+      },
+      "transition_consistency_max_abs_error_on_success": {
+        "mean": null,
+        "range": null
+      },
+      "explanation_p95_ms": {
+        "mean": 69.92000099970028,
+        "range": [
+          40.01815000810893,
+          86.01137499863398
+        ]
+      },
+      "capability_group_budget_success_rate": {
+        "1": {
+          "mean": 0.9034782608695652,
+          "range": [
+            0.8888888888888888,
+            0.9347826086956522
+          ]
+        },
+        "2": {
+          "mean": 0.938647342995169,
+          "range": [
+            0.9130434782608695,
+            0.9565217391304348
+          ]
+        },
+        "4": {
+          "mean": 0.9473429951690822,
+          "range": [
+            0.9333333333333333,
+            0.9565217391304348
+          ]
+        }
+      },
+      "capability_tag_budget_success_rate": {
+        "1": {
+          "mean": 0.8596135265700482,
+          "range": [
+            0.8444444444444444,
+            0.8913043478260869
+          ]
+        },
+        "2": {
+          "mean": 0.8947826086956521,
+          "range": [
+            0.8695652173913043,
+            0.9130434782608695
+          ]
+        },
+        "4": {
+          "mean": 0.9254106280193236,
+          "range": [
+            0.9111111111111111,
+            0.9347826086956522
+          ]
+        },
+        "8": {
+          "mean": 0.9473429951690822,
+          "range": [
+            0.9333333333333333,
+            0.9565217391304348
+          ]
+        },
+        "16": {
+          "mean": 0.9473429951690822,
+          "range": [
+            0.9333333333333333,
+            0.9565217391304348
+          ]
+        }
+      }
+    },
+    "PCA-TEMPORAL": {
+      "detector_f1": {
+        "mean": 0.19867852480752785,
+        "range": [
+          0.19845159457347822,
+          0.19896255240531513
+        ]
+      },
+      "event_recall": {
+        "mean": 0.8800000000000001,
+        "range": [
+          0.88,
+          0.88
+        ]
+      },
+      "false_alarm_events_per_normal_hour": {
+        "mean": 25.62125691373792,
+        "range": [
+          25.571798564079604,
+          25.67254705412433
+        ]
+      },
+      "capability_support_success_rate": {
+        "mean": 0.7772727272727273,
+        "range": [
+          0.6818181818181818,
+          0.8636363636363636
+        ]
+      },
+      "greedy_scoreflip_and_support_rate": {
+        "mean": 0.8636363636363636,
+        "range": [
+          0.7727272727272727,
+          0.9090909090909091
+        ]
+      },
+      "median_edited_tags_on_success": {
+        "mean": 1.0,
+        "range": [
+          1.0,
+          1.0
+        ]
+      },
+      "median_norm_cost_proposed_on_success": {
+        "mean": 331.74020498487135,
+        "range": [
+          294.71459781459384,
+          352.56138762290254
+        ]
+      },
+      "median_norm_cost_greedy_on_same_events": {
+        "mean": 339.15770628364663,
+        "range": [
+          331.7363772704549,
+          342.66870700121416
+        ]
+      },
+      "stage_hit_at_1_on_success": {
+        "mean": 0.6487684898520811,
+        "range": [
+          0.6333333333333333,
+          0.6666666666666666
+        ]
+      },
+      "transition_consistency_max_abs_error_on_success": {
+        "mean": 0.0,
+        "range": [
+          0.0,
+          0.0
+        ]
+      },
+      "explanation_p95_ms": {
+        "mean": 38.08707899865112,
+        "range": [
+          19.0013349900255,
+          49.218120003934025
+        ]
+      },
+      "capability_group_budget_success_rate": {
+        "1": {
+          "mean": 0.7772727272727273,
+          "range": [
+            0.6818181818181818,
+            0.8636363636363636
+          ]
+        },
+        "2": {
+          "mean": 0.7772727272727273,
+          "range": [
+            0.6818181818181818,
+            0.8636363636363636
+          ]
+        },
+        "4": {
+          "mean": 0.7772727272727273,
+          "range": [
+            0.6818181818181818,
+            0.8636363636363636
+          ]
+        }
+      },
+      "capability_tag_budget_success_rate": {
+        "1": {
+          "mean": 0.6409090909090909,
+          "range": [
+            0.5681818181818182,
+            0.7045454545454546
+          ]
+        },
+        "2": {
+          "mean": 0.6499999999999999,
+          "range": [
+            0.5909090909090909,
+            0.7272727272727273
+          ]
+        },
+        "4": {
+          "mean": 0.7363636363636366,
+          "range": [
+            0.6590909090909091,
+            0.8181818181818182
+          ]
+        },
+        "8": {
+          "mean": 0.7772727272727273,
+          "range": [
+            0.6818181818181818,
+            0.8636363636363636
+          ]
+        },
+        "16": {
+          "mean": 0.7772727272727273,
+          "range": [
+            0.6818181818181818,
+            0.8636363636363636
+          ]
+        }
+      }
+    },
+    "RobustZ-TEMPORAL": {
+      "detector_f1": {
+        "mean": 0.010759097603290108,
+        "range": [
+          0.00926829268292683,
+          0.01299017617926443
+        ]
+      },
+      "event_recall": {
+        "mean": 0.18,
+        "range": [
+          0.18,
+          0.18
+        ]
+      },
+      "false_alarm_events_per_normal_hour": {
+        "mean": 4.258913442799791,
+        "range": [
+          4.240595535518931,
+          4.26807239644022
+        ]
+      },
+      "capability_support_success_rate": {
+        "mean": 0.33333333333333337,
+        "range": [
+          0.1111111111111111,
+          0.5555555555555556
+        ]
+      },
+      "greedy_scoreflip_and_support_rate": {
+        "mean": 0.0,
+        "range": [
+          0.0,
+          0.0
+        ]
+      },
+      "median_edited_tags_on_success": {
+        "mean": 3.2,
+        "range": [
+          3.0,
+          4.0
+        ]
+      },
+      "median_norm_cost_proposed_on_success": {
+        "mean": 563.9142217056952,
+        "range": [
+          304.8727005038163,
+          1277.8847909371973
+        ]
+      },
+      "median_norm_cost_greedy_on_same_events": {
+        "mean": 2188.8523296627886,
+        "range": [
+          2188.7174315108928,
+          2188.8860542007624
+        ]
+      },
+      "stage_hit_at_1_on_success": {
+        "mean": 0.5199999999999999,
+        "range": [
+          0.0,
+          0.6666666666666666
+        ]
+      },
+      "transition_consistency_max_abs_error_on_success": {
+        "mean": 0.0,
+        "range": [
+          0.0,
+          0.0
+        ]
+      },
+      "explanation_p95_ms": {
+        "mean": 32.21422399918083,
+        "range": [
+          15.207260000170209,
+          41.66656000306829
+        ]
+      },
+      "capability_group_budget_success_rate": {
+        "1": {
+          "mean": 0.0,
+          "range": [
+            0.0,
+            0.0
+          ]
+        },
+        "2": {
+          "mean": 0.33333333333333337,
+          "range": [
+            0.1111111111111111,
+            0.5555555555555556
+          ]
+        },
+        "4": {
+          "mean": 0.33333333333333337,
+          "range": [
+            0.1111111111111111,
+            0.5555555555555556
+          ]
+        }
+      },
+      "capability_tag_budget_success_rate": {
+        "1": {
+          "mean": 0.0,
+          "range": [
+            0.0,
+            0.0
+          ]
+        },
+        "2": {
+          "mean": 0.11111111111111112,
+          "range": [
+            0.0,
+            0.2222222222222222
+          ]
+        },
+        "4": {
+          "mean": 0.33333333333333337,
+          "range": [
+            0.1111111111111111,
+            0.5555555555555556
+          ]
+        },
+        "8": {
+          "mean": 0.33333333333333337,
+          "range": [
+            0.1111111111111111,
+            0.5555555555555556
+          ]
+        },
+        "16": {
+          "mean": 0.33333333333333337,
+          "range": [
+            0.1111111111111111,
+            0.5555555555555556
+          ]
+        }
+      }
+    }
+  },
+  "per_run": [
+    {
+      "run_id": "hai21_seed42_20261031T033256_054947Z",
+      "seed": 42,
+      "models": {
+        "RobustZ-TEMPORAL": {
+          "detector_f1": 0.009270553793608197,
+          "event_recall": 0.18,
+          "false_alarm_events_per_normal_hour": 4.26807239644022,
+          "alarm_events_explained": 9,
+          "capability_support_success_rate": 0.3333333333333333,
+          "greedy_scoreflip_and_support_rate": 0.0,
+          "capability_group_budget_success_rate": {
+            "1": 0.0,
+            "2": 0.3333333333333333,
+            "4": 0.3333333333333333
+          },
+          "capability_tag_budget_success_rate": {
+            "1": 0.0,
+            "2": 0.1111111111111111,
+            "4": 0.3333333333333333,
+            "8": 0.3333333333333333,
+            "16": 0.3333333333333333
+          },
+          "median_edited_tags_on_success": 3.0,
+          "median_norm_cost_proposed_on_success": 390.39371120367366,
+          "median_norm_cost_greedy_on_same_events": 2188.8860542007624,
+          "stage_hit_at_1_on_success": 0.6666666666666666,
+          "transition_consistency_max_abs_error_on_success": 0.0,
+          "explanation_p95_ms": 41.66656000306829
+        },
+        "PCA-STATE": {
+          "detector_f1": 0.3935704999409053,
+          "event_recall": 0.9,
+          "false_alarm_events_per_normal_hour": 17.218832844007757,
+          "alarm_events_explained": 45,
+          "capability_support_success_rate": 0.9555555555555556,
+          "greedy_scoreflip_and_support_rate": 0.9333333333333333,
+          "capability_group_budget_success_rate": {
+            "1": 0.9111111111111111,
+            "2": 0.9555555555555556,
+            "4": 0.9555555555555556
+          },
+          "capability_tag_budget_success_rate": {
+            "1": 0.8666666666666667,
+            "2": 0.9111111111111111,
+            "4": 0.9333333333333333,
+            "8": 0.9555555555555556,
+            "16": 0.9555555555555556
+          },
+          "median_edited_tags_on_success": 1.0,
+          "median_norm_cost_proposed_on_success": 84.58114123836505,
+          "median_norm_cost_greedy_on_same_events": 97.62129592157922,
+          "stage_hit_at_1_on_success": 0.20930232558139536,
+          "transition_consistency_max_abs_error_on_success": null,
+          "explanation_p95_ms": 71.83637999696657
+        },
+        "PCA-TEMPORAL": {
+          "detector_f1": 0.19876394118064927,
+          "event_recall": 0.88,
+          "false_alarm_events_per_normal_hour": 25.62675228592218,
+          "alarm_events_explained": 44,
+          "capability_support_success_rate": 0.75,
+          "greedy_scoreflip_and_support_rate": 0.8409090909090909,
+          "capability_group_budget_success_rate": {
+            "1": 0.75,
+            "2": 0.75,
+            "4": 0.75
+          },
+          "capability_tag_budget_success_rate": {
+            "1": 0.6136363636363636,
+            "2": 0.6136363636363636,
+            "4": 0.7045454545454546,
+            "8": 0.75,
+            "16": 0.75
+          },
+          "median_edited_tags_on_success": 1.0,
+          "median_norm_cost_proposed_on_success": 317.8031008006419,
+          "median_norm_cost_greedy_on_same_events": 342.0553419668151,
+          "stage_hit_at_1_on_success": 0.6666666666666666,
+          "transition_consistency_max_abs_error_on_success": 0.0,
+          "explanation_p95_ms": 43.01517500643968
+        }
+      }
+    },
+    {
+      "run_id": "hai21_seed43_20261031T033424_387505Z",
+      "seed": 43,
+      "models": {
+        "RobustZ-TEMPORAL": {
+          "detector_f1": 0.00927734375,
+          "event_recall": 0.18,
+          "false_alarm_events_per_normal_hour": 4.240595535518931,
+          "alarm_events_explained": 9,
+          "capability_support_success_rate": 0.3333333333333333,
+          "greedy_scoreflip_and_support_rate": 0.0,
+          "capability_group_budget_success_rate": {
+            "1": 0.0,
+            "2": 0.3333333333333333,
+            "4": 0.3333333333333333
+          },
+          "capability_tag_budget_success_rate": {
+            "1": 0.0,
+            "2": 0.1111111111111111,
+            "4": 0.3333333333333333,
+            "8": 0.3333333333333333,
+            "16": 0.3333333333333333
+          },
+          "median_edited_tags_on_success": 3.0,
+          "median_norm_cost_proposed_on_success": 304.8727005038163,
+          "median_norm_cost_greedy_on_same_events": 2188.8860542007624,
+          "stage_hit_at_1_on_success": 0.6666666666666666,
+          "transition_consistency_max_abs_error_on_success": 0.0,
+          "explanation_p95_ms": 36.256840007263236
+        },
+        "PCA-STATE": {
+          "detector_f1": 0.3977313009571074,
+          "event_recall": 0.92,
+          "false_alarm_events_per_normal_hour": 18.098092393489,
+          "alarm_events_explained": 46,
+          "capability_support_success_rate": 0.9347826086956522,
+          "greedy_scoreflip_and_support_rate": 0.9130434782608695,
+          "capability_group_budget_success_rate": {
+            "1": 0.8913043478260869,
+            "2": 0.9130434782608695,
+            "4": 0.9347826086956522
+          },
+          "capability_tag_budget_success_rate": {
+            "1": 0.8478260869565217,
+            "2": 0.8695652173913043,
+            "4": 0.9130434782608695,
+            "8": 0.9347826086956522,
+            "16": 0.9347826086956522
+          },
+          "median_edited_tags_on_success": 1.0,
+          "median_norm_cost_proposed_on_success": 88.13345923827514,
+          "median_norm_cost_greedy_on_same_events": 95.10319708619993,
+          "stage_hit_at_1_on_success": 0.20930232558139536,
+          "transition_consistency_max_abs_error_on_success": null,
+          "explanation_p95_ms": 74.38599999659345
+        },
+        "PCA-TEMPORAL": {
+          "detector_f1": 0.19896255240531513,
+          "event_recall": 0.88,
+          "false_alarm_events_per_normal_hour": 25.590116471360464,
+          "alarm_events_explained": 44,
+          "capability_support_success_rate": 0.8636363636363636,
+          "greedy_scoreflip_and_support_rate": 0.9090909090909091,
+          "capability_group_budget_success_rate": {
+            "1": 0.8636363636363636,
+            "2": 0.8636363636363636,
+            "4": 0.8636363636363636
+          },
+          "capability_tag_budget_success_rate": {
+            "1": 0.7045454545454546,
+            "2": 0.7272727272727273,
+            "4": 0.8181818181818182,
+            "8": 0.8636363636363636,
+            "16": 0.8636363636363636
+          },
+          "median_edited_tags_on_success": 1.0,
+          "median_norm_cost_proposed_on_success": 352.56138762290254,
+          "median_norm_cost_greedy_on_same_events": 340.22305806175166,
+          "stage_hit_at_1_on_success": 0.6578947368421053,
+          "transition_consistency_max_abs_error_on_success": 0.0,
+          "explanation_p95_ms": 49.218120003934025
+        }
+      }
+    },
+    {
+      "run_id": "hai21_seed44_20261031T033554_412263Z",
+      "seed": 44,
+      "models": {
+        "RobustZ-TEMPORAL": {
+          "detector_f1": 0.00926829268292683,
+          "event_recall": 0.18,
+          "false_alarm_events_per_normal_hour": 4.26807239644022,
+          "alarm_events_explained": 9,
+          "capability_support_success_rate": 0.5555555555555556,
+          "greedy_scoreflip_and_support_rate": 0.0,
+          "capability_group_budget_success_rate": {
+            "1": 0.0,
+            "2": 0.5555555555555556,
+            "4": 0.5555555555555556
+          },
+          "capability_tag_budget_success_rate": {
+            "1": 0.0,
+            "2": 0.2222222222222222,
+            "4": 0.5555555555555556,
+            "8": 0.5555555555555556,
+            "16": 0.5555555555555556
+          },
+          "median_edited_tags_on_success": 3.0,
+          "median_norm_cost_proposed_on_success": 418.357876053632,
+          "median_norm_cost_greedy_on_same_events": 2188.8860542007624,
+          "stage_hit_at_1_on_success": 0.6,
+          "transition_consistency_max_abs_error_on_success": 0.0,
+          "explanation_p95_ms": 36.200999992433935
+        },
+        "PCA-STATE": {
+          "detector_f1": 0.39411486646182936,
+          "event_recall": 0.9,
+          "false_alarm_events_per_normal_hour": 17.282945519490763,
+          "alarm_events_explained": 45,
+          "capability_support_success_rate": 0.9333333333333333,
+          "greedy_scoreflip_and_support_rate": 0.8888888888888888,
+          "capability_group_budget_success_rate": {
+            "1": 0.8888888888888888,
+            "2": 0.9333333333333333,
+            "4": 0.9333333333333333
+          },
+          "capability_tag_budget_success_rate": {
+            "1": 0.8444444444444444,
+            "2": 0.8888888888888888,
+            "4": 0.9111111111111111,
+            "8": 0.9333333333333333,
+            "16": 0.9333333333333333
+          },
+          "median_edited_tags_on_success": 1.0,
+          "median_norm_cost_proposed_on_success": 76.21745582085526,
+          "median_norm_cost_greedy_on_same_events": 96.52711220066985,
+          "stage_hit_at_1_on_success": 0.23809523809523808,
+          "transition_consistency_max_abs_error_on_success": null,
+          "explanation_p95_ms": 77.34809999819845
+        },
+        "PCA-TEMPORAL": {
+          "detector_f1": 0.19859365011719585,
+          "event_recall": 0.88,
+          "false_alarm_events_per_normal_hour": 25.67254705412433,
+          "alarm_events_explained": 44,
+          "capability_support_success_rate": 0.8181818181818182,
+          "greedy_scoreflip_and_support_rate": 0.8863636363636364,
+          "capability_group_budget_success_rate": {
+            "1": 0.8181818181818182,
+            "2": 0.8181818181818182,
+            "4": 0.8181818181818182
+          },
+          "capability_tag_budget_success_rate": {
+            "1": 0.6818181818181818,
+            "2": 0.6818181818181818,
+            "4": 0.7727272727272727,
+            "8": 0.8181818181818182,
+            "16": 0.8181818181818182
+          },
+          "median_edited_tags_on_success": 1.0,
+          "median_norm_cost_proposed_on_success": 294.71459781459384,
+          "median_norm_cost_greedy_on_same_events": 342.66870700121416,
+          "stage_hit_at_1_on_success": 0.6388888888888888,
+          "transition_consistency_max_abs_error_on_success": 0.0,
+          "explanation_p95_ms": 48.87872499602963
+        }
+      }
+    },
+    {
+      "run_id": "hai21_seed45_20261031T033721_596293Z",
+      "seed": 45,
+      "models": {
+        "RobustZ-TEMPORAL": {
+          "detector_f1": 0.01299017617926443,
+          "event_recall": 0.18,
+          "false_alarm_events_per_normal_hour": 4.25891344279979,
+          "alarm_events_explained": 9,
+          "capability_support_success_rate": 0.1111111111111111,
+          "greedy_scoreflip_and_support_rate": 0.0,
+          "capability_group_budget_success_rate": {
+            "1": 0.0,
+            "2": 0.1111111111111111,
+            "4": 0.1111111111111111
+          },
+          "capability_tag_budget_success_rate": {
+            "1": 0.0,
+            "2": 0.0,
+            "4": 0.1111111111111111,
+            "8": 0.1111111111111111,
+            "16": 0.1111111111111111
+          },
+          "median_edited_tags_on_success": 4.0,
+          "median_norm_cost_proposed_on_success": 1277.8847909371973,
+          "median_norm_cost_greedy_on_same_events": 2188.7174315108928,
+          "stage_hit_at_1_on_success": 0.0,
+          "transition_consistency_max_abs_error_on_success": 0.0,
+          "explanation_p95_ms": 31.73945999296847
+        },
+        "PCA-STATE": {
+          "detector_f1": 0.3989374262101535,
+          "event_recall": 0.92,
+          "false_alarm_events_per_normal_hour": 18.14388716169115,
+          "alarm_events_explained": 46,
+          "capability_support_success_rate": 0.9565217391304348,
+          "greedy_scoreflip_and_support_rate": 0.9347826086956522,
+          "capability_group_budget_success_rate": {
+            "1": 0.9347826086956522,
+            "2": 0.9565217391304348,
+            "4": 0.9565217391304348
+          },
+          "capability_tag_budget_success_rate": {
+            "1": 0.8913043478260869,
+            "2": 0.9130434782608695,
+            "4": 0.9347826086956522,
+            "8": 0.9565217391304348,
+            "16": 0.9565217391304348
+          },
+          "median_edited_tags_on_success": 1.0,
+          "median_norm_cost_proposed_on_success": 75.20571968164037,
+          "median_norm_cost_greedy_on_same_events": 95.2680627829802,
+          "stage_hit_at_1_on_success": 0.20454545454545456,
+          "transition_consistency_max_abs_error_on_success": null,
+          "explanation_p95_ms": 86.01137499863398
+        },
+        "PCA-TEMPORAL": {
+          "detector_f1": 0.19845159457347822,
+          "event_recall": 0.88,
+          "false_alarm_events_per_normal_hour": 25.64507019320304,
+          "alarm_events_explained": 44,
+          "capability_support_success_rate": 0.7727272727272727,
+          "greedy_scoreflip_and_support_rate": 0.9090909090909091,
+          "capability_group_budget_success_rate": {
+            "1": 0.7727272727272727,
+            "2": 0.7727272727272727,
+            "4": 0.7727272727272727
+          },
+          "capability_tag_budget_success_rate": {
+            "1": 0.6363636363636364,
+            "2": 0.6363636363636364,
+            "4": 0.7272727272727273,
+            "8": 0.7727272727272727,
+            "16": 0.7727272727272727
+          },
+          "median_edited_tags_on_success": 1.0,
+          "median_norm_cost_proposed_on_success": 349.7706762893413,
+          "median_norm_cost_greedy_on_same_events": 331.7363772704549,
+          "stage_hit_at_1_on_success": 0.6470588235294118,
+          "transition_consistency_max_abs_error_on_success": 0.0,
+          "explanation_p95_ms": 19.0013349900255
+        }
+      }
+    },
+    {
+      "run_id": "hai21_seed46_20261031T033830_980820Z",
+      "seed": 46,
+      "models": {
+        "RobustZ-TEMPORAL": {
+          "detector_f1": 0.01298912161065108,
+          "event_recall": 0.18,
+          "false_alarm_events_per_normal_hour": 4.25891344279979,
+          "alarm_events_explained": 9,
+          "capability_support_success_rate": 0.3333333333333333,
+          "greedy_scoreflip_and_support_rate": 0.0,
+          "capability_group_budget_success_rate": {
+            "1": 0.0,
+            "2": 0.3333333333333333,
+            "4": 0.3333333333333333
+          },
+          "capability_tag_budget_success_rate": {
+            "1": 0.0,
+            "2": 0.1111111111111111,
+            "4": 0.3333333333333333,
+            "8": 0.3333333333333333,
+            "16": 0.3333333333333333
+          },
+          "median_edited_tags_on_success": 3.0,
+          "median_norm_cost_proposed_on_success": 428.062029830157,
+          "median_norm_cost_greedy_on_same_events": 2188.8860542007624,
+          "stage_hit_at_1_on_success": 0.6666666666666666,
+          "transition_consistency_max_abs_error_on_success": 0.0,
+          "explanation_p95_ms": 15.207260000170209
+        },
+        "PCA-STATE": {
+          "detector_f1": 0.4013452914798207,
+          "event_recall": 0.92,
+          "false_alarm_events_per_normal_hour": 18.336225188140173,
+          "alarm_events_explained": 46,
+          "capability_support_success_rate": 0.9565217391304348,
+          "greedy_scoreflip_and_support_rate": 0.9130434782608695,
+          "capability_group_budget_success_rate": {
+            "1": 0.8913043478260869,
+            "2": 0.9347826086956522,
+            "4": 0.9565217391304348
+          },
+          "capability_tag_budget_success_rate": {
+            "1": 0.8478260869565217,
+            "2": 0.8913043478260869,
+            "4": 0.9347826086956522,
+            "8": 0.9565217391304348,
+            "16": 0.9565217391304348
+          },
+          "median_edited_tags_on_success": 1.0,
+          "median_norm_cost_proposed_on_success": 92.71999640271596,
+          "median_norm_cost_greedy_on_same_events": 95.2680627829802,
+          "stage_hit_at_1_on_success": 0.20454545454545456,
+          "transition_consistency_max_abs_error_on_success": null,
+          "explanation_p95_ms": 40.01815000810893
+        },
+        "PCA-TEMPORAL": {
+          "detector_f1": 0.1986208857610009,
+          "event_recall": 0.88,
+          "false_alarm_events_per_normal_hour": 25.571798564079604,
+          "alarm_events_explained": 44,
+          "capability_support_success_rate": 0.6818181818181818,
+          "greedy_scoreflip_and_support_rate": 0.7727272727272727,
+          "capability_group_budget_success_rate": {
+            "1": 0.6818181818181818,
+            "2": 0.6818181818181818,
+            "4": 0.6818181818181818
+          },
+          "capability_tag_budget_success_rate": {
+            "1": 0.5681818181818182,
+            "2": 0.5909090909090909,
+            "4": 0.6590909090909091,
+            "8": 0.6818181818181818,
+            "16": 0.6818181818181818
+          },
+          "median_edited_tags_on_success": 1.0,
+          "median_norm_cost_proposed_on_success": 343.85126239687736,
+          "median_norm_cost_greedy_on_same_events": 339.1050471179974,
+          "stage_hit_at_1_on_success": 0.6333333333333333,
+          "transition_consistency_max_abs_error_on_success": 0.0,
+          "explanation_p95_ms": 30.32203999682679
+        }
+      }
+    }
+  ],
+  "interpretation": "Descriptive aggregation across supplied runs only; ranges are not confidence intervals."
+}

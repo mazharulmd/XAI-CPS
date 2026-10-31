@@ -1,0 +1,498 @@
+{
+  "run_id": "hai21_seed42_20261031T051335_879603Z",
+  "paired_design": "same event, fitted seed-specific detector, and reference values; warmup excluded; vectorized and identity-preserving loop implementations alternated per repeat",
+  "events_per_model_max": 20,
+  "repeats_per_event_after_warmup": 10,
+  "event_results": [
+    {
+      "model": "RobustZ-TEMPORAL",
+      "file": "test2.csv.gz",
+      "event_index": 13,
+      "vectorized_p50_ms": 0.8812999949441291,
+      "loop_p50_ms": 9.266350003599655,
+      "vectorized_median_speed_ratio_vs_loop": 10.514410594302912,
+      "max_attribution_abs_difference": 0.0,
+      "state_only": false
+    },
+    {
+      "model": "RobustZ-TEMPORAL",
+      "file": "test2.csv.gz",
+      "event_index": 15,
+      "vectorized_p50_ms": 0.7791500029270537,
+      "loop_p50_ms": 7.532900002843235,
+      "vectorized_median_speed_ratio_vs_loop": 9.668099819732,
+      "max_attribution_abs_difference": 0.0,
+      "state_only": false
+    },
+    {
+      "model": "RobustZ-TEMPORAL",
+      "file": "test2.csv.gz",
+      "event_index": 16,
+      "vectorized_p50_ms": 0.7969500074977987,
+      "loop_p50_ms": 8.402599989494774,
+      "vectorized_median_speed_ratio_vs_loop": 10.543446778897213,
+      "max_attribution_abs_difference": 0.0,
+      "state_only": false
+    },
+    {
+      "model": "RobustZ-TEMPORAL",
+      "file": "test3.csv.gz",
+      "event_index": 1,
+      "vectorized_p50_ms": 0.7244999942486174,
+      "loop_p50_ms": 9.150499994575512,
+      "vectorized_median_speed_ratio_vs_loop": 12.630089809821932,
+      "max_attribution_abs_difference": 0.0,
+      "state_only": false
+    },
+    {
+      "model": "RobustZ-TEMPORAL",
+      "file": "test3.csv.gz",
+      "event_index": 3,
+      "vectorized_p50_ms": 0.7248999972944148,
+      "loop_p50_ms": 8.008999997400679,
+      "vectorized_median_speed_ratio_vs_loop": 11.04842050944009,
+      "max_attribution_abs_difference": 0.0,
+      "state_only": false
+    },
+    {
+      "model": "RobustZ-TEMPORAL",
+      "file": "test3.csv.gz",
+      "event_index": 4,
+      "vectorized_p50_ms": 0.7235500088427216,
+      "loop_p50_ms": 7.5124499926459976,
+      "vectorized_median_speed_ratio_vs_loop": 10.382765394007455,
+      "max_attribution_abs_difference": 0.0,
+      "state_only": false
+    },
+    {
+      "model": "RobustZ-TEMPORAL",
+      "file": "test5.csv.gz",
+      "event_index": 2,
+      "vectorized_p50_ms": 0.808000004326459,
+      "loop_p50_ms": 8.495350004523061,
+      "vectorized_median_speed_ratio_vs_loop": 10.514046979003055,
+      "max_attribution_abs_difference": 0.0,
+      "state_only": false
+    },
+    {
+      "model": "RobustZ-TEMPORAL",
+      "file": "test5.csv.gz",
+      "event_index": 6,
+      "vectorized_p50_ms": 0.8457000003545545,
+      "loop_p50_ms": 8.033650003199,
+      "vectorized_median_speed_ratio_vs_loop": 9.49940877359695,
+      "max_attribution_abs_difference": 0.0,
+      "state_only": false
+    },
+    {
+      "model": "RobustZ-TEMPORAL",
+      "file": "test5.csv.gz",
+      "event_index": 8,
+      "vectorized_p50_ms": 0.7927499973447993,
+      "loop_p50_ms": 8.930700001656078,
+      "vectorized_median_speed_ratio_vs_loop": 11.265468346348984,
+      "max_attribution_abs_difference": 0.0,
+      "state_only": false
+    },
+    {
+      "model": "PCA-STATE",
+      "file": "test1.csv.gz",
+      "event_index": 0,
+      "vectorized_p50_ms": 1.1866499989992008,
+      "loop_p50_ms": 12.552900006994605,
+      "vectorized_median_speed_ratio_vs_loop": 10.578435105196558,
+      "max_attribution_abs_difference": 1.4210854715202004e-14,
+      "state_only": true
+    },
+    {
+      "model": "PCA-STATE",
+      "file": "test1.csv.gz",
+      "event_index": 1,
+      "vectorized_p50_ms": 1.28825000138022,
+      "loop_p50_ms": 12.744600004225504,
+      "vectorized_median_speed_ratio_vs_loop": 9.892955552548845,
+      "max_attribution_abs_difference": 1.4210854715202004e-14,
+      "state_only": true
+    },
+    {
+      "model": "PCA-STATE",
+      "file": "test1.csv.gz",
+      "event_index": 2,
+      "vectorized_p50_ms": 1.2497499992605299,
+      "loop_p50_ms": 13.743950003117789,
+      "vectorized_median_speed_ratio_vs_loop": 10.997359480896185,
+      "max_attribution_abs_difference": 1.4210854715202004e-14,
+      "state_only": true
+    },
+    {
+      "model": "PCA-STATE",
+      "file": "test1.csv.gz",
+      "event_index": 4,
+      "vectorized_p50_ms": 1.0058000043500215,
+      "loop_p50_ms": 11.11904999561375,
+      "vectorized_median_speed_ratio_vs_loop": 11.054931345719389,
+      "max_attribution_abs_difference": 0.0,
+      "state_only": true
+    },
+    {
+      "model": "PCA-STATE",
+      "file": "test2.csv.gz",
+      "event_index": 0,
+      "vectorized_p50_ms": 0.8741499987081625,
+      "loop_p50_ms": 9.784449997823685,
+      "vectorized_median_speed_ratio_vs_loop": 11.193101884440146,
+      "max_attribution_abs_difference": 2.2737367544323206e-13,
+      "state_only": true
+    },
+    {
+      "model": "PCA-STATE",
+      "file": "test2.csv.gz",
+      "event_index": 1,
+      "vectorized_p50_ms": 1.080550006008707,
+      "loop_p50_ms": 12.851749997935258,
+      "vectorized_median_speed_ratio_vs_loop": 11.893711467742753,
+      "max_attribution_abs_difference": 2.1316282072803006e-14,
+      "state_only": true
+    },
+    {
+      "model": "PCA-STATE",
+      "file": "test2.csv.gz",
+      "event_index": 3,
+      "vectorized_p50_ms": 1.0758999997051433,
+      "loop_p50_ms": 10.984750006173272,
+      "vectorized_median_speed_ratio_vs_loop": 10.209824341652297,
+      "max_attribution_abs_difference": 2.842170943040401e-14,
+      "state_only": true
+    },
+    {
+      "model": "PCA-STATE",
+      "file": "test2.csv.gz",
+      "event_index": 4,
+      "vectorized_p50_ms": 1.2298500005272217,
+      "loop_p50_ms": 13.790050012175925,
+      "vectorized_median_speed_ratio_vs_loop": 11.21279018275749,
+      "max_attribution_abs_difference": 1.4210854715202004e-14,
+      "state_only": true
+    },
+    {
+      "model": "PCA-STATE",
+      "file": "test2.csv.gz",
+      "event_index": 5,
+      "vectorized_p50_ms": 1.2032499944325536,
+      "loop_p50_ms": 13.247499999124557,
+      "vectorized_median_speed_ratio_vs_loop": 11.009765269412702,
+      "max_attribution_abs_difference": 1.4210854715202004e-14,
+      "state_only": true
+    },
+    {
+      "model": "PCA-STATE",
+      "file": "test2.csv.gz",
+      "event_index": 6,
+      "vectorized_p50_ms": 1.150299998698756,
+      "loop_p50_ms": 13.523299996450078,
+      "vectorized_median_speed_ratio_vs_loop": 11.756324447316285,
+      "max_attribution_abs_difference": 2.842170943040401e-14,
+      "state_only": true
+    },
+    {
+      "model": "PCA-STATE",
+      "file": "test2.csv.gz",
+      "event_index": 7,
+      "vectorized_p50_ms": 1.3872500057914294,
+      "loop_p50_ms": 12.630149991309736,
+      "vectorized_median_speed_ratio_vs_loop": 9.104451208204685,
+      "max_attribution_abs_difference": 1.4210854715202004e-14,
+      "state_only": true
+    },
+    {
+      "model": "PCA-STATE",
+      "file": "test2.csv.gz",
+      "event_index": 8,
+      "vectorized_p50_ms": 1.177949998236727,
+      "loop_p50_ms": 11.92760000412818,
+      "vectorized_median_speed_ratio_vs_loop": 10.125726917086974,
+      "max_attribution_abs_difference": 5.684341886080802e-14,
+      "state_only": true
+    },
+    {
+      "model": "PCA-STATE",
+      "file": "test2.csv.gz",
+      "event_index": 9,
+      "vectorized_p50_ms": 1.2161499980720691,
+      "loop_p50_ms": 12.873599996964913,
+      "vectorized_median_speed_ratio_vs_loop": 10.585536337929609,
+      "max_attribution_abs_difference": 1.4210854715202004e-14,
+      "state_only": true
+    },
+    {
+      "model": "PCA-STATE",
+      "file": "test2.csv.gz",
+      "event_index": 11,
+      "vectorized_p50_ms": 1.444500005163718,
+      "loop_p50_ms": 13.645599996380042,
+      "vectorized_median_speed_ratio_vs_loop": 9.44659047947422,
+      "max_attribution_abs_difference": 2.842170943040401e-14,
+      "state_only": true
+    },
+    {
+      "model": "PCA-STATE",
+      "file": "test2.csv.gz",
+      "event_index": 12,
+      "vectorized_p50_ms": 1.247499996679835,
+      "loop_p50_ms": 13.233700003183912,
+      "vectorized_median_speed_ratio_vs_loop": 10.608176383490829,
+      "max_attribution_abs_difference": 2.1316282072803006e-14,
+      "state_only": true
+    },
+    {
+      "model": "PCA-STATE",
+      "file": "test2.csv.gz",
+      "event_index": 14,
+      "vectorized_p50_ms": 1.2435999960871413,
+      "loop_p50_ms": 12.398250000842381,
+      "vectorized_median_speed_ratio_vs_loop": 9.969644612296712,
+      "max_attribution_abs_difference": 2.842170943040401e-14,
+      "state_only": true
+    },
+    {
+      "model": "PCA-STATE",
+      "file": "test2.csv.gz",
+      "event_index": 15,
+      "vectorized_p50_ms": 1.1603000020841137,
+      "loop_p50_ms": 12.80475000385195,
+      "vectorized_median_speed_ratio_vs_loop": 11.035723503276953,
+      "max_attribution_abs_difference": 1.1368683772161603e-13,
+      "state_only": true
+    },
+    {
+      "model": "PCA-STATE",
+      "file": "test2.csv.gz",
+      "event_index": 16,
+      "vectorized_p50_ms": 1.0611499965307303,
+      "loop_p50_ms": 11.918999996851198,
+      "vectorized_median_speed_ratio_vs_loop": 11.232153829165123,
+      "max_attribution_abs_difference": 5.684341886080802e-14,
+      "state_only": true
+    },
+    {
+      "model": "PCA-STATE",
+      "file": "test2.csv.gz",
+      "event_index": 17,
+      "vectorized_p50_ms": 1.1876999997184612,
+      "loop_p50_ms": 12.899300003482495,
+      "vectorized_median_speed_ratio_vs_loop": 10.860739249423435,
+      "max_attribution_abs_difference": 2.842170943040401e-14,
+      "state_only": true
+    },
+    {
+      "model": "PCA-STATE",
+      "file": "test2.csv.gz",
+      "event_index": 18,
+      "vectorized_p50_ms": 1.2224500023876317,
+      "loop_p50_ms": 11.457399996288586,
+      "vectorized_median_speed_ratio_vs_loop": 9.372489651037288,
+      "max_attribution_abs_difference": 1.4210854715202004e-14,
+      "state_only": true
+    },
+    {
+      "model": "PCA-TEMPORAL",
+      "file": "test1.csv.gz",
+      "event_index": 0,
+      "vectorized_p50_ms": 0.7098499991116114,
+      "loop_p50_ms": 10.597700005746447,
+      "vectorized_median_speed_ratio_vs_loop": 14.929492173007871,
+      "max_attribution_abs_difference": 1.1368683772161603e-13,
+      "state_only": false
+    },
+    {
+      "model": "PCA-TEMPORAL",
+      "file": "test1.csv.gz",
+      "event_index": 1,
+      "vectorized_p50_ms": 0.45739999768557027,
+      "loop_p50_ms": 4.465850004635286,
+      "vectorized_median_speed_ratio_vs_loop": 9.763554934919867,
+      "max_attribution_abs_difference": 1.1368683772161603e-13,
+      "state_only": false
+    },
+    {
+      "model": "PCA-TEMPORAL",
+      "file": "test1.csv.gz",
+      "event_index": 2,
+      "vectorized_p50_ms": 1.0312499944120646,
+      "loop_p50_ms": 14.268699997046497,
+      "vectorized_median_speed_ratio_vs_loop": 13.836315223624663,
+      "max_attribution_abs_difference": 1.1368683772161603e-13,
+      "state_only": false
+    },
+    {
+      "model": "PCA-TEMPORAL",
+      "file": "test2.csv.gz",
+      "event_index": 0,
+      "vectorized_p50_ms": 1.0439499965286814,
+      "loop_p50_ms": 12.950199998158496,
+      "vectorized_median_speed_ratio_vs_loop": 12.405000278959916,
+      "max_attribution_abs_difference": 0.0,
+      "state_only": false
+    },
+    {
+      "model": "PCA-TEMPORAL",
+      "file": "test2.csv.gz",
+      "event_index": 1,
+      "vectorized_p50_ms": 0.7883500002208166,
+      "loop_p50_ms": 8.940300001995638,
+      "vectorized_median_speed_ratio_vs_loop": 11.340521341398443,
+      "max_attribution_abs_difference": 0.0,
+      "state_only": false
+    },
+    {
+      "model": "PCA-TEMPORAL",
+      "file": "test2.csv.gz",
+      "event_index": 2,
+      "vectorized_p50_ms": 1.0114000033354387,
+      "loop_p50_ms": 12.44349999615224,
+      "vectorized_median_speed_ratio_vs_loop": 12.303242985085554,
+      "max_attribution_abs_difference": 0.0,
+      "state_only": false
+    },
+    {
+      "model": "PCA-TEMPORAL",
+      "file": "test2.csv.gz",
+      "event_index": 3,
+      "vectorized_p50_ms": 1.0507999977562577,
+      "loop_p50_ms": 13.978800001495983,
+      "vectorized_median_speed_ratio_vs_loop": 13.30300726241388,
+      "max_attribution_abs_difference": 0.0,
+      "state_only": false
+    },
+    {
+      "model": "PCA-TEMPORAL",
+      "file": "test2.csv.gz",
+      "event_index": 4,
+      "vectorized_p50_ms": 0.4896000027656555,
+      "loop_p50_ms": 5.3197000015643425,
+      "vectorized_median_speed_ratio_vs_loop": 10.86540026861599,
+      "max_attribution_abs_difference": 2.2737367544323206e-13,
+      "state_only": false
+    },
+    {
+      "model": "PCA-TEMPORAL",
+      "file": "test2.csv.gz",
+      "event_index": 5,
+      "vectorized_p50_ms": 0.4404500068631023,
+      "loop_p50_ms": 4.414700000779703,
+      "vectorized_median_speed_ratio_vs_loop": 10.023157979316029,
+      "max_attribution_abs_difference": 2.2737367544323206e-13,
+      "state_only": false
+    },
+    {
+      "model": "PCA-TEMPORAL",
+      "file": "test2.csv.gz",
+      "event_index": 6,
+      "vectorized_p50_ms": 0.5244500061962754,
+      "loop_p50_ms": 8.61875000555301,
+      "vectorized_median_speed_ratio_vs_loop": 16.433882932070066,
+      "max_attribution_abs_difference": 4.547473508864641e-13,
+      "state_only": false
+    },
+    {
+      "model": "PCA-TEMPORAL",
+      "file": "test2.csv.gz",
+      "event_index": 7,
+      "vectorized_p50_ms": 1.064700001734309,
+      "loop_p50_ms": 13.910249996115454,
+      "vectorized_median_speed_ratio_vs_loop": 13.064947847709963,
+      "max_attribution_abs_difference": 5.684341886080802e-14,
+      "state_only": false
+    },
+    {
+      "model": "PCA-TEMPORAL",
+      "file": "test2.csv.gz",
+      "event_index": 8,
+      "vectorized_p50_ms": 0.38869999843882397,
+      "loop_p50_ms": 4.262750000634696,
+      "vectorized_median_speed_ratio_vs_loop": 10.966683863533882,
+      "max_attribution_abs_difference": 2.2737367544323206e-13,
+      "state_only": false
+    },
+    {
+      "model": "PCA-TEMPORAL",
+      "file": "test2.csv.gz",
+      "event_index": 9,
+      "vectorized_p50_ms": 0.4314499965403229,
+      "loop_p50_ms": 4.374299998744391,
+      "vectorized_median_speed_ratio_vs_loop": 10.13860246568706,
+      "max_attribution_abs_difference": 1.1368683772161603e-13,
+      "state_only": false
+    },
+    {
+      "model": "PCA-TEMPORAL",
+      "file": "test2.csv.gz",
+      "event_index": 12,
+      "vectorized_p50_ms": 0.4442999997991137,
+      "loop_p50_ms": 4.319349995057564,
+      "vectorized_median_speed_ratio_vs_loop": 9.721697044813233,
+      "max_attribution_abs_difference": 2.2737367544323206e-13,
+      "state_only": false
+    },
+    {
+      "model": "PCA-TEMPORAL",
+      "file": "test2.csv.gz",
+      "event_index": 13,
+      "vectorized_p50_ms": 0.435949994425755,
+      "loop_p50_ms": 4.405099993164185,
+      "vectorized_median_speed_ratio_vs_loop": 10.104599264800315,
+      "max_attribution_abs_difference": 4.547473508864641e-13,
+      "state_only": false
+    },
+    {
+      "model": "PCA-TEMPORAL",
+      "file": "test2.csv.gz",
+      "event_index": 15,
+      "vectorized_p50_ms": 0.43290000030538067,
+      "loop_p50_ms": 4.296550003346056,
+      "vectorized_median_speed_ratio_vs_loop": 9.9250404257684,
+      "max_attribution_abs_difference": 0.0,
+      "state_only": false
+    },
+    {
+      "model": "PCA-TEMPORAL",
+      "file": "test2.csv.gz",
+      "event_index": 16,
+      "vectorized_p50_ms": 0.40189999708672985,
+      "loop_p50_ms": 4.2715999952633865,
+      "vectorized_median_speed_ratio_vs_loop": 10.628514621117494,
+      "max_attribution_abs_difference": 2.2737367544323206e-13,
+      "state_only": false
+    },
+    {
+      "model": "PCA-TEMPORAL",
+      "file": "test2.csv.gz",
+      "event_index": 17,
+      "vectorized_p50_ms": 0.40774999069981277,
+      "loop_p50_ms": 4.2692499991972,
+      "vectorized_median_speed_ratio_vs_loop": 10.47026387878017,
+      "max_attribution_abs_difference": 0.0,
+      "state_only": false
+    },
+    {
+      "model": "PCA-TEMPORAL",
+      "file": "test2.csv.gz",
+      "event_index": 18,
+      "vectorized_p50_ms": 0.42204999772366136,
+      "loop_p50_ms": 4.262550006387755,
+      "vectorized_median_speed_ratio_vs_loop": 10.099632814543158,
+      "max_attribution_abs_difference": 4.547473508864641e-13,
+      "state_only": false
+    },
+    {
+      "model": "PCA-TEMPORAL",
+      "file": "test2.csv.gz",
+      "event_index": 19,
+      "vectorized_p50_ms": 1.060749993484933,
+      "loop_p50_ms": 14.120699997874908,
+      "vectorized_median_speed_ratio_vs_loop": 13.311996308841346,
+      "max_attribution_abs_difference": 2.8421709430404007e-13,
+      "state_only": false
+    }
+  ]
+}

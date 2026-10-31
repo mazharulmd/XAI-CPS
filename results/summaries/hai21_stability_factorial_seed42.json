@@ -1,0 +1,1528 @@
+{
+  "dataset": "HAI 21.03",
+  "runs": [
+    "hai21_seed42_20261031T051335_879603Z"
+  ],
+  "perturbation_design": {
+    "factorial_design": "crosses input perturbation semantics (independent state/difference versus identity-preserving state jitter) with grouped-ablation semantics (legacy independent channel edits versus identity-preserving channel edits); paired input-design contrasts hold the explainer baseline fixed",
+    "identity_preserving": "Gaussian current-state jitter and temporal ablation attributions recompute first differences against the observed preceding state; PCA-STATE delta remains zero and is excluded from temporal input-design contrasts",
+    "sigmas": [
+      0.02,
+      0.05
+    ],
+    "perturbations_per_event_and_design": 5,
+    "events": "the same detected alarm points with a non-null prior top5_stability_mean field, up to the first ten attack intervals per test file"
+  },
+  "models": {
+    "PCA-STATE": {
+      "n_event_seed_records": 36,
+      "n_unique_events": 36,
+      "metrics": {
+        "legacy_explainer_invalid_input_2pct_jaccard": {
+          "mean_across_event_seed_records": 0.9888888888888887,
+          "mean_after_averaging_seeds_within_event": 0.9888888888888887,
+          "event_bootstrap_ci95_after_seed_averaging": [
+            0.9768055555555555,
+            1.0
+          ],
+          "seed_mean_range": [
+            0.9888888888888887,
+            0.9888888888888887
+          ]
+        },
+        "legacy_explainer_valid_input_2pct_jaccard": {
+          "mean_across_event_seed_records": null,
+          "mean_after_averaging_seeds_within_event": null,
+          "event_bootstrap_ci95_after_seed_averaging": null,
+          "seed_mean_range": null
+        },
+        "identity_preserving_explainer_invalid_input_2pct_jaccard": {
+          "mean_across_event_seed_records": null,
+          "mean_after_averaging_seeds_within_event": null,
+          "event_bootstrap_ci95_after_seed_averaging": null,
+          "seed_mean_range": null
+        },
+        "identity_preserving_0.02_jaccard": {
+          "mean_across_event_seed_records": 0.9888888888888887,
+          "mean_after_averaging_seeds_within_event": 0.9888888888888887,
+          "event_bootstrap_ci95_after_seed_averaging": [
+            0.974074074074074,
+            1.0
+          ],
+          "seed_mean_range": [
+            0.9888888888888887,
+            0.9888888888888887
+          ]
+        },
+        "identity_preserving_0.05_jaccard": {
+          "mean_across_event_seed_records": 0.9814814814814814,
+          "mean_after_averaging_seeds_within_event": 0.9814814814814814,
+          "event_bootstrap_ci95_after_seed_averaging": [
+            0.9675462962962963,
+            0.9972685185185185
+          ],
+          "seed_mean_range": [
+            0.9814814814814814,
+            0.9814814814814814
+          ]
+        }
+      }
+    },
+    "PCA-TEMPORAL": {
+      "n_event_seed_records": 35,
+      "n_unique_events": 35,
+      "metrics": {
+        "legacy_explainer_invalid_input_2pct_jaccard": {
+          "mean_across_event_seed_records": 0.9923809523809524,
+          "mean_after_averaging_seeds_within_event": 0.9923809523809524,
+          "event_bootstrap_ci95_after_seed_averaging": [
+            0.979047619047619,
+            1.0
+          ],
+          "seed_mean_range": [
+            0.9923809523809524,
+            0.9923809523809524
+          ]
+        },
+        "legacy_explainer_valid_input_2pct_jaccard": {
+          "mean_across_event_seed_records": 0.7218140589569161,
+          "mean_after_averaging_seeds_within_event": 0.7218140589569161,
+          "event_bootstrap_ci95_after_seed_averaging": [
+            0.6219501133786848,
+            0.8004795918367344
+          ],
+          "seed_mean_range": [
+            0.7218140589569161,
+            0.7218140589569161
+          ]
+        },
+        "identity_preserving_explainer_invalid_input_2pct_jaccard": {
+          "mean_across_event_seed_records": 0.6789795918367346,
+          "mean_after_averaging_seeds_within_event": 0.6789795918367346,
+          "event_bootstrap_ci95_after_seed_averaging": [
+            0.6164999999999999,
+            0.7452857142857142
+          ],
+          "seed_mean_range": [
+            0.6789795918367346,
+            0.6789795918367346
+          ]
+        },
+        "identity_preserving_0.02_jaccard": {
+          "mean_across_event_seed_records": 0.6789795918367346,
+          "mean_after_averaging_seeds_within_event": 0.6789795918367346,
+          "event_bootstrap_ci95_after_seed_averaging": [
+            0.6107125850340136,
+            0.7541071428571428
+          ],
+          "seed_mean_range": [
+            0.6789795918367346,
+            0.6789795918367346
+          ]
+        },
+        "identity_preserving_0.05_jaccard": {
+          "mean_across_event_seed_records": 0.5482539682539682,
+          "mean_after_averaging_seeds_within_event": 0.5482539682539682,
+          "event_bootstrap_ci95_after_seed_averaging": [
+            0.48011054421768706,
+            0.6292970521541948
+          ],
+          "seed_mean_range": [
+            0.5482539682539682,
+            0.5482539682539682
+          ]
+        }
+      }
+    },
+    "RobustZ-TEMPORAL": {
+      "n_event_seed_records": 6,
+      "n_unique_events": 6,
+      "metrics": {
+        "legacy_explainer_invalid_input_2pct_jaccard": {
+          "mean_across_event_seed_records": 1.0,
+          "mean_after_averaging_seeds_within_event": 1.0,
+          "event_bootstrap_ci95_after_seed_averaging": [
+            1.0,
+            1.0
+          ],
+          "seed_mean_range": [
+            1.0,
+            1.0
+          ]
+        },
+        "legacy_explainer_valid_input_2pct_jaccard": {
+          "mean_across_event_seed_records": 1.0,
+          "mean_after_averaging_seeds_within_event": 1.0,
+          "event_bootstrap_ci95_after_seed_averaging": [
+            1.0,
+            1.0
+          ],
+          "seed_mean_range": [
+            1.0,
+            1.0
+          ]
+        },
+        "identity_preserving_explainer_invalid_input_2pct_jaccard": {
+          "mean_across_event_seed_records": 1.0,
+          "mean_after_averaging_seeds_within_event": 1.0,
+          "event_bootstrap_ci95_after_seed_averaging": [
+            1.0,
+            1.0
+          ],
+          "seed_mean_range": [
+            1.0,
+            1.0
+          ]
+        },
+        "identity_preserving_0.02_jaccard": {
+          "mean_across_event_seed_records": 1.0,
+          "mean_after_averaging_seeds_within_event": 1.0,
+          "event_bootstrap_ci95_after_seed_averaging": [
+            1.0,
+            1.0
+          ],
+          "seed_mean_range": [
+            1.0,
+            1.0
+          ]
+        },
+        "identity_preserving_0.05_jaccard": {
+          "mean_across_event_seed_records": 1.0,
+          "mean_after_averaging_seeds_within_event": 1.0,
+          "event_bootstrap_ci95_after_seed_averaging": [
+            1.0,
+            1.0
+          ],
+          "seed_mean_range": [
+            1.0,
+            1.0
+          ]
+        }
+      }
+    }
+  },
+  "paired_comparisons": {
+    "PCA-STATE": {
+      "identity_preserving_0.05_minus_identity_preserving_0.02": {
+        "mean_paired_event_difference": -0.007407407407407412,
+        "event_bootstrap_ci95": [
+          -0.01851851851851853,
+          0.0
+        ],
+        "paired_sign_flip_p_two_sided": 0.5148514851485149,
+        "n_matched_events": 36,
+        "bootstrap_draws": 100,
+        "estimand": "paired top-five grouped-ablation Jaccard difference with the explainer baseline fixed within each comparison; seeds averaged within repeated HAI event ID before resampling",
+        "holm_adjusted_p_two_sided": 1.0,
+        "holm_family_size": 9
+      }
+    },
+    "PCA-TEMPORAL": {
+      "legacy_explainer_invalid_minus_valid_input_2pct": {
+        "mean_paired_event_difference": 0.2705668934240363,
+        "event_bootstrap_ci95": [
+          0.17918027210884357,
+          0.3439863945578231
+        ],
+        "paired_sign_flip_p_two_sided": 0.009900990099009901,
+        "n_matched_events": 35,
+        "bootstrap_draws": 100,
+        "estimand": "paired top-five grouped-ablation Jaccard difference with the explainer baseline fixed within each comparison; seeds averaged within repeated HAI event ID before resampling",
+        "holm_adjusted_p_two_sided": 0.0891089108910891,
+        "holm_family_size": 9
+      },
+      "identity_preserving_explainer_invalid_minus_valid_input_2pct": {
+        "mean_paired_event_difference": 0.0,
+        "event_bootstrap_ci95": [
+          0.0,
+          0.0
+        ],
+        "paired_sign_flip_p_two_sided": 1.0,
+        "n_matched_events": 35,
+        "bootstrap_draws": 100,
+        "estimand": "paired top-five grouped-ablation Jaccard difference with the explainer baseline fixed within each comparison; seeds averaged within repeated HAI event ID before resampling",
+        "holm_adjusted_p_two_sided": 1.0,
+        "holm_family_size": 9
+      },
+      "difference_in_input_design_effect_by_ablation_semantics": {
+        "mean_paired_event_difference": 0.2705668934240363,
+        "event_bootstrap_ci95": [
+          0.19784240362811797,
+          0.36100283446712017
+        ],
+        "paired_sign_flip_p_two_sided": 0.009900990099009901,
+        "n_matched_events": 35,
+        "bootstrap_draws": 100,
+        "estimand": "paired top-five grouped-ablation Jaccard difference with the explainer baseline fixed within each comparison; seeds averaged within repeated HAI event ID before resampling",
+        "holm_adjusted_p_two_sided": 0.0891089108910891,
+        "holm_family_size": 9
+      },
+      "identity_preserving_0.05_minus_identity_preserving_0.02": {
+        "mean_paired_event_difference": -0.13072562358276638,
+        "event_bootstrap_ci95": [
+          -0.15776417233560086,
+          -0.10118083900226757
+        ],
+        "paired_sign_flip_p_two_sided": 0.009900990099009901,
+        "n_matched_events": 35,
+        "bootstrap_draws": 100,
+        "estimand": "paired top-five grouped-ablation Jaccard difference with the explainer baseline fixed within each comparison; seeds averaged within repeated HAI event ID before resampling",
+        "holm_adjusted_p_two_sided": 0.0891089108910891,
+        "holm_family_size": 9
+      }
+    },
+    "RobustZ-TEMPORAL": {
+      "legacy_explainer_invalid_minus_valid_input_2pct": {
+        "mean_paired_event_difference": 0.0,
+        "event_bootstrap_ci95": [
+          0.0,
+          0.0
+        ],
+        "paired_sign_flip_p_two_sided": 1.0,
+        "n_matched_events": 6,
+        "bootstrap_draws": 100,
+        "estimand": "paired top-five grouped-ablation Jaccard difference with the explainer baseline fixed within each comparison; seeds averaged within repeated HAI event ID before resampling",
+        "holm_adjusted_p_two_sided": 1.0,
+        "holm_family_size": 9
+      },
+      "identity_preserving_explainer_invalid_minus_valid_input_2pct": {
+        "mean_paired_event_difference": 0.0,
+        "event_bootstrap_ci95": [
+          0.0,
+          0.0
+        ],
+        "paired_sign_flip_p_two_sided": 1.0,
+        "n_matched_events": 6,
+        "bootstrap_draws": 100,
+        "estimand": "paired top-five grouped-ablation Jaccard difference with the explainer baseline fixed within each comparison; seeds averaged within repeated HAI event ID before resampling",
+        "holm_adjusted_p_two_sided": 1.0,
+        "holm_family_size": 9
+      },
+      "difference_in_input_design_effect_by_ablation_semantics": {
+        "mean_paired_event_difference": 0.0,
+        "event_bootstrap_ci95": [
+          0.0,
+          0.0
+        ],
+        "paired_sign_flip_p_two_sided": 1.0,
+        "n_matched_events": 6,
+        "bootstrap_draws": 100,
+        "estimand": "paired top-five grouped-ablation Jaccard difference with the explainer baseline fixed within each comparison; seeds averaged within repeated HAI event ID before resampling",
+        "holm_adjusted_p_two_sided": 1.0,
+        "holm_family_size": 9
+      },
+      "identity_preserving_0.05_minus_identity_preserving_0.02": {
+        "mean_paired_event_difference": 0.0,
+        "event_bootstrap_ci95": [
+          0.0,
+          0.0
+        ],
+        "paired_sign_flip_p_two_sided": 1.0,
+        "n_matched_events": 6,
+        "bootstrap_draws": 100,
+        "estimand": "paired top-five grouped-ablation Jaccard difference with the explainer baseline fixed within each comparison; seeds averaged within repeated HAI event ID before resampling",
+        "holm_adjusted_p_two_sided": 1.0,
+        "holm_family_size": 9
+      }
+    }
+  },
+  "per_run": [
+    {
+      "run_id": "hai21_seed42_20261031T051335_879603Z",
+      "seed": 42,
+      "model": "PCA-STATE",
+      "n_alarm_events": 36,
+      "mean_jaccard": {
+        "legacy_explainer_invalid_input_2pct_jaccard": 0.9888888888888887,
+        "legacy_explainer_valid_input_2pct_jaccard": null,
+        "identity_preserving_explainer_invalid_input_2pct_jaccard": null,
+        "identity_preserving_0.02_jaccard": 0.9888888888888887,
+        "identity_preserving_0.05_jaccard": 0.9814814814814814
+      }
+    },
+    {
+      "run_id": "hai21_seed42_20261031T051335_879603Z",
+      "seed": 42,
+      "model": "PCA-TEMPORAL",
+      "n_alarm_events": 35,
+      "mean_jaccard": {
+        "legacy_explainer_invalid_input_2pct_jaccard": 0.9923809523809524,
+        "legacy_explainer_valid_input_2pct_jaccard": 0.7218140589569161,
+        "identity_preserving_explainer_invalid_input_2pct_jaccard": 0.6789795918367346,
+        "identity_preserving_0.02_jaccard": 0.6789795918367346,
+        "identity_preserving_0.05_jaccard": 0.5482539682539682
+      }
+    },
+    {
+      "run_id": "hai21_seed42_20261031T051335_879603Z",
+      "seed": 42,
+      "model": "RobustZ-TEMPORAL",
+      "n_alarm_events": 6,
+      "mean_jaccard": {
+        "legacy_explainer_invalid_input_2pct_jaccard": 1.0,
+        "legacy_explainer_valid_input_2pct_jaccard": 1.0,
+        "identity_preserving_explainer_invalid_input_2pct_jaccard": 1.0,
+        "identity_preserving_0.02_jaccard": 1.0,
+        "identity_preserving_0.05_jaccard": 1.0
+      }
+    }
+  ],
+  "event_rows": [
+    {
+      "run_id": "hai21_seed42_20261031T051335_879603Z",
+      "seed": 42,
+      "model": "RobustZ-TEMPORAL",
+      "file": "test3.csv.gz",
+      "event_index": 1,
+      "explanation_row": 55351,
+      "legacy_explainer_invalid_input_2pct_jaccard": 1.0,
+      "legacy_explainer_valid_input_2pct_jaccard": 1.0,
+      "identity_preserving_explainer_invalid_input_2pct_jaccard": 1.0,
+      "perturbations": 5,
+      "state_only": false,
+      "identity_preserving_0.02_jaccard": 1.0,
+      "identity_preserving_0.05_jaccard": 1.0
+    },
+    {
+      "run_id": "hai21_seed42_20261031T051335_879603Z",
+      "seed": 42,
+      "model": "RobustZ-TEMPORAL",
+      "file": "test3.csv.gz",
+      "event_index": 3,
+      "explanation_row": 75201,
+      "legacy_explainer_invalid_input_2pct_jaccard": 1.0,
+      "legacy_explainer_valid_input_2pct_jaccard": 1.0,
+      "identity_preserving_explainer_invalid_input_2pct_jaccard": 1.0,
+      "perturbations": 5,
+      "state_only": false,
+      "identity_preserving_0.02_jaccard": 1.0,
+      "identity_preserving_0.05_jaccard": 1.0
+    },
+    {
+      "run_id": "hai21_seed42_20261031T051335_879603Z",
+      "seed": 42,
+      "model": "RobustZ-TEMPORAL",
+      "file": "test3.csv.gz",
+      "event_index": 4,
+      "explanation_row": 77011,
+      "legacy_explainer_invalid_input_2pct_jaccard": 1.0,
+      "legacy_explainer_valid_input_2pct_jaccard": 1.0,
+      "identity_preserving_explainer_invalid_input_2pct_jaccard": 1.0,
+      "perturbations": 5,
+      "state_only": false,
+      "identity_preserving_0.02_jaccard": 1.0,
+      "identity_preserving_0.05_jaccard": 1.0
+    },
+    {
+      "run_id": "hai21_seed42_20261031T051335_879603Z",
+      "seed": 42,
+      "model": "RobustZ-TEMPORAL",
+      "file": "test5.csv.gz",
+      "event_index": 2,
+      "explanation_row": 18943,
+      "legacy_explainer_invalid_input_2pct_jaccard": 1.0,
+      "legacy_explainer_valid_input_2pct_jaccard": 1.0,
+      "identity_preserving_explainer_invalid_input_2pct_jaccard": 1.0,
+      "perturbations": 5,
+      "state_only": false,
+      "identity_preserving_0.02_jaccard": 1.0,
+      "identity_preserving_0.05_jaccard": 1.0
+    },
+    {
+      "run_id": "hai21_seed42_20261031T051335_879603Z",
+      "seed": 42,
+      "model": "RobustZ-TEMPORAL",
+      "file": "test5.csv.gz",
+      "event_index": 6,
+      "explanation_row": 44612,
+      "legacy_explainer_invalid_input_2pct_jaccard": 1.0,
+      "legacy_explainer_valid_input_2pct_jaccard": 1.0,
+      "identity_preserving_explainer_invalid_input_2pct_jaccard": 1.0,
+      "perturbations": 5,
+      "state_only": false,
+      "identity_preserving_0.02_jaccard": 1.0,
+      "identity_preserving_0.05_jaccard": 1.0
+    },
+    {
+      "run_id": "hai21_seed42_20261031T051335_879603Z",
+      "seed": 42,
+      "model": "RobustZ-TEMPORAL",
+      "file": "test5.csv.gz",
+      "event_index": 8,
+      "explanation_row": 54747,
+      "legacy_explainer_invalid_input_2pct_jaccard": 1.0,
+      "legacy_explainer_valid_input_2pct_jaccard": 1.0,
+      "identity_preserving_explainer_invalid_input_2pct_jaccard": 1.0,
+      "perturbations": 5,
+      "state_only": false,
+      "identity_preserving_0.02_jaccard": 1.0,
+      "identity_preserving_0.05_jaccard": 1.0
+    },
+    {
+      "run_id": "hai21_seed42_20261031T051335_879603Z",
+      "seed": 42,
+      "model": "PCA-STATE",
+      "file": "test1.csv.gz",
+      "event_index": 0,
+      "explanation_row": 2172,
+      "legacy_explainer_invalid_input_2pct_jaccard": 1.0,
+      "legacy_explainer_valid_input_2pct_jaccard": null,
+      "identity_preserving_explainer_invalid_input_2pct_jaccard": null,
+      "perturbations": 5,
+      "state_only": true,
+      "identity_preserving_0.02_jaccard": 1.0,
+      "identity_preserving_0.05_jaccard": 1.0
+    },
+    {
+      "run_id": "hai21_seed42_20261031T051335_879603Z",
+      "seed": 42,
+      "model": "PCA-STATE",
+      "file": "test1.csv.gz",
+      "event_index": 1,
+      "explanation_row": 8908,
+      "legacy_explainer_invalid_input_2pct_jaccard": 1.0,
+      "legacy_explainer_valid_input_2pct_jaccard": null,
+      "identity_preserving_explainer_invalid_input_2pct_jaccard": null,
+      "perturbations": 5,
+      "state_only": true,
+      "identity_preserving_0.02_jaccard": 1.0,
+      "identity_preserving_0.05_jaccard": 1.0
+    },
+    {
+      "run_id": "hai21_seed42_20261031T051335_879603Z",
+      "seed": 42,
+      "model": "PCA-STATE",
+      "file": "test1.csv.gz",
+      "event_index": 2,
+      "explanation_row": 14371,
+      "legacy_explainer_invalid_input_2pct_jaccard": 1.0,
+      "legacy_explainer_valid_input_2pct_jaccard": null,
+      "identity_preserving_explainer_invalid_input_2pct_jaccard": null,
+      "perturbations": 5,
+      "state_only": true,
+      "identity_preserving_0.02_jaccard": 1.0,
+      "identity_preserving_0.05_jaccard": 1.0
+    },
+    {
+      "run_id": "hai21_seed42_20261031T051335_879603Z",
+      "seed": 42,
+      "model": "PCA-STATE",
+      "file": "test1.csv.gz",
+      "event_index": 4,
+      "explanation_row": 21883,
+      "legacy_explainer_invalid_input_2pct_jaccard": 1.0,
+      "legacy_explainer_valid_input_2pct_jaccard": null,
+      "identity_preserving_explainer_invalid_input_2pct_jaccard": null,
+      "perturbations": 5,
+      "state_only": true,
+      "identity_preserving_0.02_jaccard": 1.0,
+      "identity_preserving_0.05_jaccard": 1.0
+    },
+    {
+      "run_id": "hai21_seed42_20261031T051335_879603Z",
+      "seed": 42,
+      "model": "PCA-STATE",
+      "file": "test2.csv.gz",
+      "event_index": 0,
+      "explanation_row": 2867,
+      "legacy_explainer_invalid_input_2pct_jaccard": 1.0,
+      "legacy_explainer_valid_input_2pct_jaccard": null,
+      "identity_preserving_explainer_invalid_input_2pct_jaccard": null,
+      "perturbations": 5,
+      "state_only": true,
+      "identity_preserving_0.02_jaccard": 1.0,
+      "identity_preserving_0.05_jaccard": 1.0
+    },
+    {
+      "run_id": "hai21_seed42_20261031T051335_879603Z",
+      "seed": 42,
+      "model": "PCA-STATE",
+      "file": "test2.csv.gz",
+      "event_index": 1,
+      "explanation_row": 9549,
+      "legacy_explainer_invalid_input_2pct_jaccard": 1.0,
+      "legacy_explainer_valid_input_2pct_jaccard": null,
+      "identity_preserving_explainer_invalid_input_2pct_jaccard": null,
+      "perturbations": 5,
+      "state_only": true,
+      "identity_preserving_0.02_jaccard": 1.0,
+      "identity_preserving_0.05_jaccard": 1.0
+    },
+    {
+      "run_id": "hai21_seed42_20261031T051335_879603Z",
+      "seed": 42,
+      "model": "PCA-STATE",
+      "file": "test2.csv.gz",
+      "event_index": 3,
+      "explanation_row": 18632,
+      "legacy_explainer_invalid_input_2pct_jaccard": 1.0,
+      "legacy_explainer_valid_input_2pct_jaccard": null,
+      "identity_preserving_explainer_invalid_input_2pct_jaccard": null,
+      "perturbations": 5,
+      "state_only": true,
+      "identity_preserving_0.02_jaccard": 1.0,
+      "identity_preserving_0.05_jaccard": 1.0
+    },
+    {
+      "run_id": "hai21_seed42_20261031T051335_879603Z",
+      "seed": 42,
+      "model": "PCA-STATE",
+      "file": "test2.csv.gz",
+      "event_index": 4,
+      "explanation_row": 22512,
+      "legacy_explainer_invalid_input_2pct_jaccard": 1.0,
+      "legacy_explainer_valid_input_2pct_jaccard": null,
+      "identity_preserving_explainer_invalid_input_2pct_jaccard": null,
+      "perturbations": 5,
+      "state_only": true,
+      "identity_preserving_0.02_jaccard": 1.0,
+      "identity_preserving_0.05_jaccard": 0.8666666666666666
+    },
+    {
+      "run_id": "hai21_seed42_20261031T051335_879603Z",
+      "seed": 42,
+      "model": "PCA-STATE",
+      "file": "test2.csv.gz",
+      "event_index": 5,
+      "explanation_row": 29077,
+      "legacy_explainer_invalid_input_2pct_jaccard": 0.9333333333333332,
+      "legacy_explainer_valid_input_2pct_jaccard": null,
+      "identity_preserving_explainer_invalid_input_2pct_jaccard": null,
+      "perturbations": 5,
+      "state_only": true,
+      "identity_preserving_0.02_jaccard": 0.9333333333333332,
+      "identity_preserving_0.05_jaccard": 0.9333333333333332
+    },
+    {
+      "run_id": "hai21_seed42_20261031T051335_879603Z",
+      "seed": 42,
+      "model": "PCA-STATE",
+      "file": "test2.csv.gz",
+      "event_index": 6,
+      "explanation_row": 36510,
+      "legacy_explainer_invalid_input_2pct_jaccard": 1.0,
+      "legacy_explainer_valid_input_2pct_jaccard": null,
+      "identity_preserving_explainer_invalid_input_2pct_jaccard": null,
+      "perturbations": 5,
+      "state_only": true,
+      "identity_preserving_0.02_jaccard": 1.0,
+      "identity_preserving_0.05_jaccard": 1.0
+    },
+    {
+      "run_id": "hai21_seed42_20261031T051335_879603Z",
+      "seed": 42,
+      "model": "PCA-STATE",
+      "file": "test2.csv.gz",
+      "event_index": 7,
+      "explanation_row": 38019,
+      "legacy_explainer_invalid_input_2pct_jaccard": 1.0,
+      "legacy_explainer_valid_input_2pct_jaccard": null,
+      "identity_preserving_explainer_invalid_input_2pct_jaccard": null,
+      "perturbations": 5,
+      "state_only": true,
+      "identity_preserving_0.02_jaccard": 1.0,
+      "identity_preserving_0.05_jaccard": 1.0
+    },
+    {
+      "run_id": "hai21_seed42_20261031T051335_879603Z",
+      "seed": 42,
+      "model": "PCA-STATE",
+      "file": "test2.csv.gz",
+      "event_index": 8,
+      "explanation_row": 43415,
+      "legacy_explainer_invalid_input_2pct_jaccard": 0.8666666666666666,
+      "legacy_explainer_valid_input_2pct_jaccard": null,
+      "identity_preserving_explainer_invalid_input_2pct_jaccard": null,
+      "perturbations": 5,
+      "state_only": true,
+      "identity_preserving_0.02_jaccard": 0.8666666666666666,
+      "identity_preserving_0.05_jaccard": 0.7333333333333332
+    },
+    {
+      "run_id": "hai21_seed42_20261031T051335_879603Z",
+      "seed": 42,
+      "model": "PCA-STATE",
+      "file": "test2.csv.gz",
+      "event_index": 9,
+      "explanation_row": 52327,
+      "legacy_explainer_invalid_input_2pct_jaccard": 1.0,
+      "legacy_explainer_valid_input_2pct_jaccard": null,
+      "identity_preserving_explainer_invalid_input_2pct_jaccard": null,
+      "perturbations": 5,
+      "state_only": true,
+      "identity_preserving_0.02_jaccard": 1.0,
+      "identity_preserving_0.05_jaccard": 1.0
+    },
+    {
+      "run_id": "hai21_seed42_20261031T051335_879603Z",
+      "seed": 42,
+      "model": "PCA-STATE",
+      "file": "test3.csv.gz",
+      "event_index": 0,
+      "explanation_row": 49883,
+      "legacy_explainer_invalid_input_2pct_jaccard": 1.0,
+      "legacy_explainer_valid_input_2pct_jaccard": null,
+      "identity_preserving_explainer_invalid_input_2pct_jaccard": null,
+      "perturbations": 5,
+      "state_only": true,
+      "identity_preserving_0.02_jaccard": 1.0,
+      "identity_preserving_0.05_jaccard": 1.0
+    },
+    {
+      "run_id": "hai21_seed42_20261031T051335_879603Z",
+      "seed": 42,
+      "model": "PCA-STATE",
+      "file": "test3.csv.gz",
+      "event_index": 1,
+      "explanation_row": 55274,
+      "legacy_explainer_invalid_input_2pct_jaccard": 1.0,
+      "legacy_explainer_valid_input_2pct_jaccard": null,
+      "identity_preserving_explainer_invalid_input_2pct_jaccard": null,
+      "perturbations": 5,
+      "state_only": true,
+      "identity_preserving_0.02_jaccard": 1.0,
+      "identity_preserving_0.05_jaccard": 1.0
+    },
+    {
+      "run_id": "hai21_seed42_20261031T051335_879603Z",
+      "seed": 42,
+      "model": "PCA-STATE",
+      "file": "test3.csv.gz",
+      "event_index": 2,
+      "explanation_row": 65470,
+      "legacy_explainer_invalid_input_2pct_jaccard": 1.0,
+      "legacy_explainer_valid_input_2pct_jaccard": null,
+      "identity_preserving_explainer_invalid_input_2pct_jaccard": null,
+      "perturbations": 5,
+      "state_only": true,
+      "identity_preserving_0.02_jaccard": 1.0,
+      "identity_preserving_0.05_jaccard": 1.0
+    },
+    {
+      "run_id": "hai21_seed42_20261031T051335_879603Z",
+      "seed": 42,
+      "model": "PCA-STATE",
+      "file": "test3.csv.gz",
+      "event_index": 3,
+      "explanation_row": 75200,
+      "legacy_explainer_invalid_input_2pct_jaccard": 1.0,
+      "legacy_explainer_valid_input_2pct_jaccard": null,
+      "identity_preserving_explainer_invalid_input_2pct_jaccard": null,
+      "perturbations": 5,
+      "state_only": true,
+      "identity_preserving_0.02_jaccard": 1.0,
+      "identity_preserving_0.05_jaccard": 1.0
+    },
+    {
+      "run_id": "hai21_seed42_20261031T051335_879603Z",
+      "seed": 42,
+      "model": "PCA-STATE",
+      "file": "test3.csv.gz",
+      "event_index": 4,
+      "explanation_row": 77016,
+      "legacy_explainer_invalid_input_2pct_jaccard": 1.0,
+      "legacy_explainer_valid_input_2pct_jaccard": null,
+      "identity_preserving_explainer_invalid_input_2pct_jaccard": null,
+      "perturbations": 5,
+      "state_only": true,
+      "identity_preserving_0.02_jaccard": 1.0,
+      "identity_preserving_0.05_jaccard": 1.0
+    },
+    {
+      "run_id": "hai21_seed42_20261031T051335_879603Z",
+      "seed": 42,
+      "model": "PCA-STATE",
+      "file": "test3.csv.gz",
+      "event_index": 5,
+      "explanation_row": 86132,
+      "legacy_explainer_invalid_input_2pct_jaccard": 1.0,
+      "legacy_explainer_valid_input_2pct_jaccard": null,
+      "identity_preserving_explainer_invalid_input_2pct_jaccard": null,
+      "perturbations": 5,
+      "state_only": true,
+      "identity_preserving_0.02_jaccard": 1.0,
+      "identity_preserving_0.05_jaccard": 1.0
+    },
+    {
+      "run_id": "hai21_seed42_20261031T051335_879603Z",
+      "seed": 42,
+      "model": "PCA-STATE",
+      "file": "test3.csv.gz",
+      "event_index": 6,
+      "explanation_row": 93083,
+      "legacy_explainer_invalid_input_2pct_jaccard": 1.0,
+      "legacy_explainer_valid_input_2pct_jaccard": null,
+      "identity_preserving_explainer_invalid_input_2pct_jaccard": null,
+      "perturbations": 5,
+      "state_only": true,
+      "identity_preserving_0.02_jaccard": 1.0,
+      "identity_preserving_0.05_jaccard": 1.0
+    },
+    {
+      "run_id": "hai21_seed42_20261031T051335_879603Z",
+      "seed": 42,
+      "model": "PCA-STATE",
+      "file": "test3.csv.gz",
+      "event_index": 7,
+      "explanation_row": 100390,
+      "legacy_explainer_invalid_input_2pct_jaccard": 1.0,
+      "legacy_explainer_valid_input_2pct_jaccard": null,
+      "identity_preserving_explainer_invalid_input_2pct_jaccard": null,
+      "perturbations": 5,
+      "state_only": true,
+      "identity_preserving_0.02_jaccard": 1.0,
+      "identity_preserving_0.05_jaccard": 1.0
+    },
+    {
+      "run_id": "hai21_seed42_20261031T051335_879603Z",
+      "seed": 42,
+      "model": "PCA-STATE",
+      "file": "test4.csv.gz",
+      "event_index": 0,
+      "explanation_row": 2608,
+      "legacy_explainer_invalid_input_2pct_jaccard": 1.0,
+      "legacy_explainer_valid_input_2pct_jaccard": null,
+      "identity_preserving_explainer_invalid_input_2pct_jaccard": null,
+      "perturbations": 5,
+      "state_only": true,
+      "identity_preserving_0.02_jaccard": 1.0,
+      "identity_preserving_0.05_jaccard": 1.0
+    },
+    {
+      "run_id": "hai21_seed42_20261031T051335_879603Z",
+      "seed": 42,
+      "model": "PCA-STATE",
+      "file": "test4.csv.gz",
+      "event_index": 1,
+      "explanation_row": 6336,
+      "legacy_explainer_invalid_input_2pct_jaccard": 1.0,
+      "legacy_explainer_valid_input_2pct_jaccard": null,
+      "identity_preserving_explainer_invalid_input_2pct_jaccard": null,
+      "perturbations": 5,
+      "state_only": true,
+      "identity_preserving_0.02_jaccard": 1.0,
+      "identity_preserving_0.05_jaccard": 1.0
+    },
+    {
+      "run_id": "hai21_seed42_20261031T051335_879603Z",
+      "seed": 42,
+      "model": "PCA-STATE",
+      "file": "test4.csv.gz",
+      "event_index": 2,
+      "explanation_row": 14251,
+      "legacy_explainer_invalid_input_2pct_jaccard": 1.0,
+      "legacy_explainer_valid_input_2pct_jaccard": null,
+      "identity_preserving_explainer_invalid_input_2pct_jaccard": null,
+      "perturbations": 5,
+      "state_only": true,
+      "identity_preserving_0.02_jaccard": 1.0,
+      "identity_preserving_0.05_jaccard": 1.0
+    },
+    {
+      "run_id": "hai21_seed42_20261031T051335_879603Z",
+      "seed": 42,
+      "model": "PCA-STATE",
+      "file": "test4.csv.gz",
+      "event_index": 3,
+      "explanation_row": 20724,
+      "legacy_explainer_invalid_input_2pct_jaccard": 1.0,
+      "legacy_explainer_valid_input_2pct_jaccard": null,
+      "identity_preserving_explainer_invalid_input_2pct_jaccard": null,
+      "perturbations": 5,
+      "state_only": true,
+      "identity_preserving_0.02_jaccard": 1.0,
+      "identity_preserving_0.05_jaccard": 1.0
+    },
+    {
+      "run_id": "hai21_seed42_20261031T051335_879603Z",
+      "seed": 42,
+      "model": "PCA-STATE",
+      "file": "test4.csv.gz",
+      "event_index": 4,
+      "explanation_row": 31740,
+      "legacy_explainer_invalid_input_2pct_jaccard": 1.0,
+      "legacy_explainer_valid_input_2pct_jaccard": null,
+      "identity_preserving_explainer_invalid_input_2pct_jaccard": null,
+      "perturbations": 5,
+      "state_only": true,
+      "identity_preserving_0.02_jaccard": 1.0,
+      "identity_preserving_0.05_jaccard": 1.0
+    },
+    {
+      "run_id": "hai21_seed42_20261031T051335_879603Z",
+      "seed": 42,
+      "model": "PCA-STATE",
+      "file": "test5.csv.gz",
+      "event_index": 0,
+      "explanation_row": 1605,
+      "legacy_explainer_invalid_input_2pct_jaccard": 1.0,
+      "legacy_explainer_valid_input_2pct_jaccard": null,
+      "identity_preserving_explainer_invalid_input_2pct_jaccard": null,
+      "perturbations": 5,
+      "state_only": true,
+      "identity_preserving_0.02_jaccard": 1.0,
+      "identity_preserving_0.05_jaccard": 1.0
+    },
+    {
+      "run_id": "hai21_seed42_20261031T051335_879603Z",
+      "seed": 42,
+      "model": "PCA-STATE",
+      "file": "test5.csv.gz",
+      "event_index": 1,
+      "explanation_row": 9679,
+      "legacy_explainer_invalid_input_2pct_jaccard": 1.0,
+      "legacy_explainer_valid_input_2pct_jaccard": null,
+      "identity_preserving_explainer_invalid_input_2pct_jaccard": null,
+      "perturbations": 5,
+      "state_only": true,
+      "identity_preserving_0.02_jaccard": 1.0,
+      "identity_preserving_0.05_jaccard": 1.0
+    },
+    {
+      "run_id": "hai21_seed42_20261031T051335_879603Z",
+      "seed": 42,
+      "model": "PCA-STATE",
+      "file": "test5.csv.gz",
+      "event_index": 2,
+      "explanation_row": 18933,
+      "legacy_explainer_invalid_input_2pct_jaccard": 1.0,
+      "legacy_explainer_valid_input_2pct_jaccard": null,
+      "identity_preserving_explainer_invalid_input_2pct_jaccard": null,
+      "perturbations": 5,
+      "state_only": true,
+      "identity_preserving_0.02_jaccard": 1.0,
+      "identity_preserving_0.05_jaccard": 1.0
+    },
+    {
+      "run_id": "hai21_seed42_20261031T051335_879603Z",
+      "seed": 42,
+      "model": "PCA-STATE",
+      "file": "test5.csv.gz",
+      "event_index": 3,
+      "explanation_row": 24927,
+      "legacy_explainer_invalid_input_2pct_jaccard": 1.0,
+      "legacy_explainer_valid_input_2pct_jaccard": null,
+      "identity_preserving_explainer_invalid_input_2pct_jaccard": null,
+      "perturbations": 5,
+      "state_only": true,
+      "identity_preserving_0.02_jaccard": 1.0,
+      "identity_preserving_0.05_jaccard": 1.0
+    },
+    {
+      "run_id": "hai21_seed42_20261031T051335_879603Z",
+      "seed": 42,
+      "model": "PCA-STATE",
+      "file": "test5.csv.gz",
+      "event_index": 4,
+      "explanation_row": 28110,
+      "legacy_explainer_invalid_input_2pct_jaccard": 1.0,
+      "legacy_explainer_valid_input_2pct_jaccard": null,
+      "identity_preserving_explainer_invalid_input_2pct_jaccard": null,
+      "perturbations": 5,
+      "state_only": true,
+      "identity_preserving_0.02_jaccard": 1.0,
+      "identity_preserving_0.05_jaccard": 1.0
+    },
+    {
+      "run_id": "hai21_seed42_20261031T051335_879603Z",
+      "seed": 42,
+      "model": "PCA-STATE",
+      "file": "test5.csv.gz",
+      "event_index": 5,
+      "explanation_row": 35529,
+      "legacy_explainer_invalid_input_2pct_jaccard": 1.0,
+      "legacy_explainer_valid_input_2pct_jaccard": null,
+      "identity_preserving_explainer_invalid_input_2pct_jaccard": null,
+      "perturbations": 5,
+      "state_only": true,
+      "identity_preserving_0.02_jaccard": 1.0,
+      "identity_preserving_0.05_jaccard": 1.0
+    },
+    {
+      "run_id": "hai21_seed42_20261031T051335_879603Z",
+      "seed": 42,
+      "model": "PCA-STATE",
+      "file": "test5.csv.gz",
+      "event_index": 6,
+      "explanation_row": 44611,
+      "legacy_explainer_invalid_input_2pct_jaccard": 1.0,
+      "legacy_explainer_valid_input_2pct_jaccard": null,
+      "identity_preserving_explainer_invalid_input_2pct_jaccard": null,
+      "perturbations": 5,
+      "state_only": true,
+      "identity_preserving_0.02_jaccard": 1.0,
+      "identity_preserving_0.05_jaccard": 1.0
+    },
+    {
+      "run_id": "hai21_seed42_20261031T051335_879603Z",
+      "seed": 42,
+      "model": "PCA-STATE",
+      "file": "test5.csv.gz",
+      "event_index": 7,
+      "explanation_row": 51918,
+      "legacy_explainer_invalid_input_2pct_jaccard": 1.0,
+      "legacy_explainer_valid_input_2pct_jaccard": null,
+      "identity_preserving_explainer_invalid_input_2pct_jaccard": null,
+      "perturbations": 5,
+      "state_only": true,
+      "identity_preserving_0.02_jaccard": 1.0,
+      "identity_preserving_0.05_jaccard": 1.0
+    },
+    {
+      "run_id": "hai21_seed42_20261031T051335_879603Z",
+      "seed": 42,
+      "model": "PCA-STATE",
+      "file": "test5.csv.gz",
+      "event_index": 8,
+      "explanation_row": 54681,
+      "legacy_explainer_invalid_input_2pct_jaccard": 1.0,
+      "legacy_explainer_valid_input_2pct_jaccard": null,
+      "identity_preserving_explainer_invalid_input_2pct_jaccard": null,
+      "perturbations": 5,
+      "state_only": true,
+      "identity_preserving_0.02_jaccard": 1.0,
+      "identity_preserving_0.05_jaccard": 1.0
+    },
+    {
+      "run_id": "hai21_seed42_20261031T051335_879603Z",
+      "seed": 42,
+      "model": "PCA-STATE",
+      "file": "test5.csv.gz",
+      "event_index": 9,
+      "explanation_row": 83056,
+      "legacy_explainer_invalid_input_2pct_jaccard": 0.7999999999999999,
+      "legacy_explainer_valid_input_2pct_jaccard": null,
+      "identity_preserving_explainer_invalid_input_2pct_jaccard": null,
+      "perturbations": 5,
+      "state_only": true,
+      "identity_preserving_0.02_jaccard": 0.7999999999999999,
+      "identity_preserving_0.05_jaccard": 0.7999999999999999
+    },
+    {
+      "run_id": "hai21_seed42_20261031T051335_879603Z",
+      "seed": 42,
+      "model": "PCA-TEMPORAL",
+      "file": "test1.csv.gz",
+      "event_index": 0,
+      "explanation_row": 2195,
+      "legacy_explainer_invalid_input_2pct_jaccard": 1.0,
+      "legacy_explainer_valid_input_2pct_jaccard": 0.7999999999999999,
+      "identity_preserving_explainer_invalid_input_2pct_jaccard": 0.7999999999999999,
+      "perturbations": 5,
+      "state_only": false,
+      "identity_preserving_0.02_jaccard": 0.7999999999999999,
+      "identity_preserving_0.05_jaccard": 0.42857142857142855
+    },
+    {
+      "run_id": "hai21_seed42_20261031T051335_879603Z",
+      "seed": 42,
+      "model": "PCA-TEMPORAL",
+      "file": "test1.csv.gz",
+      "event_index": 1,
+      "explanation_row": 8908,
+      "legacy_explainer_invalid_input_2pct_jaccard": 1.0,
+      "legacy_explainer_valid_input_2pct_jaccard": 0.9333333333333332,
+      "identity_preserving_explainer_invalid_input_2pct_jaccard": 0.47619047619047616,
+      "perturbations": 5,
+      "state_only": false,
+      "identity_preserving_0.02_jaccard": 0.47619047619047616,
+      "identity_preserving_0.05_jaccard": 0.42857142857142855
+    },
+    {
+      "run_id": "hai21_seed42_20261031T051335_879603Z",
+      "seed": 42,
+      "model": "PCA-TEMPORAL",
+      "file": "test1.csv.gz",
+      "event_index": 2,
+      "explanation_row": 14462,
+      "legacy_explainer_invalid_input_2pct_jaccard": 1.0,
+      "legacy_explainer_valid_input_2pct_jaccard": 0.9333333333333333,
+      "identity_preserving_explainer_invalid_input_2pct_jaccard": 0.9333333333333332,
+      "perturbations": 5,
+      "state_only": false,
+      "identity_preserving_0.02_jaccard": 0.9333333333333332,
+      "identity_preserving_0.05_jaccard": 0.6666666666666666
+    },
+    {
+      "run_id": "hai21_seed42_20261031T051335_879603Z",
+      "seed": 42,
+      "model": "PCA-TEMPORAL",
+      "file": "test2.csv.gz",
+      "event_index": 0,
+      "explanation_row": 2867,
+      "legacy_explainer_invalid_input_2pct_jaccard": 1.0,
+      "legacy_explainer_valid_input_2pct_jaccard": 1.0,
+      "identity_preserving_explainer_invalid_input_2pct_jaccard": 1.0,
+      "perturbations": 5,
+      "state_only": false,
+      "identity_preserving_0.02_jaccard": 1.0,
+      "identity_preserving_0.05_jaccard": 1.0
+    },
+    {
+      "run_id": "hai21_seed42_20261031T051335_879603Z",
+      "seed": 42,
+      "model": "PCA-TEMPORAL",
+      "file": "test2.csv.gz",
+      "event_index": 1,
+      "explanation_row": 9548,
+      "legacy_explainer_invalid_input_2pct_jaccard": 1.0,
+      "legacy_explainer_valid_input_2pct_jaccard": 0.47619047619047616,
+      "identity_preserving_explainer_invalid_input_2pct_jaccard": 0.5714285714285714,
+      "perturbations": 5,
+      "state_only": false,
+      "identity_preserving_0.02_jaccard": 0.5714285714285714,
+      "identity_preserving_0.05_jaccard": 0.36904761904761907
+    },
+    {
+      "run_id": "hai21_seed42_20261031T051335_879603Z",
+      "seed": 42,
+      "model": "PCA-TEMPORAL",
+      "file": "test2.csv.gz",
+      "event_index": 2,
+      "explanation_row": 14347,
+      "legacy_explainer_invalid_input_2pct_jaccard": 1.0,
+      "legacy_explainer_valid_input_2pct_jaccard": 0.42857142857142855,
+      "identity_preserving_explainer_invalid_input_2pct_jaccard": 0.619047619047619,
+      "perturbations": 5,
+      "state_only": false,
+      "identity_preserving_0.02_jaccard": 0.619047619047619,
+      "identity_preserving_0.05_jaccard": 0.42857142857142855
+    },
+    {
+      "run_id": "hai21_seed42_20261031T051335_879603Z",
+      "seed": 42,
+      "model": "PCA-TEMPORAL",
+      "file": "test2.csv.gz",
+      "event_index": 3,
+      "explanation_row": 18631,
+      "legacy_explainer_invalid_input_2pct_jaccard": 1.0,
+      "legacy_explainer_valid_input_2pct_jaccard": 0.8,
+      "identity_preserving_explainer_invalid_input_2pct_jaccard": 1.0,
+      "perturbations": 5,
+      "state_only": false,
+      "identity_preserving_0.02_jaccard": 1.0,
+      "identity_preserving_0.05_jaccard": 0.7999999999999999
+    },
+    {
+      "run_id": "hai21_seed42_20261031T051335_879603Z",
+      "seed": 42,
+      "model": "PCA-TEMPORAL",
+      "file": "test2.csv.gz",
+      "event_index": 4,
+      "explanation_row": 22567,
+      "legacy_explainer_invalid_input_2pct_jaccard": 1.0,
+      "legacy_explainer_valid_input_2pct_jaccard": 0.22222222222222224,
+      "identity_preserving_explainer_invalid_input_2pct_jaccard": 0.4761904761904761,
+      "perturbations": 5,
+      "state_only": false,
+      "identity_preserving_0.02_jaccard": 0.4761904761904761,
+      "identity_preserving_0.05_jaccard": 0.26587301587301587
+    },
+    {
+      "run_id": "hai21_seed42_20261031T051335_879603Z",
+      "seed": 42,
+      "model": "PCA-TEMPORAL",
+      "file": "test2.csv.gz",
+      "event_index": 5,
+      "explanation_row": 28957,
+      "legacy_explainer_invalid_input_2pct_jaccard": 1.0,
+      "legacy_explainer_valid_input_2pct_jaccard": 0.25,
+      "identity_preserving_explainer_invalid_input_2pct_jaccard": 0.7333333333333332,
+      "perturbations": 5,
+      "state_only": false,
+      "identity_preserving_0.02_jaccard": 0.7333333333333332,
+      "identity_preserving_0.05_jaccard": 0.619047619047619
+    },
+    {
+      "run_id": "hai21_seed42_20261031T051335_879603Z",
+      "seed": 42,
+      "model": "PCA-TEMPORAL",
+      "file": "test2.csv.gz",
+      "event_index": 6,
+      "explanation_row": 36511,
+      "legacy_explainer_invalid_input_2pct_jaccard": 1.0,
+      "legacy_explainer_valid_input_2pct_jaccard": 1.0,
+      "identity_preserving_explainer_invalid_input_2pct_jaccard": 0.7333333333333332,
+      "perturbations": 5,
+      "state_only": false,
+      "identity_preserving_0.02_jaccard": 0.7333333333333332,
+      "identity_preserving_0.05_jaccard": 0.6666666666666666
+    },
+    {
+      "run_id": "hai21_seed42_20261031T051335_879603Z",
+      "seed": 42,
+      "model": "PCA-TEMPORAL",
+      "file": "test2.csv.gz",
+      "event_index": 7,
+      "explanation_row": 38071,
+      "legacy_explainer_invalid_input_2pct_jaccard": 1.0,
+      "legacy_explainer_valid_input_2pct_jaccard": 0.8666666666666666,
+      "identity_preserving_explainer_invalid_input_2pct_jaccard": 0.6857142857142856,
+      "perturbations": 5,
+      "state_only": false,
+      "identity_preserving_0.02_jaccard": 0.6857142857142856,
+      "identity_preserving_0.05_jaccard": 0.47619047619047616
+    },
+    {
+      "run_id": "hai21_seed42_20261031T051335_879603Z",
+      "seed": 42,
+      "model": "PCA-TEMPORAL",
+      "file": "test2.csv.gz",
+      "event_index": 8,
+      "explanation_row": 43487,
+      "legacy_explainer_invalid_input_2pct_jaccard": 1.0,
+      "legacy_explainer_valid_input_2pct_jaccard": 0.7333333333333332,
+      "identity_preserving_explainer_invalid_input_2pct_jaccard": 0.619047619047619,
+      "perturbations": 5,
+      "state_only": false,
+      "identity_preserving_0.02_jaccard": 0.619047619047619,
+      "identity_preserving_0.05_jaccard": 0.619047619047619
+    },
+    {
+      "run_id": "hai21_seed42_20261031T051335_879603Z",
+      "seed": 42,
+      "model": "PCA-TEMPORAL",
+      "file": "test2.csv.gz",
+      "event_index": 9,
+      "explanation_row": 52390,
+      "legacy_explainer_invalid_input_2pct_jaccard": 0.9333333333333332,
+      "legacy_explainer_valid_input_2pct_jaccard": 0.1388888888888889,
+      "identity_preserving_explainer_invalid_input_2pct_jaccard": 0.42857142857142855,
+      "perturbations": 5,
+      "state_only": false,
+      "identity_preserving_0.02_jaccard": 0.42857142857142855,
+      "identity_preserving_0.05_jaccard": 0.25793650793650796
+    },
+    {
+      "run_id": "hai21_seed42_20261031T051335_879603Z",
+      "seed": 42,
+      "model": "PCA-TEMPORAL",
+      "file": "test3.csv.gz",
+      "event_index": 0,
+      "explanation_row": 49867,
+      "legacy_explainer_invalid_input_2pct_jaccard": 1.0,
+      "legacy_explainer_valid_input_2pct_jaccard": 0.8666666666666666,
+      "identity_preserving_explainer_invalid_input_2pct_jaccard": 0.47619047619047616,
+      "perturbations": 5,
+      "state_only": false,
+      "identity_preserving_0.02_jaccard": 0.47619047619047616,
+      "identity_preserving_0.05_jaccard": 0.42857142857142855
+    },
+    {
+      "run_id": "hai21_seed42_20261031T051335_879603Z",
+      "seed": 42,
+      "model": "PCA-TEMPORAL",
+      "file": "test3.csv.gz",
+      "event_index": 1,
+      "explanation_row": 55273,
+      "legacy_explainer_invalid_input_2pct_jaccard": 1.0,
+      "legacy_explainer_valid_input_2pct_jaccard": 0.7333333333333333,
+      "identity_preserving_explainer_invalid_input_2pct_jaccard": 0.47619047619047616,
+      "perturbations": 5,
+      "state_only": false,
+      "identity_preserving_0.02_jaccard": 0.47619047619047616,
+      "identity_preserving_0.05_jaccard": 0.42857142857142855
+    },
+    {
+      "run_id": "hai21_seed42_20261031T051335_879603Z",
+      "seed": 42,
+      "model": "PCA-TEMPORAL",
+      "file": "test3.csv.gz",
+      "event_index": 2,
+      "explanation_row": 65486,
+      "legacy_explainer_invalid_input_2pct_jaccard": 1.0,
+      "legacy_explainer_valid_input_2pct_jaccard": 0.7999999999999999,
+      "identity_preserving_explainer_invalid_input_2pct_jaccard": 0.6666666666666666,
+      "perturbations": 5,
+      "state_only": false,
+      "identity_preserving_0.02_jaccard": 0.6666666666666666,
+      "identity_preserving_0.05_jaccard": 0.42857142857142855
+    },
+    {
+      "run_id": "hai21_seed42_20261031T051335_879603Z",
+      "seed": 42,
+      "model": "PCA-TEMPORAL",
+      "file": "test3.csv.gz",
+      "event_index": 3,
+      "explanation_row": 75201,
+      "legacy_explainer_invalid_input_2pct_jaccard": 1.0,
+      "legacy_explainer_valid_input_2pct_jaccard": 1.0,
+      "identity_preserving_explainer_invalid_input_2pct_jaccard": 1.0,
+      "perturbations": 5,
+      "state_only": false,
+      "identity_preserving_0.02_jaccard": 1.0,
+      "identity_preserving_0.05_jaccard": 1.0
+    },
+    {
+      "run_id": "hai21_seed42_20261031T051335_879603Z",
+      "seed": 42,
+      "model": "PCA-TEMPORAL",
+      "file": "test3.csv.gz",
+      "event_index": 4,
+      "explanation_row": 77011,
+      "legacy_explainer_invalid_input_2pct_jaccard": 1.0,
+      "legacy_explainer_valid_input_2pct_jaccard": 0.619047619047619,
+      "identity_preserving_explainer_invalid_input_2pct_jaccard": 0.5238095238095238,
+      "perturbations": 5,
+      "state_only": false,
+      "identity_preserving_0.02_jaccard": 0.5238095238095238,
+      "identity_preserving_0.05_jaccard": 0.39285714285714285
+    },
+    {
+      "run_id": "hai21_seed42_20261031T051335_879603Z",
+      "seed": 42,
+      "model": "PCA-TEMPORAL",
+      "file": "test3.csv.gz",
+      "event_index": 5,
+      "explanation_row": 86111,
+      "legacy_explainer_invalid_input_2pct_jaccard": 1.0,
+      "legacy_explainer_valid_input_2pct_jaccard": 0.40476190476190477,
+      "identity_preserving_explainer_invalid_input_2pct_jaccard": 0.9333333333333333,
+      "perturbations": 5,
+      "state_only": false,
+      "identity_preserving_0.02_jaccard": 0.9333333333333333,
+      "identity_preserving_0.05_jaccard": 0.7333333333333333
+    },
+    {
+      "run_id": "hai21_seed42_20261031T051335_879603Z",
+      "seed": 42,
+      "model": "PCA-TEMPORAL",
+      "file": "test3.csv.gz",
+      "event_index": 6,
+      "explanation_row": 93083,
+      "legacy_explainer_invalid_input_2pct_jaccard": 1.0,
+      "legacy_explainer_valid_input_2pct_jaccard": 0.9333333333333332,
+      "identity_preserving_explainer_invalid_input_2pct_jaccard": 0.9333333333333332,
+      "perturbations": 5,
+      "state_only": false,
+      "identity_preserving_0.02_jaccard": 0.9333333333333332,
+      "identity_preserving_0.05_jaccard": 0.8666666666666666
+    },
+    {
+      "run_id": "hai21_seed42_20261031T051335_879603Z",
+      "seed": 42,
+      "model": "PCA-TEMPORAL",
+      "file": "test3.csv.gz",
+      "event_index": 7,
+      "explanation_row": 100403,
+      "legacy_explainer_invalid_input_2pct_jaccard": 1.0,
+      "legacy_explainer_valid_input_2pct_jaccard": 0.8666666666666666,
+      "identity_preserving_explainer_invalid_input_2pct_jaccard": 0.5714285714285714,
+      "perturbations": 5,
+      "state_only": false,
+      "identity_preserving_0.02_jaccard": 0.5714285714285714,
+      "identity_preserving_0.05_jaccard": 0.40476190476190477
+    },
+    {
+      "run_id": "hai21_seed42_20261031T051335_879603Z",
+      "seed": 42,
+      "model": "PCA-TEMPORAL",
+      "file": "test4.csv.gz",
+      "event_index": 0,
+      "explanation_row": 2616,
+      "legacy_explainer_invalid_input_2pct_jaccard": 1.0,
+      "legacy_explainer_valid_input_2pct_jaccard": 0.7999999999999999,
+      "identity_preserving_explainer_invalid_input_2pct_jaccard": 0.7523809523809523,
+      "perturbations": 5,
+      "state_only": false,
+      "identity_preserving_0.02_jaccard": 0.7523809523809523,
+      "identity_preserving_0.05_jaccard": 0.5238095238095237
+    },
+    {
+      "run_id": "hai21_seed42_20261031T051335_879603Z",
+      "seed": 42,
+      "model": "PCA-TEMPORAL",
+      "file": "test4.csv.gz",
+      "event_index": 1,
+      "explanation_row": 6301,
+      "legacy_explainer_invalid_input_2pct_jaccard": 1.0,
+      "legacy_explainer_valid_input_2pct_jaccard": 0.47619047619047616,
+      "identity_preserving_explainer_invalid_input_2pct_jaccard": 0.6857142857142857,
+      "perturbations": 5,
+      "state_only": false,
+      "identity_preserving_0.02_jaccard": 0.6857142857142857,
+      "identity_preserving_0.05_jaccard": 0.4357142857142858
+    },
+    {
+      "run_id": "hai21_seed42_20261031T051335_879603Z",
+      "seed": 42,
+      "model": "PCA-TEMPORAL",
+      "file": "test4.csv.gz",
+      "event_index": 2,
+      "explanation_row": 14318,
+      "legacy_explainer_invalid_input_2pct_jaccard": 1.0,
+      "legacy_explainer_valid_input_2pct_jaccard": 1.0,
+      "identity_preserving_explainer_invalid_input_2pct_jaccard": 0.4404761904761904,
+      "perturbations": 5,
+      "state_only": false,
+      "identity_preserving_0.02_jaccard": 0.4404761904761904,
+      "identity_preserving_0.05_jaccard": 0.32142857142857145
+    },
+    {
+      "run_id": "hai21_seed42_20261031T051335_879603Z",
+      "seed": 42,
+      "model": "PCA-TEMPORAL",
+      "file": "test4.csv.gz",
+      "event_index": 3,
+      "explanation_row": 20762,
+      "legacy_explainer_invalid_input_2pct_jaccard": 1.0,
+      "legacy_explainer_valid_input_2pct_jaccard": 1.0,
+      "identity_preserving_explainer_invalid_input_2pct_jaccard": 0.5238095238095237,
+      "perturbations": 5,
+      "state_only": false,
+      "identity_preserving_0.02_jaccard": 0.5238095238095237,
+      "identity_preserving_0.05_jaccard": 0.2857142857142857
+    },
+    {
+      "run_id": "hai21_seed42_20261031T051335_879603Z",
+      "seed": 42,
+      "model": "PCA-TEMPORAL",
+      "file": "test4.csv.gz",
+      "event_index": 4,
+      "explanation_row": 31621,
+      "legacy_explainer_invalid_input_2pct_jaccard": 1.0,
+      "legacy_explainer_valid_input_2pct_jaccard": 0.619047619047619,
+      "identity_preserving_explainer_invalid_input_2pct_jaccard": 0.6666666666666666,
+      "perturbations": 5,
+      "state_only": false,
+      "identity_preserving_0.02_jaccard": 0.6666666666666666,
+      "identity_preserving_0.05_jaccard": 0.5238095238095238
+    },
+    {
+      "run_id": "hai21_seed42_20261031T051335_879603Z",
+      "seed": 42,
+      "model": "PCA-TEMPORAL",
+      "file": "test5.csv.gz",
+      "event_index": 0,
+      "explanation_row": 1606,
+      "legacy_explainer_invalid_input_2pct_jaccard": 1.0,
+      "legacy_explainer_valid_input_2pct_jaccard": 0.8666666666666666,
+      "identity_preserving_explainer_invalid_input_2pct_jaccard": 1.0,
+      "perturbations": 5,
+      "state_only": false,
+      "identity_preserving_0.02_jaccard": 1.0,
+      "identity_preserving_0.05_jaccard": 1.0
+    },
+    {
+      "run_id": "hai21_seed42_20261031T051335_879603Z",
+      "seed": 42,
+      "model": "PCA-TEMPORAL",
+      "file": "test5.csv.gz",
+      "event_index": 2,
+      "explanation_row": 18943,
+      "legacy_explainer_invalid_input_2pct_jaccard": 1.0,
+      "legacy_explainer_valid_input_2pct_jaccard": 0.7523809523809523,
+      "identity_preserving_explainer_invalid_input_2pct_jaccard": 0.7333333333333332,
+      "perturbations": 5,
+      "state_only": false,
+      "identity_preserving_0.02_jaccard": 0.7333333333333332,
+      "identity_preserving_0.05_jaccard": 0.5714285714285714
+    },
+    {
+      "run_id": "hai21_seed42_20261031T051335_879603Z",
+      "seed": 42,
+      "model": "PCA-TEMPORAL",
+      "file": "test5.csv.gz",
+      "event_index": 3,
+      "explanation_row": 24926,
+      "legacy_explainer_invalid_input_2pct_jaccard": 1.0,
+      "legacy_explainer_valid_input_2pct_jaccard": 0.9333333333333332,
+      "identity_preserving_explainer_invalid_input_2pct_jaccard": 0.7333333333333332,
+      "perturbations": 5,
+      "state_only": false,
+      "identity_preserving_0.02_jaccard": 0.7333333333333332,
+      "identity_preserving_0.05_jaccard": 0.6666666666666666
+    },
+    {
+      "run_id": "hai21_seed42_20261031T051335_879603Z",
+      "seed": 42,
+      "model": "PCA-TEMPORAL",
+      "file": "test5.csv.gz",
+      "event_index": 4,
+      "explanation_row": 28187,
+      "legacy_explainer_invalid_input_2pct_jaccard": 1.0,
+      "legacy_explainer_valid_input_2pct_jaccard": 1.0,
+      "identity_preserving_explainer_invalid_input_2pct_jaccard": 0.6666666666666666,
+      "perturbations": 5,
+      "state_only": false,
+      "identity_preserving_0.02_jaccard": 0.6666666666666666,
+      "identity_preserving_0.05_jaccard": 0.47619047619047616
+    },
+    {
+      "run_id": "hai21_seed42_20261031T051335_879603Z",
+      "seed": 42,
+      "model": "PCA-TEMPORAL",
+      "file": "test5.csv.gz",
+      "event_index": 5,
+      "explanation_row": 35584,
+      "legacy_explainer_invalid_input_2pct_jaccard": 1.0,
+      "legacy_explainer_valid_input_2pct_jaccard": 0.42857142857142855,
+      "identity_preserving_explainer_invalid_input_2pct_jaccard": 0.23809523809523808,
+      "perturbations": 5,
+      "state_only": false,
+      "identity_preserving_0.02_jaccard": 0.23809523809523808,
+      "identity_preserving_0.05_jaccard": 0.1388888888888889
+    },
+    {
+      "run_id": "hai21_seed42_20261031T051335_879603Z",
+      "seed": 42,
+      "model": "PCA-TEMPORAL",
+      "file": "test5.csv.gz",
+      "event_index": 6,
+      "explanation_row": 44612,
+      "legacy_explainer_invalid_input_2pct_jaccard": 1.0,
+      "legacy_explainer_valid_input_2pct_jaccard": 1.0,
+      "identity_preserving_explainer_invalid_input_2pct_jaccard": 1.0,
+      "perturbations": 5,
+      "state_only": false,
+      "identity_preserving_0.02_jaccard": 1.0,
+      "identity_preserving_0.05_jaccard": 1.0
+    },
+    {
+      "run_id": "hai21_seed42_20261031T051335_879603Z",
+      "seed": 42,
+      "model": "PCA-TEMPORAL",
+      "file": "test5.csv.gz",
+      "event_index": 7,
+      "explanation_row": 51906,
+      "legacy_explainer_invalid_input_2pct_jaccard": 1.0,
+      "legacy_explainer_valid_input_2pct_jaccard": 0.42857142857142855,
+      "identity_preserving_explainer_invalid_input_2pct_jaccard": 0.47619047619047616,
+      "perturbations": 5,
+      "state_only": false,
+      "identity_preserving_0.02_jaccard": 0.47619047619047616,
+      "identity_preserving_0.05_jaccard": 0.42857142857142855
+    },
+    {
+      "run_id": "hai21_seed42_20261031T051335_879603Z",
+      "seed": 42,
+      "model": "PCA-TEMPORAL",
+      "file": "test5.csv.gz",
+      "event_index": 8,
+      "explanation_row": 54906,
+      "legacy_explainer_invalid_input_2pct_jaccard": 0.7999999999999999,
+      "legacy_explainer_valid_input_2pct_jaccard": 0.2857142857142857,
+      "identity_preserving_explainer_invalid_input_2pct_jaccard": 0.6666666666666666,
+      "perturbations": 5,
+      "state_only": false,
+      "identity_preserving_0.02_jaccard": 0.6666666666666666,
+      "identity_preserving_0.05_jaccard": 0.6666666666666666
+    },
+    {
+      "run_id": "hai21_seed42_20261031T051335_879603Z",
+      "seed": 42,
+      "model": "PCA-TEMPORAL",
+      "file": "test5.csv.gz",
+      "event_index": 9,
+      "explanation_row": 83066,
+      "legacy_explainer_invalid_input_2pct_jaccard": 1.0,
+      "legacy_explainer_valid_input_2pct_jaccard": 0.8666666666666666,
+      "identity_preserving_explainer_invalid_input_2pct_jaccard": 0.5238095238095238,
+      "perturbations": 5,
+      "state_only": false,
+      "identity_preserving_0.02_jaccard": 0.5238095238095238,
+      "identity_preserving_0.05_jaccard": 0.4404761904761904
+    }
+  ],
+  "interpretation": "Stability is top-five grouped-ablation rank overlap under synthetic small measurement noise. It is not robustness to adaptive attacks, distribution shift, explanation correctness, or causal validity. Seed ranges are descriptive; event-bootstrap intervals average seeds within repeated scenario IDs first."
+}

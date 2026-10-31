@@ -1,0 +1,13 @@
+scenario_folder,target_group,evidence_tier,target_status,evidence_basis
+S1_industroyer_pv,PV-Inverter-AC-Meter,component_response,indirect_response,Scenario README identifies PV inverter attack; endpoint map resolves control register but not a telemetry tag
+S1_industroyer_pv_alt,PV-Inverter-AC-Meter,component_response,indirect_response,Scenario README identifies PV inverter attack; endpoint map resolves control register but not a telemetry tag
+S2_industroyer_bss,BSS-Inverter-AC-Meter,component_response,indirect_response,Scenario README identifies battery storage target; endpoint map resolves inverter setpoint but not a telemetry tag
+S3_arp_spoof_bss_meter_half_values,BSS-Inverter-AC-Meter,exact_register_to_tag,exact,Phase target gives IP and unit; all 12 event register points map to BSS AC meter telemetry
+S4_arp_spoof_loads_pv_two_phase,Load-A-AC-Meter,documented_device_group,coarse,Scenario README identifies Load A meter among manipulated groups; phase JSON target is generic mitm
+S4_arp_spoof_loads_pv_two_phase,Load-B-AC-Meter,documented_device_group,coarse,Scenario README identifies Load B meter among manipulated groups; phase JSON target is generic mitm
+S4_arp_spoof_loads_pv_two_phase,PV-Inverter-AC-Meter,documented_device_group,coarse,Scenario README identifies PV meter among manipulated groups; phase JSON target is generic mitm
+S5_arp_spoof_loads_pv_bss_two_phase,Load-A-AC-Meter,documented_device_group,coarse,Scenario README identifies Load A meter among manipulated groups; phase JSON target is generic mitm
+S5_arp_spoof_loads_pv_bss_two_phase,Load-B-AC-Meter,documented_device_group,coarse,Scenario README identifies Load B meter among manipulated groups; phase JSON target is generic mitm
+S5_arp_spoof_loads_pv_bss_two_phase,PV-Inverter-AC-Meter,documented_device_group,coarse,Scenario README identifies PV meter among manipulated groups; phase JSON target is generic mitm
+S5_arp_spoof_loads_pv_bss_two_phase,BSS-Inverter-AC-Meter,documented_device_group,coarse,Scenario README identifies additional BSS-side manipulation; phase JSON target is generic mitm
+S6_mqtt_supply_chain_compromise,MQTT-Price-Signal,topic_to_process_semantics,manual_posthoc,Three MQTT event-log publications share the energy/price_signals topic; process variable name denotes price signal; no released packet evidence or direct endpoint-map join

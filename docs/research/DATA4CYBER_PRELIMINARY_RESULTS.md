@@ -1,0 +1,52 @@
+# Data4Cyber v3 preliminary detector and explanation audit
+
+**Status:** exploratory first pass; not a final benchmark or a Q1-ready result.
+**Data:** Data4Cyber v3, 14,354 rows, six attack-family folds (S1 and S1-alt grouped).
+**Run:** `scripts/run_data4cyber_baseline.py --config configs/data4cyber_v3.json --output results/summaries/data4cyber_loco_baselines.json`
+
+## Protocol actually run
+
+- Outer evaluation holds out one attack family at a time. When S1 is held out, both S1 runs are excluded from fitting and calibration. S0 benign rows are retained as normal-only context.
+- Within each non-held-out normal scenario, the first 80% of benign rows by timestamp fit the model and training-only median imputer; the final 20% calibrates thresholds. Normal-difference features reset at timestamp gaps.
+- Detector features exclude timestamps, `attack_active`, `attack_phase`, `attack_phase_all`, and `*.realtime` columns. Target annotations and phase labels are post-hoc only.
+- Unsupervised baselines are RobustZ and PCA residual (95% variance, up to 48 components). Each has a model-specific calibration threshold at nominal normal FPR 1% and 5%.
+- Process-group explanations compare native detector contributions averaged within each semantic prefix against component-wise deletion ablation. The target map was frozen in `data/annotations/data4cyber_response_targets.csv` before examining these explanation results. Detector misses count as target misses; reconnaissance-only events are excluded from target localization and retained for phase/detection reporting.
+- The runner now verifies all 16 attack/benign split CSVs consumed against the embedded SHA-256 manifest. It reports an analytic random-ranking reference: for a detector hit, the probability a uniformly random top-k group set intersects the target set, given the available group universe; misses have reference hit probability zero. This is a descriptive chance baseline, not an independent inferential replicate.
+- Exact paired sign-flip tests use six family-level paired differences; Holm correction covers six detector/metric/threshold comparisons. These tests are low-powered and exploratory.
+
+## Detection results
+
+Equal-weight family mean average precision was 0.727 for PCA and 0.674 for RobustZ. PCA-minus-RobustZ was +0.0466 across six families; exact two-sided sign-flip $p=0.03125$, Holm-adjusted $p=0.1875$. This does not establish a significant detector advantage after correction.
+
+| Held-out family | PCA AP | RobustZ AP | PCA F1 at nominal 1% FPR | RobustZ F1 at nominal 1% FPR |
+|---|---:|---:|---:|---:|
+| S1 (S1 and S1-alt grouped) | 0.721 | 0.634 | 0.019 | 0.019 |
+| S2 | 0.603 | 0.558 | 0.000 | 0.006 |
+| S3 | 0.554 | 0.485 | 0.045 | 0.000 |
+| S4 | 0.805 | 0.764 | 0.020 | 0.020 |
+| S5 | 0.835 | 0.820 | 0.032 | 0.015 |
+| S6 | 0.848 | 0.825 | 0.021 | 0.006 |
+
+With a nominal 1% normal-only threshold, held-out-file FPR ranged from 0.0% to 1.5% for PCA and 3.6% to 5.9% for RobustZ. At nominal 5%, the ranges were 2.7%–32.3% for PCA and 3.6%–31.1% for RobustZ. This demonstrates substantial normal-regime transfer error for some held-out families. At nominal 1%, mean point recall was low (about 1.2% PCA and 0.6% RobustZ by family), despite nonzero event recall in several files. Point and event metrics therefore tell different stories; no point-adjustment was used.
+
+The nominal-5% PCA-minus-RobustZ differences were +0.1017 in F1 and +0.0660 in recall, with raw exact two-sided $p=0.03125$ for each and Holm-adjusted $p=0.1875$. The result remains exploratory across six attack families from one testbed.
+
+## First-alarm localization and explanation properties
+
+The localization sample is tiny: S3 supplies one exact register-to-tag impact event; S4 supplies one device-group event; S5 supplies two; S1/S1-alt together supply two asset-response events; S2 and S6 each supply one mapped-response/topic event. These event counts are not independent replicates, and evidence tiers are not pooled.
+
+At nominal 1% FPR:
+
+- **Exact S3 evidence (n=1):** at nominal 1%, PCA detected the impact event; native grouped contribution ranked the BSS meter within top-5, while group deletion did not. RobustZ missed. At nominal 5%, both detectors detected; PCA group deletion still missed the target in top-5, while RobustZ ranked it in top-3. One event cannot establish a method advantage.
+- **S4 documented meter groups (n=1):** both detectors and both explanation methods hit a documented group at top-1 at nominal 1%. Three of nine available groups are accepted as targets, so a random top-5 ranking has a 0.952 hit probability; top-5 agreement is therefore weak evidence here.
+- **S5 documented meter groups (n=2):** at nominal 1%, each detector missed one eligible event and unconditional top-1 target hit was 0.5. At nominal 5%, PCA group deletion hit both at top-1. The target set contains four documented groups among nine available, making random top-5 hit probability close to one; top-5 is uninformative for this tier.
+- **Indirect response groups (S1/S2):** localization refers to telemetry associated with the controlled component, not the manipulated control register itself. At nominal 1%, native contributions and group deletion differ by family/model; misses count as zero. These are not exact target-attribution labels.
+- **S6 topic-to-process-name mapping (n=1):** evidence is a post-hoc semantic link, not an endpoint-map or packet-level join. At nominal 1%, PCA detected and ranked the topic-related process group at top-1; RobustZ missed. At nominal 5%, both detected and ranked it at top-1. This is one event, not evidence of robust generalization.
+
+Across detected first alarms, top-five explanation rankings were usually unchanged under 1% and 5% independent Gaussian perturbations scaled by training-normal channel scale (five repeats per level). This is a narrow local measurement-noise check, not adaptive robustness or process-valid perturbation. Component deletion p95 was approximately 0.35–0.85 ms per explanation; single-row detector score p95 averaged about 0.024 ms on the recorded Windows/Intel runtime. These are local Python timings on one machine, not end-to-end edge or control-loop feasibility measurements. The result JSON records fit/scoring time and runtime metadata.
+
+## Interpretation and next experiments
+
+The dataset supports an evidence-tiered explanation audit, but not uniform root-target ground truth. Current detector transfer is imperfect, and the target counts are too small for strong explanation claims. Do not present these preliminary values as a result against the paper's 12 IPAL baselines; those were not reproduced.
+
+Before manuscript claims, obtain and compare the full GRIDGUARD-AI preprint and supplement, reproduce a matched subset of the released IPAL baselines, resolve S4/S5 endpoint ambiguity, conduct seeded repeats and scenario-level uncertainty analysis, and measure p50/p95 overhead on a disclosed edge-class device. The random-ranking reference shows why top-K must be interpreted relative to target-set size and available groups; it does not rescue the tiny, dependent event sample. Expand testing with a second testbed/dataset if comparable ground-truth granularity is available. No causal, process-safety, or physical-transition claim is supported by this run.
