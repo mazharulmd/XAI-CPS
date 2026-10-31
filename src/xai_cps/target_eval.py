@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import re
 from collections import defaultdict
+from math import comb
 from typing import Mapping, Sequence
 
 
@@ -33,3 +34,19 @@ def component_hit_at_k(ranking: Sequence[str], targets: Sequence[str], k: int) -
     if k < 1:
         raise ValueError("k must be positive")
     return bool(set(ranking[:k]) & set(targets))
+
+
+def random_hit_probability(target_count: int, group_count: int, k: int) -> float:
+    """Expected Hit@k for a uniformly random, size-k ranking without replacement."""
+    if group_count < 1:
+        raise ValueError("group_count must be positive")
+    if target_count < 0 or target_count > group_count:
+        raise ValueError("target_count must be between zero and group_count")
+    if k < 1:
+        raise ValueError("k must be positive")
+    if target_count == 0:
+        return 0.0
+    k = min(k, group_count)
+    if k > group_count - target_count:
+        return 1.0
+    return 1.0 - comb(group_count - target_count, k) / comb(group_count, k)

@@ -4,6 +4,7 @@ from xai_cps.target_eval import (
     aggregate_component_scores,
     component_hit_at_k,
     pump_component_from_tag,
+    random_hit_probability,
     rank_components,
 )
 
@@ -32,6 +33,20 @@ class TargetEvaluationTests(unittest.TestCase):
     def test_component_hit_rejects_nonpositive_k(self):
         with self.assertRaises(ValueError):
             component_hit_at_k(["PU10"], ["PU10"], 0)
+
+    def test_random_reference_matches_hypergeometric_hit_probability(self):
+        self.assertAlmostEqual(random_hit_probability(1, 79, 1), 1 / 79)
+        self.assertAlmostEqual(random_hit_probability(1, 79, 5), 5 / 79)
+        self.assertEqual(random_hit_probability(0, 79, 5), 0.0)
+
+    def test_random_reference_handles_large_k_and_invalid_inputs(self):
+        self.assertEqual(random_hit_probability(2, 9, 8), 1.0)
+        with self.assertRaises(ValueError):
+            random_hit_probability(1, 0, 1)
+        with self.assertRaises(ValueError):
+            random_hit_probability(10, 9, 1)
+        with self.assertRaises(ValueError):
+            random_hit_probability(1, 9, 0)
 
 
 if __name__ == "__main__":

@@ -8,8 +8,11 @@ import statistics
 import numpy as np
 import pandas as pd
 
+from xai_cps.target_eval import random_hit_probability
+
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_MAP = ROOT / "data" / "annotations" / "hai21_event_target_map.csv"
+HAI_NUMERIC_TAG_COUNT = 79
 
 
 def _tokens(value: object, separator: str = "|") -> set[str]:
@@ -96,6 +99,9 @@ def evaluate_run(run_dir: Path, mapping: pd.DataFrame) -> dict:
             for k in (1, 3, 5):
                 event_result[f"native_hit_at_{k}"] = float(bool(targets & set(native[:k])))
                 event_result[f"grouped_ablation_hit_at_{k}"] = float(bool(targets & set(ablation[:k])))
+                event_result[f"random_reference_hit_probability_at_{k}"] = (
+                    random_hit_probability(len(targets), HAI_NUMERIC_TAG_COUNT, k) if detected else 0.0
+                )
             event_outcomes.append(event_result)
         per_run = {
             "eligible_target_complete_events": eligible_count,
@@ -115,6 +121,12 @@ def evaluate_run(run_dir: Path, mapping: pd.DataFrame) -> dict:
             "dynamics_cf_target_hit_rate_unconditional": float(np.mean([
                 row["dynamics_cf_target_hit_unconditional"] for row in event_outcomes
             ])) if event_outcomes else None,
+            "random_reference_unconditional_hit_at_k": {
+                str(k): float(np.mean([
+                    row[f"random_reference_hit_probability_at_{k}"] for row in event_outcomes
+                ])) if event_outcomes else None
+                for k in (1, 3, 5)
+            },
             "metrics_conditional_on_detected_event": {
                 name: (statistics.mean(values) if values else None)
                 for name, values in metric_values.items()
@@ -267,6 +279,16 @@ def aggregate(runs: list[dict]) -> dict:
                     max(item["detected_fraction_of_eligible_events"] for item in vals),
                 ],
             },
+            "random_reference_unconditional_hit_at_k": {
+                str(k): {
+                    "mean": statistics.mean(item["random_reference_unconditional_hit_at_k"][str(k)] for item in vals),
+                    "range": [
+                        min(item["random_reference_unconditional_hit_at_k"][str(k)] for item in vals),
+                        max(item["random_reference_unconditional_hit_at_k"][str(k)] for item in vals),
+                    ],
+                }
+                for k in (1, 3, 5)
+            },
             "capability_counterfactual_successes_on_eligible_events": {
                 "mean": statistics.mean(item["capability_counterfactual_successes_on_eligible_events"] for item in vals),
                 "range": [
@@ -306,6 +328,10 @@ def main() -> None:
         "dataset": "HAI 21.03",
         "target_ground_truth_source": "Official HAI technical manual scenario timetable, aligned to test CSV intervals by timestamp",
         "only_exact_csv_target_points_counted_as_gold": True,
+        "random_ranking_reference": {
+            "group_universe_size": HAI_NUMERIC_TAG_COUNT,
+            "definition": "Analytic uniform top-k without-replacement target-intersection probability; detector misses contribute zero to unconditional reference rates.",
+        },
         "incomplete_target_events_excluded_from_tag_localization": int((~mapping["target_annotation_complete"].astype(bool)).sum()),
         "eligible_exact_target_events": int(mapping["target_annotation_complete"].astype(bool).sum()),
         "runs": run_results,
