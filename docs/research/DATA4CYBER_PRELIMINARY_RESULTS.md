@@ -9,14 +9,14 @@
 - Outer evaluation holds out one attack family at a time. When S1 is held out, both S1 runs are excluded from fitting and calibration. S0 benign rows are retained as normal-only context.
 - Within each non-held-out normal scenario, the first 80% of benign rows by timestamp fit the model and training-only median imputer; the final 20% calibrates thresholds. Normal-difference features reset at timestamp gaps.
 - Detector features exclude timestamps, `attack_active`, `attack_phase`, `attack_phase_all`, and `*.realtime` columns. Target annotations and phase labels are post-hoc only.
-- Unsupervised baselines are RobustZ and PCA residual (95% variance, up to 48 components). Each has a model-specific calibration threshold at nominal normal FPR 1% and 5%.
+- The original unsupervised baselines are RobustZ and PCA residual (95% variance, up to 48 components). A separate constrained GeCo-AR1 reference was added later; its deviations from full GeCo are documented in [`DATA4CYBER_IPAL_BASELINE_COMPATIBILITY.md`](DATA4CYBER_IPAL_BASELINE_COMPATIBILITY.md). All models use a model-specific calibration threshold at nominal normal FPR 1% and 5%.
 - Process-group explanations compare native detector contributions averaged within each semantic prefix against component-wise deletion ablation. The target map was frozen in `data/annotations/data4cyber_response_targets.csv` before examining these explanation results. Detector misses count as target misses; reconnaissance-only events are excluded from target localization and retained for phase/detection reporting.
 - The runner now verifies all 16 attack/benign split CSVs consumed against the embedded SHA-256 manifest. It reports an analytic random-ranking reference: for a detector hit, the probability a uniformly random top-k group set intersects the target set, given the available group universe; misses have reference hit probability zero. This is a descriptive chance baseline, not an independent inferential replicate.
 - Exact paired sign-flip tests use six family-level paired differences; Holm correction covers six detector/metric/threshold comparisons. These tests are low-powered and exploratory.
 
 ## Detection results
 
-Equal-weight family mean average precision was 0.727 for PCA and 0.674 for RobustZ. PCA-minus-RobustZ was +0.0466 across six families; exact two-sided sign-flip $p=0.03125$, Holm-adjusted $p=0.1875$. This does not establish a significant detector advantage after correction.
+Equal-weight family mean average precision was 0.728 for PCA and 0.681 for RobustZ. PCA-minus-RobustZ was +0.0466 across six families; exact two-sided sign-flip $p=0.03125$, Holm-adjusted $p=0.1875$. This does not establish a significant detector advantage after correction.
 
 | Held-out family | PCA AP | RobustZ AP | PCA F1 at nominal 1% FPR | RobustZ F1 at nominal 1% FPR |
 |---|---:|---:|---:|---:|
@@ -30,6 +30,14 @@ Equal-weight family mean average precision was 0.727 for PCA and 0.674 for Robus
 With a nominal 1% normal-only threshold, held-out-file FPR ranged from 0.0% to 1.5% for PCA and 3.6% to 5.9% for RobustZ. At nominal 5%, the ranges were 2.7%–32.3% for PCA and 3.6%–31.1% for RobustZ. This demonstrates substantial normal-regime transfer error for some held-out families. At nominal 1%, mean point recall was low (about 1.2% PCA and 0.6% RobustZ by family), despite nonzero event recall in several files. Point and event metrics therefore tell different stories; no point-adjustment was used.
 
 The nominal-5% PCA-minus-RobustZ differences were +0.1017 in F1 and +0.0660 in recall, with raw exact two-sided $p=0.03125$ for each and Holm-adjusted $p=0.1875$. The result remains exploratory across six attack families from one testbed.
+
+## Constrained GeCo-AR1 reference
+
+The adapter applies the one-step, self-lag linear SUM subset of GeCo, with training-normal-only median imputation and separate normal-only calibration. It uses no attack labels or cross-sensor equations. The 145-feature six-family run produced equal-weight mean AP 0.620, below PCA (0.728) and RobustZ (0.681). At nominal 1% FPR, family-mean F1/recall/test benign FPR were 0.121/0.087/0.014; at nominal 5%, they were 0.174/0.119/0.074. Six-family paired comparisons with PCA and RobustZ did not establish a performance difference after Holm correction across 14 comparisons (all adjusted $p\geq0.4375$).
+
+For first-alarm target localization, five of eight eligible events were detected at nominal 1%; all eight were detected at nominal 5%. Unconditional Hit@5 at the latter operating point was 8/8, but three of eight events are in the documented-device-group tier, whose target sets alone imply a 0.979 random top-five hit probability. The exact-register tier has only one event. These results are exploratory and do not validate full GeCo, explainability superiority, or independent generalization. Machine-readable results are in `results/summaries/data4cyber_geco_ar1_reference.json`.
+
+The current host-only timing pass measured per-transition scoring p95 between 0.008 and 0.042 ms across held-out scenarios, with batch-amortized scoring of 8.8–42.8 microseconds per row and 4,640 bytes of fitted NumPy parameter arrays. These are measurements of the constrained reference implementation on this research host; they exclude explanation rendering and alert handling, and do not establish edge-device or deployment feasibility.
 
 ## First-alarm localization and explanation properties
 
@@ -47,6 +55,7 @@ Across detected first alarms, top-five explanation rankings were usually unchang
 
 ## Interpretation and next experiments
 
-The dataset supports an evidence-tiered explanation audit, but not uniform root-target ground truth. Current detector transfer is imperfect, and the target counts are too small for strong explanation claims. Do not present these preliminary values as a result against the paper's 12 IPAL baselines; those were not reproduced.
+The dataset supports an evidence-tiered explanation audit, but not uniform root-target ground truth. Current detector transfer is imperfect, and target counts are too small for strong explanation claims. The constrained GeCo-AR1 reference is an adapted subset, not a result against the paper's 12 IPAL baselines; those published results were not reproduced. The exact companion-paper protocol has not been verified from full text. See [`DATA4CYBER_IPAL_BASELINE_COMPATIBILITY.md`](DATA4CYBER_IPAL_BASELINE_COMPATIBILITY.md).
 
-Before manuscript claims, obtain and compare the full GRIDGUARD-AI preprint and supplement, reproduce a matched subset of the released IPAL baselines, resolve S4/S5 endpoint ambiguity, conduct seeded repeats and scenario-level uncertainty analysis, and measure p50/p95 overhead on a disclosed edge-class device. The random-ranking reference shows why top-K must be interpreted relative to target-set size and available groups; it does not rescue the tiny, dependent event sample. Expand testing with a second testbed/dataset if comparable ground-truth granularity is available. No causal, process-safety, or physical-transition claim is supported by this run.
+Before manuscript claims, obtain and compare the full GRIDGUARD-AI preprint and supplement, resolve S4/S5 endpoint ambiguity, conduct seeded repeats and scenario-level uncertainty analysis, measure p50/p95 overhead on a disclosed edge-class device, and compare against the exact Data4Cyber companion-paper protocol if its full text and versioned artifacts become available. The random-ranking reference shows why top-K must be interpreted relative to target-set size and available groups; it does not rescue the tiny, dependent event sample. Expand testing with a second testbed/dataset if comparable ground-truth granularity is available. No causal, process-safety, or physical-transition claim is supported by this run.
+
