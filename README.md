@@ -54,6 +54,8 @@ Data4Cyber v3 is a conditional new benchmark candidate. Its full archive is abou
 
 The separate constrained GeCo-AR1 reference can be reproduced with `python scripts/run_data4cyber_geco_reference.py --output results/summaries/data4cyber_geco_ar1_reference.json`. It uses the same Data4Cyber archive path and split manifest as the PCA/RobustZ runner. This model is restricted to one-step self-lag residuals, imputes from training-normal data, and calibrates only on normal holdout data; it is not full GeCo and does not reproduce the twelve published IPAL baselines. See [`docs/research/DATA4CYBER_IPAL_BASELINE_COMPATIBILITY.md`](docs/research/DATA4CYBER_IPAL_BASELINE_COMPATIBILITY.md) for the exact protocol and caveats.
 
+The HAI Isolation Forest target-localization reference requires the optional baseline dependency (`python -m pip install -e ".[baselines]"`) and can be reproduced with `python scripts/run_hai_isolation_forest_reference.py --seeds 42 43 44 45 46`. It fits only the normal training files, selects its threshold on the normal validation file, and evaluates grouped-ablation rankings against the 29 exact-target attack intervals. This is a detector-family comparator, not a reproduction of RAID's regime-aware feature pipeline or language/RAG stages; see `results/summaries/hai21_isolation_forest_target_reference.json` after the run completes.
+
 After generating five HAI runs, aggregate detection and explanation outcomes and reproduce localization, stability, and fidelity analyses with the same run directories:
 
 ```powershell
