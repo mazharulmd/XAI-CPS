@@ -4,7 +4,7 @@
 
 It is not submission-ready. Remaining requirements include:
 
-- independently compiled and rendered LaTeX with figure/table layout review;
+- page-by-page visual review of the compiled LaTeX and its figures/tables (the updated source compiles successfully with the desktop editor, but its preview could not be captured in this session);
 - an expanded, verified related-work search and stronger matched temporal explanation baselines;
 - broader target-complete CPS datasets and independent replication beyond the current five HAI files and six Data4Cyber attack families;
 - stronger detector families and comparable operating-point evaluation;
