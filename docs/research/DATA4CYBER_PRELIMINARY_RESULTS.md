@@ -2,34 +2,38 @@
 
 **Status:** exploratory first pass; not a final benchmark or a Q1-ready result.
 **Data:** Data4Cyber v3, 14,354 rows, six attack-family folds (S1 and S1-alt grouped).
-**Run:** `scripts/run_data4cyber_baseline.py --config configs/data4cyber_v3.json --output results/summaries/data4cyber_loco_baselines.json`
+**Run:** `python scripts/run_data4cyber_baseline.py --data-dir data/raw/data4cyber/full_v3/data4cyber_dataset --compact-output --output results/summaries/data4cyber_loco_baselines.json`
 
 ## Protocol actually run
 
 - Outer evaluation holds out one attack family at a time. When S1 is held out, both S1 runs are excluded from fitting and calibration. S0 benign rows are retained as normal-only context.
 - Within each non-held-out normal scenario, the first 80% of benign rows by timestamp fit the model and training-only median imputer; the final 20% calibrates thresholds. Normal-difference features reset at timestamp gaps.
 - Detector features exclude timestamps, `attack_active`, `attack_phase`, `attack_phase_all`, and `*.realtime` columns. Target annotations and phase labels are post-hoc only.
-- The original unsupervised baselines are RobustZ and PCA residual (95% variance, up to 48 components). A separate constrained GeCo-AR1 reference was added later; its deviations from full GeCo are documented in [`DATA4CYBER_IPAL_BASELINE_COMPATIBILITY.md`](DATA4CYBER_IPAL_BASELINE_COMPATIBILITY.md). All models use a model-specific calibration threshold at nominal normal FPR 1% and 5%.
+- The matched unsupervised baselines are RobustZ, PCA residual (95% variance, up to 48 components), and a 500-tree Isolation Forest on robust-scaled state and first-difference features (`max_samples=512`, seed 42). Forest fitting is normal-only; its threshold is selected on held-out normal calibration rows. It has no native per-channel attribution, so only grouped black-box score ablation is reported for its first-alarm ranking; `native_*` attribution fields are intentionally null. A separate constrained GeCo-AR1 reference was added later; its deviations from full GeCo are documented in [`DATA4CYBER_IPAL_BASELINE_COMPATIBILITY.md`](DATA4CYBER_IPAL_BASELINE_COMPATIBILITY.md). All models use a model-specific calibration threshold at nominal normal FPR 1% and 5%.
 - Process-group explanations compare native detector contributions averaged within each semantic prefix against component-wise deletion ablation. The target map was frozen in `data/annotations/data4cyber_response_targets.csv` before examining these explanation results. Detector misses count as target misses; reconnaissance-only events are excluded from target localization and retained for phase/detection reporting.
 - The runner now verifies all 16 attack/benign split CSVs consumed against the embedded SHA-256 manifest. It reports an analytic random-ranking reference: for a detector hit, the probability a uniformly random top-k group set intersects the target set, given the available group universe; misses have reference hit probability zero. This is a descriptive chance baseline, not an independent inferential replicate.
-- Exact paired sign-flip tests use six family-level paired differences; Holm correction covers six detector/metric/threshold comparisons. These tests are low-powered and exploratory.
+- Exact paired sign-flip tests use six family-level paired differences; Holm correction covers the 18 pairwise detector/metric/threshold contrasts among PCA, RobustZ, and Isolation Forest. These tests are low-powered and exploratory.
 
 ## Detection results
 
-Equal-weight family mean average precision was 0.728 for PCA and 0.681 for RobustZ. PCA-minus-RobustZ was +0.0466 across six families; exact two-sided sign-flip $p=0.03125$, Holm-adjusted $p=0.1875$. This does not establish a significant detector advantage after correction.
+Equal-weight family mean average precision was 0.728 for PCA, 0.681 for RobustZ, and 0.663 for Isolation Forest. The Isolation Forest's paired AP difference against PCA was -0.0646 (exact two-sided sign-flip $p=0.03125$, Holm-adjusted $p=0.5625$ across 18 comparisons); against RobustZ it was -0.0180 ($p=0.28125$, adjusted $p=1.0$). The Forest does not improve on the existing process baselines, and the family-level evidence does not establish a statistically significant difference after correction.
 
-| Held-out family | PCA AP | RobustZ AP | PCA F1 at nominal 1% FPR | RobustZ F1 at nominal 1% FPR |
-|---|---:|---:|---:|---:|
-| S1 (S1 and S1-alt grouped) | 0.721 | 0.634 | 0.019 | 0.019 |
-| S2 | 0.603 | 0.558 | 0.000 | 0.006 |
-| S3 | 0.554 | 0.485 | 0.045 | 0.000 |
-| S4 | 0.805 | 0.764 | 0.020 | 0.020 |
-| S5 | 0.835 | 0.820 | 0.032 | 0.015 |
-| S6 | 0.848 | 0.825 | 0.021 | 0.006 |
+| Held-out family | PCA AP | RobustZ AP | Isolation Forest AP | PCA F1 at nominal 1% FPR | RobustZ F1 at nominal 1% FPR | IF F1 at nominal 1% FPR |
+|---|---:|---:|---:|---:|---:|---:|
+| S1 (S1 and S1-alt grouped) | 0.721 | 0.634 | 0.654 | 0.019 | 0.019 | 0.020 |
+| S2 | 0.603 | 0.558 | 0.529 | 0.000 | 0.006 | 0.009 |
+| S3 | 0.554 | 0.485 | 0.473 | 0.045 | 0.000 | 0.000 |
+| S4 | 0.805 | 0.764 | 0.764 | 0.020 | 0.020 | 0.005 |
+| S5 | 0.835 | 0.820 | 0.819 | 0.032 | 0.015 | 0.012 |
+| S6 | 0.848 | 0.825 | 0.740 | 0.021 | 0.006 | 0.006 |
 
-With a nominal 1% normal-only threshold, held-out-file FPR ranged from 0.0% to 1.5% for PCA and 3.6% to 5.9% for RobustZ. At nominal 5%, the ranges were 2.7%–32.3% for PCA and 3.6%–31.1% for RobustZ. This demonstrates substantial normal-regime transfer error for some held-out families. At nominal 1%, mean point recall was low (about 1.2% PCA and 0.6% RobustZ by family), despite nonzero event recall in several files. Point and event metrics therefore tell different stories; no point-adjustment was used.
+With a nominal 1% normal-only threshold, held-out-file FPR ranged from 0.0% to 1.5% for PCA, 3.6% to 5.9% for RobustZ, and 0.6% to 1.3% for Isolation Forest. At nominal 5%, the ranges were 2.7%–32.3% for PCA, 3.6%–31.1% for RobustZ, and 3.3%–7.8% for Isolation Forest. This demonstrates substantial normal-regime transfer error for some held-out families. At nominal 1%, equal-weight family-mean point recall was low (about 1.2% PCA, 0.6% RobustZ, and 0.4% Isolation Forest), despite nonzero event recall in several files. Point and event metrics therefore tell different stories; no point-adjustment was used.
 
-The nominal-5% PCA-minus-RobustZ differences were +0.1017 in F1 and +0.0660 in recall, with raw exact two-sided $p=0.03125$ for each and Holm-adjusted $p=0.1875$. The result remains exploratory across six attack families from one testbed.
+At nominal 5%, equal-weight family-mean F1/recall/realized benign FPR were 0.0698/0.0385/0.0436 for Isolation Forest, 0.2494/0.1939/0.1040 for PCA, and 0.1477/0.1279/0.0863 for RobustZ. Higher attack coverage for PCA came with substantial threshold-transfer error; all outcomes remain exploratory across six families from one testbed.
+
+## Isolation Forest first-alarm explanation reference
+
+At nominal 1%, the Forest detected seven of eight eligible target events; at nominal 5%, it detected all eight. Unconditional grouped-ablation Hit@5 was 5/8 and 6/8, respectively, compared with event-matched random-ranking expectations of 0.645 and 0.714. At 1%, Hit@1/3/5 was 0.125/0.500/0.625; at 5% it was 0.125/0.500/0.750. The exact-tag tier contains one event and the coarse device-group tier has a high random top-five intersection probability, so these values provide no persuasive target-localization evidence. Isolation Forest supplies no native feature attribution; the reported ranks are solely grouped score-deletion effects. Across the six family folds, mean fit time was 2.50 s, sampled single-row score p95 was 70.4 ms, and mean event explanation time was about 0.6 s (p95 0.69 s) on the recorded Windows/Intel host. Fitted tree arrays occupied 4.53–4.65 MB, excluding Python/runtime overhead. These timings and sizes are host-specific, exclude rendering and alert handling, and do not establish edge deployment. The compact machine-readable summary retains detector metrics and all target-eligible first-alarm rankings; omitting `--compact-output` recreates the full event trace.
 
 ## Constrained GeCo-AR1 reference
 
@@ -55,7 +59,7 @@ Across detected first alarms, top-five explanation rankings were usually unchang
 
 ## Interpretation and next experiments
 
-The dataset supports an evidence-tiered explanation audit, but not uniform root-target ground truth. Current detector transfer is imperfect, and target counts are too small for strong explanation claims. The constrained GeCo-AR1 reference is an adapted subset, not a result against the paper's 12 IPAL baselines; those published results were not reproduced. The exact companion-paper protocol has not been verified from full text. See [`DATA4CYBER_IPAL_BASELINE_COMPATIBILITY.md`](DATA4CYBER_IPAL_BASELINE_COMPATIBILITY.md).
+The dataset supports an evidence-tiered explanation audit, but not uniform root-target ground truth. Current detector transfer is imperfect, and target counts are too small for strong explanation claims. The Forest reference is a conventional normal-only comparator, not an IPAL detector reproduction. The constrained GeCo-AR1 reference is an adapted subset, not a result against the paper's 12 IPAL baselines; those published results were not reproduced. The exact companion-paper protocol has not been verified from full text. See [`DATA4CYBER_IPAL_BASELINE_COMPATIBILITY.md`](DATA4CYBER_IPAL_BASELINE_COMPATIBILITY.md).
 
 Before manuscript claims, obtain and compare the full GRIDGUARD-AI preprint and supplement, resolve S4/S5 endpoint ambiguity, conduct seeded repeats and scenario-level uncertainty analysis, measure p50/p95 overhead on a disclosed edge-class device, and compare against the exact Data4Cyber companion-paper protocol if its full text and versioned artifacts become available. The random-ranking reference shows why top-K must be interpreted relative to target-set size and available groups; it does not rescue the tiny, dependent event sample. Expand testing with a second testbed/dataset if comparable ground-truth granularity is available. No causal, process-safety, or physical-transition claim is supported by this run.
 
