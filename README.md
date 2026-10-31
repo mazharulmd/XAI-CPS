@@ -1,8 +1,8 @@
-# Deadline-aware, control-loop-structured attribution for ICS intrusion localization
+# Deadline-aware, control-loop-structured explainable AI for intrusion detection in cyber-physical systems
 
 Research code, data configurations, results and manuscript for:
 
-> **Explaining Before the Process Safety Time Runs Out: Deadline-Aware, Control-Loop-Structured Attribution for Intrusion Localization in Industrial Control Systems** (manuscript in `paper/`).
+> **Explanations That Arrive in Time: Deadline-Aware, Control-Loop-Structured Explainable AI for Intrusion Detection in Cyber-Physical Systems** (manuscript in `paper/`).
 
 The question this project asks: when an ML anomaly detector raises an alarm in an industrial control system, **does the operator receive a *correct* indication of the compromised control loop before the physical process reaches an unsafe state?**
 

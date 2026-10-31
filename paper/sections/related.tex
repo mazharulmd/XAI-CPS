@@ -1,6 +1,6 @@
 \section{Related work}\label{sec:related}
 
-\paragraph{Interpretable ICS anomaly detection}
+\paragraph{Interpretable CPS anomaly detection}
 Several detectors expose interpretable internals:
 \begin{itemize}
 \item graph-attention weights that point to a deviating sensor (GDN; \citealp{deng2021gdn});
@@ -11,7 +11,7 @@ Several detectors expose interpretable internals:
 \end{itemize}
 These works mostly validate interpretability qualitatively, on selected attacks, or through expert agreement \citep{rasheed2026xaicps}. They do not report how often the documented attack target is ranked first at the moment of detection.
 
-\paragraph{Post-hoc XAI for ICS and IIoT intrusion detection}
+\paragraph{Post-hoc XAI for CPS, ICS and IIoT intrusion detection}
 Most of the literature applies SHAP or LIME to a detector and presents feature-importance plots:
 \begin{itemize}
 \item Kernel or Gradient SHAP on autoencoder-based detectors for SCADA and gas-pipeline data \citep{huong2022fedex,ha2022ifac};
@@ -43,7 +43,7 @@ Owen values \citep{owen1977unions} extend Shapley values \citep{shapley1953value
 \end{itemize}
 In a concurrent preprint, \citet{mishra2026conditional} compute sensor--time attributions with on-manifold conditional counterfactuals for root-cause analysis on SWaT and server data. They aggregate within a window, whereas we aggregate across alarm windows and evaluate timeliness.
 
-\paragraph{Timeliness in ICS security}
+\paragraph{Timeliness in CPS security}
 \citet{cardenas2011attacks} and \citet{urbina2016limiting} analyse attacks and detection in terms of their physical impact. \citet{puccetti2026latency} argue that detection latency must be evaluated together with false-positive rates. GiBy \citep{venugopalan2025giby} explains detections through per-sensor safety bounds within milliseconds. To our knowledge, no prior work evaluates whether an \emph{explanation} that is \emph{correct} reaches the operator within a process-derived deadline.
 
 \begin{table}[t]

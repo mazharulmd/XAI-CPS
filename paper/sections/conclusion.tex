@@ -1,5 +1,5 @@
 \section{Conclusion}\label{sec:conclusion}
-We asked whether the explanations of ML-based ICS intrusion detectors reach operators correctly and in time. We introduced deadline-conditioned evaluation metrics, loop-level exact Shapley attribution with deterministic cost, and temporal evidence accumulation. We evaluated them, with 12 baselines and controls, across four detector families on the public HAI~21.03 testbed, for which we curated loop-level ground truth, and on an open closed-loop simulator with physical hazard deadlines.
+We asked whether the explanations of ML-based intrusion detectors in cyber-physical systems reach operators correctly and in time, and argued that XAI for CPS should be grounded in the control structure and the physical deadlines of the system. We introduced deadline-conditioned evaluation metrics, loop-level exact Shapley attribution with deterministic cost, and temporal evidence accumulation. We evaluated them, with 12 baselines and controls, across four detector families on the public HAI~21.03 testbed, for which we curated loop-level ground truth, and on an open closed-loop simulator with physical hazard deadlines.
 
 Four findings stand out:
 \begin{itemize}
@@ -12,6 +12,7 @@ Four findings stand out:
 Future work should:
 \begin{itemize}
 \item replicate the study on SWaT, WADI and newer HAI releases;
+\item extend it to other CPS domains, such as power grids and vehicles, where control loops and deadlines can be defined analogously;
 \item measure latency on embedded hardware;
 \item study adaptive adversaries who target the explanation;
 \item evaluate deadline-aware explanations with operators.

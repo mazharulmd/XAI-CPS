@@ -2,6 +2,7 @@
 \paragraph{External validity}
 \begin{itemize}
 \item \emph{Benchmark coverage.} We evaluate on one real HIL testbed (HAI 21.03, 50 attacks) and one simulator of our own design. SWaT and WADI, the most common ICS benchmarks, are only available on request, and we could not include them in this study. Replication on them, on HAI 22.04/23.05, and on TEP-based manipulation suites \citep{fung2024attributions} is the most important next step.
+\item \emph{Other CPS domains.} Both benchmarks are industrial process CPS. Power grids, vehicles and medical devices also have control loops and physical deadlines, so the framework applies to them in principle. Their loop sizes, sampling rates and deadlines differ, however, and we make no empirical claim about them.
 \item \emph{Simulator bias.} A simulator designed by the authors of a method risks favouring it. We mitigate this in three ways: all explainers query the same score function and reference; attack primitives mirror HAI's taxonomy; and simulator parameters were fixed on development seeds before any explainer was evaluated. The simulator is released for scrutiny.
 \end{itemize}
 
