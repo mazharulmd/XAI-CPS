@@ -252,6 +252,110 @@ def paired_counterfactual_localization_tests(
     return result
 
 
+def random_ranking_benchmark_tests(
+    runs: list[dict], seed: int = 161803, draws: int = 20000
+) -> dict:
+    """Compare observed first-alarm Hit@k with an event-matched random-ranking null.
+
+    The target set and detector-hit/miss pattern are held fixed. For every
+    detected event and seed, the null Hit@k is Bernoulli with its exact
+    hypergeometric probability under a uniformly sampled size-k ranking of the
+    79 numeric tags. Seed outcomes are averaged within attack ID before the
+    event-level estimate and bootstrap are computed.
+    """
+    if draws < 1000:
+        raise ValueError("draws must be at least 1000 for the Monte Carlo null")
+    if not runs:
+        return {}
+    rng = np.random.default_rng(seed)
+    result: dict[str, dict] = {}
+    raw_p: dict[str, float] = {}
+    for model in sorted(runs[0]["event_outcomes"]):
+        pooled: dict[str, list[dict]] = {}
+        for run in runs:
+            for row in run["event_outcomes"][model]:
+                pooled.setdefault(row["attack_id"], []).append(row)
+        attacks = sorted(pooled)
+        files = {attack: pooled[attack][0]["dataset_file"] for attack in attacks}
+        model_result: dict[str, dict] = {}
+        for method in ("native", "grouped_ablation"):
+            for k in (1, 3, 5):
+                observed_by_event = np.asarray([
+                    np.mean([row[f"{method}_hit_at_{k}"] for row in pooled[attack]])
+                    for attack in attacks
+                ], dtype=float)
+                probability_by_event = np.asarray([
+                    np.mean([row[f"random_reference_hit_probability_at_{k}"] for row in pooled[attack]])
+                    for attack in attacks
+                ], dtype=float)
+                paired_excess = observed_by_event - probability_by_event
+                observed_excess = float(paired_excess.mean())
+                boot = np.empty(draws, dtype=float)
+                for b in range(draws):
+                    boot[b] = float(np.mean(
+                        paired_excess[rng.integers(0, len(attacks), len(attacks))]
+                    ))
+                file_names = sorted(set(files.values()))
+                indices_by_file = {
+                    name: np.flatnonzero([files[attack] == name for attack in attacks])
+                    for name in file_names
+                }
+                file_boot = np.empty(draws, dtype=float)
+                for b in range(draws):
+                    sampled_files = rng.choice(file_names, size=len(file_names), replace=True)
+                    sampled_indices = np.concatenate([indices_by_file[name] for name in sampled_files])
+                    file_boot[b] = float(np.mean(paired_excess[sampled_indices]))
+
+                # Event/seed random rankings are sampled conditionally on the
+                # observed detector hits; missed events have null probability 0.
+                event_seed_probabilities = np.asarray([
+                    [row[f"random_reference_hit_probability_at_{k}"] for row in pooled[attack]]
+                    for attack in attacks
+                ], dtype=float)
+                null_hits = rng.random((draws, *event_seed_probabilities.shape)) < event_seed_probabilities[None, :, :]
+                null_estimates = null_hits.mean(axis=2).mean(axis=1)
+                null_center = float(probability_by_event.mean())
+                p_value = float((np.count_nonzero(
+                    np.abs(null_estimates - null_center) >= abs(observed_excess)
+                ) + 1) / (draws + 1))
+                key = f"{model}|{method}|{k}"
+                raw_p[key] = p_value
+                model_result.setdefault(method, {})[str(k)] = {
+                    "observed_unconditional_hit_rate": float(observed_by_event.mean()),
+                    "random_reference_unconditional_hit_rate": null_center,
+                    "excess_hit_rate_over_random_reference": observed_excess,
+                    "event_cluster_bootstrap_ci95_for_excess": [
+                        float(x) for x in np.quantile(boot, [0.025, 0.975])
+                    ],
+                    "file_cluster_bootstrap_ci95_for_excess": [
+                        float(x) for x in np.quantile(file_boot, [0.025, 0.975])
+                    ],
+                    "conditional_random_ranking_p_two_sided": p_value,
+                    "n_attack_event_clusters": len(attacks),
+                    "n_test_file_clusters": len(set(files.values())),
+                    "monte_carlo_draws": draws,
+                    "estimand": (
+                        "exact-target-complete HAI events; repeated seeds averaged within attack ID; "
+                        "detector misses fixed at zero under both observed and random rankings"
+                    ),
+                }
+        result[model] = model_result
+
+    # One Holm family covers all model, explainer, and K comparisons.
+    ordered = sorted(raw_p, key=raw_p.get)
+    adjusted: dict[str, float] = {}
+    running = 0.0
+    for rank, key in enumerate(ordered):
+        running = max(running, min(1.0, (len(ordered) - rank) * raw_p[key]))
+        adjusted[key] = float(running)
+    for model in result:
+        for method in result[model]:
+            for k in result[model][method]:
+                key = f"{model}|{method}|{k}"
+                result[model][method][k]["holm_adjusted_p_two_sided"] = adjusted[key]
+    return result
+
+
 def aggregate(runs: list[dict]) -> dict:
     model_names = sorted(runs[0]["models"])
     summary = {}
@@ -316,6 +420,8 @@ def main() -> None:
     parser.add_argument("runs", nargs="+", type=Path, help="HAI run directories with event_explanations.csv")
     parser.add_argument("--mapping", type=Path, default=DEFAULT_MAP)
     parser.add_argument("--output", type=Path, default=None)
+    parser.add_argument("--randomization-draws", type=int, default=20000)
+    parser.add_argument("--randomization-seed", type=int, default=161803)
     args = parser.parse_args()
 
     mapping = pd.read_csv(args.mapping)
@@ -337,6 +443,9 @@ def main() -> None:
         "runs": run_results,
         "aggregate": aggregate(run_results),
         "paired_localization_tests": paired_localization_tests(run_results),
+        "random_ranking_benchmark_tests": random_ranking_benchmark_tests(
+            run_results, seed=args.randomization_seed, draws=args.randomization_draws
+        ),
         "unconditional_counterfactual_target_localization": {
             model: {
                 "eligible_target_complete_events": run_results[0]["models"][model]["eligible_target_complete_events"],

@@ -8327,6 +8327,368 @@
       }
     }
   },
+  "random_ranking_benchmark_tests": {
+    "PCA-STATE": {
+      "native": {
+        "1": {
+          "observed_unconditional_hit_rate": 0.0,
+          "random_reference_unconditional_hit_rate": 0.01964207769532954,
+          "excess_hit_rate_over_random_reference": -0.01964207769532954,
+          "event_cluster_bootstrap_ci95_for_excess": [
+            -0.02313400261894369,
+            -0.01615015277171539
+          ],
+          "file_cluster_bootstrap_ci95_for_excess": [
+            -0.028647568287808133,
+            -0.014767932489451454
+          ],
+          "conditional_random_ranking_p_two_sided": 0.12194390280485976,
+          "n_attack_event_clusters": 29,
+          "n_test_file_clusters": 5,
+          "monte_carlo_draws": 20000,
+          "estimand": "exact-target-complete HAI events; repeated seeds averaged within attack ID; detector misses fixed at zero under both observed and random rankings",
+          "holm_adjusted_p_two_sided": 0.7316634168291585
+        },
+        "3": {
+          "observed_unconditional_hit_rate": 0.0,
+          "random_reference_unconditional_hit_rate": 0.05822244102471076,
+          "excess_hit_rate_over_random_reference": -0.05822244102471076,
+          "event_cluster_bootstrap_ci95_for_excess": [
+            -0.068463182387233,
+            -0.04801396769969444
+          ],
+          "file_cluster_bootstrap_ci95_for_excess": [
+            -0.08440926162445149,
+            -0.04406037000973708
+          ],
+          "conditional_random_ranking_p_two_sided": 0.005149742512874356,
+          "n_attack_event_clusters": 29,
+          "n_test_file_clusters": 5,
+          "monte_carlo_draws": 20000,
+          "estimand": "exact-target-complete HAI events; repeated seeds averaged within attack ID; detector misses fixed at zero under both observed and random rankings",
+          "holm_adjusted_p_two_sided": 0.046347682615869204
+        },
+        "5": {
+          "observed_unconditional_hit_rate": 0.06896551724137931,
+          "random_reference_unconditional_hit_rate": 0.09587313603027268,
+          "excess_hit_rate_over_random_reference": -0.026907618788893365,
+          "event_cluster_bootstrap_ci95_for_excess": [
+            -0.09608825628031219,
+            0.06858556836732302
+          ],
+          "file_cluster_bootstrap_ci95_for_excess": [
+            -0.07592305060659492,
+            0.07237332953522158
+          ],
+          "conditional_random_ranking_p_two_sided": 0.31093445327733615,
+          "n_attack_event_clusters": 29,
+          "n_test_file_clusters": 5,
+          "monte_carlo_draws": 20000,
+          "estimand": "exact-target-complete HAI events; repeated seeds averaged within attack ID; detector misses fixed at zero under both observed and random rankings",
+          "holm_adjusted_p_two_sided": 1.0
+        }
+      },
+      "grouped_ablation": {
+        "1": {
+          "observed_unconditional_hit_rate": 0.0,
+          "random_reference_unconditional_hit_rate": 0.01964207769532954,
+          "excess_hit_rate_over_random_reference": -0.01964207769532954,
+          "event_cluster_bootstrap_ci95_for_excess": [
+            -0.02313400261894369,
+            -0.01615015277171539
+          ],
+          "file_cluster_bootstrap_ci95_for_excess": [
+            -0.028647568287808133,
+            -0.014767932489451454
+          ],
+          "conditional_random_ranking_p_two_sided": 0.12504374781260938,
+          "n_attack_event_clusters": 29,
+          "n_test_file_clusters": 5,
+          "monte_carlo_draws": 20000,
+          "estimand": "exact-target-complete HAI events; repeated seeds averaged within attack ID; detector misses fixed at zero under both observed and random rankings",
+          "holm_adjusted_p_two_sided": 0.7316634168291585
+        },
+        "3": {
+          "observed_unconditional_hit_rate": 0.034482758620689655,
+          "random_reference_unconditional_hit_rate": 0.05822244102471076,
+          "excess_hit_rate_over_random_reference": -0.023739682404021106,
+          "event_cluster_bootstrap_ci95_for_excess": [
+            -0.06339317600775476,
+            0.04781076627431932
+          ],
+          "file_cluster_bootstrap_ci95_for_excess": [
+            -0.06628911497460668,
+            0.06426042312118263
+          ],
+          "conditional_random_ranking_p_two_sided": 0.28808559572021397,
+          "n_attack_event_clusters": 29,
+          "n_test_file_clusters": 5,
+          "monte_carlo_draws": 20000,
+          "estimand": "exact-target-complete HAI events; repeated seeds averaged within attack ID; detector misses fixed at zero under both observed and random rankings",
+          "holm_adjusted_p_two_sided": 1.0
+        },
+        "5": {
+          "observed_unconditional_hit_rate": 0.1724137931034483,
+          "random_reference_unconditional_hit_rate": 0.09587313603027268,
+          "excess_hit_rate_over_random_reference": 0.07654065707317559,
+          "event_cluster_bootstrap_ci95_for_excess": [
+            -0.048420116185284245,
+            0.21643735284066987
+          ],
+          "file_cluster_bootstrap_ci95_for_excess": [
+            -0.008969608774866829,
+            0.29709446671471984
+          ],
+          "conditional_random_ranking_p_two_sided": 0.00279986000699965,
+          "n_attack_event_clusters": 29,
+          "n_test_file_clusters": 5,
+          "monte_carlo_draws": 20000,
+          "estimand": "exact-target-complete HAI events; repeated seeds averaged within attack ID; detector misses fixed at zero under both observed and random rankings",
+          "holm_adjusted_p_two_sided": 0.0279986000699965
+        }
+      }
+    },
+    "PCA-TEMPORAL": {
+      "native": {
+        "1": {
+          "observed_unconditional_hit_rate": 0.1724137931034483,
+          "random_reference_unconditional_hit_rate": 0.020515058926233072,
+          "excess_hit_rate_over_random_reference": 0.1518987341772152,
+          "event_cluster_bootstrap_ci95_for_excess": [
+            0.01615015277171542,
+            0.29070274989087735
+          ],
+          "file_cluster_bootstrap_ci95_for_excess": [
+            0.05744888023369039,
+            0.3342922899884924
+          ],
+          "conditional_random_ranking_p_two_sided": 4.999750012499375e-05,
+          "n_attack_event_clusters": 29,
+          "n_test_file_clusters": 5,
+          "monte_carlo_draws": 20000,
+          "estimand": "exact-target-complete HAI events; repeated seeds averaged within attack ID; detector misses fixed at zero under both observed and random rankings",
+          "holm_adjusted_p_two_sided": 0.0008999550022498875
+        },
+        "3": {
+          "observed_unconditional_hit_rate": 0.3103448275862069,
+          "random_reference_unconditional_hit_rate": 0.06084138471742137,
+          "excess_hit_rate_over_random_reference": 0.2495034428687855,
+          "event_cluster_bootstrap_ci95_for_excess": [
+            0.08467874334308205,
+            0.41939941333219377
+          ],
+          "file_cluster_bootstrap_ci95_for_excess": [
+            0.10733278406111903,
+            0.4419065278492327
+          ],
+          "conditional_random_ranking_p_two_sided": 4.999750012499375e-05,
+          "n_attack_event_clusters": 29,
+          "n_test_file_clusters": 5,
+          "monte_carlo_draws": 20000,
+          "estimand": "exact-target-complete HAI events; repeated seeds averaged within attack ID; detector misses fixed at zero under both observed and random rankings",
+          "holm_adjusted_p_two_sided": 0.0008999550022498875
+        },
+        "5": {
+          "observed_unconditional_hit_rate": 0.41379310344827586,
+          "random_reference_unconditional_hit_rate": 0.10023804218479036,
+          "excess_hit_rate_over_random_reference": 0.3135550612634855,
+          "event_cluster_bootstrap_ci95_for_excess": [
+            0.14321180056666735,
+            0.4880393867735639
+          ],
+          "file_cluster_bootstrap_ci95_for_excess": [
+            0.2385146499070549,
+            0.40136415724119157
+          ],
+          "conditional_random_ranking_p_two_sided": 4.999750012499375e-05,
+          "n_attack_event_clusters": 29,
+          "n_test_file_clusters": 5,
+          "monte_carlo_draws": 20000,
+          "estimand": "exact-target-complete HAI events; repeated seeds averaged within attack ID; detector misses fixed at zero under both observed and random rankings",
+          "holm_adjusted_p_two_sided": 0.0008999550022498875
+        }
+      },
+      "grouped_ablation": {
+        "1": {
+          "observed_unconditional_hit_rate": 0.1724137931034483,
+          "random_reference_unconditional_hit_rate": 0.020515058926233072,
+          "excess_hit_rate_over_random_reference": 0.1518987341772152,
+          "event_cluster_bootstrap_ci95_for_excess": [
+            0.015713662156263658,
+            0.2911392405063291
+          ],
+          "file_cluster_bootstrap_ci95_for_excess": [
+            0.05744888023369039,
+            0.3342922899884925
+          ],
+          "conditional_random_ranking_p_two_sided": 4.999750012499375e-05,
+          "n_attack_event_clusters": 29,
+          "n_test_file_clusters": 5,
+          "monte_carlo_draws": 20000,
+          "estimand": "exact-target-complete HAI events; repeated seeds averaged within attack ID; detector misses fixed at zero under both observed and random rankings",
+          "holm_adjusted_p_two_sided": 0.0008999550022498875
+        },
+        "3": {
+          "observed_unconditional_hit_rate": 0.27586206896551724,
+          "random_reference_unconditional_hit_rate": 0.06084138471742137,
+          "excess_hit_rate_over_random_reference": 0.21502068424809584,
+          "event_cluster_bootstrap_ci95_for_excess": [
+            0.0719860671846704,
+            0.3836399305626717
+          ],
+          "file_cluster_bootstrap_ci95_for_excess": [
+            0.09173647329162701,
+            0.33664336995449584
+          ],
+          "conditional_random_ranking_p_two_sided": 4.999750012499375e-05,
+          "n_attack_event_clusters": 29,
+          "n_test_file_clusters": 5,
+          "monte_carlo_draws": 20000,
+          "estimand": "exact-target-complete HAI events; repeated seeds averaged within attack ID; detector misses fixed at zero under both observed and random rankings",
+          "holm_adjusted_p_two_sided": 0.0008999550022498875
+        },
+        "5": {
+          "observed_unconditional_hit_rate": 0.3103448275862069,
+          "random_reference_unconditional_hit_rate": 0.10023804218479036,
+          "excess_hit_rate_over_random_reference": 0.2101067854014165,
+          "event_cluster_bootstrap_ci95_for_excess": [
+            0.04783053408107967,
+            0.38034248597321496
+          ],
+          "file_cluster_bootstrap_ci95_for_excess": [
+            0.05834400680693628,
+            0.28289964532469525
+          ],
+          "conditional_random_ranking_p_two_sided": 4.999750012499375e-05,
+          "n_attack_event_clusters": 29,
+          "n_test_file_clusters": 5,
+          "monte_carlo_draws": 20000,
+          "estimand": "exact-target-complete HAI events; repeated seeds averaged within attack ID; detector misses fixed at zero under both observed and random rankings",
+          "holm_adjusted_p_two_sided": 0.0008999550022498875
+        }
+      }
+    },
+    "RobustZ-TEMPORAL": {
+      "native": {
+        "1": {
+          "observed_unconditional_hit_rate": 0.0,
+          "random_reference_unconditional_hit_rate": 0.003491924923614138,
+          "excess_hit_rate_over_random_reference": -0.003491924923614138,
+          "event_cluster_bootstrap_ci95_for_excess": [
+            -0.00698384984722828,
+            -0.0008729812309035326
+          ],
+          "file_cluster_bootstrap_ci95_for_excess": [
+            -0.006962025316455694,
+            -0.0015822784810126528
+          ],
+          "conditional_random_ranking_p_two_sided": 0.6925153742312884,
+          "n_attack_event_clusters": 29,
+          "n_test_file_clusters": 5,
+          "monte_carlo_draws": 20000,
+          "estimand": "exact-target-complete HAI events; repeated seeds averaged within attack ID; detector misses fixed at zero under both observed and random rankings",
+          "holm_adjusted_p_two_sided": 1.0
+        },
+        "3": {
+          "observed_unconditional_hit_rate": 0.034482758620689655,
+          "random_reference_unconditional_hit_rate": 0.010341906020648925,
+          "excess_hit_rate_over_random_reference": 0.02414085260004073,
+          "event_cluster_bootstrap_ci95_for_excess": [
+            -0.016755396502231942,
+            0.09569173733294206
+          ],
+          "file_cluster_bootstrap_ci95_for_excess": [
+            -0.020401117869472303,
+            0.04922644163150492
+          ],
+          "conditional_random_ranking_p_two_sided": 0.014849257537123144,
+          "n_attack_event_clusters": 29,
+          "n_test_file_clusters": 5,
+          "monte_carlo_draws": 20000,
+          "estimand": "exact-target-complete HAI events; repeated seeds averaged within attack ID; detector misses fixed at zero under both observed and random rankings",
+          "holm_adjusted_p_two_sided": 0.11879406029698515
+        },
+        "5": {
+          "observed_unconditional_hit_rate": 0.034482758620689655,
+          "random_reference_unconditional_hit_rate": 0.01701630248116499,
+          "excess_hit_rate_over_random_reference": 0.017466456139524664,
+          "event_cluster_bootstrap_ci95_for_excess": [
+            -0.027485245730553463,
+            0.0904654780691446
+          ],
+          "file_cluster_bootstrap_ci95_for_excess": [
+            -0.033206245231561696,
+            0.04379062606910709
+          ],
+          "conditional_random_ranking_p_two_sided": 0.08999550022498876,
+          "n_attack_event_clusters": 29,
+          "n_test_file_clusters": 5,
+          "monte_carlo_draws": 20000,
+          "estimand": "exact-target-complete HAI events; repeated seeds averaged within attack ID; detector misses fixed at zero under both observed and random rankings",
+          "holm_adjusted_p_two_sided": 0.6299685015749212
+        }
+      },
+      "grouped_ablation": {
+        "1": {
+          "observed_unconditional_hit_rate": 0.0,
+          "random_reference_unconditional_hit_rate": 0.003491924923614138,
+          "excess_hit_rate_over_random_reference": -0.003491924923614138,
+          "event_cluster_bootstrap_ci95_for_excess": [
+            -0.00698384984722828,
+            -0.0008729812309035326
+          ],
+          "file_cluster_bootstrap_ci95_for_excess": [
+            -0.006962025316455694,
+            -0.0015822784810126528
+          ],
+          "conditional_random_ranking_p_two_sided": 0.6894155292235388,
+          "n_attack_event_clusters": 29,
+          "n_test_file_clusters": 5,
+          "monte_carlo_draws": 20000,
+          "estimand": "exact-target-complete HAI events; repeated seeds averaged within attack ID; detector misses fixed at zero under both observed and random rankings",
+          "holm_adjusted_p_two_sided": 1.0
+        },
+        "3": {
+          "observed_unconditional_hit_rate": 0.06896551724137931,
+          "random_reference_unconditional_hit_rate": 0.010341906020648925,
+          "excess_hit_rate_over_random_reference": 0.05862361122073039,
+          "event_cluster_bootstrap_ci95_for_excess": [
+            -0.00782325487694322,
+            0.15572511294903263
+          ],
+          "file_cluster_bootstrap_ci95_for_excess": [
+            -0.009996754300551766,
+            0.14399875792280856
+          ],
+          "conditional_random_ranking_p_two_sided": 4.999750012499375e-05,
+          "n_attack_event_clusters": 29,
+          "n_test_file_clusters": 5,
+          "monte_carlo_draws": 20000,
+          "estimand": "exact-target-complete HAI events; repeated seeds averaged within attack ID; detector misses fixed at zero under both observed and random rankings",
+          "holm_adjusted_p_two_sided": 0.0008999550022498875
+        },
+        "5": {
+          "observed_unconditional_hit_rate": 0.06896551724137931,
+          "random_reference_unconditional_hit_rate": 0.01701630248116499,
+          "excess_hit_rate_over_random_reference": 0.051949214760214316,
+          "event_cluster_bootstrap_ci95_for_excess": [
+            -0.012982797792924378,
+            0.146999079779525
+          ],
+          "file_cluster_bootstrap_ci95_for_excess": [
+            -0.01644487720437088,
+            0.1297708386315981
+          ],
+          "conditional_random_ranking_p_two_sided": 0.000199990000499975,
+          "n_attack_event_clusters": 29,
+          "n_test_file_clusters": 5,
+          "monte_carlo_draws": 20000,
+          "estimand": "exact-target-complete HAI events; repeated seeds averaged within attack ID; detector misses fixed at zero under both observed and random rankings",
+          "holm_adjusted_p_two_sided": 0.002199890005499725
+        }
+      }
+    }
+  },
   "unconditional_counterfactual_target_localization": {
     "PCA-STATE": {
       "eligible_target_complete_events": 29,

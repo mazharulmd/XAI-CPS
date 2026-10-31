@@ -58,6 +58,7 @@ After generating five HAI runs, aggregate detection and explanation outcomes and
 python scripts\summarize_explanation_runs.py <run-42> <run-43> <run-44> <run-45> <run-46> `
   --output results\summaries\hai21_identity_consistent_seed42_46.json
 python scripts\evaluate_hai_target_localization.py <run-42> <run-43> <run-44> <run-45> <run-46> `
+  --randomization-draws 20000 --randomization-seed 161803 `
   --output results\summaries\hai21_identity_consistent_target_localization_seed42_46.json
 python scripts\evaluate_hai_explanation_stability.py <run-42> --sigmas 0.02 0.05 --perturbations 5 --bootstrap-draws 100 --output results\summaries\hai21_stability_factorial_seed42.json
 python scripts\evaluate_hai_explanation_stability.py <run-43> --sigmas 0.02 0.05 --perturbations 5 --bootstrap-draws 100 --output results\summaries\hai21_stability_factorial_seed43.json

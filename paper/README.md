@@ -1,12 +1,12 @@
 # Manuscript status
 
-`main.tex` is an exploratory HAI 21.03 / BATADAL empirical audit draft aligned to the currently completed pilot; it is not yet the manuscript for the recommended Data4Cyber target-validity study. The Data4Cyber work is tracked separately in `docs/research/DATA4CYBER_STUDY_SPEC.md` and remains exploratory. `main.tex` currently covers: target agreement, representation-consistent local stability, deletion-based detector-score faithfulness, and recourse behavior. It no longer presents the unvalidated process-constrained counterfactual as the primary contribution.
+`main.tex` is an exploratory, multi-dataset empirical audit draft covering HAI 21.03, Data4Cyber v3, and the partially labeled BATADAL dataset. HAI is the larger exact-tag anchor; Data4Cyber is a separate testbed with sparse, mixed-resolution target evidence; BATADAL is a five-interval component-level descriptive check. The manuscript covers target agreement, an event-matched random-ranking reference, representation-consistent local stability, deletion-based detector-score faithfulness, and recourse behavior. It does not present the unvalidated process-constrained counterfactual as the primary contribution.
 
 It is not submission-ready. Remaining requirements include:
 
 - independently compiled and rendered LaTeX with figure/table layout review;
 - an expanded, verified related-work search and stronger matched temporal explanation baselines;
-- broader target-complete CPS datasets and scenario/file-aware uncertainty with independent replication;
+- broader target-complete CPS datasets and independent replication beyond the current five HAI files and six Data4Cyber attack families;
 - stronger detector families and comparable operating-point evaluation;
 - external process/operator validation before any actionability or physical-feasibility claim.
 
