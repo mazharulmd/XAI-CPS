@@ -241,6 +241,16 @@ def run(config: dict) -> dict:
         edit_scales = np.abs(observed[:, channel] - raw[:, channel]) / max(
             float(detector.x_scale[channel]), 1e-12
         )
+        edit_at_clean_first = (
+            float(abs(observed[clean_first, channel] - raw[clean_first, channel]))
+            if clean_first is not None
+            else None
+        )
+        edit_scales_at_clean_first = (
+            float(edit_at_clean_first / max(float(detector.x_scale[channel]), 1e-12))
+            if edit_at_clean_first is not None
+            else None
+        )
         test_records.append(
             {
                 "seed": seed,
@@ -260,6 +270,8 @@ def run(config: dict) -> dict:
                     "p95_abs_edit_in_robust_scales": float(
                         np.quantile(edit_scales[event_mask], 0.95)
                     ),
+                    "abs_edit_at_clean_first_alarm": edit_at_clean_first,
+                    "edit_at_clean_first_alarm_in_robust_scales": edit_scales_at_clean_first,
                     "controller_and_ids_receive_same_observation": controller_ids_equal,
                 },
                 "clean_detection": clean_metrics,
