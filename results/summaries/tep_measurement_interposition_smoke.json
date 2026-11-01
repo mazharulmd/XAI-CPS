@@ -1,0 +1,39 @@
+{
+  "audit_type": "simulator plumbing smoke check; not an IDS result",
+  "backend": "python",
+  "demonstration_edit": {
+    "channel": "XMEAS(9), reactor temperature",
+    "offset": 20.0,
+    "onset_step": 5,
+    "physically_calibrated": false,
+    "unit": "degrees Celsius",
+    "zero_based_index": 8
+  },
+  "duration_hours": 0.2,
+  "identity_wrapper_exact_match": true,
+  "interpretation": "The wrapper plumbing is reproducible for this configuration. The demonstration offset is arbitrary and is not evidence of a realistic, stealthy, or physically reachable attack. The returned plant measurements are generated from the resulting plant state; controller/observer inputs are separately captured.",
+  "manipulated_variable_shape": [
+    721,
+    12
+  ],
+  "max_abs_manipulated_variable_difference_vs_native": 59.009226129052784,
+  "max_abs_plant_state_difference_vs_native": 57.48819049040361,
+  "measurement_shape": [
+    721,
+    41
+  ],
+  "numpy_version": "2.5.4",
+  "observation_consumers_receive_same_signal": true,
+  "observed_channel_delta_at_attack_onset": 19.999999999999986,
+  "python_version": "3.12.10",
+  "raw_measurement_unchanged_at_attack_onset": true,
+  "record_interval_steps": 1,
+  "recorded_samples": 721,
+  "seed": 42,
+  "simulator_commit": "9a6c8e5fcef4a2850778704e7793c87b0a187005",
+  "simulator_version": "2.5.0",
+  "state_shape": [
+    721,
+    50
+  ]
+}
