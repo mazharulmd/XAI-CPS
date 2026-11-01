@@ -63,4 +63,3 @@ The dataset supports an evidence-tiered explanation audit, but not uniform root-
 
 Before manuscript claims, compare the audited GRIDGUARD-AI artifact and its released baselines under a compatible protocol, resolve S4/S5 endpoint ambiguity, conduct seeded repeats and scenario-level uncertainty analysis, measure p50/p95 overhead on a disclosed edge-class device, and compare against the exact Data4Cyber companion-paper protocol if its full text and versioned artifacts become available. The random-ranking reference shows why top-K must be interpreted relative to target-set size and available groups; it does not rescue the tiny, dependent event sample. Expand testing with a second testbed/dataset if comparable ground-truth granularity is available. No causal, process-safety, or physical-transition claim is supported by this run.
 
-

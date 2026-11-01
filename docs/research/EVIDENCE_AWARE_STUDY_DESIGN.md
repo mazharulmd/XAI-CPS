@@ -74,4 +74,3 @@ The current HAI mapping supports 29 exact-target intervals; the five-seed explan
 
 Before a submission claim: use the completed GRIDGUARD-AI supplement audit to state overlap; reproduce matched released baselines with modality-aligned inputs; complete target-ledger review; add an independent testbed with enough exact target events; run cluster-aware uncertainty; measure edge-class latency; and compile/render the manuscript. If these gates cannot be met, the honest output is a scoped empirical audit or dataset note rather than a Q1-ready general method paper.
 
-

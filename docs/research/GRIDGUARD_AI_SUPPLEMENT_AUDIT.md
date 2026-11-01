@@ -25,4 +25,3 @@ The GRIDGUARD-AI archive says it evaluates 14,202 overlapping windows across eig
 ## Reproduction pointer
 
 Download the cited Zenodo archive and verify its MD5 before extracting it. The local research copy used for this audit is intentionally stored under ignored `data/raw/`; it is not committed. See `LITERATURE_REVIEW.md` and the manuscript for the source citation and scoped overlap statement.
-
