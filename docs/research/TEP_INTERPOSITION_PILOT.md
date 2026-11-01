@@ -2,6 +2,8 @@
 
 **Status:** Exploratory mechanism check only. This is not a confirmatory benchmark, novelty claim, or physical feasibility result.
 
+The separate [`TEP_CLOSED_LOOP_SPOOF_PILOT.md`](TEP_CLOSED_LOOP_SPOOF_PILOT.md) follow-up sends one spoofed measurement through both the TEP controller and IDS observation path. The two pilots answer different plumbing questions and should not be pooled as one experiment.
+
 ## Question
 
 Can a single IDS observation edit change the first-alarm channel ranking while leaving the detector above its alarm threshold, under a simple normal-only CPS detector? The pilot also checks whether a persistent single-channel replacement behaves differently from a one-observation edit.

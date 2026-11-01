@@ -1,0 +1,20 @@
+{
+  "simulator": {
+    "repository": "https://github.com/jkitchin/tennessee-eastman-profbraatz.git",
+    "commit": "9a6c8e5fcef4a2850778704e7793c87b0a187005",
+    "version": "2.5.0",
+    "backend": "python"
+  },
+  "duration_hours": 1.0,
+  "event_onset_hours": 0.5,
+  "disturbance_id": 6,
+  "train_seed": 42,
+  "validation_seed": 43,
+  "screening_seeds_excluded_from_test": [44, 45, 46, 47],
+  "test_seeds": [48, 49, 50, 51, 52],
+  "threshold_quantile": 0.995,
+  "spoof_channel_index_zero_based": 0,
+  "spoof_channel_name": "XMEAS(1): A Feed Flow",
+  "spoof_mode": "hold_at_training_reference",
+  "interpretation": "Closed-loop sensor-observation spoof under the IDV(6) A-feed-loss process disturbance. The same spoofed observation is passed to the controller and logged for offline IDS scoring. This is a simulator mechanism study, not a field-validated attacker model."
+}

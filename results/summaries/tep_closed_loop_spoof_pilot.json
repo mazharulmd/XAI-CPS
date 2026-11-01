@@ -1,0 +1,535 @@
+{
+  "instrumentation_check": {
+    "controller_and_ids_observation_traces_equal": true,
+    "duration_hours": 0.1,
+    "identity_controller_matches_native_state_measurement_and_mv_arrays": true
+  },
+  "limitations": [
+    "IDV(6) is a simulator process disturbance; this does not model a field adversary or a complete exploit chain.",
+    "The sensor replacement is a constant training reference, without calibrated sensor bounds, noise, or slew constraints.",
+    "The process state is available only as simulator ground truth and is not a deployable integrity signal by itself.",
+    "Only one detector, one channel, one disturbance, and five held-out simulator seeds are evaluated.",
+    "The scenario is selected to check shared measurement interposition and does not establish novelty or causal explanation validity."
+  ],
+  "protocol": {
+    "controller_path_compromised": true,
+    "disturbance": "IDV(6) A-feed loss process disturbance",
+    "duration_hours": 1.0,
+    "event_onset_hours": 0.5,
+    "ids_scoring": "offline replay of exact controller observation trace; passive, no feedback to process",
+    "normal_training_reference_value": 0.2588343249516394,
+    "same_spoofed_observation_used_for_control_and_ids": true,
+    "screening_seeds_excluded": [
+      44,
+      45,
+      46,
+      47
+    ],
+    "spoof_channel": "XMEAS(1): A Feed Flow",
+    "spoof_mode": "hold_at_training_reference",
+    "test_seeds": [
+      48,
+      49,
+      50,
+      51,
+      52
+    ],
+    "threshold": 5.06626485486414,
+    "threshold_quantile": 0.995,
+    "training_seed": 42,
+    "validation_false_positive_rate": 0.004722222222222222,
+    "validation_seed": 43
+  },
+  "simulator": {
+    "backend": "python",
+    "commit": "9a6c8e5fcef4a2850778704e7793c87b0a187005",
+    "numpy": "2.5.4",
+    "python": "3.12.10",
+    "repository": "https://github.com/jkitchin/tennessee-eastman-profbraatz.git",
+    "version": "2.5.0"
+  },
+  "status": "exploratory; not a novelty or field-feasibility claim",
+  "study": "TEP closed-loop sensor-spoofing mechanism pilot",
+  "test_runs": [
+    {
+      "clean_detection": {
+        "average_precision": 0.8987610318877423,
+        "f1": 0.5770595191170674,
+        "false_positive_rate": 0.002777777777777778,
+        "fn": 1068,
+        "fp": 5,
+        "precision": 0.9932157394843962,
+        "predicted_samples": 737,
+        "recall": 0.4066666666666667,
+        "specificity": 0.9972222222222222,
+        "threshold": 5.06626485486414,
+        "tn": 1795,
+        "tp": 732
+      },
+      "clean_first_alarm_delay_seconds": 2.0,
+      "clean_first_alarm_explanation": {
+        "contribution_sum": 16.08325392139716,
+        "point_index": 1802,
+        "target_ablation_value": 15.098312479253053,
+        "target_rank": 1,
+        "top5_channels": [
+          "XMEAS(01)",
+          "XMEAS(30)",
+          "XMEAS(29)",
+          "XMEAS(37)",
+          "XMEAS(02)"
+        ]
+      },
+      "clean_first_alarm_sample": 1802,
+      "closed_loop_divergence_from_clean_same_seed": {
+        "max_abs_manipulated_variable_difference": 25.74440171777114,
+        "max_abs_state_difference": 25.628641990953025,
+        "terminal_state_l2_difference": 25.519737465631614
+      },
+      "process_disturbance": "IDV(6) A-feed loss",
+      "sample_count": 3600,
+      "seed": 48,
+      "sensor_spoof": {
+        "channel": "XMEAS(1): A Feed Flow",
+        "controller_and_ids_receive_same_observation": true,
+        "first_difference_from_raw_at_onset": -0.038390164285253825,
+        "max_abs_edit_in_robust_scales": 10.84464020330182,
+        "mode": "hold_at_normal_training_reference",
+        "p95_abs_edit_in_robust_scales": 10.78315641842939,
+        "reference_value": 0.2588343249516394
+      },
+      "shutdown_clean": false,
+      "shutdown_spoofed": false,
+      "spoofed_detection": {
+        "average_precision": 0.8398958303172827,
+        "f1": 0.571993670886076,
+        "false_positive_rate": 0.002777777777777778,
+        "fn": 1077,
+        "fp": 5,
+        "precision": 0.9931318681318682,
+        "predicted_samples": 728,
+        "recall": 0.40166666666666667,
+        "specificity": 0.9972222222222222,
+        "threshold": 5.06626485486414,
+        "tn": 1795,
+        "tp": 723
+      },
+      "spoofed_first_alarm_delay_seconds": 0.0,
+      "spoofed_first_alarm_explanation": {
+        "contribution_sum": -25.903172404852477,
+        "point_index": 1800,
+        "target_ablation_value": 0.0,
+        "target_rank": 1,
+        "top5_channels": [
+          "XMEAS(01)",
+          "XMEAS(02)",
+          "XMEAS(03)",
+          "XMEAS(04)",
+          "XMEAS(05)"
+        ]
+      },
+      "spoofed_first_alarm_sample": 1800,
+      "spoofed_input_at_clean_first_alarm": {
+        "alarm_preserved_at_same_sample": true,
+        "explanation": {
+          "contribution_sum": 2.7748161736297874,
+          "point_index": 1802,
+          "target_ablation_value": 0.0,
+          "target_rank": 5,
+          "top5_channels": [
+            "XMEAS(30)",
+            "XMEAS(29)",
+            "XMEAS(37)",
+            "XMEAS(31)",
+            "XMEAS(01)"
+          ]
+        },
+        "score": 20.93015390732365
+      }
+    },
+    {
+      "clean_detection": {
+        "average_precision": 0.984748409382344,
+        "f1": 0.6599851521900519,
+        "false_positive_rate": 0.002777777777777778,
+        "fn": 911,
+        "fp": 5,
+        "precision": 0.9944071588366891,
+        "predicted_samples": 894,
+        "recall": 0.4938888888888889,
+        "specificity": 0.9972222222222222,
+        "threshold": 5.06626485486414,
+        "tn": 1795,
+        "tp": 889
+      },
+      "clean_first_alarm_delay_seconds": 2.0,
+      "clean_first_alarm_explanation": {
+        "contribution_sum": 16.507158163665366,
+        "point_index": 1802,
+        "target_ablation_value": 11.716946924974124,
+        "target_rank": 1,
+        "top5_channels": [
+          "XMEAS(01)",
+          "XMEAS(40)",
+          "XMEAS(25)",
+          "XMEAS(32)",
+          "XMEAS(29)"
+        ]
+      },
+      "clean_first_alarm_sample": 1802,
+      "closed_loop_divergence_from_clean_same_seed": {
+        "max_abs_manipulated_variable_difference": 25.79139998215456,
+        "max_abs_state_difference": 25.62808902775695,
+        "terminal_state_l2_difference": 25.37839070479368
+      },
+      "process_disturbance": "IDV(6) A-feed loss",
+      "sample_count": 3600,
+      "seed": 49,
+      "sensor_spoof": {
+        "channel": "XMEAS(1): A Feed Flow",
+        "controller_and_ids_receive_same_observation": true,
+        "first_difference_from_raw_at_onset": 0.0008992046592891656,
+        "max_abs_edit_in_robust_scales": 10.88090906766931,
+        "mode": "hold_at_normal_training_reference",
+        "p95_abs_edit_in_robust_scales": 10.780756950594956,
+        "reference_value": 0.2588343249516394
+      },
+      "shutdown_clean": false,
+      "shutdown_spoofed": false,
+      "spoofed_detection": {
+        "average_precision": 0.984748409382344,
+        "f1": 0.41597191750767876,
+        "false_positive_rate": 0.002777777777777778,
+        "fn": 1326,
+        "fp": 5,
+        "precision": 0.9895615866388309,
+        "predicted_samples": 479,
+        "recall": 0.2633333333333333,
+        "specificity": 0.9972222222222222,
+        "threshold": 5.06626485486414,
+        "tn": 1795,
+        "tp": 474
+      },
+      "spoofed_first_alarm_delay_seconds": 2.0,
+      "spoofed_first_alarm_explanation": {
+        "contribution_sum": 9.767588566495107,
+        "point_index": 1802,
+        "target_ablation_value": 0.0,
+        "target_rank": 6,
+        "top5_channels": [
+          "XMEAS(40)",
+          "XMEAS(25)",
+          "XMEAS(32)",
+          "XMEAS(29)",
+          "XMEAS(35)"
+        ]
+      },
+      "spoofed_first_alarm_sample": 1802,
+      "spoofed_input_at_clean_first_alarm": {
+        "alarm_preserved_at_same_sample": true,
+        "explanation": {
+          "contribution_sum": 9.767588566495107,
+          "point_index": 1802,
+          "target_ablation_value": 0.0,
+          "target_rank": 6,
+          "top5_channels": [
+            "XMEAS(40)",
+            "XMEAS(25)",
+            "XMEAS(32)",
+            "XMEAS(29)",
+            "XMEAS(35)"
+          ]
+        },
+        "score": 26.317794440492243
+      }
+    },
+    {
+      "clean_detection": {
+        "average_precision": 0.9603942122661229,
+        "f1": 0.571993670886076,
+        "false_positive_rate": 0.002777777777777778,
+        "fn": 1077,
+        "fp": 5,
+        "precision": 0.9931318681318682,
+        "predicted_samples": 728,
+        "recall": 0.40166666666666667,
+        "specificity": 0.9972222222222222,
+        "threshold": 5.06626485486414,
+        "tn": 1795,
+        "tp": 723
+      },
+      "clean_first_alarm_delay_seconds": 2.0,
+      "clean_first_alarm_explanation": {
+        "contribution_sum": 12.866820389319251,
+        "point_index": 1802,
+        "target_ablation_value": 8.545430543388875,
+        "target_rank": 1,
+        "top5_channels": [
+          "XMEAS(01)",
+          "XMEAS(38)",
+          "XMEAS(30)",
+          "XMEAS(28)",
+          "XMEAS(39)"
+        ]
+      },
+      "clean_first_alarm_sample": 1802,
+      "closed_loop_divergence_from_clean_same_seed": {
+        "max_abs_manipulated_variable_difference": 25.859419676833483,
+        "max_abs_state_difference": 25.620204831320127,
+        "terminal_state_l2_difference": 25.50806598463977
+      },
+      "process_disturbance": "IDV(6) A-feed loss",
+      "sample_count": 3600,
+      "seed": 50,
+      "sensor_spoof": {
+        "channel": "XMEAS(1): A Feed Flow",
+        "controller_and_ids_receive_same_observation": true,
+        "first_difference_from_raw_at_onset": 0.06639813050065896,
+        "max_abs_edit_in_robust_scales": 10.871396378816671,
+        "mode": "hold_at_normal_training_reference",
+        "p95_abs_edit_in_robust_scales": 10.781194997613554,
+        "reference_value": 0.2588343249516394
+      },
+      "shutdown_clean": false,
+      "shutdown_spoofed": false,
+      "spoofed_detection": {
+        "average_precision": 0.8980246698013711,
+        "f1": 0.5204918032786886,
+        "false_positive_rate": 0.002777777777777778,
+        "fn": 1165,
+        "fp": 5,
+        "precision": 0.9921875,
+        "predicted_samples": 640,
+        "recall": 0.3527777777777778,
+        "specificity": 0.9972222222222222,
+        "threshold": 5.06626485486414,
+        "tn": 1795,
+        "tp": 635
+      },
+      "spoofed_first_alarm_delay_seconds": 0.0,
+      "spoofed_first_alarm_explanation": {
+        "contribution_sum": -35.38073515761144,
+        "point_index": 1800,
+        "target_ablation_value": 0.0,
+        "target_rank": 1,
+        "top5_channels": [
+          "XMEAS(01)",
+          "XMEAS(02)",
+          "XMEAS(03)",
+          "XMEAS(04)",
+          "XMEAS(05)"
+        ]
+      },
+      "spoofed_first_alarm_sample": 1800,
+      "spoofed_input_at_clean_first_alarm": {
+        "alarm_preserved_at_same_sample": true,
+        "explanation": {
+          "contribution_sum": 3.5267743399141303,
+          "point_index": 1802,
+          "target_ablation_value": 0.0,
+          "target_rank": 6,
+          "top5_channels": [
+            "XMEAS(38)",
+            "XMEAS(30)",
+            "XMEAS(28)",
+            "XMEAS(39)",
+            "XMEAS(27)"
+          ]
+        },
+        "score": 26.013454449852695
+      }
+    },
+    {
+      "clean_detection": {
+        "average_precision": 0.9832836064455908,
+        "f1": 0.5870841487279843,
+        "false_positive_rate": 0.002777777777777778,
+        "fn": 1050,
+        "fp": 5,
+        "precision": 0.9933774834437086,
+        "predicted_samples": 755,
+        "recall": 0.4166666666666667,
+        "specificity": 0.9972222222222222,
+        "threshold": 5.06626485486414,
+        "tn": 1795,
+        "tp": 750
+      },
+      "clean_first_alarm_delay_seconds": 2.0,
+      "clean_first_alarm_explanation": {
+        "contribution_sum": 17.633855272451267,
+        "point_index": 1802,
+        "target_ablation_value": 13.347741698730754,
+        "target_rank": 1,
+        "top5_channels": [
+          "XMEAS(01)",
+          "XMEAS(38)",
+          "XMEAS(29)",
+          "XMEAS(35)",
+          "XMEAS(36)"
+        ]
+      },
+      "clean_first_alarm_sample": 1802,
+      "closed_loop_divergence_from_clean_same_seed": {
+        "max_abs_manipulated_variable_difference": 25.770179695203563,
+        "max_abs_state_difference": 25.62450125120688,
+        "terminal_state_l2_difference": 25.41473153788329
+      },
+      "process_disturbance": "IDV(6) A-feed loss",
+      "sample_count": 3600,
+      "seed": 51,
+      "sensor_spoof": {
+        "channel": "XMEAS(1): A Feed Flow",
+        "controller_and_ids_receive_same_observation": true,
+        "first_difference_from_raw_at_onset": 0.015582849131128784,
+        "max_abs_edit_in_robust_scales": 10.842689340854202,
+        "mode": "hold_at_normal_training_reference",
+        "p95_abs_edit_in_robust_scales": 10.776188452393438,
+        "reference_value": 0.2588343249516394
+      },
+      "shutdown_clean": false,
+      "shutdown_spoofed": false,
+      "spoofed_detection": {
+        "average_precision": 0.9503267693304067,
+        "f1": 0.4228920926168633,
+        "false_positive_rate": 0.002777777777777778,
+        "fn": 1316,
+        "fp": 5,
+        "precision": 0.9897750511247444,
+        "predicted_samples": 489,
+        "recall": 0.2688888888888889,
+        "specificity": 0.9972222222222222,
+        "threshold": 5.06626485486414,
+        "tn": 1795,
+        "tp": 484
+      },
+      "spoofed_first_alarm_delay_seconds": 2.0,
+      "spoofed_first_alarm_explanation": {
+        "contribution_sum": 3.6401723599446676,
+        "point_index": 1802,
+        "target_ablation_value": 0.0,
+        "target_rank": 6,
+        "top5_channels": [
+          "XMEAS(38)",
+          "XMEAS(29)",
+          "XMEAS(35)",
+          "XMEAS(36)",
+          "XMEAS(25)"
+        ]
+      },
+      "spoofed_first_alarm_sample": 1802,
+      "spoofed_input_at_clean_first_alarm": {
+        "alarm_preserved_at_same_sample": true,
+        "explanation": {
+          "contribution_sum": 3.6401723599446676,
+          "point_index": 1802,
+          "target_ablation_value": 0.0,
+          "target_rank": 6,
+          "top5_channels": [
+            "XMEAS(38)",
+            "XMEAS(29)",
+            "XMEAS(35)",
+            "XMEAS(36)",
+            "XMEAS(25)"
+          ]
+        },
+        "score": 16.038049174634672
+      }
+    },
+    {
+      "clean_detection": {
+        "average_precision": 0.9847787370627155,
+        "f1": 0.7107142857142857,
+        "false_positive_rate": 0.002777777777777778,
+        "fn": 805,
+        "fp": 5,
+        "precision": 0.995,
+        "predicted_samples": 1000,
+        "recall": 0.5527777777777778,
+        "specificity": 0.9972222222222222,
+        "threshold": 5.06626485486414,
+        "tn": 1795,
+        "tp": 995
+      },
+      "clean_first_alarm_delay_seconds": 2.0,
+      "clean_first_alarm_explanation": {
+        "contribution_sum": 16.630468398356808,
+        "point_index": 1802,
+        "target_ablation_value": 11.946147388465192,
+        "target_rank": 1,
+        "top5_channels": [
+          "XMEAS(01)",
+          "XMEAS(38)",
+          "XMEAS(39)",
+          "XMEAS(41)",
+          "XMEAS(31)"
+        ]
+      },
+      "clean_first_alarm_sample": 1802,
+      "closed_loop_divergence_from_clean_same_seed": {
+        "max_abs_manipulated_variable_difference": 25.832165638944765,
+        "max_abs_state_difference": 25.62490644512511,
+        "terminal_state_l2_difference": 25.510795575342136
+      },
+      "process_disturbance": "IDV(6) A-feed loss",
+      "sample_count": 3600,
+      "seed": 52,
+      "sensor_spoof": {
+        "channel": "XMEAS(1): A Feed Flow",
+        "controller_and_ids_receive_same_observation": true,
+        "first_difference_from_raw_at_onset": 0.021780594538700182,
+        "max_abs_edit_in_robust_scales": 10.859938679745536,
+        "mode": "hold_at_normal_training_reference",
+        "p95_abs_edit_in_robust_scales": 10.782649451845208,
+        "reference_value": 0.2588343249516394
+      },
+      "shutdown_clean": false,
+      "shutdown_spoofed": false,
+      "spoofed_detection": {
+        "average_precision": 0.9803372525266871,
+        "f1": 0.45064377682403434,
+        "false_positive_rate": 0.002777777777777778,
+        "fn": 1275,
+        "fp": 5,
+        "precision": 0.9905660377358491,
+        "predicted_samples": 530,
+        "recall": 0.2916666666666667,
+        "specificity": 0.9972222222222222,
+        "threshold": 5.06626485486414,
+        "tn": 1795,
+        "tp": 525
+      },
+      "spoofed_first_alarm_delay_seconds": 2.0,
+      "spoofed_first_alarm_explanation": {
+        "contribution_sum": 4.444394982772025,
+        "point_index": 1802,
+        "target_ablation_value": 0.0,
+        "target_rank": 6,
+        "top5_channels": [
+          "XMEAS(38)",
+          "XMEAS(39)",
+          "XMEAS(41)",
+          "XMEAS(31)",
+          "XMEAS(40)"
+        ]
+      },
+      "spoofed_first_alarm_sample": 1802,
+      "spoofed_input_at_clean_first_alarm": {
+        "alarm_preserved_at_same_sample": true,
+        "explanation": {
+          "contribution_sum": 4.444394982772025,
+          "point_index": 1802,
+          "target_ablation_value": 0.0,
+          "target_rank": 6,
+          "top5_channels": [
+            "XMEAS(38)",
+            "XMEAS(39)",
+            "XMEAS(41)",
+            "XMEAS(31)",
+            "XMEAS(40)"
+          ]
+        },
+        "score": 22.782063250794614
+      }
+    }
+  ]
+}

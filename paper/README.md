@@ -11,3 +11,5 @@ The latest source compiled with Tectonic 0.17.0 to a nine-page PDF, and every pa
 
 The current results are descriptive and exploratory. Five BATADAL target intervals cannot support confirmatory cross-dataset inference. Neither target agreement, score deletion, empirical support, nor local stability establishes causality or plant safety. Keep raw data out of Git and reproduce commands from the repository README and `docs/research/EXPERIMENT_PROTOCOL.md`.
 
+A separate TEP shared-view closed-loop spoof pilot is documented in `docs/research/TEP_CLOSED_LOOP_SPOOF_PILOT.md`. It is not yet integrated into `main.tex`: its single unbounded sensor-hold scenario and five simulator seeds do not establish realistic attack capability or novelty, and the paper's current empirical audit has a different scope.
+
