@@ -22,6 +22,8 @@ Process anomaly detectors can alert on a multivariate trajectory without showing
 
 Recent network-IDS work further narrows the claim. Nugraha and Bauschert's E2D2 paper concerns explanation-based drift detection; its public repository describes explanation fingerprints, synthetic drift-feature alignment, and network-traffic evaluation. The inspected notebook selects features using labels from the full table before its chronological reference/stream split, so its saved drift results are not a matched leakage-free baseline for this study~\cite{nugraha2026e2d2,nugraha2026e2d2code}. The IEEE CSR 2026 program also lists their DARE paper on drift-aware robust explanations for unsupervised IDS~\cite{nugraha2026dare}. We have not obtained either paper's full text, and do not infer DARE's methods or either paper's target-localization coverage. Generic drift-aware explanation robustness is outside our novelty claim. Evidence-resolution stratification is retained as an audit requirement, but is not asserted as a novel endpoint.
 
+A June 2026 SSRN preprint is a high-risk adjacent source: its abstract describes evaluation on SWaT, WADI, and CIC-IDS using SHAP, Integrated Gradients, and counterfactuals, an explanation-aware adversarial attack framework, and an XAI-Guard defense~\cite{cullen2026scrutiny}. The SSRN PDF endpoint returned HTTP 403 during the source audit, so its threat model, protocols, released artifacts, and overlap with our event-level target audit could not be checked. We therefore claim no novelty for broad critical-infrastructure XAI evaluation, explanation-aware attacks, or explanation sanitization; the inaccessible full text remains an open prior-art check.
+
 This working audit examines how published first-alarm attribution findings appear on additional dataset versions under leakage-aware splits and source-audited targets; it does not propose first-alarm localization as a novel endpoint. In HAI temporal models, the input difference is defined by $\Delta x_t=x_t-x_{t-1}$. The factorial stability audit crosses independent state/difference perturbations with identity-preserving state jitter, and legacy independent-channel ablation with identity-preserving channel ablation. We extend the target audit to Data4Cyber v3, where evidence resolution varies by scenario and target coverage is limited. BATADAL remains a secondary partial-label check.
 
 \paragraph{Research questions.} RQ1: How do first-alarm target-attribution outcomes on HAI, Data4Cyber, and BATADAL vary with dataset version, evidence source, and label resolution under a leakage-aware protocol? This is a replication/extension question, not a novel attribution endpoint. RQ2: How do explanation rankings behave under identity-preserving state perturbations compared with independently perturbed detector inputs? RQ3: Do top-ranked feature deletions affect the detector score more than random deletions, and how does score faithfulness relate to target agreement? RQ4: How do evidence provenance, target coverage, and detector transfer affect interpretation across these three datasets?
@@ -83,6 +85,8 @@ BATADAL provides a secondary water-distribution evaluation~\cite{taormina2018}. 
 
 Data4Cyber v3 is an additional distribution-grid testbed with synchronized process telemetry, attack phases, event logs, and endpoint/register mappings~\cite{sen2026data4cyber}. The release contains eight scenario folders; S1 and its alternate run are grouped as one attack family, leaving six outer family folds. We use the released attack-only and benign-only process CSVs, whose SHA-256 values are checked against the archive manifest before fitting. The archive README and change log report 14,354 rows (7,586 attack-active and 6,768 benign) after the S3 label correction; these supersede the older aggregate counts still displayed on the Zenodo landing page. In each outer fold, preprocessing and detector fitting use the first 80\% of benign observations from non-held-out scenarios, and the remaining benign observations calibrate thresholds at nominal 1\% and 5\% false-positive levels. The unsupervised baselines are PCA residual, RobustZ, and a 500-tree Isolation Forest (`max\_samples=512`) fitted to robust-scaled state and first-difference vectors using only normal rows. The Forest has no native per-channel attribution; its first-alarm explanation is a separately identified grouped score-ablation ranking. We additionally evaluate a constrained GeCo-AR1 reference inspired by GeCo's process-residual/CUSUM design~\cite{wolsing2025geco}: equation search is restricted to each channel's one-step self-lag linear SUM model, missing values are imputed from training-normal medians, and thresholds are calibrated on normal-only fold data. This is an adapted univariate subset, not full GeCo or a reproduction of the twelve IPAL results mentioned by the dataset release. Timestamp, phase/activity, scenario, and real-time clock fields are excluded. Target evidence is evaluated only after alarms and explanations are frozen: S3 supplies one exact register-to-tag event; S1/S1-alt and S2 supply indirect component-response events; S4/S5 supply documented device-group events; and S6 supplies one post-hoc MQTT-topic-to-process semantic link without packet-level confirmation. The small number of independent families and target events makes all Data4Cyber explanation-tier estimates descriptive.
 
+\paragraph{Computational reproduction.} We re-downloaded the version-3 archive, verified its expected archive MD5 and all 196 extracted-file hashes against the embedded SHA-256 manifest, and reran the complete six-family pipeline. All 42 scenario/model/threshold records matched the saved point-level detection metrics exactly. The 48 eligible first-alarm rankings reproduced their target sets, alarm outcomes, top-five rankings, Hit@K values, random-ranking references, and stability values; only host-specific timing fields and floating-point values below $10^{-11}$ differed. This is a rerun of the same implementation and release, not an independent-site replication. The complete run and comparison are documented in \path{docs/research/DATA4CYBER_REPRODUCTION_AUDIT.md}; the compact rerun is archived with the repository.
+
 \subsection{Explanation procedures and outcomes}
 The evaluated procedures are native per-tag residual/contribution ranking, identity-preserving grouped ablation with training-normal references, bounded score-flipping recourse, and capability/support-constrained recourse under the explicitly hypothetical group/tag budgets described in the protocol. A normal-only ridge one-step residual screen is an ablation, not a plant constraint. We do not claim to reproduce JoCE or AR-Pro; both use different temporal-window semantics and the available implementation/data environment does not support a matched comparison. Detection metrics are reported separately from explanation metrics. Outcomes include source-supported target Hit@K, deletion sufficiency against random feature sets, local top-$k$ stability under valid and invalid perturbations, recourse pass rates, event delay, false-alarm burden, and p50/p95 explanation latency. No metric is treated as a substitute for physical or causal validity.
 
@@ -110,6 +114,7 @@ The following results are exploratory empirical findings from the frozen benchma
 \caption{Five-seed threshold sensitivity. Each cell reports the mean event recall / false-alarm episodes per normal hour across five fits on the same test files. Thresholds use normal train3 data only; seed ranges are in the machine-readable results.}
 \label{tab:threshold-sensitivity}
 \small
+\resizebox{\columnwidth}{!}{%
 \begin{tabular}{lrrr}
 \toprule
 Detector & $q=0.99$ & $q=0.995$ & $q=0.999$ \\
@@ -118,7 +123,7 @@ RobustZ-TEMPORAL & 0.18 / 4.26 & 0.18 / 3.67 & 0.18 / 2.52 \\
 PCA-STATE & 0.91 / 17.82 & 0.89 / 13.21 & 0.70 / 2.99 \\
 PCA-TEMPORAL & 0.88 / 25.62 & 0.84 / 15.43 & 0.68 / 3.10 \\
 \bottomrule
-\end{tabular}
+\end{tabular}}
 \end{table}
 
 The corrected identity-consistent five-seed HAI 21.03 runs report, for descriptive context only, event recall of 0.912 for PCA-state and 0.88 for PCA-temporal, alongside 17.8 and 25.6 false-alarm episodes per normal hour. Empirical-support recourse passed score-flip and validation-reference checks on 94.7\% of PCA-state detected events, 61.4\% of PCA-temporal events, and 22.2\% of RobustZ-TEMPORAL events. Conditional stage hit@1 was 0.21 for PCA-state and 0.79 for PCA-temporal. Mean per-event explanation p95 latency was 279.3 ms for PCA-state, 219.9 ms for PCA-temporal, and 99.3 ms for RobustZ-TEMPORAL. The transition screen reduced support-passing counterfactual rates from 0.947 to 0.544 for PCA-state, 0.614 to 0.345 for PCA-temporal, and 0.222 to 0.067 for RobustZ-TEMPORAL. These exploratory rates are conditional on detected events and do not show improved root-cause localization or physical feasibility. Seed ranges are descriptive, not inferential uncertainty intervals. Earlier attribution and counterfactual results that used independent state/difference ablations are superseded; these corrected runs preserve $\Delta x_t=x_t-x_{t-1}$ for temporal edits.
@@ -132,6 +137,7 @@ We next applied the learned one-step transition screen to the same five seeds as
 \caption{Five-seed transition-screen ablation. Attack and false-alarm rates are conditional on detected attack events and the deterministic 100-event false-alarm sample, respectively. Ranges are seed ranges, not confidence intervals.}
 \label{tab:transition-screen}
 \small
+\resizebox{\columnwidth}{!}{%
 \begin{tabular}{lrrrr}
 \toprule
 Detector & Attack pass & False-alarm pass & Stage hit@1 & p95 (ms) \\
@@ -140,8 +146,8 @@ RobustZ-TEMPORAL & 0.067 & 0.522 & 1.000$^{*}$ & 45.1 \\
 PCA-STATE & 0.544 & 0.898 & 0.411 & 155.8 \\
 PCA-TEMPORAL & 0.345 & 0.010 & 1.000 & 130.2 \\
 \bottomrule
-\end{tabular}
-\\[-1mm]
+\end{tabular}}
+\par\smallskip\noindent
 \parbox{\columnwidth}{\footnotesize $^{*}$Based on a small number of successful events; unstable conditional estimate.}
 \end{table}
 
@@ -158,6 +164,7 @@ Against the event-matched random-ranking null, PCA-TEMPORAL native Hit@5 was 0.4
 \caption{Descriptive exact-target localization by documented manipulated-variable types for PCA-temporal.}
 \label{tab:action-strata}
 \scriptsize
+\resizebox{\columnwidth}{!}{%
 \begin{tabular}{lrrrrr}
 \toprule
 Types & $n$ & Native@5 & Ablation@5 & Support CF & Screen CF \\
@@ -169,8 +176,8 @@ CV+SP & 4 & 0.250 & 0.250 & 0.250 & 0.100 \\
 PV+SP & 4 & 0.750 & 1.000 & 0.250 & 0.250 \\
 SP & 7 & 0.000 & 0.000 & 0.000 & 0.000 \\
 \bottomrule
-\end{tabular}
-\\[-1mm]
+\end{tabular}}
+\par\smallskip\noindent
 \parbox{\columnwidth}{\footnotesize Counterfactual columns are unconditional over attack IDs and count missed detections or failed searches as zero. Seeds are averaged within attack ID; no subgroup significance tests are claimed.}
 \end{table}
 
