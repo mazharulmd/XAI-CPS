@@ -68,8 +68,8 @@ def run_wrapped(tep_simulator, *, spoof: bool):
             observed[PRESSURE_TEMPERATURE_INDEX] += DEMO_OFFSET
         raw_measurements.append(raw)
         controller_observations.append(observed.copy())
-        # Represents a downstream IDS or monitor subscribed to the same
-        # compromised observation channel at the controller sampling instant.
+        # Capture the signal a downstream IDS would receive on the same
+        # compromised channel; this smoke check does not execute an IDS model.
         observer_observations.append(observed.copy())
         assert raw.shape == (41,)
         assert np.isfinite(raw).all() and np.isfinite(observed).all()
@@ -129,7 +129,8 @@ def main() -> None:
         "measurement_shape": list(native.measurements.shape),
         "manipulated_variable_shape": list(native.manipulated_vars.shape),
         "identity_wrapper_exact_match": True,
-        "observation_consumers_receive_same_signal": True,
+        "controller_and_observer_input_traces_equal": True,
+        "ids_model_evaluated": False,
         "raw_measurement_unchanged_at_attack_onset": True,
         "observed_channel_delta_at_attack_onset": float(
             attacked_controller_view[probe][PRESSURE_TEMPERATURE_INDEX]
