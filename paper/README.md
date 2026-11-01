@@ -13,3 +13,5 @@ The current results are descriptive and exploratory. Five BATADAL target interva
 
 A separate TEP shared-view closed-loop spoof pilot is documented in `docs/research/TEP_CLOSED_LOOP_SPOOF_PILOT.md`. It is not yet integrated into `main.tex`: its single unbounded sensor-hold scenario and five simulator seeds do not establish realistic attack capability or novelty, and the paper's current empirical audit has a different scope.
 
+The paired bounded-profile sensitivity follow-up is in `docs/research/TEP_BOUNDED_SPOOF_SENSITIVITY.md`. The tested 0.5- and 1.0-training-scale ramps did not displace the target ranking; these pilots remain separate from the manuscript pending a defensible threat range, a process-integrity method, and a resolved prior-art review.
+

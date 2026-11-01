@@ -62,6 +62,7 @@ def _run_shared_view(
     onset_hours: float,
     spoof_channel: int | None = None,
     spoof_value: float | None = None,
+    spoof_profile: dict | None = None,
 ):
     sim = tep_simulator(random_seed=seed, backend="python")
     sim.initialize()
@@ -75,7 +76,20 @@ def _run_shared_view(
         raw = np.array(xmeas, dtype=float, copy=True)
         observed = raw.copy()
         if spoof_channel is not None and step >= onset_step:
-            observed[spoof_channel] = float(spoof_value)
+            if spoof_profile and spoof_profile.get("mode") == "rate_limited_additive_bias":
+                elapsed_seconds = step - onset_step
+                bias_scales = min(
+                    float(spoof_profile["max_bias_robust_scales"]),
+                    elapsed_seconds
+                    * float(spoof_profile["rate_limit_robust_scales_per_second"]),
+                )
+                observed[spoof_channel] += bias_scales * float(
+                    spoof_profile["training_robust_scale"]
+                )
+            elif spoof_value is not None:
+                observed[spoof_channel] = float(spoof_value)
+            else:
+                raise ValueError("spoof_value is required for reference-hold profiles")
         raw_measurements.append(raw)
         # This stored array is exactly the input used by the controller below
         # and the passive IDS observation stream evaluated after simulation.

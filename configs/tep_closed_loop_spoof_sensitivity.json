@@ -1,0 +1,37 @@
+{
+  "simulator": {
+    "repository": "https://github.com/jkitchin/tennessee-eastman-profbraatz.git",
+    "commit": "9a6c8e5fcef4a2850778704e7793c87b0a187005",
+    "version": "2.5.0",
+    "backend": "python"
+  },
+  "duration_hours": 1.0,
+  "event_onset_hours": 0.5,
+  "disturbance_id": 6,
+  "train_seed": 42,
+  "validation_seed": 43,
+  "screening_seeds_excluded_from_test": [44, 45, 46, 47, 48, 49, 50, 51, 52],
+  "test_seeds": [53, 54, 55, 56, 57],
+  "threshold_quantile": 0.995,
+  "spoof_channel_index_zero_based": 0,
+  "spoof_channel_name": "XMEAS(1): A Feed Flow",
+  "attack_profiles": [
+    {
+      "name": "unbounded_hold_at_training_reference",
+      "mode": "hold_at_training_reference"
+    },
+    {
+      "name": "rate_limited_bias_0_5_robust_scales",
+      "mode": "rate_limited_additive_bias",
+      "max_bias_robust_scales": 0.5,
+      "rate_limit_robust_scales_per_second": 0.02
+    },
+    {
+      "name": "rate_limited_bias_1_0_robust_scales",
+      "mode": "rate_limited_additive_bias",
+      "max_bias_robust_scales": 1.0,
+      "rate_limit_robust_scales_per_second": 0.02
+    }
+  ],
+  "interpretation": "Paired sensitivity study: one unbounded reference-hold control and two training-scale-limited, rate-limited additive measurement profiles. Robust-scale caps are statistical stress settings, not independently validated instrument limits or physical attacker bounds."
+}
