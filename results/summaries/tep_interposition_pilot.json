@@ -1,0 +1,287 @@
+{
+  "data_protocol": {
+    "complete_simulation_runs_are_split_by_seed": true,
+    "duration_hours_per_run": 1.0,
+    "preprocessing_fit_on_train_only": true,
+    "samples_per_hour": 3600,
+    "screening_seeds_excluded_from_test": [
+      44,
+      45
+    ],
+    "test_seeds": [
+      46,
+      47
+    ],
+    "threshold_fit_on_validation_normal_only": true,
+    "threshold_quantile": 0.995,
+    "train_seed": 42,
+    "validation_normal_alarm_rate": 0.004998611496806442,
+    "validation_seed": 43
+  },
+  "detector": {
+    "explanation": "black-box single-channel ablation with training references; first differences recomputed from the fixed preceding observation",
+    "features": "41 process measurements and representation-consistent first differences",
+    "name": "RobustZDetector",
+    "threshold": 5.022275737726398
+  },
+  "environment": {
+    "numpy": "2.5.4",
+    "python": "3.12.10"
+  },
+  "event": {
+    "disturbance_id": 6,
+    "disturbance_name": "IDV(6), A Feed Loss",
+    "onset_hours": 0.5,
+    "target_channel": "XMEAS(1): A Feed Flow",
+    "target_channel_index_zero_based": 0
+  },
+  "limitations": [
+    "IDV(6) was selected after exploratory screening; seeds 44 and 45 were inspected during that selection and are excluded from the reported test seeds.",
+    "One disturbance type, one detector family, two test seeds, and one target channel are insufficient for confirmatory inference.",
+    "The one-observation IDS-path edit does not alter the controller input or plant trajectory.",
+    "The robust-scale edit budget is not calibrated to sensor physics, instrument noise, reachability, or safety limits.",
+    "The oracle search knows the event target and is a red-team upper bound.",
+    "Single-channel ablation is an operational sensitivity measure, not a causal explanation or ground-truth proof."
+  ],
+  "sensor_attack": {
+    "attacker_knows_event_target": true,
+    "attacker_knows_fitted_detector_and_threshold": true,
+    "path": "IDS observation only; controller and simulated plant are not re-run under the altered value",
+    "persistent_policy": {
+      "attacker_knows_event_onset": true,
+      "bias_budget": "one channel; constant offset no larger than one robust training scale",
+      "modes": [
+        "hold_at_training_reference",
+        "persistent_additive_bias"
+      ],
+      "reference_hold_constraint": "hold-at-training-reference candidates are not clipped to one robust scale; the realized normalized edit is reported",
+      "timing": "from event onset through the end of the run"
+    },
+    "physical_range_or_rate_constraint": false,
+    "single_observation_policy": {
+      "budget": "one channel, at most one robust training scale, tested at the configured discrete multipliers",
+      "optimizer": "exhaustive post-hoc oracle sweep over channel and signed offset candidates; upper-bound stress test, not a deployable attack algorithm",
+      "timing": "one IDS observation at the first post-onset alarm"
+    }
+  },
+  "simulator": {
+    "backend": "python",
+    "commit": "9a6c8e5fcef4a2850778704e7793c87b0a187005",
+    "repository": "https://github.com/jkitchin/tennessee-eastman-profbraatz.git",
+    "version": "2.5.0"
+  },
+  "status": "exploratory; no novelty or physical-feasibility claim",
+  "study": "TEP measurement-path explanation-steering pilot",
+  "test_runs": [
+    {
+      "event_alarm_rate": 0.6005555555555555,
+      "event_detection_delay_seconds": 1.9999999999431584,
+      "first_alarm_explanation_and_steering": {
+        "alarm_preserved_for_clean_input": true,
+        "alarm_preserving_candidate_count": 410,
+        "best_alarm_preserving_candidate": {
+          "alarm_score": 36.724996628550926,
+          "channel_index_zero_based": 1,
+          "channel_name": "XMEAS02",
+          "normalized_absolute_edit": 0.1,
+          "robust_scale_multiplier": -0.1,
+          "target_ablation_value": 11.775524202566434,
+          "target_rank": 1,
+          "top5_channels": [
+            "XMEAS01",
+            "XMEAS31",
+            "XMEAS24",
+            "XMEAS29",
+            "XMEAS39"
+          ]
+        },
+        "candidate_count": 410,
+        "clean_alarm_score": 36.724996628550926,
+        "clean_target_ablation_value": 11.775524202566434,
+        "clean_target_rank": 1,
+        "clean_top5_channels": [
+          "XMEAS01",
+          "XMEAS31",
+          "XMEAS24",
+          "XMEAS29",
+          "XMEAS39"
+        ],
+        "target_rank_change": 0,
+        "target_rank_demoted": false,
+        "threshold": 5.022275737726398
+      },
+      "first_event_alarm_sample_index": 1802,
+      "first_event_alarm_time_hours": 0.5005555555555398,
+      "persistent_alarm_preserving_steering": {
+        "alarm_preserving_candidate_count": 451,
+        "baseline_first_alarm_sample_index": 1802,
+        "best_alarm_preserving_candidate": {
+          "alarm_preserved_at_same_sample": true,
+          "alarm_score_at_baseline_alarm": 24.949472425984492,
+          "channel_index_zero_based": 0,
+          "channel_name": "XMEAS01",
+          "event_alarm_rate_after_attack": 0.5438888888888889,
+          "mode": "hold_at_training_reference",
+          "normalized_edit_at_baseline_alarm": 10.73651677556052,
+          "robust_scale_multiplier": null,
+          "target_ablation_value": 0.0,
+          "target_rank": 5,
+          "top5_channels": [
+            "XMEAS31",
+            "XMEAS24",
+            "XMEAS29",
+            "XMEAS39",
+            "XMEAS01"
+          ]
+        },
+        "candidate_count": 451,
+        "clean_target_ablation_value": 11.775524202566434,
+        "clean_target_rank": 1,
+        "clean_top5_channels": [
+          "XMEAS01",
+          "XMEAS31",
+          "XMEAS24",
+          "XMEAS29",
+          "XMEAS39"
+        ],
+        "event_alarm_rate_quantiles_over_alarm_preserving_candidates": {
+          "max": 0.6011111111111112,
+          "median": 0.6005555555555555,
+          "min": 0.29944444444444446
+        },
+        "onset_sample_index": 1801,
+        "target_rank_change": 4,
+        "target_rank_demoted": true,
+        "target_rank_histogram_over_alarm_preserving_candidates": {
+          "1": 450,
+          "5": 1
+        },
+        "timing": "persistent IDS-input transformation from event onset through the end of the run"
+      },
+      "point_metrics": {
+        "average_precision": 0.9586827449853011,
+        "f1": 0.7491337491337491,
+        "false_positive_rate": 0.00277623542476402,
+        "fn": 719,
+        "fp": 5,
+        "precision": 0.9953959484346224,
+        "predicted_samples": 1086,
+        "recall": 0.6005555555555555,
+        "specificity": 0.997223764575236,
+        "threshold": 5.022275737726398,
+        "tn": 1796,
+        "tp": 1081
+      },
+      "pre_event_alarm_rate": 0.00277623542476402,
+      "sample_count": 3601,
+      "seed": 46,
+      "shutdown": false,
+      "shutdown_time_hours": null
+    },
+    {
+      "event_alarm_rate": 0.5827777777777777,
+      "event_detection_delay_seconds": 1.9999999999431584,
+      "first_alarm_explanation_and_steering": {
+        "alarm_preserved_for_clean_input": true,
+        "alarm_preserving_candidate_count": 410,
+        "best_alarm_preserving_candidate": {
+          "alarm_score": 35.65034927015939,
+          "channel_index_zero_based": 1,
+          "channel_name": "XMEAS02",
+          "normalized_absolute_edit": 0.1,
+          "robust_scale_multiplier": -0.1,
+          "target_ablation_value": 11.059064528543477,
+          "target_rank": 1,
+          "top5_channels": [
+            "XMEAS01",
+            "XMEAS24",
+            "XMEAS31",
+            "XMEAS39",
+            "XMEAS02"
+          ]
+        },
+        "candidate_count": 410,
+        "clean_alarm_score": 35.65034927015939,
+        "clean_target_ablation_value": 11.059064528543477,
+        "clean_target_rank": 1,
+        "clean_top5_channels": [
+          "XMEAS01",
+          "XMEAS24",
+          "XMEAS31",
+          "XMEAS39",
+          "XMEAS02"
+        ],
+        "target_rank_change": 0,
+        "target_rank_demoted": false,
+        "threshold": 5.022275737726398
+      },
+      "first_event_alarm_sample_index": 1802,
+      "first_event_alarm_time_hours": 0.5005555555555398,
+      "persistent_alarm_preserving_steering": {
+        "alarm_preserving_candidate_count": 451,
+        "baseline_first_alarm_sample_index": 1802,
+        "best_alarm_preserving_candidate": {
+          "alarm_preserved_at_same_sample": true,
+          "alarm_score_at_baseline_alarm": 24.59128474161591,
+          "channel_index_zero_based": 0,
+          "channel_name": "XMEAS01",
+          "event_alarm_rate_after_attack": 0.51,
+          "mode": "hold_at_training_reference",
+          "normalized_edit_at_baseline_alarm": 10.724104605631188,
+          "robust_scale_multiplier": null,
+          "target_ablation_value": 0.0,
+          "target_rank": 5,
+          "top5_channels": [
+            "XMEAS24",
+            "XMEAS31",
+            "XMEAS39",
+            "XMEAS40",
+            "XMEAS01"
+          ]
+        },
+        "candidate_count": 451,
+        "clean_target_ablation_value": 11.059064528543477,
+        "clean_target_rank": 1,
+        "clean_top5_channels": [
+          "XMEAS01",
+          "XMEAS24",
+          "XMEAS31",
+          "XMEAS39",
+          "XMEAS02"
+        ],
+        "event_alarm_rate_quantiles_over_alarm_preserving_candidates": {
+          "max": 0.5983333333333334,
+          "median": 0.5827777777777777,
+          "min": 0.5083333333333333
+        },
+        "onset_sample_index": 1801,
+        "target_rank_change": 4,
+        "target_rank_demoted": true,
+        "target_rank_histogram_over_alarm_preserving_candidates": {
+          "1": 450,
+          "5": 1
+        },
+        "timing": "persistent IDS-input transformation from event onset through the end of the run"
+      },
+      "point_metrics": {
+        "average_precision": 0.9856797631818782,
+        "f1": 0.7351086194814296,
+        "false_positive_rate": 0.00277623542476402,
+        "fn": 751,
+        "fp": 5,
+        "precision": 0.9952561669829222,
+        "predicted_samples": 1054,
+        "recall": 0.5827777777777777,
+        "specificity": 0.997223764575236,
+        "threshold": 5.022275737726398,
+        "tn": 1796,
+        "tp": 1049
+      },
+      "pre_event_alarm_rate": 0.00277623542476402,
+      "sample_count": 3601,
+      "seed": 47,
+      "shutdown": false,
+      "shutdown_time_hours": null
+    }
+  ]
+}

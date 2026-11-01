@@ -1,0 +1,56 @@
+{
+  "simulator": {
+    "repository": "https://github.com/jkitchin/tennessee-eastman-profbraatz.git",
+    "commit": "9a6c8e5fcef4a2850778704e7793c87b0a187005",
+    "version": "2.5.0",
+    "backend": "python"
+  },
+  "duration_hours": 1.0,
+  "event_onset_hours": 0.5,
+  "disturbance_id": 6,
+  "train_seed": 42,
+  "validation_seed": 43,
+  "screening_seeds_excluded_from_test": [44, 45],
+  "test_seeds": [46, 47],
+  "threshold_quantile": 0.995,
+  "target_channel_index_zero_based": 0,
+  "target_channel_name": "XMEAS(1): A Feed Flow",
+  "attack_search": {
+    "single_channel_only": true,
+    "robust_scale_multipliers": [
+      -1.0,
+      -0.75,
+      -0.5,
+      -0.25,
+      -0.1,
+      0.1,
+      0.25,
+      0.5,
+      0.75,
+      1.0
+    ],
+    "attacker_knows_fitted_detector_and_threshold": true,
+    "attacker_knows_event_target": true,
+    "attack_timing": "single IDS observation at first post-onset baseline alarm",
+    "controller_path_compromised": false
+  },
+  "persistent_attack_search": {
+    "modes": [
+      "hold_at_training_reference",
+      "persistent_additive_bias"
+    ],
+    "robust_scale_multipliers": [
+      -1.0,
+      -0.75,
+      -0.5,
+      -0.25,
+      -0.1,
+      0.1,
+      0.25,
+      0.5,
+      0.75,
+      1.0
+    ],
+    "attacker_knows_event_onset": true
+  }
+}
