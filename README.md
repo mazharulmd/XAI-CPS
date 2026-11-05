@@ -64,6 +64,7 @@ Phase-2 analysis (reference gap, noise, decoy; writes `results/tables/phase2.csv
 
 ```bash
 python3 scripts/analyze_phase2.py
+python3 scripts/analyze_integration.py   # ground-truth cross-check (configs/hai/independent/), chance reference, SP/CV strata
 ```
 
 Edge-hardware sensitivity (every measured latency multiplied by an assumed factor):

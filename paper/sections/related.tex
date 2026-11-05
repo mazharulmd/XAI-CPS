@@ -43,6 +43,9 @@ Owen values \citep{owen1977unions} extend Shapley values \citep{shapley1953value
 \end{itemize}
 In a concurrent preprint, \citet{mishra2026conditional} compute sensor--time attributions with on-manifold conditional counterfactuals for root-cause analysis on SWaT and server data. They aggregate within a window, whereas we aggregate across alarm windows and evaluate timeliness.
 
+\paragraph{Counterfactual explanations for CPS anomaly detection}
+A complementary line of work explains an anomaly by what a normal input would have looked like. AR-Pro \citep{ji2024arpro} generates diffusion-based counterfactual repairs that satisfy formal properties of the detector score and evaluates them on SWaT, WADI and HAI. JoCE \citep{jeong2026joce} searches for sparse joint time--feature edits that remove a time-series anomaly while preserving temporal continuity. Counterfactuals answer a different question from ours (what would have to change, rather than which loop is responsible), require iterative optimisation per explanation, and have not been evaluated against documented attack targets under deadlines. They could be scored with the same deadline-conditioned metrics.
+
 \paragraph{Timeliness in CPS security}
 \citet{cardenas2011attacks} and \citet{urbina2016limiting} analyse attacks and detection in terms of their physical impact. \citet{puccetti2026latency} argue that detection latency must be evaluated together with false-positive rates. GiBy \citep{venugopalan2025giby} explains detections through per-sensor safety bounds within milliseconds. To our knowledge, no prior work evaluates whether an \emph{explanation} that is \emph{correct} reaches the operator within a process-derived deadline.
 

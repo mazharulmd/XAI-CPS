@@ -25,4 +25,5 @@ if [ "${1:-all}" = "all" ]; then
   python3 scripts/run_leakage.py
   python3 scripts/analyze.py --datasets sim hai sim-decoy
   python3 scripts/analyze_phase2.py
+  python3 scripts/analyze_integration.py
 fi

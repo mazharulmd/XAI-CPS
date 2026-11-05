@@ -18,7 +18,7 @@
 \item \emph{Detector family.} We study forecasting detectors only. Reconstruction-, density- or classifier-based detectors would need their own score functions.
 \end{itemize}
 
-\paragraph{Adversary} The decoy experiment considers a non-adaptive adversary with a fixed small bias. An adversary who optimises manipulations against the explainer \citep{slack2020fooling}, under physical constraints, is out of scope and remains open.
+\paragraph{Adversary} The decoy experiment considers a non-adaptive adversary with a fixed small bias. Explanation-manipulation attacks that preserve the detector's decision while steering SHAP, LIME or integrated-gradients explanations have been demonstrated on security classifiers, including intrusion detection \citep{slack2020fooling,mia2025vulnerable}. Whether such an adversary can steer a loop-level attribution while respecting the physical constraints of a closed control loop remains open and is the most important robustness question for this work.
 
 \paragraph{Human factors} We measure whether the correct loop is ranked first or within the top $k$. We do not measure whether operators act faster or better. The preference for showing several candidates found in the operator survey of \citet{fung2024attributions} motivates our HR@3 results but does not substitute for a user study.
 

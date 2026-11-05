@@ -19,9 +19,18 @@ Localization is evaluated on detected attacks: \nhaitesthrOnealarmZero{} (attack
 \item \emph{H1 is therefore only partially supported.} Exact loop attribution is the most accurate \emph{black-box} method at the alarm on HAI. It is not uniformly better than white-box integrated gradients, and on PCL-Sim it is not better than the training-background variant.
 \end{itemize}
 
+For reference, a uniformly random ranking of the groups would place an attacked loop first in \chancehaihrOne{} of the same HAI units (multi-loop attacks count as hits on any target loop) and in \chancesimhrOne{} on PCL-Sim; within the top three, in \chancehaihrThree{} and \chancesimhrThree. All attribution methods are well above chance. The structure controls come closest to it (random partition 0.25 on HAI, correlation clusters 0.27 on PCL-Sim).
+
 \paragraph{Structure, not grouping, is what matters (H4)} Exact Shapley values over the same number of groups formed by correlation clustering (CLX) or at random (RPX) are far worse. On HAI at the alarm they reach 0.45 and 0.25 against \lochaiLXalarmZerosinglehrOne; on PCL-Sim, 0.27 and 0.54 against \locsimLXalarmZerosinglehrOne{} (all Holm $p<10^{-10}$). Data-driven groups mix tags of different loops, so a group can be ``responsible'' without identifying a loop. Grouping by control structure is what turns exact Shapley values into an operational localization. H4 is supported on both benchmarks.
 
 \paragraph{Best-guess timing} Computing attributions on an oracle window that starts at the onset, as advocated by \citet{fung2024attributions}, does \emph{not} help in our setting. On HAI it is worse than practical timing for every method except saliency (e.g.\ \LX{} \lochaiLXbestguesssinglehrOne{} vs.\ \lochaiLXalarmZerosinglehrOne{}), because many HAI and PCL-Sim manipulations take tens of seconds to affect the process. Their detectors mostly fire after the effect has become visible.
+
+\paragraph{Hard-to-explain attacks} \Cref{tab:strata} stratifies the HAI results by the type of manipulated variable, read from the target-controller code of the official attack table (e.g.\ \texttt{P1-PC-SP1PV1}: setpoint plus a spoofed process variable). The strata are small (3--\stratcombn{} attacks), so we describe them only.
+\begin{itemize}
+\item \emph{Controller-output (CV) attacks} directly move a recorded actuator and are localized well (at the alarm RE 0.69; IG, KernelSHAP-1024, \LX-bg and \LX{} 0.79; \LX{} \stratCVPVLXalarm{} with a PV spoof, $n=\stratCVPVn$).
+\item \emph{Setpoint (SP) attacks} are the hardest. The manipulated setpoint itself is invisible in the data (\cref{sec:setup}), so the evidence appears only in the loop's PV and CV. \LX{} is the best method at the alarm (\stratSPLXalarm{} vs.\ \stratSPIGalarm{} for IG). However, every method falls to \stratSPteamin--\stratSPteamax{} at 60\,s even with \TEA, plausibly because the controller has by then propagated the change to coupled loops.
+\end{itemize}
+This pattern supports loop-level attribution for CPS more generally. Only the loop is identifiable when the manipulated variable is not observable; any tag-level ground truth that names a hidden setpoint cannot be met by any explainer.
 
 \input{generated/tab_loc_hai.tex}
 \input{generated/tab_loc_sim.tex}
