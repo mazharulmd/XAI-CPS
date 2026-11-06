@@ -20,9 +20,14 @@ An evidence-audit-oriented branch: HAI 21.03, BATADAL, Data4Cyber and TEP pilots
 
 ## `feat/pi-cax-q1-manuscript`
 
-A complete-looking manuscript ("PI-CAX") with strong headline numbers. **None of its results were integrated**, because:
+A complete-looking manuscript ("PI-CAX") with strong headline numbers. **Its reported results were not used**, because:
 - All three "benchmarks" are synthetic. `src/cps_benchmarks.py::build_cps_benchmark()` generates data from hand-written equations with SWaT/WADI/HAI tag names, but the abstract and results tables present them as "SWaT, WADI and HIL-HAI" without stating that they are synthetic surrogates. SWaT/WADI are request-only datasets and are not loaded anywhere in the code.
 - The "ARM Cortex-A72 edge" latency (6.78 ms) is not measured: `src/evaluation.py` multiplies desktop time by a constant 6.4.
-- The method contains hand-set constants (e.g. clipping to [0.10, 1.35], weights 0.20 + 0.95·coherence) tuned on the same synthetic data on which it is evaluated.
 
-Reporting these numbers as results on SWaT/WADI/HAI would be misleading. Its conceptual ideas (physical safety bounds, sensor-vs-actuator breakdown) are covered in our manuscript by the deadline metrics and the action-type stratification.
+**Its method was integrated and evaluated honestly (6 Nov 2026).** `src/xaicps/picax.py` ports `explain_pi_cax` with every equation and constant unchanged; the interface adaptations (loops as stages, our forecaster's residuals, training-range envelope, tier 2 always on) are listed in the module docstring. `scripts/run_picax.py` evaluates it on the same incidents, alarms, grids and detectors as every other method, and the analysis treats it as one more configuration (post hoc, not pre-registered). Outcome on real data:
+- PI-CAX+TEA is significantly better than every other configuration at the alarm and at +60 s on HAI and PCL-Sim, and in DCL@1(60 s) on HAI (0.72 vs at most 0.54); it is tied in the PCL-Sim in-time rate (detection-limited).
+- A component ablation (`--ablation`) shows that the gain comes almost entirely from the persistence/oscillation decoupling; precision weighting/loop gating, the envelope and the counterfactual tier change HR@1 by at most 0.04.
+- Under sensor noise it must have its normalising statistics recalibrated (`PICAX.recalibrate`, the counterpart of the detector recalibration); without that (`--frozen-stats`) it collapses on HAI (0.41/0.21 at sigma 0.1/0.3).
+- Its single explanations are the least stable under input perturbation on HAI.
+
+These results replace the branch's synthetic-data claims in the combined manuscript.

@@ -1,25 +1,10 @@
 \subsection{Limitations and threats to validity}\label{sec:limitations}
-\paragraph{External validity}
 \begin{itemize}
-\item \emph{Benchmark coverage.} We evaluate on one real HIL testbed (HAI 21.03, 50 attacks) and one simulator of our own design. SWaT and WADI, the most common ICS benchmarks, are only available on request, and we could not include them in this study. Replication on them, on HAI 22.04/23.05, and on TEP-based manipulation suites \citep{fung2024attributions} is the most important next step.
-\item \emph{Other CPS domains.} Both benchmarks are industrial process CPS. Power grids, vehicles and medical devices also have control loops and physical deadlines, so the framework applies to them in principle. Their loop sizes, sampling rates and deadlines differ, however, and we make no empirical claim about them.
-\item \emph{Simulator bias.} A simulator designed by the authors of a method risks favouring it. We mitigate this in three ways: all explainers query the same score function and reference; attack primitives mirror HAI's taxonomy; and simulator parameters were fixed on development seeds before any explainer was evaluated. The simulator is released for scrutiny.
+\item \emph{Benchmarks and CPS domains.} We evaluate on one real hardware-in-the-loop testbed (HAI~21.03) and one simulator of our own design. SWaT and WADI are available only on request and could not be included; replication on them, newer HAI releases and TEP-based suites \citep{fung2024attributions} is the most important next step. Both benchmarks are industrial process CPS; power grids, vehicles and medical devices also have control loops and deadlines, but we make no empirical claim about them.
+\item \emph{Simulator bias.} A simulator designed by the authors of a method risks favouring it. All explainers query the same score function, attack primitives mirror HAI, and simulator parameters were fixed on development seeds before any explainer was evaluated.
+\item \emph{Post hoc comparison.} PI-CAX was added after the hypotheses for \LX{} were fixed. Its design and constants were frozen beforehand (repository history), and its adaptations to our interface are documented in the code, but it was not part of the pre-specified analysis plan.
+\item \emph{Deadlines and hardware.} Hazard deadlines are computed in simulation without operator or safety-system response and with safety limits we chose; HAI provides no process safety times, so we report DCL over a grid of deadlines. Latencies were measured on one thread of a server CPU; edge-class conclusions rest on an assumed slowdown.
+\item \emph{Method assumptions.} Both loop-level explainers need a loop map, and some HAI assignments are engineering judgement. Exact \LX{} is exponential in $L$ and needs a hierarchy beyond $L\approx14$. Its incident-local reference assumes a normal state $\Delta_{\mathrm{ref}}$ before the alarm. We study forecasting detectors only.
+\item \emph{Adversary.} The decoy experiment is non-adaptive. Explanation-manipulation attacks that preserve the detector's decision while steering SHAP, LIME or integrated-gradient explanations have been demonstrated on security classifiers, including intrusion detection \citep{slack2020fooling,mia2025vulnerable}. Whether an adversary can steer a loop-level or physics-informed explanation while respecting the constraints of a closed control loop remains open.
+\item \emph{Human factors and literature search.} We measure whether the attacked loop is ranked first or within the top $k$, not whether operators act faster. Bibliographic APIs were not reachable from our environment, so the novelty check relied on the curated corpus and web search; this does not prove that no prior work exists.
 \end{itemize}
-
-\paragraph{Deadlines} Hazard deadlines are computed in simulation, with no operator or safety-system response, and with safety limits we chose. On HAI we can only report DCL over a deadline grid, because recorded data carry no process safety times. Real process safety times come from hazard analyses (IEC~61511) and differ by orders of magnitude between processes.
-
-\paragraph{Hardware} Latencies were measured on one thread of a server CPU, not on a PLC-adjacent embedded device. We report hardware-independent evaluation counts and a sensitivity analysis with an assumed slowdown factor, but we did not measure on embedded hardware. Edge-class conclusions are therefore extrapolations.
-
-\paragraph{Method assumptions}
-\begin{itemize}
-\item \emph{Engineering metadata.} \LX{} needs a loop map. Some HAI assignments are our engineering judgement (flagged in the released configuration).
-\item \emph{Scaling.} Exact computation is exponential in $L$. Beyond $L\approx 14$ (16k evaluations), loops would need a two-level hierarchy (unit $\to$ loop) or sampling, and the deterministic-latency guarantee would weaken.
-\item \emph{Reference.} The incident-local reference assumes that the plant was in a normal state $\Delta_{\mathrm{ref}}$ seconds before the alarm. Slow ramps that begin long before detection contaminate it (\cref{sec:ablation}).
-\item \emph{Detector family.} We study forecasting detectors only. Reconstruction-, density- or classifier-based detectors would need their own score functions.
-\end{itemize}
-
-\paragraph{Adversary} The decoy experiment considers a non-adaptive adversary with a fixed small bias. Explanation-manipulation attacks that preserve the detector's decision while steering SHAP, LIME or integrated-gradients explanations have been demonstrated on security classifiers, including intrusion detection \citep{slack2020fooling,mia2025vulnerable}. Whether such an adversary can steer a loop-level attribution while respecting the physical constraints of a closed control loop remains open and is the most important robustness question for this work.
-
-\paragraph{Human factors} We measure whether the correct loop is ranked first or within the top $k$. We do not measure whether operators act faster or better. The preference for showing several candidates found in the operator survey of \citet{fung2024attributions} motivates our HR@3 results but does not substitute for a user study.
-
-\paragraph{Literature search} Bibliographic APIs (OpenAlex, Crossref, arXiv, Semantic Scholar) were not reachable from our analysis environment. The novelty check therefore combined the curated corpus with general web search. We found no prior work combining the elements above, but this does not prove that none exists.

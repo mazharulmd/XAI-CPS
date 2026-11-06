@@ -1,0 +1,6 @@
+Highlights
+- Deadline-conditioned metrics test whether correct CPS explanations arrive in time
+- Loop-level ground truth for all 50 HAI 21.03 attacks and a simulator with hazards
+- Score attributions degrade after the alarm as attacks spread through control loops
+- A persistence prior localizes 93% of detected HAI attacks at and 60 s after alarm
+- Most simulated deadline misses stem from late or missed attack detection

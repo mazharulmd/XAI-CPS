@@ -1,3 +1,8 @@
+%% Manuscript for Computers & Security (Elsevier), prepared with the elsarticle class.
+%% Journal requirements followed: single-anonymized review (author details on the title page),
+%% abstract <= 250 words, <= 12,000 words including abstract, main text, references and
+%% appendices (supplementary material is a separate file), highlights as a separate file
+%% (highlights.txt), and the declarations required at submission (end of this file).
 \documentclass[preprint,12pt,authoryear]{elsarticle}
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
@@ -9,6 +14,8 @@
 \usepackage[hidelinks]{hyperref}
 \usepackage{algorithm,algpseudocode}
 \usepackage[capitalise]{cleveref}
+\usepackage{lineno}
+\linenumbers
 \sisetup{detect-all}
 \setlength{\emergencystretch}{3em}
 \newtheorem{proposition}{Proposition}
@@ -17,20 +24,31 @@
 \newcommand{\LX}{\textup{LX}}
 \newcommand{\TEA}{\textup{TEA}}
 \journal{Computers \& Security}
+% Empty footer on the title page: the default 'Preprint submitted to' footer (and a page number)
+% overprints the corresponding-author footnote because the frontmatter fills the page.
+\makeatletter
+\def\ps@pprintTitle{\let\@oddhead\@empty\let\@evenhead\@empty
+  \let\@oddfoot\@empty\let\@evenfoot\@empty}
+\makeatother
 
 \begin{document}
 \begin{frontmatter}
 \title{Explanations That Arrive in Time: Deadline-Aware, Control-Loop-Structured Explainable AI for Intrusion Detection in Cyber-Physical Systems}
 
-\author{[Author names withheld for review]}
-\address{[Affiliation]}
+%% TODO(authors): complete the author list, affiliations and ORCID iDs before submission.
+\author[nsu]{Md Mazharul Islam\corref{cor1}}
+\ead{mazharul.islam1@northsouth.edu}
+\cortext[cor1]{Corresponding author.}
+\affiliation[nsu]{organization={North South University},
+            city={Dhaka},
+            country={Bangladesh}}
 
 \begin{abstract}
 \input{sections/abstract}
 \end{abstract}
 
 \begin{keyword}
-cyber-physical systems \sep explainable AI \sep intrusion detection \sep Shapley values \sep control loops \sep real-time explanation \sep process safety time
+cyber-physical systems \sep explainable AI \sep intrusion detection \sep control loops \sep physics-informed explanation \sep process safety time
 \end{keyword}
 \end{frontmatter}
 
@@ -43,15 +61,8 @@ cyber-physical systems \sep explainable AI \sep intrusion detection \sep Shapley
 \input{sections/discussion}
 \input{sections/conclusion}
 
-\section*{Data and code availability}
-All code, configuration files, the HAI~21.03 loop-level ground-truth table, the PCL-Sim simulator, raw per-attack outputs and the scripts that generate every table and figure are available in the project repository (\url{https://github.com/mazharulmd/XAI-CPS}). HAI~21.03 is publicly available from its maintainers \citep{shin2021hai}.
-
-\section*{Declaration of generative AI use}
-[To be completed by the authors according to the journal policy.]
+\input{sections/declarations}
 
 \bibliographystyle{elsarticle-harv}
 \bibliography{refs}
-
-\appendix
-\input{sections/appendix}
 \end{document}

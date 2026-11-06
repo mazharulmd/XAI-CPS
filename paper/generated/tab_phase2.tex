@@ -1,28 +1,28 @@
 \begin{table}[t]
 \centering\tiny
-\caption{Ablations and robustness (HR@1 unless noted; ``alarm'': single shot at the alarm; ``+60\,T'': 60\,s after the alarm with \TEA). Reference-gap and noise rows: CNN detector, seed 0. Noise rows: Gaussian noise of standard deviation $\sigma_n$ (standardised units) added to the test and validation data, with $\sigma$ and $\theta$ recalibrated on the noisy validation data (model weights frozen). Decoy rows: linear and CNN detectors, 3 seeds; decoy@1 is the share of attacks in which the innocent decoy loop is ranked first.}\label{tab:phase2}
+\caption{Ablations and robustness (HR@1 unless noted; ``alarm'': single shot at the alarm; ``+60\,T'': 60\,s after the alarm with \TEA). Reference-gap and noise rows: CNN detector, seed 0. Noise rows: Gaussian noise of standard deviation $\sigma_n$ (standardised units) added to the test and validation data, with $\sigma$ and $\theta$ recalibrated on the noisy validation data (model weights frozen; PI-CAX's normalising statistics are recalibrated on the same data). Decoy rows: linear and CNN detectors, 3 seeds; decoy@1 is the share of attacks in which the innocent decoy loop is ranked first.}\label{tab:phase2}
 \resizebox{\linewidth}{!}{%
-\begin{tabular}{@{}llcccccccc@{}}
+\begin{tabular}{@{}llcccccccccc@{}}
 \toprule
-Data & Condition & \multicolumn{2}{c}{\LX} & \multicolumn{2}{c}{IG} & \multicolumn{2}{c}{KS-1024} & \multicolumn{2}{c}{RE}\\ & & alarm & +60\,T & alarm & +60\,T & alarm & +60\,T & alarm & +60\,T\\
+Data & Condition & \multicolumn{2}{c}{PI-CAX} & \multicolumn{2}{c}{\LX} & \multicolumn{2}{c}{IG} & \multicolumn{2}{c}{KS-1024} & \multicolumn{2}{c}{RE}\\ & & alarm & +60\,T & alarm & +60\,T & alarm & +60\,T & alarm & +60\,T & alarm & +60\,T\\
 \midrule
-HAI & $\Delta_{\mathrm{ref}}$=32\,s & 0.67 & 0.67 & 0.64 & 0.67 & 0.64 & 0.71 & 0.73 & 0.69\\
-HAI & $\Delta_{\mathrm{ref}}$=60\,s (default) & 0.73 & 0.67 & 0.64 & 0.67 & 0.69 & 0.69 & 0.73 & 0.69\\
-HAI & $\Delta_{\mathrm{ref}}$=120\,s & 0.71 & 0.64 & 0.69 & 0.67 & 0.69 & 0.67 & 0.73 & 0.69\\
-HAI & $\Delta_{\mathrm{ref}}$=300\,s & 0.64 & 0.62 & 0.64 & 0.71 & 0.64 & 0.71 & 0.73 & 0.69\\
-HAI & $\sigma_n$=0.1, recal. & 0.64 & 0.61 & 0.61 & 0.70 & 0.66 & 0.68 & 0.64 & 0.73\\
-HAI & $\sigma_n$=0.3, recal. & 0.51 & 0.56 & 0.56 & 0.60 & 0.56 & 0.63 & 0.56 & 0.44\\
+HAI & $\Delta_{\mathrm{ref}}$=32\,s & 0.96 & 0.96 & 0.67 & 0.67 & 0.64 & 0.67 & 0.64 & 0.71 & 0.73 & 0.69\\
+HAI & $\Delta_{\mathrm{ref}}$=60\,s (default) & 0.96 & 0.96 & 0.73 & 0.67 & 0.64 & 0.67 & 0.69 & 0.69 & 0.73 & 0.69\\
+HAI & $\Delta_{\mathrm{ref}}$=120\,s & 0.96 & 0.96 & 0.71 & 0.64 & 0.69 & 0.67 & 0.69 & 0.67 & 0.73 & 0.69\\
+HAI & $\Delta_{\mathrm{ref}}$=300\,s & 0.96 & 0.96 & 0.64 & 0.62 & 0.64 & 0.71 & 0.64 & 0.71 & 0.73 & 0.69\\
+HAI & $\sigma_n$=0.1, recal. & 0.82 & 0.86 & 0.64 & 0.61 & 0.61 & 0.70 & 0.66 & 0.68 & 0.64 & 0.73\\
+HAI & $\sigma_n$=0.3, recal. & 0.67 & 0.84 & 0.51 & 0.56 & 0.56 & 0.60 & 0.56 & 0.63 & 0.56 & 0.44\\
 \midrule
-PCL-Sim & $\Delta_{\mathrm{ref}}$=32\,s & 0.79 & 0.76 & 0.78 & 0.75 & 0.78 & 0.78 & 0.82 & 0.79\\
-PCL-Sim & $\Delta_{\mathrm{ref}}$=60\,s (default) & 0.80 & 0.76 & 0.80 & 0.77 & 0.79 & 0.78 & 0.82 & 0.79\\
-PCL-Sim & $\Delta_{\mathrm{ref}}$=120\,s & 0.80 & 0.76 & 0.82 & 0.78 & 0.82 & 0.79 & 0.82 & 0.79\\
-PCL-Sim & $\Delta_{\mathrm{ref}}$=300\,s & 0.81 & 0.78 & 0.82 & 0.78 & 0.82 & 0.78 & 0.82 & 0.79\\
-PCL-Sim & $\sigma_n$=0.1, recal. & 0.93 & 0.91 & 0.93 & 0.92 & 0.93 & 0.93 & 0.94 & 0.91\\
-PCL-Sim & $\sigma_n$=0.3, recal. & 0.94 & 0.93 & 0.95 & 0.95 & 0.95 & 0.94 & 0.95 & 0.93\\
+PCL-Sim & $\Delta_{\mathrm{ref}}$=32\,s & 0.86 & 0.84 & 0.79 & 0.76 & 0.78 & 0.75 & 0.78 & 0.78 & 0.82 & 0.79\\
+PCL-Sim & $\Delta_{\mathrm{ref}}$=60\,s (default) & 0.86 & 0.84 & 0.80 & 0.76 & 0.80 & 0.77 & 0.79 & 0.78 & 0.82 & 0.79\\
+PCL-Sim & $\Delta_{\mathrm{ref}}$=120\,s & 0.86 & 0.84 & 0.80 & 0.76 & 0.82 & 0.78 & 0.82 & 0.79 & 0.82 & 0.79\\
+PCL-Sim & $\Delta_{\mathrm{ref}}$=300\,s & 0.86 & 0.84 & 0.81 & 0.78 & 0.82 & 0.78 & 0.82 & 0.78 & 0.82 & 0.79\\
+PCL-Sim & $\sigma_n$=0.1, recal. & 0.92 & 0.91 & 0.93 & 0.91 & 0.93 & 0.92 & 0.93 & 0.93 & 0.94 & 0.91\\
+PCL-Sim & $\sigma_n$=0.3, recal. & 0.94 & 0.94 & 0.94 & 0.93 & 0.95 & 0.95 & 0.95 & 0.94 & 0.95 & 0.93\\
 \midrule
-PCL-Sim & no decoy: HR@1 & 0.84 & 0.80 & 0.84 & 0.82 & 0.83 & 0.77 & 0.85 & 0.78\\
-PCL-Sim & decoy: HR@1 & 0.86 & 0.81 & 0.85 & 0.83 & 0.84 & 0.78 & 0.85 & 0.79\\
-PCL-Sim & decoy: decoy@1 & 0.03 & 0.05 & 0.03 & 0.04 & 0.03 & 0.05 & 0.04 & 0.05\\
+PCL-Sim & no decoy: HR@1 & 0.87 & 0.86 & 0.84 & 0.80 & 0.84 & 0.82 & 0.83 & 0.77 & 0.85 & 0.78\\
+PCL-Sim & decoy: HR@1 & 0.89 & 0.87 & 0.86 & 0.81 & 0.85 & 0.83 & 0.84 & 0.78 & 0.85 & 0.79\\
+PCL-Sim & decoy: decoy@1 & 0.03 & 0.03 & 0.03 & 0.05 & 0.03 & 0.04 & 0.03 & 0.05 & 0.04 & 0.05\\
 \bottomrule
 \end{tabular}}
 \end{table}

@@ -11,10 +11,10 @@ TAB, GEN = ROOT / "results" / "tables", ROOT / "paper" / "generated"
 GEN.mkdir(parents=True, exist_ok=True)
 sys.path.insert(0, str(ROOT / "src"))
 
-ORDER = ["RE", "SM", "IG", "KS-eq", "KS-1024", "LIME-eq", "LIME-1024", "Fung-ens", "CLX", "RPX", "LX-bg", "LX"]
+ORDER = ["RE", "SM", "IG", "KS-eq", "KS-1024", "LIME-eq", "LIME-1024", "Fung-ens", "PI-CAX", "CLX", "RPX", "LX-bg", "LX"]
 NAME = {"RE": "RE", "SM": "SM", "IG": "IG", "KS-eq": "KernelSHAP-eq", "KS-1024": "KernelSHAP-1024",
         "LIME-eq": "LIME-eq", "LIME-1024": "LIME-1024", "Fung-ens": "Fung ens.", "CLX": "CLX (clusters)",
-        "RPX": "RPX (random)", "LX-bg": "\\LX-bg", "LX": "\\textbf{\\LX{} (ours)}"}
+        "RPX": "RPX (random)", "PI-CAX": "PI-CAX", "LX-bg": "\\LX-bg", "LX": "\\LX"}
 macros = {}
 
 
@@ -223,7 +223,7 @@ def tests_table():
             first = True
             for row in t["pairs"]:
                 m, v = row["method"].split("|")
-                if not ((v == "tea" and m in ("IG", "KS-1024", "LIME-1024", "Fung-ens", "LX-bg", "RE", "CLX", "RPX")) or (m == "LX" and v == "single")):
+                if not ((v == "tea" and m in ("IG", "KS-1024", "LIME-1024", "Fung-ens", "PI-CAX", "LX-bg", "RE", "CLX", "RPX")) or (m == "LX" and v == "single")):
                     continue
                 name = (NAME[m].replace("\\textbf{", "").replace(" (ours)}", "") + (" + \\TEA" if v == "tea" else " single-shot"))
                 pv = row["p_holm"]; pstr = "$<$0.001" if pv < 0.001 else f"{pv:.3f}"
@@ -270,7 +270,7 @@ def phase2_table():
             if not len(sub):
                 continue
             cell = lambda m, v, o: f2(first(sub[(sub.method == m) & (sub.variant == v) & (sub.offset == o)]["mean"].values))
-            rows.append(f"{dn} & {lab} & " + " & ".join(cell(m, v, o) for m in ("LX", "IG", "KS-1024", "RE") for v, o in (("single", 0), ("tea", 60))))
+            rows.append(f"{dn} & {lab} & " + " & ".join(cell(m, v, o) for m in ("PI-CAX", "LX", "IG", "KS-1024", "RE") for v, o in (("single", 0), ("tea", 60))))
         rows.append("\\midrule")
     for cond in ("no decoy", "decoy"):
         sub = d[(d.dataset == "sim") & (d.condition == cond)]
@@ -281,10 +281,10 @@ def phase2_table():
                 continue
             s2 = sub[sub.metric == metric]
             cell = lambda m, v, o: f2(first(s2[(s2.method == m) & (s2.variant == v) & (s2.offset == o)]["mean"].values))
-            rows.append(f"PCL-Sim & {cond}: {lab} & " + " & ".join(cell(m, v, o) for m in ("LX", "IG", "KS-1024", "RE") for v, o in (("single", 0), ("tea", 60))))
-    table("tab_phase2.tex", "Data & Condition & \\multicolumn{2}{c}{\\LX} & \\multicolumn{2}{c}{IG} & \\multicolumn{2}{c}{KS-1024} & \\multicolumn{2}{c}{RE}\\\\ & & alarm & +60\\,T & alarm & +60\\,T & alarm & +60\\,T & alarm & +60\\,T",
-          rows, "@{}llcccccccc@{}",
-          "Ablations and robustness (HR@1 unless noted; ``alarm'': single shot at the alarm; ``+60\\,T'': 60\\,s after the alarm with \\TEA). Reference-gap and noise rows: CNN detector, seed 0. Noise rows: Gaussian noise of standard deviation $\\sigma_n$ (standardised units) added to the test and validation data, with $\\sigma$ and $\\theta$ recalibrated on the noisy validation data (model weights frozen). Decoy rows: linear and CNN detectors, 3 seeds; decoy@1 is the share of attacks in which the innocent decoy loop is ranked first.",
+            rows.append(f"PCL-Sim & {cond}: {lab} & " + " & ".join(cell(m, v, o) for m in ("PI-CAX", "LX", "IG", "KS-1024", "RE") for v, o in (("single", 0), ("tea", 60))))
+    table("tab_phase2.tex", "Data & Condition & \\multicolumn{2}{c}{PI-CAX} & \\multicolumn{2}{c}{\\LX} & \\multicolumn{2}{c}{IG} & \\multicolumn{2}{c}{KS-1024} & \\multicolumn{2}{c}{RE}\\\\ & & alarm & +60\\,T & alarm & +60\\,T & alarm & +60\\,T & alarm & +60\\,T & alarm & +60\\,T",
+          rows, "@{}llcccccccccc@{}",
+          "Ablations and robustness (HR@1 unless noted; ``alarm'': single shot at the alarm; ``+60\\,T'': 60\\,s after the alarm with \\TEA). Reference-gap and noise rows: CNN detector, seed 0. Noise rows: Gaussian noise of standard deviation $\\sigma_n$ (standardised units) added to the test and validation data, with $\\sigma$ and $\\theta$ recalibrated on the noisy validation data (model weights frozen; PI-CAX's normalising statistics are recalibrated on the same data). Decoy rows: linear and CNN detectors, 3 seeds; decoy@1 is the share of attacks in which the innocent decoy loop is ranked first.",
           "tab:phase2", size="\\tiny")
 
 
@@ -353,7 +353,7 @@ def intime_decomposition():
     mac("intimeFail", len(fail), "{}")
     mac("intimeFailUndelivered", int((~fail.delivered.astype(bool)).sum()), "{}")
     mac("intimeFailUndeliveredPct", 100 * float((~fail.delivered.astype(bool)).mean()), "{:.0f}")
-    for m in ("LX", "IG", "LX-bg", "RE", "KS-1024", "Fung-ens"):
+    for m in ("LX", "IG", "LX-bg", "RE", "KS-1024", "Fung-ens", "PI-CAX"):
         x = h[(h.method == m) & h.delivered.astype(bool)]
         mac("intimeDelivered" + "".join(ch for ch in m if ch.isalnum()), float(x.hr1.mean()))
 
@@ -364,7 +364,7 @@ def slowdown_macros():
             d = load(f"dcl_hr1_{ds}.csv" if x == 1 else f"dcl_hr1_{ds}_x{x}.csv")
             if d is None:
                 continue
-            for m in ("LX", "LX-bg", "IG", "KS-1024", "LIME-1024", "Fung-ens", "RE"):
+            for m in ("LX", "LX-bg", "IG", "KS-1024", "LIME-1024", "Fung-ens", "PI-CAX", "RE"):
                 for t, tn in (("dcl:fixed:30", "thirty"), ("dcl:fixed:60", "sixty"), ("dcl:haz:hz", "haz")):
                     v = first(d[(d.timing == t) & (d.method == m) & (d.variant == "tea")]["mean"].values)
                     if np.isfinite(v):
@@ -373,7 +373,7 @@ def slowdown_macros():
 
 def appendix_tables():
     out = []
-    meths = ["RE", "IG", "KS-1024", "Fung-ens", "LX-bg", "LX"]
+    meths = ["RE", "IG", "KS-1024", "Fung-ens", "PI-CAX", "LX-bg", "LX"]
     rows = []
     for ds, dn in (("hai", "HAI"), ("sim", "PCL-Sim")):
         p = TAB / f"events_{ds}.csv.gz"
@@ -451,7 +451,7 @@ def integration():
     if sp:
         macros["spN"], macros["spVisible"], macros["spConstant"] = str(sp["n"]), str(sp["visible"]), str(sp["constant"])
     st = pd.read_csv(TAB / "integration_action_strata.csv")
-    meths = ["RE", "IG", "KS-1024", "LX-bg", "LX"]
+    meths = ["RE", "IG", "KS-1024", "LX-bg", "LX", "PI-CAX"]
     label = {"SP": "SP only", "SP+PV": "SP + PV spoof", "CV": "CV only", "CV+PV": "CV + PV spoof", "combined": "combined (2 scenarios)"}
     rows = []
     for a in ["SP", "SP+PV", "CV", "CV+PV", "combined"]:
@@ -462,18 +462,42 @@ def integration():
         n = st[(st.atype == a) & (st.method == "LX") & (st.timing == "alarm+0")].n_attacks.iloc[0]
         rows.append(f"{label[a]} & {n} & " + " & ".join(cells))
         key = a.replace("+", "").replace("combined", "comb")
-        for m in ("LX", "IG"):
+        for m in ("LX", "IG", "PI-CAX"):
             x = st[(st.atype == a) & (st.method == m)].set_index("timing").hr1
-            macros[f"strat{key}{m}alarm"] = f2(x.get("alarm+0", np.nan))
-            macros[f"strat{key}{m}tea"] = f2(x.get("alarm+60", np.nan))
+            macros[f"strat{key}{m.replace('-', '')}alarm"] = f2(x.get("alarm+0", np.nan))
+            macros[f"strat{key}{m.replace('-', '')}tea"] = f2(x.get("alarm+60", np.nan))
         macros[f"strat{key}n"] = str(n)
-    rmin = st[(st.atype == "SP") & (st.timing == "alarm+60")].hr1
+    rmin = st[(st.atype == "SP") & (st.timing == "alarm+60") & (st.method != "PI-CAX")].hr1
     macros["stratSPteamin"], macros["stratSPteamax"] = f2(rmin.min()), f2(rmin.max())
+    ab = rep.get("picax_ablation", {})
+    vk = {"full": "Full", "-causal": "NoCausal", "-manifold": "NoManifold", "-envelope": "NoEnvelope", "-tier": "NoTier", "none": "None"}
+    for k, v in ab.items():
+        ds, var, tm = k.split("|")
+        tk = {"alarm+0": "alarm", "alarm+60": "single", "alarm+60+tea": "tea"}[tm]
+        macros[f"pcab{ds}{vk[var.rstrip('2')]}{tk}"] = f2(v)
+    for k, v in rep.get("picax_frozen", {}).items():
+        ds, name = k.split("|")
+        nk = "A" if "noise0.1" in name else "B"
+        macros[f"pcfrozen{ds}{nk}alarm"], macros[f"pcfrozen{ds}{nk}tea"] = f2(v["alarm"]), f2(v["tea60"])
+    hc = rep.get("hai_ceiling")
+    if hc:
+        macros["haiCeiling"] = f2(hc["delivered"])
+        macros["haiCondPICAX"], macros["haiCondLX"], macros["haiCondIG"] = f2(hc["PI-CAX"]), f2(hc["LX"]), f2(hc["IG"])
+    tk = {"alarm+0": "alarm", "alarm+60": "sixty", "dcl:fixed:60": "dcl"}
+    for k, v in rep.get("picax_tests", {}).items():
+        ds, tm = k.split("|")
+        if tm not in tk:
+            continue
+        pairs = {m: x for m, x in v["pairs"].items() if m != "PI-CAX|single"}
+        worst = max(pairs, key=lambda m: pairs[m]["p_holm"])
+        pv = pairs[worst]["p_holm"]
+        macros[f"pctest{ds}{tk[tm]}maxp"] = ("<10^{-%d}" % int(np.floor(-np.log10(pv)))) if pv < 1e-3 else f"={pv:.3f}"
+        macros[f"pctest{ds}{tk[tm]}n"] = str(v["n"])
     (GEN / "tab_strata.tex").write_text(table_str(
         "Manipulated variable & attacks & " + " & ".join(NAME[m].replace("\\textbf{\\LX{} (ours)}", "\\LX") for m in meths), rows,
-        "@{}lcccccc@{}",
+        "@{}lccccccc@{}",
         "HAI 21.03 loop HR@1 by manipulated variable type, read from the target-controller code of the official attack table "
-        "(single-shot at the alarm / +60\\,s with \\TEA; pooled over 4 detectors). Strata are small; descriptive only.",
+        "(attacks detected by at least one detector; single-shot at the alarm / +60\\,s with \\TEA; pooled over 4 detectors). Strata are small; descriptive only.",
         "tab:strata"))
 
 

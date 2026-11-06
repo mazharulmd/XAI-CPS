@@ -13,14 +13,14 @@ TAB, FIG = ROOT / "results" / "tables", ROOT / "paper" / "figures"
 FIG.mkdir(parents=True, exist_ok=True)
 
 # reference categorical palette (fixed order) + neutral for context series
-C = {"LX": "#2a78d6", "KS-1024": "#eb6834", "RE": "#1baf7a", "IG": "#eda100", "other": "#9a9890"}
+C = {"LX": "#2a78d6", "KS-1024": "#eb6834", "RE": "#1baf7a", "IG": "#eda100", "PI-CAX": "#8b5cf6", "other": "#9a9890"}
 INK, INK2, GRID = "#0b0b0b", "#52514e", "#e6e5e0"
 plt.rcParams.update({"font.size": 8, "font.family": "serif", "axes.edgecolor": INK2, "axes.labelcolor": INK,
                      "xtick.color": INK2, "ytick.color": INK2, "axes.grid": True, "grid.color": GRID,
                      "grid.linewidth": 0.6, "axes.spines.top": False, "axes.spines.right": False,
                      "legend.frameon": False, "lines.linewidth": 1.6, "pdf.fonttype": 42})
 DSN = {"sim": "PCL-Sim (280 attacks)", "hai": "HAI 21.03 (50 attacks)"}
-LABEL = {"LX": "LX (ours)", "KS-1024": "KernelSHAP-1024", "RE": "Raw error (RE)", "IG": "Integrated gradients"}
+LABEL = {"LX": "LX", "KS-1024": "KernelSHAP-1024", "RE": "Raw error (RE)", "IG": "Integrated gradients", "PI-CAX": "PI-CAX"}
 
 
 def fig_over_time():
@@ -31,7 +31,7 @@ def fig_over_time():
             continue
         d = pd.read_csv(p); d = d[d.timing.str.startswith("alarm+")]
         d["off"] = d.timing.str[6:].astype(int)
-        for m in ["LX", "KS-1024", "RE", "IG"]:
+        for m in ["PI-CAX", "LX", "KS-1024", "RE", "IG"]:
             for var, ls in (("tea", "-"), ("single", (0, (3, 2)))):
                 s = d[(d.method == m) & (d.variant == var)].sort_values("off")
                 ax.plot(s.off, s["mean"], color=C[m], ls=ls, marker="o", ms=3,
@@ -54,7 +54,7 @@ def fig_dcl():
             continue
         d = pd.read_csv(p); d = d[d.timing.str.startswith("dcl:fixed")]
         d["D"] = d.timing.str.split(":").str[2].astype(int)
-        for m in ["LX", "KS-1024", "RE", "IG"]:
+        for m in ["PI-CAX", "LX", "KS-1024", "RE", "IG"]:
             for var, ls in (("tea", "-"), ("single", (0, (3, 2)))):
                 s = d[(d.method == m) & (d.variant == var)].sort_values("D")
                 ax.plot(s.D, s["mean"], color=C[m], ls=ls, marker="o", ms=3)

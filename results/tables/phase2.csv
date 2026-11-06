@@ -23,6 +23,10 @@ sim,ref60 (default),0,LX-bg,single,hr1,0.836,0.788,0.88,250.0
 sim,ref60 (default),0,LX-bg,single,decoy_top1,0.0,0.0,0.0,250.0
 sim,ref60 (default),0,LX-bg,tea,hr1,0.836,0.788,0.88,250.0
 sim,ref60 (default),0,LX-bg,tea,decoy_top1,0.0,0.0,0.0,250.0
+sim,ref60 (default),0,PI-CAX,single,hr1,0.856,0.812,0.896,250.0
+sim,ref60 (default),0,PI-CAX,single,decoy_top1,0.0,0.0,0.0,250.0
+sim,ref60 (default),0,PI-CAX,tea,hr1,0.856,0.812,0.896,250.0
+sim,ref60 (default),0,PI-CAX,tea,decoy_top1,0.0,0.0,0.0,250.0
 sim,ref60 (default),0,RE,single,hr1,0.824,0.776,0.868,250.0
 sim,ref60 (default),0,RE,single,decoy_top1,0.0,0.0,0.0,250.0
 sim,ref60 (default),0,RE,tea,hr1,0.824,0.776,0.868,250.0
@@ -51,6 +55,10 @@ sim,ref60 (default),60,LX-bg,single,hr1,0.652,0.592,0.708,250.0
 sim,ref60 (default),60,LX-bg,single,decoy_top1,0.0,0.0,0.0,250.0
 sim,ref60 (default),60,LX-bg,tea,hr1,0.776,0.724,0.824,250.0
 sim,ref60 (default),60,LX-bg,tea,decoy_top1,0.0,0.0,0.0,250.0
+sim,ref60 (default),60,PI-CAX,single,hr1,0.8,0.748,0.848,250.0
+sim,ref60 (default),60,PI-CAX,single,decoy_top1,0.0,0.0,0.0,250.0
+sim,ref60 (default),60,PI-CAX,tea,hr1,0.844,0.8,0.888,250.0
+sim,ref60 (default),60,PI-CAX,tea,decoy_top1,0.0,0.0,0.0,250.0
 sim,ref60 (default),60,RE,single,hr1,0.456,0.396,0.516,250.0
 sim,ref60 (default),60,RE,single,decoy_top1,0.0,0.0,0.0,250.0
 sim,ref60 (default),60,RE,tea,hr1,0.788,0.736,0.836,250.0
@@ -83,6 +91,10 @@ sim,ref32,0,LX-bg,single,hr1,0.836,0.788,0.88,250.0
 sim,ref32,0,LX-bg,single,decoy_top1,0.0,0.0,0.0,250.0
 sim,ref32,0,LX-bg,tea,hr1,0.836,0.788,0.88,250.0
 sim,ref32,0,LX-bg,tea,decoy_top1,0.0,0.0,0.0,250.0
+sim,ref32,0,PI-CAX,single,hr1,0.856,0.812,0.896,250.0
+sim,ref32,0,PI-CAX,single,decoy_top1,0.0,0.0,0.0,250.0
+sim,ref32,0,PI-CAX,tea,hr1,0.856,0.812,0.896,250.0
+sim,ref32,0,PI-CAX,tea,decoy_top1,0.0,0.0,0.0,250.0
 sim,ref32,0,RE,single,hr1,0.824,0.776,0.868,250.0
 sim,ref32,0,RE,single,decoy_top1,0.0,0.0,0.0,250.0
 sim,ref32,0,RE,tea,hr1,0.824,0.776,0.868,250.0
@@ -111,6 +123,10 @@ sim,ref32,60,LX-bg,single,hr1,0.652,0.592,0.708,250.0
 sim,ref32,60,LX-bg,single,decoy_top1,0.0,0.0,0.0,250.0
 sim,ref32,60,LX-bg,tea,hr1,0.776,0.724,0.824,250.0
 sim,ref32,60,LX-bg,tea,decoy_top1,0.0,0.0,0.0,250.0
+sim,ref32,60,PI-CAX,single,hr1,0.8,0.748,0.848,250.0
+sim,ref32,60,PI-CAX,single,decoy_top1,0.0,0.0,0.0,250.0
+sim,ref32,60,PI-CAX,tea,hr1,0.844,0.8,0.888,250.0
+sim,ref32,60,PI-CAX,tea,decoy_top1,0.0,0.0,0.0,250.0
 sim,ref32,60,RE,single,hr1,0.456,0.396,0.516,250.0
 sim,ref32,60,RE,single,decoy_top1,0.0,0.0,0.0,250.0
 sim,ref32,60,RE,tea,hr1,0.788,0.736,0.836,250.0
@@ -143,6 +159,10 @@ sim,ref120,0,LX-bg,single,hr1,0.836,0.788,0.88,250.0
 sim,ref120,0,LX-bg,single,decoy_top1,0.0,0.0,0.0,250.0
 sim,ref120,0,LX-bg,tea,hr1,0.836,0.788,0.88,250.0
 sim,ref120,0,LX-bg,tea,decoy_top1,0.0,0.0,0.0,250.0
+sim,ref120,0,PI-CAX,single,hr1,0.856,0.812,0.896,250.0
+sim,ref120,0,PI-CAX,single,decoy_top1,0.0,0.0,0.0,250.0
+sim,ref120,0,PI-CAX,tea,hr1,0.856,0.812,0.896,250.0
+sim,ref120,0,PI-CAX,tea,decoy_top1,0.0,0.0,0.0,250.0
 sim,ref120,0,RE,single,hr1,0.824,0.776,0.868,250.0
 sim,ref120,0,RE,single,decoy_top1,0.0,0.0,0.0,250.0
 sim,ref120,0,RE,tea,hr1,0.824,0.776,0.868,250.0
@@ -171,6 +191,10 @@ sim,ref120,60,LX-bg,single,hr1,0.652,0.592,0.708,250.0
 sim,ref120,60,LX-bg,single,decoy_top1,0.0,0.0,0.0,250.0
 sim,ref120,60,LX-bg,tea,hr1,0.776,0.724,0.824,250.0
 sim,ref120,60,LX-bg,tea,decoy_top1,0.0,0.0,0.0,250.0
+sim,ref120,60,PI-CAX,single,hr1,0.8,0.748,0.848,250.0
+sim,ref120,60,PI-CAX,single,decoy_top1,0.0,0.0,0.0,250.0
+sim,ref120,60,PI-CAX,tea,hr1,0.844,0.8,0.888,250.0
+sim,ref120,60,PI-CAX,tea,decoy_top1,0.0,0.0,0.0,250.0
 sim,ref120,60,RE,single,hr1,0.456,0.396,0.516,250.0
 sim,ref120,60,RE,single,decoy_top1,0.0,0.0,0.0,250.0
 sim,ref120,60,RE,tea,hr1,0.788,0.736,0.836,250.0
@@ -203,6 +227,10 @@ sim,ref300,0,LX-bg,single,hr1,0.836,0.788,0.88,250.0
 sim,ref300,0,LX-bg,single,decoy_top1,0.0,0.0,0.0,250.0
 sim,ref300,0,LX-bg,tea,hr1,0.836,0.788,0.88,250.0
 sim,ref300,0,LX-bg,tea,decoy_top1,0.0,0.0,0.0,250.0
+sim,ref300,0,PI-CAX,single,hr1,0.856,0.812,0.896,250.0
+sim,ref300,0,PI-CAX,single,decoy_top1,0.0,0.0,0.0,250.0
+sim,ref300,0,PI-CAX,tea,hr1,0.856,0.812,0.896,250.0
+sim,ref300,0,PI-CAX,tea,decoy_top1,0.0,0.0,0.0,250.0
 sim,ref300,0,RE,single,hr1,0.824,0.776,0.868,250.0
 sim,ref300,0,RE,single,decoy_top1,0.0,0.0,0.0,250.0
 sim,ref300,0,RE,tea,hr1,0.824,0.776,0.868,250.0
@@ -231,6 +259,10 @@ sim,ref300,60,LX-bg,single,hr1,0.652,0.592,0.708,250.0
 sim,ref300,60,LX-bg,single,decoy_top1,0.0,0.0,0.0,250.0
 sim,ref300,60,LX-bg,tea,hr1,0.776,0.724,0.824,250.0
 sim,ref300,60,LX-bg,tea,decoy_top1,0.0,0.0,0.0,250.0
+sim,ref300,60,PI-CAX,single,hr1,0.8,0.748,0.848,250.0
+sim,ref300,60,PI-CAX,single,decoy_top1,0.0,0.0,0.0,250.0
+sim,ref300,60,PI-CAX,tea,hr1,0.844,0.8,0.888,250.0
+sim,ref300,60,PI-CAX,tea,decoy_top1,0.0,0.0,0.0,250.0
 sim,ref300,60,RE,single,hr1,0.456,0.396,0.516,250.0
 sim,ref300,60,RE,single,decoy_top1,0.0,0.0,0.0,250.0
 sim,ref300,60,RE,tea,hr1,0.788,0.736,0.836,250.0
@@ -263,6 +295,10 @@ sim,noise0.1 clean-theta,0,LX-bg,single,hr1,0.6821428571428572,0.628571428571428
 sim,noise0.1 clean-theta,0,LX-bg,single,decoy_top1,0.0,0.0,0.0,280.0
 sim,noise0.1 clean-theta,0,LX-bg,tea,hr1,0.6821428571428572,0.6285714285714286,0.7357142857142858,280.0
 sim,noise0.1 clean-theta,0,LX-bg,tea,decoy_top1,0.0,0.0,0.0,280.0
+sim,noise0.1 clean-theta,0,PI-CAX,single,hr1,0.6107142857142858,0.5535714285714286,0.6678571428571428,280.0
+sim,noise0.1 clean-theta,0,PI-CAX,single,decoy_top1,0.0,0.0,0.0,280.0
+sim,noise0.1 clean-theta,0,PI-CAX,tea,hr1,0.6107142857142858,0.5535714285714286,0.6678571428571428,280.0
+sim,noise0.1 clean-theta,0,PI-CAX,tea,decoy_top1,0.0,0.0,0.0,280.0
 sim,noise0.1 clean-theta,0,RE,single,hr1,0.675,0.6214285714285714,0.7285714285714285,280.0
 sim,noise0.1 clean-theta,0,RE,single,decoy_top1,0.0,0.0,0.0,280.0
 sim,noise0.1 clean-theta,0,RE,tea,hr1,0.675,0.6214285714285714,0.7285714285714285,280.0
@@ -291,6 +327,10 @@ sim,noise0.1 clean-theta,60,LX-bg,single,hr1,0.4785714285714286,0.42142857142857
 sim,noise0.1 clean-theta,60,LX-bg,single,decoy_top1,0.0,0.0,0.0,280.0
 sim,noise0.1 clean-theta,60,LX-bg,tea,hr1,0.7857142857142857,0.7357142857142858,0.8321428571428572,280.0
 sim,noise0.1 clean-theta,60,LX-bg,tea,decoy_top1,0.0,0.0,0.0,280.0
+sim,noise0.1 clean-theta,60,PI-CAX,single,hr1,0.6785714285714286,0.6214285714285714,0.7321428571428571,280.0
+sim,noise0.1 clean-theta,60,PI-CAX,single,decoy_top1,0.0,0.0,0.0,280.0
+sim,noise0.1 clean-theta,60,PI-CAX,tea,hr1,0.8857142857142857,0.8464285714285714,0.9214285714285714,280.0
+sim,noise0.1 clean-theta,60,PI-CAX,tea,decoy_top1,0.0,0.0,0.0,280.0
 sim,noise0.1 clean-theta,60,RE,single,hr1,0.4142857142857143,0.35714285714285715,0.4714285714285714,280.0
 sim,noise0.1 clean-theta,60,RE,single,decoy_top1,0.0,0.0,0.0,280.0
 sim,noise0.1 clean-theta,60,RE,tea,hr1,0.7571428571428571,0.7071428571428572,0.8071428571428572,280.0
@@ -323,6 +363,10 @@ sim,noise0.3 clean-theta,0,LX-bg,single,hr1,0.49642857142857144,0.43928571428571
 sim,noise0.3 clean-theta,0,LX-bg,single,decoy_top1,0.0,0.0,0.0,280.0
 sim,noise0.3 clean-theta,0,LX-bg,tea,hr1,0.49642857142857144,0.4392857142857143,0.5535714285714286,280.0
 sim,noise0.3 clean-theta,0,LX-bg,tea,decoy_top1,0.0,0.0,0.0,280.0
+sim,noise0.3 clean-theta,0,PI-CAX,single,hr1,0.5464285714285714,0.4857142857142857,0.6035714285714285,280.0
+sim,noise0.3 clean-theta,0,PI-CAX,single,decoy_top1,0.0,0.0,0.0,280.0
+sim,noise0.3 clean-theta,0,PI-CAX,tea,hr1,0.5464285714285714,0.4857142857142857,0.6035714285714285,280.0
+sim,noise0.3 clean-theta,0,PI-CAX,tea,decoy_top1,0.0,0.0,0.0,280.0
 sim,noise0.3 clean-theta,0,RE,single,hr1,0.5035714285714286,0.44642857142857145,0.5607142857142857,280.0
 sim,noise0.3 clean-theta,0,RE,single,decoy_top1,0.0,0.0,0.0,280.0
 sim,noise0.3 clean-theta,0,RE,tea,hr1,0.5035714285714286,0.44642857142857145,0.5607142857142857,280.0
@@ -351,6 +395,10 @@ sim,noise0.3 clean-theta,60,LX-bg,single,hr1,0.37857142857142856,0.3214285714285
 sim,noise0.3 clean-theta,60,LX-bg,single,decoy_top1,0.0,0.0,0.0,280.0
 sim,noise0.3 clean-theta,60,LX-bg,tea,hr1,0.5321428571428571,0.4714285714285714,0.5892857142857143,280.0
 sim,noise0.3 clean-theta,60,LX-bg,tea,decoy_top1,0.0,0.0,0.0,280.0
+sim,noise0.3 clean-theta,60,PI-CAX,single,hr1,0.5,0.44285714285714284,0.5571428571428572,280.0
+sim,noise0.3 clean-theta,60,PI-CAX,single,decoy_top1,0.0,0.0,0.0,280.0
+sim,noise0.3 clean-theta,60,PI-CAX,tea,hr1,0.725,0.6714285714285714,0.775,280.0
+sim,noise0.3 clean-theta,60,PI-CAX,tea,decoy_top1,0.0,0.0,0.0,280.0
 sim,noise0.3 clean-theta,60,RE,single,hr1,0.35,0.29642857142857143,0.4035714285714286,280.0
 sim,noise0.3 clean-theta,60,RE,single,decoy_top1,0.0,0.0,0.0,280.0
 sim,noise0.3 clean-theta,60,RE,tea,hr1,0.48214285714285715,0.42491071428571436,0.5392857142857143,280.0
@@ -383,6 +431,10 @@ sim,noise0.1 recal,0,LX-bg,single,hr1,0.9262295081967213,0.8934426229508197,0.95
 sim,noise0.1 recal,0,LX-bg,single,decoy_top1,0.0,0.0,0.0,244.0
 sim,noise0.1 recal,0,LX-bg,tea,hr1,0.9262295081967213,0.8934426229508197,0.9590163934426229,244.0
 sim,noise0.1 recal,0,LX-bg,tea,decoy_top1,0.0,0.0,0.0,244.0
+sim,noise0.1 recal,0,PI-CAX,single,hr1,0.9180327868852459,0.8811475409836066,0.9508196721311475,244.0
+sim,noise0.1 recal,0,PI-CAX,single,decoy_top1,0.0,0.0,0.0,244.0
+sim,noise0.1 recal,0,PI-CAX,tea,hr1,0.9180327868852459,0.8811475409836066,0.9508196721311475,244.0
+sim,noise0.1 recal,0,PI-CAX,tea,decoy_top1,0.0,0.0,0.0,244.0
 sim,noise0.1 recal,0,RE,single,hr1,0.9385245901639344,0.9057377049180327,0.9672131147540983,244.0
 sim,noise0.1 recal,0,RE,single,decoy_top1,0.0,0.0,0.0,244.0
 sim,noise0.1 recal,0,RE,tea,hr1,0.9385245901639344,0.9057377049180327,0.9672131147540983,244.0
@@ -411,6 +463,10 @@ sim,noise0.1 recal,60,LX-bg,single,hr1,0.5532786885245902,0.4918032786885246,0.6
 sim,noise0.1 recal,60,LX-bg,single,decoy_top1,0.0,0.0,0.0,244.0
 sim,noise0.1 recal,60,LX-bg,tea,hr1,0.9180327868852459,0.8851434426229509,0.9508196721311475,244.0
 sim,noise0.1 recal,60,LX-bg,tea,decoy_top1,0.0,0.0,0.0,244.0
+sim,noise0.1 recal,60,PI-CAX,single,hr1,0.7418032786885246,0.6844262295081968,0.7950819672131147,244.0
+sim,noise0.1 recal,60,PI-CAX,single,decoy_top1,0.0,0.0,0.0,244.0
+sim,noise0.1 recal,60,PI-CAX,tea,hr1,0.9057377049180327,0.8688524590163934,0.9426229508196722,244.0
+sim,noise0.1 recal,60,PI-CAX,tea,decoy_top1,0.0,0.0,0.0,244.0
 sim,noise0.1 recal,60,RE,single,hr1,0.430327868852459,0.36885245901639346,0.4918032786885246,244.0
 sim,noise0.1 recal,60,RE,single,decoy_top1,0.0,0.0,0.0,244.0
 sim,noise0.1 recal,60,RE,tea,hr1,0.9098360655737705,0.8729508196721312,0.9426229508196722,244.0
@@ -443,6 +499,10 @@ sim,noise0.3 recal,0,LX-bg,single,hr1,0.9392712550607287,0.9068825910931174,0.96
 sim,noise0.3 recal,0,LX-bg,single,decoy_top1,0.0,0.0,0.0,247.0
 sim,noise0.3 recal,0,LX-bg,tea,hr1,0.9392712550607287,0.9068825910931174,0.9676113360323887,247.0
 sim,noise0.3 recal,0,LX-bg,tea,decoy_top1,0.0,0.0,0.0,247.0
+sim,noise0.3 recal,0,PI-CAX,single,hr1,0.9352226720647774,0.902834008097166,0.9635627530364372,247.0
+sim,noise0.3 recal,0,PI-CAX,single,decoy_top1,0.0,0.0,0.0,247.0
+sim,noise0.3 recal,0,PI-CAX,tea,hr1,0.9352226720647774,0.902834008097166,0.9635627530364372,247.0
+sim,noise0.3 recal,0,PI-CAX,tea,decoy_top1,0.0,0.0,0.0,247.0
 sim,noise0.3 recal,0,RE,single,hr1,0.9473684210526315,0.9190283400809717,0.97165991902834,247.0
 sim,noise0.3 recal,0,RE,single,decoy_top1,0.0,0.0,0.0,247.0
 sim,noise0.3 recal,0,RE,tea,hr1,0.9473684210526315,0.9190283400809717,0.97165991902834,247.0
@@ -471,6 +531,10 @@ sim,noise0.3 recal,60,LX-bg,single,hr1,0.4574898785425101,0.39271255060728744,0.
 sim,noise0.3 recal,60,LX-bg,single,decoy_top1,0.0,0.0,0.0,247.0
 sim,noise0.3 recal,60,LX-bg,tea,hr1,0.9352226720647774,0.902834008097166,0.9635627530364372,247.0
 sim,noise0.3 recal,60,LX-bg,tea,decoy_top1,0.0,0.0,0.0,247.0
+sim,noise0.3 recal,60,PI-CAX,single,hr1,0.6842105263157895,0.6275303643724697,0.7408906882591093,247.0
+sim,noise0.3 recal,60,PI-CAX,single,decoy_top1,0.0,0.0,0.0,247.0
+sim,noise0.3 recal,60,PI-CAX,tea,hr1,0.9392712550607287,0.9109311740890689,0.9676113360323887,247.0
+sim,noise0.3 recal,60,PI-CAX,tea,decoy_top1,0.0,0.0,0.0,247.0
 sim,noise0.3 recal,60,RE,single,hr1,0.3967611336032389,0.3360323886639676,0.4574898785425101,247.0
 sim,noise0.3 recal,60,RE,single,decoy_top1,0.0,0.0,0.0,247.0
 sim,noise0.3 recal,60,RE,tea,hr1,0.9311740890688259,0.8987854251012146,0.9595141700404858,247.0
@@ -503,6 +567,10 @@ hai,ref60 (default),0,LX-bg,single,hr1,0.6444444444444445,0.5111111111111111,0.7
 hai,ref60 (default),0,LX-bg,single,decoy_top1,0.0,0.0,0.0,45.0
 hai,ref60 (default),0,LX-bg,tea,hr1,0.6444444444444445,0.5111111111111111,0.7777777777777778,45.0
 hai,ref60 (default),0,LX-bg,tea,decoy_top1,0.0,0.0,0.0,45.0
+hai,ref60 (default),0,PI-CAX,single,hr1,0.9555555555555556,0.8888888888888888,1.0,45.0
+hai,ref60 (default),0,PI-CAX,single,decoy_top1,0.0,0.0,0.0,45.0
+hai,ref60 (default),0,PI-CAX,tea,hr1,0.9555555555555556,0.8888888888888888,1.0,45.0
+hai,ref60 (default),0,PI-CAX,tea,decoy_top1,0.0,0.0,0.0,45.0
 hai,ref60 (default),0,RE,single,hr1,0.7333333333333333,0.6,0.8666666666666667,45.0
 hai,ref60 (default),0,RE,single,decoy_top1,0.0,0.0,0.0,45.0
 hai,ref60 (default),0,RE,tea,hr1,0.7333333333333333,0.6,0.8666666666666667,45.0
@@ -531,6 +599,10 @@ hai,ref60 (default),60,LX-bg,single,hr1,0.5333333333333333,0.37777777777777777,0
 hai,ref60 (default),60,LX-bg,single,decoy_top1,0.0,0.0,0.0,45.0
 hai,ref60 (default),60,LX-bg,tea,hr1,0.6222222222222222,0.4888888888888889,0.7555555555555555,45.0
 hai,ref60 (default),60,LX-bg,tea,decoy_top1,0.0,0.0,0.0,45.0
+hai,ref60 (default),60,PI-CAX,single,hr1,0.7333333333333333,0.6,0.8666666666666667,45.0
+hai,ref60 (default),60,PI-CAX,single,decoy_top1,0.0,0.0,0.0,45.0
+hai,ref60 (default),60,PI-CAX,tea,hr1,0.9555555555555556,0.8888888888888888,1.0,45.0
+hai,ref60 (default),60,PI-CAX,tea,decoy_top1,0.0,0.0,0.0,45.0
 hai,ref60 (default),60,RE,single,hr1,0.5111111111111111,0.35555555555555557,0.6444444444444445,45.0
 hai,ref60 (default),60,RE,single,decoy_top1,0.0,0.0,0.0,45.0
 hai,ref60 (default),60,RE,tea,hr1,0.6888888888888889,0.5555555555555556,0.8222222222222222,45.0
@@ -563,6 +635,10 @@ hai,ref32,0,LX-bg,single,hr1,0.6444444444444445,0.5111111111111111,0.77777777777
 hai,ref32,0,LX-bg,single,decoy_top1,0.0,0.0,0.0,45.0
 hai,ref32,0,LX-bg,tea,hr1,0.6444444444444445,0.5111111111111111,0.7777777777777778,45.0
 hai,ref32,0,LX-bg,tea,decoy_top1,0.0,0.0,0.0,45.0
+hai,ref32,0,PI-CAX,single,hr1,0.9555555555555556,0.8888888888888888,1.0,45.0
+hai,ref32,0,PI-CAX,single,decoy_top1,0.0,0.0,0.0,45.0
+hai,ref32,0,PI-CAX,tea,hr1,0.9555555555555556,0.8888888888888888,1.0,45.0
+hai,ref32,0,PI-CAX,tea,decoy_top1,0.0,0.0,0.0,45.0
 hai,ref32,0,RE,single,hr1,0.7333333333333333,0.6,0.8666666666666667,45.0
 hai,ref32,0,RE,single,decoy_top1,0.0,0.0,0.0,45.0
 hai,ref32,0,RE,tea,hr1,0.7333333333333333,0.6,0.8666666666666667,45.0
@@ -591,6 +667,10 @@ hai,ref32,60,LX-bg,single,hr1,0.5333333333333333,0.37777777777777777,0.666666666
 hai,ref32,60,LX-bg,single,decoy_top1,0.0,0.0,0.0,45.0
 hai,ref32,60,LX-bg,tea,hr1,0.6222222222222222,0.4888888888888889,0.7555555555555555,45.0
 hai,ref32,60,LX-bg,tea,decoy_top1,0.0,0.0,0.0,45.0
+hai,ref32,60,PI-CAX,single,hr1,0.7333333333333333,0.6,0.8666666666666667,45.0
+hai,ref32,60,PI-CAX,single,decoy_top1,0.0,0.0,0.0,45.0
+hai,ref32,60,PI-CAX,tea,hr1,0.9555555555555556,0.8888888888888888,1.0,45.0
+hai,ref32,60,PI-CAX,tea,decoy_top1,0.0,0.0,0.0,45.0
 hai,ref32,60,RE,single,hr1,0.5111111111111111,0.35555555555555557,0.6444444444444445,45.0
 hai,ref32,60,RE,single,decoy_top1,0.0,0.0,0.0,45.0
 hai,ref32,60,RE,tea,hr1,0.6888888888888889,0.5555555555555556,0.8222222222222222,45.0
@@ -623,6 +703,10 @@ hai,ref120,0,LX-bg,single,hr1,0.6444444444444445,0.5111111111111111,0.7777777777
 hai,ref120,0,LX-bg,single,decoy_top1,0.0,0.0,0.0,45.0
 hai,ref120,0,LX-bg,tea,hr1,0.6444444444444445,0.5111111111111111,0.7777777777777778,45.0
 hai,ref120,0,LX-bg,tea,decoy_top1,0.0,0.0,0.0,45.0
+hai,ref120,0,PI-CAX,single,hr1,0.9555555555555556,0.8888888888888888,1.0,45.0
+hai,ref120,0,PI-CAX,single,decoy_top1,0.0,0.0,0.0,45.0
+hai,ref120,0,PI-CAX,tea,hr1,0.9555555555555556,0.8888888888888888,1.0,45.0
+hai,ref120,0,PI-CAX,tea,decoy_top1,0.0,0.0,0.0,45.0
 hai,ref120,0,RE,single,hr1,0.7333333333333333,0.6,0.8666666666666667,45.0
 hai,ref120,0,RE,single,decoy_top1,0.0,0.0,0.0,45.0
 hai,ref120,0,RE,tea,hr1,0.7333333333333333,0.6,0.8666666666666667,45.0
@@ -651,6 +735,10 @@ hai,ref120,60,LX-bg,single,hr1,0.5333333333333333,0.37777777777777777,0.66666666
 hai,ref120,60,LX-bg,single,decoy_top1,0.0,0.0,0.0,45.0
 hai,ref120,60,LX-bg,tea,hr1,0.6222222222222222,0.4888888888888889,0.7555555555555555,45.0
 hai,ref120,60,LX-bg,tea,decoy_top1,0.0,0.0,0.0,45.0
+hai,ref120,60,PI-CAX,single,hr1,0.7333333333333333,0.6,0.8666666666666667,45.0
+hai,ref120,60,PI-CAX,single,decoy_top1,0.0,0.0,0.0,45.0
+hai,ref120,60,PI-CAX,tea,hr1,0.9555555555555556,0.8888888888888888,1.0,45.0
+hai,ref120,60,PI-CAX,tea,decoy_top1,0.0,0.0,0.0,45.0
 hai,ref120,60,RE,single,hr1,0.5111111111111111,0.35555555555555557,0.6444444444444445,45.0
 hai,ref120,60,RE,single,decoy_top1,0.0,0.0,0.0,45.0
 hai,ref120,60,RE,tea,hr1,0.6888888888888889,0.5555555555555556,0.8222222222222222,45.0
@@ -683,6 +771,10 @@ hai,ref300,0,LX-bg,single,hr1,0.6444444444444445,0.5111111111111111,0.7777777777
 hai,ref300,0,LX-bg,single,decoy_top1,0.0,0.0,0.0,45.0
 hai,ref300,0,LX-bg,tea,hr1,0.6444444444444445,0.5111111111111111,0.7777777777777778,45.0
 hai,ref300,0,LX-bg,tea,decoy_top1,0.0,0.0,0.0,45.0
+hai,ref300,0,PI-CAX,single,hr1,0.9555555555555556,0.8888888888888888,1.0,45.0
+hai,ref300,0,PI-CAX,single,decoy_top1,0.0,0.0,0.0,45.0
+hai,ref300,0,PI-CAX,tea,hr1,0.9555555555555556,0.8888888888888888,1.0,45.0
+hai,ref300,0,PI-CAX,tea,decoy_top1,0.0,0.0,0.0,45.0
 hai,ref300,0,RE,single,hr1,0.7333333333333333,0.6,0.8666666666666667,45.0
 hai,ref300,0,RE,single,decoy_top1,0.0,0.0,0.0,45.0
 hai,ref300,0,RE,tea,hr1,0.7333333333333333,0.6,0.8666666666666667,45.0
@@ -711,6 +803,10 @@ hai,ref300,60,LX-bg,single,hr1,0.5333333333333333,0.37777777777777777,0.66666666
 hai,ref300,60,LX-bg,single,decoy_top1,0.0,0.0,0.0,45.0
 hai,ref300,60,LX-bg,tea,hr1,0.6222222222222222,0.4888888888888889,0.7555555555555555,45.0
 hai,ref300,60,LX-bg,tea,decoy_top1,0.0,0.0,0.0,45.0
+hai,ref300,60,PI-CAX,single,hr1,0.7333333333333333,0.6,0.8666666666666667,45.0
+hai,ref300,60,PI-CAX,single,decoy_top1,0.0,0.0,0.0,45.0
+hai,ref300,60,PI-CAX,tea,hr1,0.9555555555555556,0.8888888888888888,1.0,45.0
+hai,ref300,60,PI-CAX,tea,decoy_top1,0.0,0.0,0.0,45.0
 hai,ref300,60,RE,single,hr1,0.5111111111111111,0.35555555555555557,0.6444444444444445,45.0
 hai,ref300,60,RE,single,decoy_top1,0.0,0.0,0.0,45.0
 hai,ref300,60,RE,tea,hr1,0.6888888888888889,0.5555555555555556,0.8222222222222222,45.0
@@ -743,6 +839,10 @@ hai,noise0.1 clean-theta,0,LX-bg,single,hr1,0.18,0.08,0.3,50.0
 hai,noise0.1 clean-theta,0,LX-bg,single,decoy_top1,0.0,0.0,0.0,50.0
 hai,noise0.1 clean-theta,0,LX-bg,tea,hr1,0.18,0.08,0.3,50.0
 hai,noise0.1 clean-theta,0,LX-bg,tea,decoy_top1,0.0,0.0,0.0,50.0
+hai,noise0.1 clean-theta,0,PI-CAX,single,hr1,0.04,0.0,0.1,50.0
+hai,noise0.1 clean-theta,0,PI-CAX,single,decoy_top1,0.0,0.0,0.0,50.0
+hai,noise0.1 clean-theta,0,PI-CAX,tea,hr1,0.04,0.0,0.1,50.0
+hai,noise0.1 clean-theta,0,PI-CAX,tea,decoy_top1,0.0,0.0,0.0,50.0
 hai,noise0.1 clean-theta,0,RE,single,hr1,0.18,0.08,0.3,50.0
 hai,noise0.1 clean-theta,0,RE,single,decoy_top1,0.0,0.0,0.0,50.0
 hai,noise0.1 clean-theta,0,RE,tea,hr1,0.18,0.08,0.3,50.0
@@ -771,6 +871,10 @@ hai,noise0.1 clean-theta,60,LX-bg,single,hr1,0.42,0.28,0.56,50.0
 hai,noise0.1 clean-theta,60,LX-bg,single,decoy_top1,0.0,0.0,0.0,50.0
 hai,noise0.1 clean-theta,60,LX-bg,tea,hr1,0.44,0.3,0.58,50.0
 hai,noise0.1 clean-theta,60,LX-bg,tea,decoy_top1,0.0,0.0,0.0,50.0
+hai,noise0.1 clean-theta,60,PI-CAX,single,hr1,0.32,0.2,0.46,50.0
+hai,noise0.1 clean-theta,60,PI-CAX,single,decoy_top1,0.0,0.0,0.0,50.0
+hai,noise0.1 clean-theta,60,PI-CAX,tea,hr1,0.26,0.14,0.38,50.0
+hai,noise0.1 clean-theta,60,PI-CAX,tea,decoy_top1,0.0,0.0,0.0,50.0
 hai,noise0.1 clean-theta,60,RE,single,hr1,0.38,0.26,0.52,50.0
 hai,noise0.1 clean-theta,60,RE,single,decoy_top1,0.0,0.0,0.0,50.0
 hai,noise0.1 clean-theta,60,RE,tea,hr1,0.52,0.38,0.66,50.0
@@ -803,6 +907,10 @@ hai,noise0.3 clean-theta,0,LX-bg,single,hr1,0.1,0.02,0.18,50.0
 hai,noise0.3 clean-theta,0,LX-bg,single,decoy_top1,0.0,0.0,0.0,50.0
 hai,noise0.3 clean-theta,0,LX-bg,tea,hr1,0.1,0.02,0.18,50.0
 hai,noise0.3 clean-theta,0,LX-bg,tea,decoy_top1,0.0,0.0,0.0,50.0
+hai,noise0.3 clean-theta,0,PI-CAX,single,hr1,0.0,0.0,0.0,50.0
+hai,noise0.3 clean-theta,0,PI-CAX,single,decoy_top1,0.0,0.0,0.0,50.0
+hai,noise0.3 clean-theta,0,PI-CAX,tea,hr1,0.0,0.0,0.0,50.0
+hai,noise0.3 clean-theta,0,PI-CAX,tea,decoy_top1,0.0,0.0,0.0,50.0
 hai,noise0.3 clean-theta,0,RE,single,hr1,0.08,0.02,0.16,50.0
 hai,noise0.3 clean-theta,0,RE,single,decoy_top1,0.0,0.0,0.0,50.0
 hai,noise0.3 clean-theta,0,RE,tea,hr1,0.08,0.02,0.16,50.0
@@ -831,6 +939,10 @@ hai,noise0.3 clean-theta,60,LX-bg,single,hr1,0.22,0.12,0.34,50.0
 hai,noise0.3 clean-theta,60,LX-bg,single,decoy_top1,0.0,0.0,0.0,50.0
 hai,noise0.3 clean-theta,60,LX-bg,tea,hr1,0.16,0.06,0.26,50.0
 hai,noise0.3 clean-theta,60,LX-bg,tea,decoy_top1,0.0,0.0,0.0,50.0
+hai,noise0.3 clean-theta,60,PI-CAX,single,hr1,0.2,0.1,0.32,50.0
+hai,noise0.3 clean-theta,60,PI-CAX,single,decoy_top1,0.0,0.0,0.0,50.0
+hai,noise0.3 clean-theta,60,PI-CAX,tea,hr1,0.12,0.04,0.22,50.0
+hai,noise0.3 clean-theta,60,PI-CAX,tea,decoy_top1,0.0,0.0,0.0,50.0
 hai,noise0.3 clean-theta,60,RE,single,hr1,0.2,0.1,0.32,50.0
 hai,noise0.3 clean-theta,60,RE,single,decoy_top1,0.0,0.0,0.0,50.0
 hai,noise0.3 clean-theta,60,RE,tea,hr1,0.04,0.0,0.1,50.0
@@ -863,6 +975,10 @@ hai,noise0.1 recal,0,LX-bg,single,hr1,0.6136363636363636,0.4772727272727273,0.75
 hai,noise0.1 recal,0,LX-bg,single,decoy_top1,0.0,0.0,0.0,44.0
 hai,noise0.1 recal,0,LX-bg,tea,hr1,0.6136363636363636,0.4772727272727273,0.75,44.0
 hai,noise0.1 recal,0,LX-bg,tea,decoy_top1,0.0,0.0,0.0,44.0
+hai,noise0.1 recal,0,PI-CAX,single,hr1,0.8181818181818182,0.7045454545454546,0.9318181818181818,44.0
+hai,noise0.1 recal,0,PI-CAX,single,decoy_top1,0.0,0.0,0.0,44.0
+hai,noise0.1 recal,0,PI-CAX,tea,hr1,0.8181818181818182,0.7045454545454546,0.9318181818181818,44.0
+hai,noise0.1 recal,0,PI-CAX,tea,decoy_top1,0.0,0.0,0.0,44.0
 hai,noise0.1 recal,0,RE,single,hr1,0.6363636363636364,0.5,0.7727272727272727,44.0
 hai,noise0.1 recal,0,RE,single,decoy_top1,0.0,0.0,0.0,44.0
 hai,noise0.1 recal,0,RE,tea,hr1,0.6363636363636364,0.5,0.7727272727272727,44.0
@@ -891,6 +1007,10 @@ hai,noise0.1 recal,60,LX-bg,single,hr1,0.5,0.36363636363636365,0.636363636363636
 hai,noise0.1 recal,60,LX-bg,single,decoy_top1,0.0,0.0,0.0,44.0
 hai,noise0.1 recal,60,LX-bg,tea,hr1,0.5681818181818182,0.4318181818181818,0.7045454545454546,44.0
 hai,noise0.1 recal,60,LX-bg,tea,decoy_top1,0.0,0.0,0.0,44.0
+hai,noise0.1 recal,60,PI-CAX,single,hr1,0.7045454545454546,0.5681818181818182,0.8409090909090909,44.0
+hai,noise0.1 recal,60,PI-CAX,single,decoy_top1,0.0,0.0,0.0,44.0
+hai,noise0.1 recal,60,PI-CAX,tea,hr1,0.8636363636363636,0.75,0.9545454545454546,44.0
+hai,noise0.1 recal,60,PI-CAX,tea,decoy_top1,0.0,0.0,0.0,44.0
 hai,noise0.1 recal,60,RE,single,hr1,0.5681818181818182,0.4318181818181818,0.7045454545454546,44.0
 hai,noise0.1 recal,60,RE,single,decoy_top1,0.0,0.0,0.0,44.0
 hai,noise0.1 recal,60,RE,tea,hr1,0.7272727272727273,0.5909090909090909,0.8636363636363636,44.0
@@ -923,6 +1043,10 @@ hai,noise0.3 recal,0,LX-bg,single,hr1,0.5348837209302325,0.3953488372093023,0.67
 hai,noise0.3 recal,0,LX-bg,single,decoy_top1,0.0,0.0,0.0,43.0
 hai,noise0.3 recal,0,LX-bg,tea,hr1,0.5348837209302325,0.3953488372093023,0.6744186046511628,43.0
 hai,noise0.3 recal,0,LX-bg,tea,decoy_top1,0.0,0.0,0.0,43.0
+hai,noise0.3 recal,0,PI-CAX,single,hr1,0.6744186046511628,0.5348837209302325,0.813953488372093,43.0
+hai,noise0.3 recal,0,PI-CAX,single,decoy_top1,0.0,0.0,0.0,43.0
+hai,noise0.3 recal,0,PI-CAX,tea,hr1,0.6744186046511628,0.5348837209302325,0.813953488372093,43.0
+hai,noise0.3 recal,0,PI-CAX,tea,decoy_top1,0.0,0.0,0.0,43.0
 hai,noise0.3 recal,0,RE,single,hr1,0.5581395348837209,0.4186046511627907,0.6976744186046512,43.0
 hai,noise0.3 recal,0,RE,single,decoy_top1,0.0,0.0,0.0,43.0
 hai,noise0.3 recal,0,RE,tea,hr1,0.5581395348837209,0.4186046511627907,0.6976744186046512,43.0
@@ -951,6 +1075,10 @@ hai,noise0.3 recal,60,LX-bg,single,hr1,0.46511627906976744,0.32558139534883723,0
 hai,noise0.3 recal,60,LX-bg,single,decoy_top1,0.0,0.0,0.0,43.0
 hai,noise0.3 recal,60,LX-bg,tea,hr1,0.46511627906976744,0.32558139534883723,0.6046511627906976,43.0
 hai,noise0.3 recal,60,LX-bg,tea,decoy_top1,0.0,0.0,0.0,43.0
+hai,noise0.3 recal,60,PI-CAX,single,hr1,0.7906976744186046,0.6744186046511628,0.9069767441860465,43.0
+hai,noise0.3 recal,60,PI-CAX,single,decoy_top1,0.0,0.0,0.0,43.0
+hai,noise0.3 recal,60,PI-CAX,tea,hr1,0.8372093023255814,0.7209302325581395,0.9302325581395349,43.0
+hai,noise0.3 recal,60,PI-CAX,tea,decoy_top1,0.0,0.0,0.0,43.0
 hai,noise0.3 recal,60,RE,single,hr1,0.5348837209302325,0.3953488372093023,0.6744186046511628,43.0
 hai,noise0.3 recal,60,RE,single,decoy_top1,0.0,0.0,0.0,43.0
 hai,noise0.3 recal,60,RE,tea,hr1,0.4418604651162791,0.3023255813953488,0.5813953488372093,43.0
@@ -983,6 +1111,10 @@ sim,no decoy,0,LX-bg,single,hr1,0.864244741873805,0.8355640535372849,0.891029318
 sim,no decoy,0,LX-bg,single,decoy_top1,0.0,0.0,0.0,523.0
 sim,no decoy,0,LX-bg,tea,hr1,0.864244741873805,0.8355640535372849,0.891029318036966,523.0
 sim,no decoy,0,LX-bg,tea,decoy_top1,0.0,0.0,0.0,523.0
+sim,no decoy,0,PI-CAX,single,hr1,0.8690248565965584,0.8416108986615678,0.8948374760994264,523.0
+sim,no decoy,0,PI-CAX,single,decoy_top1,0.0,0.0,0.0,523.0
+sim,no decoy,0,PI-CAX,tea,hr1,0.8690248565965584,0.8416108986615678,0.8948374760994264,523.0
+sim,no decoy,0,PI-CAX,tea,decoy_top1,0.0,0.0,0.0,523.0
 sim,no decoy,0,RE,single,hr1,0.8451242829827916,0.8158062460165711,0.8731676226896111,523.0
 sim,no decoy,0,RE,single,decoy_top1,0.0,0.0,0.0,523.0
 sim,no decoy,0,RE,tea,hr1,0.8451242829827916,0.8158062460165711,0.8731676226896111,523.0
@@ -1011,6 +1143,10 @@ sim,no decoy,60,LX-bg,single,hr1,0.6147227533460803,0.5758444869343531,0.6532823
 sim,no decoy,60,LX-bg,single,decoy_top1,0.0,0.0,0.0,523.0
 sim,no decoy,60,LX-bg,tea,hr1,0.8234544295729764,0.7909496494582537,0.8540471637985978,523.0
 sim,no decoy,60,LX-bg,tea,decoy_top1,0.0,0.0,0.0,523.0
+sim,no decoy,60,PI-CAX,single,hr1,0.7931803696622053,0.760038240917782,0.8260038240917782,523.0
+sim,no decoy,60,PI-CAX,single,decoy_top1,0.0,0.0,0.0,523.0
+sim,no decoy,60,PI-CAX,tea,hr1,0.8604206500956023,0.8320586360739324,0.8868706182281709,523.0
+sim,no decoy,60,PI-CAX,tea,decoy_top1,0.0,0.0,0.0,523.0
 sim,no decoy,60,RE,single,hr1,0.4435946462715105,0.40344168260038243,0.4831102613129381,523.0
 sim,no decoy,60,RE,single,decoy_top1,0.0,0.0,0.0,523.0
 sim,no decoy,60,RE,tea,hr1,0.7820267686424475,0.7488846398980241,0.8138942001274696,523.0
@@ -1039,6 +1175,10 @@ sim,decoy,0,LX-bg,single,hr1,0.8756410256410256,0.8480769230769231,0.90192307692
 sim,decoy,0,LX-bg,single,decoy_top1,0.026282051282051282,0.014102564102564103,0.04038461538461539,520.0
 sim,decoy,0,LX-bg,tea,hr1,0.8756410256410256,0.8480769230769231,0.9019230769230769,520.0
 sim,decoy,0,LX-bg,tea,decoy_top1,0.026282051282051282,0.014102564102564103,0.04038461538461539,520.0
+sim,decoy,0,PI-CAX,single,hr1,0.8900641025641025,0.8637820512820512,0.9150641025641026,520.0
+sim,decoy,0,PI-CAX,single,decoy_top1,0.028846153846153848,0.015384615384615385,0.04358974358974359,520.0
+sim,decoy,0,PI-CAX,tea,hr1,0.8900641025641025,0.8637820512820512,0.9150641025641026,520.0
+sim,decoy,0,PI-CAX,tea,decoy_top1,0.028846153846153848,0.015384615384615385,0.04358974358974359,520.0
 sim,decoy,0,RE,single,hr1,0.8490384615384615,0.8192307692307692,0.8772516025641024,520.0
 sim,decoy,0,RE,single,decoy_top1,0.03717948717948718,0.02243589743589744,0.0532051282051282,520.0
 sim,decoy,0,RE,tea,hr1,0.8490384615384615,0.8192307692307692,0.8772516025641024,520.0
@@ -1067,6 +1207,10 @@ sim,decoy,60,LX-bg,single,hr1,0.5967948717948719,0.5576923076923077,0.6371794871
 sim,decoy,60,LX-bg,single,decoy_top1,0.12115384615384615,0.09613782051282052,0.1474358974358974,520.0
 sim,decoy,60,LX-bg,tea,hr1,0.8346153846153846,0.8038461538461539,0.8647435897435897,520.0
 sim,decoy,60,LX-bg,tea,decoy_top1,0.041025641025641026,0.02564102564102564,0.05833333333333334,520.0
+sim,decoy,60,PI-CAX,single,hr1,0.8227564102564102,0.7910256410256411,0.8525641025641025,520.0
+sim,decoy,60,PI-CAX,single,decoy_top1,0.04551282051282051,0.029487179487179487,0.06282051282051282,520.0
+sim,decoy,60,PI-CAX,tea,hr1,0.8733974358974358,0.8455128205128204,0.9,520.0
+sim,decoy,60,PI-CAX,tea,decoy_top1,0.03333333333333333,0.019230769230769232,0.048717948717948725,520.0
 sim,decoy,60,RE,single,hr1,0.4544871794871795,0.4153685897435897,0.49487179487179483,520.0
 sim,decoy,60,RE,single,decoy_top1,0.11346153846153846,0.09038461538461538,0.13783653846153823,520.0
 sim,decoy,60,RE,tea,hr1,0.7891025641025642,0.7557692307692307,0.8217948717948718,520.0

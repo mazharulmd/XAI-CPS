@@ -1,67 +1,30 @@
 \section{Related work}\label{sec:related}
 
-\paragraph{Interpretable CPS anomaly detection}
-Several detectors expose interpretable internals:
-\begin{itemize}
-\item graph-attention weights that point to a deviating sensor (GDN; \citealp{deng2021gdn});
-\item GNN--GRU hybrids with attention \citep{tang2023grn};
-\item multi-head attention on ICS traffic \citep{eltomy2024icps};
-\item rules distilled from a logical neural network \citep{xu2024alrl};
-\item domain-aware layer-wise relevance propagation (XAI-CPS; \citealp{rasheed2026xaicps}).
-\end{itemize}
-These works mostly validate interpretability qualitatively, on selected attacks, or through expert agreement \citep{rasheed2026xaicps}. They do not report how often the documented attack target is ranked first at the moment of detection.
-
-\paragraph{Post-hoc XAI for CPS, ICS and IIoT intrusion detection}
-Most of the literature applies SHAP or LIME to a detector and presents feature-importance plots:
-\begin{itemize}
-\item Kernel or Gradient SHAP on autoencoder-based detectors for SCADA and gas-pipeline data \citep{huong2022fedex,ha2022ifac};
-\item SHAP in privacy-preserving federated detectors \citep{yazdinejad2025ppfl};
-\item correlation-based and unsupervised IIoT detectors \citep{birihanu2024correlation,abudurexiti2025cctak};
-\item microgrid attack classifiers \citep{trivedi2025microgrid};
-\item process-oriented attacks \citep{kenmogne2024netsoft,kenmogne2025intellisec};
-\item network-traffic IIoT/IoT detectors \citep{oseni2023its,khan2022iiot,shoukat2025trustmyids,alani2023e2i3ds,attique2024iiot,ahakonye2024iotm,saiyed2026eshield};
-\item surrogate and example-based explanations \citep{zolanvari2023trust,panesar2026mmdcritic}.
-\end{itemize}
-Among the studies we reviewed, several evaluate on random proportional splits or $k$-fold cross-validation of time-series data without stating a chronological or gapped protocol (\cref{tab:corpus}). This is a known source of optimistic bias in security ML \citep{arp2022dos,kaufman2012leakage}.
+\paragraph{Interpretable and post-hoc XAI for CPS intrusion detection}
+Some detectors expose interpretable internals: graph-attention weights that point to a deviating sensor \citep{deng2021gdn,tang2023grn}, attention on ICS traffic \citep{eltomy2024icps}, rules distilled from a logical neural network \citep{xu2024alrl}, or domain-aware relevance propagation \citep{rasheed2026xaicps}. Most of the literature applies SHAP or LIME to a detector or classifier, for SCADA and gas-pipeline autoencoders \citep{huong2022fedex,ha2022ifac}, federated and correlation-based IIoT detectors \citep{yazdinejad2025ppfl,birihanu2024correlation,abudurexiti2025cctak}, microgrids \citep{trivedi2025microgrid}, process-oriented attacks \citep{kenmogne2024netsoft,kenmogne2025intellisec} and network-traffic IIoT detectors \citep{oseni2023its,khan2022iiot,shoukat2025trustmyids,alani2023e2i3ds,attique2024iiot,ahakonye2024iotm,saiyed2026eshield}, or uses surrogate and example-based explanations \citep{zolanvari2023trust,panesar2026mmdcritic}. Interpretability is mostly validated qualitatively or by expert agreement. Several studies evaluate time-series data with random proportional splits or $k$-fold cross-validation (Supplementary Table~S1), a known source of optimistic bias \citep{arp2022dos,kaufman2012leakage}.
 
 \paragraph{Evaluating explanations of intrusion detectors}
-\citet{warnecke2020evaluating} proposed security-specific criteria for explanation methods (accuracy, sparsity, stability, efficiency, robustness, completeness). \citet{wei2023xnids} and \citet{arreche2024exai} evaluate explanations of network IDSs along similar axes, including explanation time. In CPS settings:
-\begin{itemize}
-\item \citet{oinonen2026substations} compare seven XAI methods for a substation IDS on interpretability, stability, faithfulness and computation time.
-\item WaXAI \citep{mathuros2024waxai} measures the overlap between top-ranked features and attacked SWaT devices.
-\item \citet{fung2024attributions} provide the most systematic ground-truth evaluation. Across 156 manipulations on SWaT, WADI and a TEP simulation, they rank the manipulated feature with eight attribution methods and five detectors. They show that attributions at practical detection timings are inaccurate, and that an ensemble of raw-error, saliency and LEMNA \citep{guo2018lemna} attributions helps.
-\end{itemize}
-Our work starts from their findings. We change the unit of attribution, exploit the temporal structure of incidents, and add the missing dimension of timeliness.
+\citet{warnecke2020evaluating} proposed security-specific criteria (accuracy, sparsity, stability, efficiency, robustness, completeness), and \citet{wei2023xnids} and \citet{arreche2024exai} evaluate network-IDS explanations along similar axes. \citet{oinonen2026substations} compare seven XAI methods for a substation IDS, and WaXAI \citep{mathuros2024waxai} measures overlap between top-ranked features and attacked SWaT devices. \citet{fung2024attributions} provide the most systematic ground-truth evaluation: across 156 manipulations on SWaT, WADI and a Tennessee Eastman simulation, attributions at practical detection timings are often inaccurate, and an ensemble of raw-error, saliency and LEMNA \citep{guo2018lemna} attributions helps. We build on their protocol, change the unit of attribution to the control loop, follow explanations over the incident, and add timeliness.
 
-\paragraph{Grouped and temporal Shapley attributions}
-Owen values \citep{owen1977unions} extend Shapley values \citep{shapley1953value} to a priori unions of players. Sampling estimators make Shapley values tractable for many players \citep{castro2009sampling,strumbelj2014explaining,lundberg2017shap}. ShaTS \citep{franco2026shats} groups time-series features a priori by time step, by sensor, or by SWaT process stage (six groups), with exact or stratified-sampling computation. It reports execution time per window against a one-second budget. Our loop-level game is an instance of a priori grouping in the ShaTS sense. We differ in four ways:
-\begin{itemize}
-\item the groups are \emph{control loops} rather than process stages, the unit used by ICS attack taxonomies and operators;
-\item the value function uses an incident-local reference;
-\item we accumulate attributions across an incident;
-\item we evaluate against documented targets at operational timing and under deadlines.
-\end{itemize}
-In a concurrent preprint, \citet{mishra2026conditional} compute sensor--time attributions with on-manifold conditional counterfactuals for root-cause analysis on SWaT and server data. They aggregate within a window, whereas we aggregate across alarm windows and evaluate timeliness.
-
-\paragraph{Counterfactual explanations for CPS anomaly detection}
-A complementary line of work explains an anomaly by what a normal input would have looked like. AR-Pro \citep{ji2024arpro} generates diffusion-based counterfactual repairs that satisfy formal properties of the detector score and evaluates them on SWaT, WADI and HAI. JoCE \citep{jeong2026joce} searches for sparse joint time--feature edits that remove a time-series anomaly while preserving temporal continuity. Counterfactuals answer a different question from ours (what would have to change, rather than which loop is responsible), require iterative optimisation per explanation, and have not been evaluated against documented attack targets under deadlines. They could be scored with the same deadline-conditioned metrics.
+\paragraph{Grouped, temporal and counterfactual explanations}
+Owen values \citep{owen1977unions} extend Shapley values \citep{shapley1953value} to a priori unions of players, and sampling estimators make them tractable \citep{castro2009sampling,strumbelj2014explaining,lundberg2017shap}. ShaTS \citep{franco2026shats} groups time-series features by time step, sensor or SWaT process stage and reports execution time against a one-second budget; our loop game is an instance of such a priori grouping, with control loops as groups and an incident-local reference. \citet{mishra2026conditional} compute sensor--time attributions with conditional counterfactuals for root-cause analysis. AR-Pro \citep{ji2024arpro} produces diffusion-based counterfactual repairs with formal properties, evaluated on SWaT, WADI and HAI, and JoCE \citep{jeong2026joce} searches for sparse joint time--feature edits. Counterfactuals answer what would have to change rather than which loop is responsible; none of these methods has been evaluated against documented targets under deadlines.
 
 \paragraph{Timeliness in CPS security}
-\citet{cardenas2011attacks} and \citet{urbina2016limiting} analyse attacks and detection in terms of their physical impact. \citet{puccetti2026latency} argue that detection latency must be evaluated together with false-positive rates. GiBy \citep{venugopalan2025giby} explains detections through per-sensor safety bounds within milliseconds. To our knowledge, no prior work evaluates whether an \emph{explanation} that is \emph{correct} reaches the operator within a process-derived deadline.
+\citet{cardenas2011attacks} and \citet{urbina2016limiting} analyse attacks and detection in terms of physical impact, and \citet{puccetti2026latency} argue that detection latency must be evaluated together with false-positive rates. GiBy \citep{venugopalan2025giby} explains detections through per-sensor safety bounds within milliseconds. To our knowledge, no prior work evaluates whether a \emph{correct} explanation reaches the operator within a process-derived deadline. \Cref{tab:positioning} summarises the closest work.
 
 \begin{table}[t]
 \centering\scriptsize
 \caption{Positioning against the closest prior work (``--'': not reported).}\label{tab:positioning}
 \resizebox{\linewidth}{!}{%
-\begin{tabular}{@{}p{2.6cm}p{2.1cm}p{2.2cm}p{2.1cm}p{2.2cm}p{2.4cm}@{}}
+\begin{tabular}{@{}p{2.6cm}p{2.1cm}p{2.2cm}p{2.1cm}p{2.2cm}p{2.6cm}@{}}
 \toprule
  & \citet{fung2024attributions} & ShaTS \citep{franco2026shats} & \citet{oinonen2026substations} & XAI-CPS \citep{rasheed2026xaicps} & \textbf{This work}\\
 \midrule
 Attribution unit & tag & tag / process stage & pixel & tag & control loop (+tag refinement)\\
-Ground-truth localization & yes & case-based & no & expert agreement & yes (2 benchmarks)\\
+Ground-truth localization & yes & case-based & no & expert agreement & yes (2 benchmarks, cross-checked)\\
 At operational timing & yes (fails) & -- & n/a & -- & primary setting\\
 Across alarm windows & no & no & no & no & yes (\TEA)\\
-Explanation cost & -- & per window (GPU) & per explanation (GPU) & 12.3\,ms (GPU) & CPU 1-thread + evaluation count\\
+Physical prior in explainer & no & no & no & physics-informed LRP & yes (PI-CAX)\\
 Physical deadline & no & no & no & no & yes\\
 Statistical tests & ANOVA/\allowbreak Pearson & -- & -- & mean$\pm$sd & Friedman, Wilcoxon--Holm, bootstrap\\
 \bottomrule

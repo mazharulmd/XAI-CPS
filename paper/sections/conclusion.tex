@@ -1,20 +1,4 @@
 \section{Conclusion}\label{sec:conclusion}
-We asked whether the explanations of ML-based intrusion detectors in cyber-physical systems reach operators correctly and in time, and argued that XAI for CPS should be grounded in the control structure and the physical deadlines of the system. We introduced deadline-conditioned evaluation metrics, loop-level exact Shapley attribution with deterministic cost, and temporal evidence accumulation. We evaluated them, with 12 baselines and controls, across four detector families on the public HAI~21.03 testbed, for which we curated loop-level ground truth, and on an open closed-loop simulator with physical hazard deadlines.
+We asked whether explanations of ML-based intrusion detectors in cyber-physical systems reach operators correctly and in time, and argued that XAI for CPS should be built on the control structure and evaluated against the physical deadlines of the process. With deadline-conditioned metrics, cross-checked loop-level ground truth for HAI~21.03 and a closed-loop simulator with hazard deadlines, we found that score attributions of every kind degrade as attacks propagate through coupled loops; that temporal accumulation recovers part of this loss for any explainer; that grouping by control loops is essential; and that a single physical prior, separating the persistent departure of the manipulated loop from the oscillatory compensation of the others, makes a physics-informed explainer significantly more accurate than all score attributions, both at the alarm and a minute later. Most remaining deadline failures are detection failures.
 
-Five findings stand out:
-\begin{itemize}
-\item Single-shot attributions degrade quickly after an alarm as attacks propagate through coupled loops, and temporal accumulation recovers most of this loss for every method.
-\item Attribution grouped by control loops is essential; data-driven groupings fail.
-\item Most deadline failures are detection failures, not explanation failures.
-\item Setpoint attacks are the hardest to explain: the manipulated setpoint is invisible in the recorded data, so only the loop, not the tag, can be identified.
-\item Exact loop attribution (\LX) is the most accurate black-box method at the alarm on real testbed data, but it is not more accurate or more robust than the strongest baselines once evidence is accumulated. Its advantages are a predictable, data-independent cost and gradient-free determinism.
-\end{itemize}
-
-Future work should:
-\begin{itemize}
-\item replicate the study on SWaT, WADI and newer HAI releases;
-\item extend it to other CPS domains, such as power grids and vehicles, where control loops and deadlines can be defined analogously;
-\item measure latency on embedded hardware;
-\item study adaptive adversaries who steer the explanation while keeping the alarm, under the physical constraints of a closed loop;
-\item evaluate deadline-aware explanations with operators.
-\end{itemize}
+Future work should replicate the study on SWaT, WADI, newer HAI releases and other CPS domains; test physics-informed explainers against adaptive adversaries who steer the explanation while keeping the alarm; measure latency on embedded hardware; and evaluate deadline-aware explanations with operators.

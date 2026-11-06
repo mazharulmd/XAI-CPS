@@ -10,7 +10,7 @@ sys.path.insert(0, str(ROOT / "src")); sys.path.insert(0, str(ROOT / "scripts"))
 import analyze as A  # noqa: E402
 from xaicps import explain, stats  # noqa: E402
 
-METHODS = ["RE", "IG", "KS-1024", "LIME-1024", "Fung-ens", "LX-bg", "LX"]
+METHODS = ["RE", "IG", "KS-1024", "LIME-1024", "Fung-ens", "PI-CAX", "LX-bg", "LX"]
 
 
 def loc_at(runs, offsets=(0, 60)):

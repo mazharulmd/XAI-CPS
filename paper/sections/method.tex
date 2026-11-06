@@ -1,6 +1,6 @@
 \section{Method}\label{sec:method}
 
-\Cref{fig:arch} summarises the pipeline. The detector raises an alarm; from then on, \LX{} explains the anomaly score every $\Delta$ seconds at loop level; \TEA{} accumulates these explanations into a ranking with a confidence margin; and the top loop is refined to tags.
+\Cref{fig:arch} summarises the pipeline. The detector raises an alarm; from then on, a loop-level explainer (\LX{} or PI-CAX) explains the anomaly every $\Delta$ seconds; \TEA{} accumulates these explanations into a ranking with a confidence margin; and the top loop is refined to tags.
 
 \begin{figure}[t]
 \centering
@@ -14,7 +14,7 @@
 \node[box, right=of hist] (det) {Forecasting detector\\ $e(Z_t)$, EWMA $s_t$, $\theta$};
 \node[box, right=of det] (alarm) {Alarm at $t_a$\\ ref.\ $t_{\mathrm{ref}}=t_a-\Delta_{\mathrm{ref}}$};
 \node[data, below=7mm of hist] (pid) {P\&ID / controller config\\ loops $g_1,\dots,g_L$};
-\node[ours, below=7mm of det] (lx) {\LX: exact loop Shapley\\ $2^L$ batched evaluations\\ incident-local reference};
+\node[ours, below=7mm of det] (lx) {Loop attribution:\\ \LX{} (exact Shapley, $2^L$ evals)\\ or PI-CAX (physical prior)};
 \node[ours, right=of lx] (tea) {\TEA: $A_T=\sum_t\omega_t\,p_t$\\ confidence $c_T$};
 \node[ours, below=6mm of tea] (ref) {Tag refinement in\\ top loop (H-\LX)};
 \node[data, right=6mm of tea] (op) {Operator view:\\ ranked loops + tags,\\ delivered by $t_{\mathrm{on}}+D$};
@@ -34,7 +34,7 @@ At alarm time $t_a$ we fix a last-known-good reference time $t_{\mathrm{ref}}=t_
 \end{equation}
 and the characteristic function $v_t(S)=e(Z^S_t)-e(Z^\emptyset_t)$.
 
-The game asks how much of the current anomaly is explained by each loop's trajectory departing from its last known good trajectory, with all other loops restored to that state. This differs from the common interventional value function, which averages over a background drawn from training data \citep{lundberg2017shap,franco2026shats}. Background windows come from unrelated operating points (other setpoints, other plant states). Hybrid segments built from them are off-manifold for a forecaster and can themselves look anomalous. The incident-local reference keeps hybrids close to the operating point of the incident. We compare both choices empirically (\LX{} vs.\ \LX-bg).
+The game asks how much of the current anomaly is explained by each loop departing from its last known good trajectory. The common interventional alternative averages over training background windows \citep{lundberg2017shap,franco2026shats}, which come from other operating points and can make hybrids look anomalous themselves; we compare both choices (\LX{} vs.\ \LX-bg).
 
 \subsection{Exact loop Shapley values (\LX)}
 The attribution of loop $g$ at time $t$ is its Shapley value \citep{shapley1953value}
@@ -47,7 +47,7 @@ The attribution of loop $g$ at time $t$ is its Shapley value \citep{shapley1953v
 \begin{proof}
 All $2^L$ coalitions are evaluated once, and \cref{eq:shapley} is a fixed linear map of these values. The axioms are those of the Shapley value \citep{shapley1953value}, which hold because no sampling approximation is involved.
 \end{proof}
-The $2^L$ hybrid segments are evaluated in one batch. For $L\le 10$ this is at most 1024 forward passes of a small network. Explanation latency is therefore \emph{deterministic and known before deployment}, a property that sampling-based estimators lack. Exact Shapley values over $d$ tags would need $2^d$ evaluations ($d=57$ on HAI). Tag-level sampling estimators trade cost for variance \citep{castro2009sampling,strumbelj2014explaining}. Grouping by loops is an a priori union in the sense of \citet{owen1977unions}, as in ShaTS's multi-feature grouping \citep{franco2026shats}. The loop is also the unit in which ICS attacks are specified \citep{shin2021hai}. Finally, loop grouping encodes the sensor--actuator coupling that \citet{fung2024attributions} identify as a cause of attribution failure: a loop's SP, PV, CV and feedback enter or leave a coalition together.
+The $2^L$ hybrid segments are evaluated in one batch ($\le 1024$ forward passes for $L\le10$), so latency is \emph{deterministic and known before deployment}, unlike sampling estimators \citep{castro2009sampling,strumbelj2014explaining}; exact Shapley values over $d$ tags would need $2^d$ evaluations ($d=57$ on HAI). Loop grouping is an a priori union in the sense of \citet{owen1977unions}, and it keeps a loop's SP, PV, CV and feedback together in every coalition, addressing the sensor--actuator coupling that \citet{fung2024attributions} identify as a cause of attribution failure.
 
 \subsection{Temporal evidence accumulation (\TEA)}
 An incident produces a sequence of explanations at times $t_a,t_a+\Delta,\dots$. Single-shot attributions are noisy. Worse, as the attack propagates through coupled loops, later residuals increasingly appear in loops that merely \emph{react}. Following \citet{fung2024attributions}, we expect the earliest windows to be most informative but not always reliable. \TEA{} therefore aggregates normalised positive attributions, weighted by severity:
@@ -58,6 +58,17 @@ The ranking published at $T$ sorts loops by $A_T$, with confidence margin $c_T=(
 
 \subsection{Tag refinement (H-\LX)}
 Operators eventually need tags. Within the top-ranked loop $g^\star$ we compute exact Shapley values over its $|g^\star|$ tags. All other loops are held at their current values, so the game isolates within-loop responsibility; the cost is $2^{|g^\star|}$ evaluations ($\le 2^{12}$ on HAI).
+
+\subsection{Physics-informed loop attribution (PI-CAX)}\label{sec:picax}
+\LX{} is axiomatic: it distributes the detector score without any knowledge of how control loops behave. As a second, contrasting design we evaluate PI-CAX, a physics-informed causal attribution developed in an earlier phase of this project on synthetic multi-stage plant models and used here \emph{unchanged} (all constants as designed; none was tuned on HAI or PCL-Sim). It encodes one physical hypothesis: a manipulated loop shows a \emph{persistent, one-sided} departure from its normal input--output relations, whereas loops that merely react to it show \emph{oscillatory} compensation. At time $t$ it uses the last ten samples and proceeds in five steps.
+\begin{enumerate}
+\item \emph{Detector evidence.} $z^{\mathrm{det}}=0.65|z_t|+0.25|z_{t-1}|+0.10|z_{t-2}|$, where $z_\tau$ are the standardised forecaster residuals.
+\item \emph{Persistence versus oscillation.} A ridge model fitted on normal training data predicts each tag from the other tags of its own and adjacent loops. From its residuals over the last four samples, PI-CAX computes a persistence $m_j$ (absolute mean, normalised) and an oscillation ratio $o_j=m_j/\overline{|e_j|}$, which is close to one for a one-sided shift. The decoupled evidence $z^{c}=0.45\,z^{\mathrm{det}}+0.55\,m\,(0.5+0.85\,o)$ is raised for actuators with a persistent shift and lowered for oscillating sensors of the same loop.
+\item \emph{Precision weighting and loop gating.} Relevance $\varphi=0.6\,(z^c)^2\operatorname{diag}\Lambda+0.4\,|z^c\odot\Lambda z^c|$ uses the precision matrix $\Lambda$ of the normal one-step residuals. It is scaled by the sign coherence of the residuals, and every loop is down-weighted by its energy relative to the most active loop.
+\item \emph{Operating envelope.} Tags outside their normal training range, or drifting monotonically within the window, are up-weighted.
+\item \emph{Counterfactual check.} For the five top-ranked tags, the last three samples are replaced by their loop-model predictions. Tags whose replacement lowers the detector score are reinforced.
+\end{enumerate}
+Tag relevances are sparsified, normalised and summed per loop, and the loop map takes the role of PI-CAX's process stages. PI-CAX needs 16 detector evaluations and no gradients. Unlike \LX, it satisfies no attribution axiom and depends on more than 30 hand-set constants. We include it to test whether physical priors help where score attribution alone fails.
 
 \begin{algorithm}[t]
 \caption{Deadline-aware localization for one incident}\label{alg:main}

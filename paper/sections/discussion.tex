@@ -1,31 +1,24 @@
 \section{Discussion}\label{sec:discussion}
 
-\paragraph{What makes CPS explanations timely?}
-Our results decompose the timeliness problem into three factors.
+\paragraph{What makes CPS explanations correct and timely?}
+Our results decompose the problem into four factors.
 \begin{enumerate}
-\item \emph{Detection dominates.} On PCL-Sim, \intimeFailUndeliveredPct\,\% of the deadline failures of the best configurations are attacks detected too late or not at all. No explanation method can fix those, so the deadline perspective puts detection latency \citep{puccetti2026latency} back at the centre.
-\item \emph{When attributions are computed matters more than how.} Every attribution method we tested, gradient-based, sampling-based or exact, degrades as an attack propagates through coupled loops. Explanations computed a minute or more after the alarm are therefore often misleading if read in isolation. This is consistent with, and adds a mechanism to, the timing failure reported by \citet{fung2024attributions}.
-\item \emph{Temporal evidence accumulation is a cheap and general remedy.} It adds no detector evaluations, and it applies unchanged to any attribution method. In our experiments it was the single largest improvement for every method. It also turns flickering top-1 outputs into stable ones.
+\item \emph{Detection bounds timeliness.} On PCL-Sim, \intimeFailUndeliveredPct\,\% of the deadline failures are attacks detected too late or not at all, and no explainer can repair those. The deadline perspective puts detection latency \citep{puccetti2026latency} back at the centre.
+\item \emph{Closed-loop propagation defeats score attribution.} Every gradient-, sampling- or Shapley-based method degrades after the alarm, because controllers spread the effect of a manipulation to the loops that compensate for it. Explanations computed a minute after the alarm are therefore often misleading if read in isolation, consistent with the timing failure of \citet{fung2024attributions}.
+\item \emph{A physical prior removes most of this failure.} Separating persistent from oscillatory departures from normal cross-loop relations is a simple, plant-agnostic idea, and in our ablation it alone accounts for PI-CAX's advantage. On HAI it raised correct localization within 60\,s of onset from \dclhaiLXdclfixedSixZerotea{} to \dclhaiPICAXdclfixedSixZerotea{}, close to the ceiling of \haiCeiling{} set by detection (the share of attacks detected early enough for an explanation to be delivered); given delivery, PI-CAX ranked the attacked loop first in \haiCondPICAX{} of cases, against \haiCondLX{} for \LX. It also handles hidden-setpoint attacks, which score attributions largely miss.
+\item \emph{Temporal accumulation is a cheap, general remedy.} \TEA{} adds no detector evaluations, applies to any explainer, and turns flickering top-1 outputs into stable ones.
 \end{enumerate}
 
-\paragraph{What does control-loop structure buy?}
-The structure controls answer a question left open by grouped Shapley methods \citep{owen1977unions,franco2026shats}: grouping is only useful if the groups match how the plant is controlled. Correlation clusters and random partitions with the same group sizes perform dramatically worse than control loops.
-
-Given loop structure, exact Shapley values (\LX) are the most accurate black-box attribution at the alarm on HAI, and tie with the best methods once \TEA{} is applied. Their operational advantage is predictability, not a large accuracy margin:
-\begin{itemize}
-\item a fixed number of detector queries ($2^L$), decided at design time and independent of the data;
-\item no randomness, so the same alarm yields the same explanation;
-\item no gradient access.
-\end{itemize}
-Where gradients are available, integrated gradients aggregated per loop with \TEA{} is an equally strong and cheaper choice in our data. We recommend reporting it as a baseline in future work. The training-background variant (\LX-bg) was slightly better on the simulator and slightly worse at the alarm on HAI. We therefore do not claim a general advantage for the incident-local reference. Nor did \LX+\TEA{} show the hypothesised robustness advantage: under recalibrated sensor noise and a non-adaptive decoy it behaved like the baselines (\cref{sec:ablation}). Under noise, the larger effect was on detection timeliness, which again points to detection as the bottleneck.
+\paragraph{Axiomatic versus physics-informed explanation}
+\LX{} and PI-CAX represent two design philosophies. \LX{} satisfies the Shapley axioms, has a cost fixed at design time and is deterministic; its weakness is that it faithfully attributes the \emph{current} score, which after the alarm is dominated by compensating loops. PI-CAX satisfies no axiom and depends on more than 30 hand-set constants, but its one physical hypothesis matches how closed-loop processes respond to manipulation. That a heuristic designed on synthetic plants transferred to a real testbed without retuning is encouraging, but it also needs caution: it requires its normal statistics to be refitted when sensor noise changes, and its single explanations are sensitive to input perturbation. On the simulator its gains were small once evidence was accumulated, and a single real testbed cannot establish generality. Where gradients are available, integrated gradients aggregated per loop with \TEA{} is an equally strong and cheaper score attribution, and we recommend it as a baseline.
 
 \paragraph{Practical recommendations}
 \begin{enumerate}
-\item Evaluate explanations at operational timing, against documented targets, and over time, not only at a single window.
-\item Group attributions by control loop, using the P\&ID or controller configuration.
-\item Accumulate evidence across the incident and present a short ranked list (the top three contained the attacked loop in 94--95\,\% of detected attacks at 60\,s in both benchmarks).
-\item Report deadline-conditioned metrics alongside latency, because fast explanations of late or wrong alarms do not help the operator.
-\item Use chronological, attack-disjoint evaluation. On HAI, a random window split inflated F1 from \leakBlockedFOne{} to \leakRandomFOne.
+\item Evaluate explanations at operational timing, against documented targets, and over the whole incident.
+\item Group attributions by control loop, using the P\&ID or controller configuration; tag-level ground truth for hidden setpoints cannot be met by any explainer.
+\item Include persistence information, or a physical prior of comparable kind, in explanations of closed-loop processes, and accumulate evidence across the incident.
+\item Present a short ranked list: with \TEA{} the attacked loop was among PI-CAX's top three in \lochaiPICAXalarmSixZeroteahrThree{} (HAI) and \locsimPICAXalarmSixZeroteahrThree{} (PCL-Sim) of detected attacks at 60\,s.
+\item Report deadline-conditioned metrics alongside latency, and use chronological, attack-disjoint evaluation.
 \end{enumerate}
 
 \input{sections/limitations}

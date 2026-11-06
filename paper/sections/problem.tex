@@ -13,7 +13,7 @@ where $\sigma_j$ is the residual standard deviation on held-out normal data (flo
 \begin{itemize}
 \item \emph{Access.} The adversary has gained access to the control network (Purdue levels 1--2). Over an interval $[t_{\mathrm{on}},t_{\mathrm{off}})$ the adversary can: (a)~change a setpoint while hiding the change from the HMI; (b)~override or offset an actuator command; (c)~spoof a sensor value by bias, freezing or replay, as seen by both the controller and the historian; or (d)~combine these, e.g.\ a CV attack masked by PV replay, on one or two loops. This matches the I/O-point attack taxonomy of HAI \citep{shin2021hai}.
 \item \emph{Goal.} Drive the process toward an unsafe state or disrupt production.
-\item \emph{Knowledge.} In the main experiments the adversary does not know the detector or the explainer. In the decoy experiment (RQ5) the adversary knows that attributions are shown to operators. In addition to the main attack, the adversary then applies a small bias to the PV of an innocent loop to shift blame.
+\item \emph{Knowledge.} In the main experiments the adversary does not know the detector or the explainer. In the decoy experiment (RQ4) the adversary knows that attributions are shown to operators. In addition to the main attack, the adversary then applies a small bias to the PV of an innocent loop to shift blame.
 \item \emph{Out of scope.} Network-layer attacks without process effect, compromise of the IDS host, and training-data poisoning.
 \item \emph{Defender's objective.} Deliver the identity of the compromised loop(s), ideally with the manipulated tags, before the process safety time is consumed.
 \end{itemize}

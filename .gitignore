@@ -19,3 +19,7 @@ results/models/
 results/logs_phase2.txt
 paper/*.toc
 logs_phase*.txt
+results/raw_picax/
+results/raw_picax_ablation/
+results/raw_picax_frozen/
+paper/*.spl

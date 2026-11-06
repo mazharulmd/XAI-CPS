@@ -17,7 +17,7 @@ from xaicps import explain, metrics, stats  # noqa: E402
 TAB = ROOT / "results" / "tables"
 OFFSETS = (0, 10, 30, 60, 120, 180)          # delivery time after the alarm [s]
 DEADLINES = (10, 30, 60, 120, 300)            # deadline after attack onset [s]
-MAIN_METHODS = ["RE", "SM", "IG", "KS-eq", "KS-1024", "LIME-eq", "LIME-1024", "Fung-ens", "LX-bg", "CLX", "RPX", "LX"]
+MAIN_METHODS = ["RE", "SM", "IG", "KS-eq", "KS-1024", "LIME-eq", "LIME-1024", "Fung-ens", "PI-CAX", "LX-bg", "CLX", "RPX", "LX"]
 PROPOSED = "LX"
 
 
@@ -30,8 +30,25 @@ def load_runs(dataset, suffix=""):
         if (("_" + suf) if suf else "") != suffix:
             continue
         r = pickle.load(open(p, "rb")); r["detector"], r["seed"] = det, int(seed)
+        merge_picax(r, ROOT / "results" / "raw_picax" / dataset / p.name)
         runs.append(r)
     return runs
+
+
+def merge_picax(run, path):
+    """Attach PI-CAX sequences (scripts/run_picax.py) computed on the same grid as this run."""
+    if not path.exists():
+        return
+    pc = pickle.load(open(path, "rb"))["events"]
+    for e in run["events"]:
+        if e["eid"] in pc and "seq" in e:
+            o = pc[e["eid"]]
+            assert len(o["seq"]) == len(e["grid"])
+            e["seq"]["PI-CAX"] = o["seq"]; e["wall"]["PI-CAX"] = o["wall"]; e["evals"]["PI-CAX"] = o["evals"]
+            for key in ("tags_at", "fid_at", "stab_at"):
+                for off, val in o.get(key, {}).items():
+                    if off in e.get(key, {}):
+                        e[key][off]["PI-CAX"] = val
 
 
 def loop_vector_at(e, m, k, use_tea, theta, stride=1):

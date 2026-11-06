@@ -1,139 +1,117 @@
 \section{Results}\label{sec:results}
 
 \subsection{Detection}
-\Cref{tab:detection} gives detection performance.
-\begin{itemize}
-\item \emph{HAI.} All four detectors detect 89--92\,\% of the 50 attacks at 0.34--0.42 false alarms per hour. The median delay is 6\,s (linear) to 15\,s.
-\item \emph{PCL-Sim.} Event recall is 76--96\,\%. Point-wise recall is low because the PI controllers partly compensate the manipulations, and several attacks become visible only through slow drifts.
-\item \emph{Early alarms.} In ten HAI attacks the score crosses $\theta$ at or just before the labelled onset. In nine of them the score rises 1--4\,s before the label, which suggests that the documented onsets lag the manipulations slightly. In A301 the score already exceeds $\theta$ several seconds before the labelled onset, so an alarm run that began before the attack is counted as a detection at onset. We keep the documented labels throughout.
-\end{itemize}
-Localization is evaluated on detected attacks: \nhaitesthrOnealarmZero{} (attack, detector) units on HAI and \nsimtesthrOnealarmZero{} on PCL-Sim. Deadline metrics count missed detections as failures (\nhaitestdclSixZerohrOne{} and \nsimtestdclSixZerohrOne{} units).
+On HAI, the four detectors detect 89--92\,\% of the 50 attacks at 0.34--0.42 false alarms per hour, with median delays of 6--15\,s (\cref{tab:detection}). On PCL-Sim, event recall is 76--96\,\%; point-wise recall is low because the PI controllers partly compensate the manipulations. In ten HAI attacks the score crosses $\theta$ 1--4\,s before the labelled onset, which suggests that documented onsets lag slightly; we keep the documented labels. Localization is evaluated on detected attacks (\nhaitesthrOnealarmZero{} (attack, detector) units on HAI, \nsimtesthrOnealarmZero{} on PCL-Sim); deadline metrics count missed detections as failures.
 
 \input{generated/tab_detection.tex}
 
-\subsection{RQ1: Control-loop structure}
-\Cref{tab:loc_hai,tab:loc_sim} report loop localization for every method.
+\subsection{Localization at the alarm (RQ1)}
+\Cref{tab:loc_hai,tab:loc_sim} report loop localization for all configurations.
 \begin{itemize}
-\item \emph{At the alarm, HAI.} \LX{} ranks the attacked loop first in \lochaiLXalarmZerosinglehrOne{} of attacks, the highest of all methods. The differences are significant against KernelSHAP-1024, equal-budget KernelSHAP and LIME, \LX-bg, saliency and both structure controls. Against IG, LIME-1024, the Fung ensemble and RE they are borderline (Holm $p$ between 0.05 and 0.06; \cref{tab:tests}).
-\item \emph{At the alarm, PCL-Sim.} \LX{} reaches \locsimLXalarmZerosinglehrOne{}, within two points of the best (\LX-bg, the Fung ensemble). Most methods perform similarly here, because the simulated attacks are localized early.
-\item \emph{H1 is therefore only partially supported.} Exact loop attribution is the most accurate \emph{black-box} method at the alarm on HAI. It is not uniformly better than white-box integrated gradients, and on PCL-Sim it is not better than the training-background variant.
+\item \emph{PI-CAX is the most accurate explainer.} It ranks the attacked loop first in \lochaiPICAXalarmZerosinglehrOne{} of detected attacks on HAI and \locsimPICAXalarmZerosinglehrOne{} on PCL-Sim, significantly better than every other configuration (Holm $p\pctesthaialarmmaxp$ on HAI and $p\pctestsimalarmmaxp$ on PCL-Sim, $n=\pctesthaialarmn$ and \pctestsimalarmn).
+\item \emph{Among score attributions,} \LX{} is the most accurate on HAI (\lochaiLXalarmZerosinglehrOne; IG \lochaiIGalarmZerosinglehrOne, Holm $p=\phaitesthrOnealarmZeroIGtea$), whereas on PCL-Sim most score attributions lie within two points of each other (\LX{} \locsimLXalarmZerosinglehrOne, \LX-bg \locsimLXbgalarmZerosinglehrOne). H1 is therefore only partially supported.
+\item \emph{Chance and structure.} A random ranking would rank a target loop first in \chancehaihrOne{} of the same units on both benchmarks (HAI \chancehaihrOne, PCL-Sim \chancesimhrOne). Exact Shapley values over correlation clusters (CLX) or random groups of the loop sizes (RPX) reach only 0.45/0.25 on HAI and 0.27/0.54 on PCL-Sim (all Holm $p<10^{-10}$ against \LX), so the gain of loop attribution comes from control structure, not grouping per se (H4 supported).
+\item \emph{Best-guess timing} \citep{fung2024attributions} does not help: on HAI it is worse than practical timing for every method except saliency, which is unchanged (\LX{} \lochaiLXbestguesssinglehrOne), because many manipulations take tens of seconds to affect the process.
 \end{itemize}
-
-For reference, a uniformly random ranking of the groups would place an attacked loop first in \chancehaihrOne{} of the same HAI units (multi-loop attacks count as hits on any target loop) and in \chancesimhrOne{} on PCL-Sim; within the top three, in \chancehaihrThree{} and \chancesimhrThree. All attribution methods are well above chance. The structure controls come closest to it (random partition 0.25 on HAI, correlation clusters 0.27 on PCL-Sim).
-
-\paragraph{Structure, not grouping, is what matters (H4)} Exact Shapley values over the same number of groups formed by correlation clustering (CLX) or at random (RPX) are far worse. On HAI at the alarm they reach 0.45 and 0.25 against \lochaiLXalarmZerosinglehrOne; on PCL-Sim, 0.27 and 0.54 against \locsimLXalarmZerosinglehrOne{} (all Holm $p<10^{-10}$). Data-driven groups mix tags of different loops, so a group can be ``responsible'' without identifying a loop. Grouping by control structure is what turns exact Shapley values into an operational localization. H4 is supported on both benchmarks.
-
-\paragraph{Best-guess timing} Computing attributions on an oracle window that starts at the onset, as advocated by \citet{fung2024attributions}, does \emph{not} help in our setting. On HAI it is worse than practical timing for every method except saliency (e.g.\ \LX{} \lochaiLXbestguesssinglehrOne{} vs.\ \lochaiLXalarmZerosinglehrOne{}), because many HAI and PCL-Sim manipulations take tens of seconds to affect the process. Their detectors mostly fire after the effect has become visible.
-
-\paragraph{Hard-to-explain attacks} \Cref{tab:strata} stratifies the HAI results by the type of manipulated variable, read from the target-controller code of the official attack table (e.g.\ \texttt{P1-PC-SP1PV1}: setpoint plus a spoofed process variable). The strata are small (3--\stratcombn{} attacks), so we describe them only.
-\begin{itemize}
-\item \emph{Controller-output (CV) attacks} directly move a recorded actuator and are localized well (at the alarm RE 0.69; IG, KernelSHAP-1024, \LX-bg and \LX{} 0.79; \LX{} \stratCVPVLXalarm{} with a PV spoof, $n=\stratCVPVn$).
-\item \emph{Setpoint (SP) attacks} are the hardest. The manipulated setpoint itself is invisible in the data (\cref{sec:setup}), so the evidence appears only in the loop's PV and CV. \LX{} is the best method at the alarm (\stratSPLXalarm{} vs.\ \stratSPIGalarm{} for IG). However, every method falls to \stratSPteamin--\stratSPteamax{} at 60\,s even with \TEA, plausibly because the controller has by then propagated the change to coupled loops.
-\end{itemize}
-This pattern supports loop-level attribution for CPS more generally. Only the loop is identifiable when the manipulated variable is not observable; any tag-level ground truth that names a hidden setpoint cannot be met by any explainer.
 
 \input{generated/tab_loc_hai.tex}
 \input{generated/tab_loc_sim.tex}
 
-\subsection{RQ2: Attribution after the alarm and temporal evidence accumulation}
-\Cref{fig:overtime} shows the central phenomenon. Single-shot attributions degrade quickly after the alarm, for \emph{every} method:
+\subsection{After the alarm: propagation and temporal accumulation (RQ2)}
+Single-shot score attributions degrade quickly after the alarm, for every method (\cref{fig:overtime}). On HAI, \LX{} falls from \lochaiLXalarmZerosinglehrOne{} at the alarm to \lochaiLXalarmSixZerosinglehrOne{} after 60\,s and \lochaiLXalarmOneEightZerosinglehrOne{} after 180\,s; on PCL-Sim from \locsimLXalarmZerosinglehrOne{} to \locsimLXalarmSixZerosinglehrOne{} and \locsimLXalarmOneEightZerosinglehrOne. Once controllers react, the largest residuals move to loops that compensate for the manipulated one, which adds a mechanism to the timing effect of \citet{fung2024attributions}.
 \begin{itemize}
-\item on HAI, \LX{} falls from \lochaiLXalarmZerosinglehrOne{} at the alarm to \lochaiLXalarmSixZerosinglehrOne{} after 60\,s and \lochaiLXalarmOneEightZerosinglehrOne{} after 180\,s;
-\item on PCL-Sim, it falls from \locsimLXalarmZerosinglehrOne{} to \locsimLXalarmSixZerosinglehrOne{} and \locsimLXalarmOneEightZerosinglehrOne.
+\item \emph{\TEA{} recovers part of the loss for every method} (H2 supported). \LX+\TEA{} reaches \lochaiLXalarmSixZeroteahrOne{} (HAI) and \locsimLXalarmSixZeroteahrOne{} (PCL-Sim) at 60\,s (Holm $p=\phaitesthrOnealarmSixZeroLXsingle$ and $p=\psimtesthrOnealarmSixZeroLXsingle$ against single-shot), and single-shot top-1 outputs that change between consecutive explanations in 12--48\,\% of cases become 95--100\,\% consistent (\cref{tab:quality}). With \TEA, the leading score attributions are within a few points of each other: on HAI \LX{} is not significantly different from IG, \LX-bg, the Fung ensemble, LIME-1024 or KernelSHAP-1024; on PCL-Sim IG and \LX-bg are slightly but significantly better (Supplementary Table~S2).
+\item \emph{PI-CAX degrades far less.} Single-shot, it still reaches \lochaiPICAXalarmSixZerosinglehrOne{} (HAI) and \locsimPICAXalarmSixZerosinglehrOne{} (PCL-Sim) at 60\,s; with \TEA, \lochaiPICAXalarmSixZeroteahrOne{} and \locsimPICAXalarmSixZeroteahrOne, significantly better than every other configuration (Holm $p\pctesthaisixtymaxp$ and $p\pctestsimsixtymaxp$). With \TEA, the attacked loop is among PI-CAX's top three in \lochaiPICAXalarmSixZeroteahrThree{} and \locsimPICAXalarmSixZeroteahrThree{} of cases.
 \end{itemize}
-This is the closed-loop propagation mechanism. Once controllers react, the largest residuals move to loops that compensate for the manipulated one. The mechanism complements the timing effect reported by \citet{fung2024attributions}: attributions are best near the first visible effect and degrade afterwards.
-
-\paragraph{\TEA{} recovers most of this loss (H2)}
-\begin{itemize}
-\item \emph{\LX.} With \TEA, \LX{} reaches \lochaiLXalarmSixZeroteahrOne{} (HAI) and \locsimLXalarmSixZeroteahrOne{} (PCL-Sim) at 60\,s, and \lochaiLXalarmOneEightZeroteahrOne{} and \locsimLXalarmOneEightZeroteahrOne{} at 180\,s. Against single-shot \LX{} at 60\,s: Holm $p=\phaitesthrOnealarmSixZeroLXsingle$ with $r_{\mathrm{rb}}=\rphaitesthrOnealarmSixZeroLXsingle$ on HAI, and $p=\psimtesthrOnealarmSixZeroLXsingle$ with $r_{\mathrm{rb}}=\rpsimtesthrOnealarmSixZeroLXsingle$ on PCL-Sim.
-\item \emph{Other methods.} The gain holds for all methods; e.g.\ RE on HAI improves from 0.48 to 0.61 at 60\,s.
-\item \emph{Shortlists.} HR@3 with \TEA{} is \lochaiLXalarmSixZeroteahrThree{} (HAI) and \locsimLXalarmSixZeroteahrThree{} (PCL-Sim): the attacked loop is almost always among three candidates. This matches the operator preference for short candidate lists reported by \citet{fung2024attributions}.
-\item \emph{Temporal stability} (\cref{fig:stability}, \cref{tab:quality}). Single-shot top-1 loops change between consecutive explanations 5\,s apart in 23--48\,\% of cases, depending on the method and benchmark. With \TEA, consecutive explanations agree in 95--99\,\% of cases for every method.
-\end{itemize}
-H2 is supported.
-
-\paragraph{With \TEA, the leading methods are statistically tied} At 60\,s on HAI, \LX+\TEA{} (\lochaiLXalarmSixZeroteahrOne) is not significantly different from IG, the Fung ensemble, \LX-bg, LIME-1024 or KernelSHAP-1024, each with \TEA{} (\cref{tab:tests}). It is significantly better than RE, equal-budget KernelSHAP, saliency, CLX and RPX. On PCL-Sim, IG+\TEA{} (0.84) and \LX-bg+\TEA{} (0.85) are slightly but significantly better than \LX+\TEA{} (\locsimLXalarmSixZeroteahrOne).
 
 \begin{figure}[t]
 \centering\includegraphics[width=\linewidth]{figures/hr1_over_time.pdf}
-\caption{Top-1 loop localization as a function of the delivery time after the alarm (solid: with \TEA; dashed: single-shot; band: 95\,\% bootstrap CI for \LX+\TEA). Every single-shot method decays as the attack propagates through coupled loops; \TEA{} retains most of the accuracy reached at the alarm.}\label{fig:overtime}
+\caption{Top-1 loop localization versus delivery time after the alarm (solid: with \TEA; dashed: single-shot; band: 95\,\% bootstrap CI for \LX+\TEA). Score attributions decay as the attack propagates through coupled loops; PI-CAX decays least.}\label{fig:overtime}
 \end{figure}
 
-\input{generated/tab_tests.tex}
 
-\subsection{RQ3: Deadlines, latency and cost}
-\Cref{tab:deadline_hai,tab:deadline_sim} and \cref{fig:dcl} report deadline-conditioned localization. Detection delay, explainer latency and the correctness of the delivered explanation are all accounted for.
+\subsection{Why the physical prior works}
+\Cref{tab:pcab} switches PI-CAX's components off one at a time (seed 0, all four detectors). Removing the persistence--oscillation decoupling reduces it to the level of the score attributions (HAI: \pcabhaiNoCausalalarm{} at the alarm and \pcabhaiNoCausalsingle{} single-shot at 60\,s). Removing the precision weighting and loop gating, the operating envelope or the counterfactual check changes accuracy by at most 0.04. The advantage therefore comes from one physical hypothesis: the manipulated loop departs \emph{persistently} from its normal cross-loop relations, while compensating loops \emph{oscillate}. Score attributions cannot express this distinction, because they only ask how much each loop contributes to the current score.
+
+\begin{table}[t]
+\centering\scriptsize
+\caption{PI-CAX component ablation: loop HR@1 (single-shot at the alarm / single-shot at +60\,s / +60\,s with \TEA; seed 0, four detectors pooled).}\label{tab:pcab}
+\begin{tabular}{@{}lcc@{}}
+\toprule
+Configuration & HAI 21.03 & PCL-Sim\\
+\midrule
+Full PI-CAX & \pcabhaiFullalarm{} / \pcabhaiFullsingle{} / \pcabhaiFulltea & \pcabsimFullalarm{} / \pcabsimFullsingle{} / \pcabsimFulltea\\
+-- persistence/oscillation decoupling & \pcabhaiNoCausalalarm{} / \pcabhaiNoCausalsingle{} / \pcabhaiNoCausaltea & \pcabsimNoCausalalarm{} / \pcabsimNoCausalsingle{} / \pcabsimNoCausaltea\\
+-- precision weighting and loop gating & \pcabhaiNoManifoldalarm{} / \pcabhaiNoManifoldsingle{} / \pcabhaiNoManifoldtea & \pcabsimNoManifoldalarm{} / \pcabsimNoManifoldsingle{} / \pcabsimNoManifoldtea\\
+-- operating envelope & \pcabhaiNoEnvelopealarm{} / \pcabhaiNoEnvelopesingle{} / \pcabhaiNoEnvelopetea & \pcabsimNoEnvelopealarm{} / \pcabsimNoEnvelopesingle{} / \pcabsimNoEnvelopetea\\
+-- counterfactual check & \pcabhaiNoTieralarm{} / \pcabhaiNoTiersingle{} / \pcabhaiNoTiertea & \pcabsimNoTieralarm{} / \pcabsimNoTiersingle{} / \pcabsimNoTiertea\\
+none (smoothed residuals only) & \pcabhaiNonealarm{} / \pcabhaiNonesingle{} / \pcabhaiNonetea & \pcabsimNonealarm{} / \pcabsimNonesingle{} / \pcabsimNonetea\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Hard-to-explain attacks} \Cref{tab:strata} stratifies HAI by the type of manipulated variable, read from the target-controller code of the official attack table (strata of 3--\stratcombn{} attacks; descriptive only). Controller-output (CV) attacks move a recorded actuator and are localized well by most methods (0.79 at the alarm for IG, KernelSHAP-1024, \LX-bg and \LX). Setpoint (SP) attacks are the hardest for score attributions: the setpoint is largely invisible in the data, and every score attribution falls to \stratSPteamin--\stratSPteamax{} at 60\,s even with \TEA. PI-CAX localizes them in \stratSPPICAXtea{} of cases, plausibly because a hidden setpoint change produces exactly the persistent PV/CV departure it looks for. Its weakest stratum is SP attacks combined with a PV spoof (\stratSPPVPICAXtea{} at 60\,s, $n=\stratSPPVn$), possibly because the spoofed PV hides the persistent departure.
+
+\input{generated/tab_strata.tex}
+
+\subsection{Deadlines, latency and cost (RQ3)}
+\Cref{tab:deadline_hai,tab:deadline_sim} and \cref{fig:dcl} account for detection delay, explainer latency and the correctness of the delivered explanation.
 \begin{itemize}
-\item \emph{Ceiling.} Because DCL counts missed and late detections as failures, it is bounded by event recall. On HAI, DCL@1 at $D=60$\,s is \dclhaiLXdclfixedSixZerotea{} for \LX+\TEA, and \dclhaiLXdclfixedOneTwoZerotea{} at 120\,s. DCL@3 is \dclhaiLXdclfixedSixZeroteahrthree{} at 60\,s.
-\item \emph{No winner on HAI.} None of the leading methods is significantly better than the others at 60\,s (\cref{tab:tests}).
-\item \emph{Hazardous attacks on PCL-Sim.} The correct loop is ranked first before the hazard deadline minus a 30\,s action reserve in \dclsimLXdclhazhztea{} of cases with \TEA, versus \dclsimLXdclhazhzsingle{} single-shot. With a three-loop shortlist the rate is \dclsimLXdclhazhzteahrthree.
-\item \emph{What limits the in-time rate.} The remaining failures are dominated by detection, not explanation. Of the \intimeFail{} failing (attack, detector, seed) cases of \LX+\TEA, \intimeFailUndelivered{} (\intimeFailUndeliveredPct\,\%) are attacks that were missed or detected too late for any explanation to be delivered. Conditional on delivery, the top-ranked loop is correct in \intimeDeliveredLX{} of cases. The corresponding figures are \intimeDeliveredIG{} for IG, \intimeDeliveredLXbg{} for \LX-bg, \intimeDeliveredRE{} for RE and \intimeDeliveredKSOneZeroTwoFour{} for KernelSHAP-1024.
+\item \emph{HAI.} DCL@1 at $D=60$\,s is \dclhaiPICAXdclfixedSixZerotea{} for PI-CAX+\TEA{} against \dclhaiLXdclfixedSixZerotea{} for \LX+\TEA{} and at most \dclhaiIGdclfixedSixZerotea{} for any other configuration (Holm $p\pctesthaidclmaxp$, $n=\pctesthaidcln$). It is bounded by event recall, so PI-CAX delivers a correct loop for most detected attacks within a minute of onset. No score attribution differs significantly from \LX{} in DCL@1 at 60\,s (H3 not supported for DCL).
+\item \emph{PCL-Sim.} The correct loop is ranked first before the hazard deadline minus a 30\,s action reserve in \dclsimLXdclhazhztea{} (\LX+\TEA), \dclsimPICAXdclhazhztea{} (PI-CAX+\TEA) and \dclsimIGdclhazhztea{} (IG+\TEA) of hazardous cases. No explainer improves this rate materially, because the failures are dominated by detection: of the \intimeFail{} failing (attack, detector, seed) cases of \LX+\TEA, \intimeFailUndelivered{} (\intimeFailUndeliveredPct\,\%) were detected too late for any explanation to be delivered. Conditional on delivery, the top-ranked loop is correct in \intimeDeliveredLX{} (\LX), \intimeDeliveredPICAX{} (PI-CAX) and \intimeDeliveredIG{} (IG) of cases.
+\item \emph{Latency.} \LX{} costs $2^L$ evaluations per explanation (512 on HAI, 64 on PCL-Sim), i.e.\ \latsimLXlinear--\latsimLXcnn\,ms on PCL-Sim and \lathaiLXlinear--\lathaiLXcnn\,ms on HAI on one thread (\cref{tab:latency}); PI-CAX needs 16 evaluations (median 1.4--1.7\,ms during the runs, \cref{tab:deadline_hai,tab:deadline_sim}). Both are deterministic and need no gradients; IG is cheaper than \LX{} but requires gradient access.
+\item \emph{Slower hardware.} We did not measure on embedded devices. Multiplying every measured latency by an assumed factor of 10 or 100 changes DCL@1 at $D=30$\,s by at most 0.04 for all configurations except \LX-bg on HAI (4096 evaluations), which drops from \slowhaixoneLXbgthirty{} to \slowhaixhundredLXbgthirty. At these model sizes, latency is not the binding constraint; detection delay is.
+\item \emph{ShaTS-sensor} needs $\approx\!2\cdot20\,d^2$ evaluations ($\evalshaiShaTS$ on HAI), \lathaiShaTScnn\,s for the CNN. At the alarm on HAI it localizes \shatshaicnnHR{} of attacks against \shatshaicnnLXHR{} for \LX{} on the same incidents (CNN, seed 0, $n=\shatshaicnnN$; linear: \shatshailinearHR{} vs.\ \shatshailinearLXHR), at roughly 250--280 times the cost.
 \end{itemize}
-
-\paragraph{Latency and determinism} On one CPU thread, \LX{} costs $2^L$ evaluations per explanation: 512 on HAI, 64 on PCL-Sim (\cref{tab:latency}). Across the four detectors this takes \latsimLXlinear--\latsimLXcnn\,ms on PCL-Sim and \lathaiLXlinear--\lathaiLXcnn\,ms on HAI, far below the 1\,s sampling period, so latency barely affects DCL at these speeds. Two properties distinguish \LX:
-\begin{itemize}
-\item \emph{Determinism.} Its cost is fixed and known before deployment. Equal-budget sampling estimators (KernelSHAP-eq, LIME-eq) are less accurate at the same cost (\cref{tab:loc_hai,tab:loc_sim}). Approaching \LX's accuracy with them requires a larger budget (KernelSHAP-1024, LIME-1024: twice the evaluations on HAI, sixteen times on PCL-Sim).
-\item \emph{Gradient-free.} IG is the cheapest accurate method (32 forward/backward passes), but it requires gradient access to the detector. \LX{} needs only black-box score queries, so it also applies to non-differentiable detectors (rules, trees, PASAD-like statistics).
-\end{itemize}
-\paragraph{Sensitivity to slower hardware} We did not measure on embedded hardware. As a crude proxy, we repeated the deadline analysis with every measured latency multiplied by an assumed factor of 10 or 100; the explanation refresh interval grows accordingly. For \LX+\TEA{} on HAI, DCL@1 at $D=30$\,s is \slowhaixoneLXthirty{} at the measured latency, \slowhaixtenLXthirty{} at $\times10$ and \slowhaixhundredLXthirty{} at $\times100$. On PCL-Sim, the in-time rate is \slowsimxoneLXhaz, \slowsimxtenLXhaz{} and \slowsimxhundredLXhaz. Only \LX-bg on HAI, with 4096 evaluations per explanation, is materially affected: at $D=30$\,s it drops from \slowhaixoneLXbgthirty{} to \slowhaixhundredLXbgthirty{} at $\times100$. All other configurations change by at most 0.04, in either direction (largest for the 1024-sample estimators on HAI). Changes can be positive because a slower explainer refreshes less often, and \TEA{} then accumulates a different subset of windows. At these model sizes, explanation latency is not the binding constraint even with a hundredfold slowdown; detection delay is.
-
-ShaTS-sensor at its published default budget needs $\approx\!2\cdot20\,d^2$ evaluations per explanation ($\evalshaiShaTS$ on HAI), \lathaiShaTScnn\,s for the CNN on one thread. At the alarm on HAI it localizes the attacked loop in \shatshaicnnHR{} of attacks, against \shatshaicnnLXHR{} for \LX{} on the same incidents (CNN, seed 0, $n=\shatshaicnnN$); for the linear detector the figures are \shatshailinearHR{} and \shatshailinearLXHR{} ($n=\shatshailinearN$). On PCL-Sim ($\evalssimShaTS$ evaluations, \latsimShaTScnn\,s for the CNN) both reach \shatssimcnnHR{} (CNN) and \shatssimlinearHR{} (linear). On these subsets ShaTS-sensor is at most on par with loop-level attribution (no significance test; small $n$ on HAI) while taking roughly 250--280 times longer for the CNN; at $\approx$5\,s per explanation on HAI it could not be refreshed every second.
 
 \begin{figure}[t]
 \centering\includegraphics[width=\linewidth]{figures/dcl.pdf}
-\caption{Deadline-conditioned localization DCL@1($D$) (colours as in \cref{fig:overtime}; solid: \TEA; dashed: single-shot). Missed detections and explanations not yet delivered count as failures, so curves are bounded by event recall.}\label{fig:dcl}
+\caption{Deadline-conditioned localization DCL@1($D$) (colours as in \cref{fig:overtime}; solid: \TEA; dashed: single-shot). Missed detections and undelivered explanations count as failures, so curves are bounded by event recall.}\label{fig:dcl}
 \end{figure}
 
 \input{generated/tab_deadline_hai.tex}
 \input{generated/tab_deadline_sim.tex}
 \input{generated/tab_latency.tex}
 
-\begin{figure}[t]
-\centering\includegraphics[width=\linewidth]{figures/cost_accuracy.pdf}
-\caption{Accuracy at 60\,s after the alarm (with \TEA) versus median latency per explanation (1 CPU thread, measured during the runs).}\label{fig:cost}
-\end{figure}
-
 \subsection{Explanation quality beyond accuracy}
+\Cref{tab:quality} reports further properties.
 \begin{itemize}
-\item \emph{Faithfulness.} Deletion AUCs at the alarm (restoration to the training mean; \cref{tab:quality}) are similar for all accurate methods (0.16--0.21). Saliency and the structure controls are clearly worse. Deletion with the incident reference was numerically unstable (the normaliser $e(Z)-e(R)$ can approach zero), so we do not report it.
-\item \emph{Stability under input noise.} \LX{} is \emph{less} stable than the sampling estimators: top-3 Jaccard \qhaiLXnoise{} vs.\ 0.70 for KernelSHAP-1024 on HAI. Exact attributions follow every change of the input, whereas the fixed-seed sampling designs smooth small differences. \TEA{} mitigates this in operation, because individual noisy explanations carry limited weight.
-\item \emph{Tag-level localization.} Within the top loop, H-\LX{} ranks a manipulated tag first in \qhaiLXtagone{} (HAI) and \qsimLXtagone{} (PCL-Sim) of attacks, and among the top three in \qhaiLXtagthree{} and \qsimLXtagthree. This is comparable to the best tag-level methods; the Fung ensemble is best on HAI for tag HR@1.
+\item \emph{Faithfulness.} Deletion AUCs at the alarm are similar for all accurate methods (0.16--0.22), including PI-CAX; saliency and the structure controls are worse.
+\item \emph{Stability under input noise.} On HAI, PI-CAX's single explanations are the most sensitive to Gaussian input perturbation (top-3 Jaccard \qhaiPICAXnoise{} on HAI, against \qhaiLXnoise{} for \LX{} and 0.70 for KernelSHAP-1024), because its persistence statistics use only ten samples. Exact attributions are also less stable than fixed-seed sampling estimators. \TEA{} mitigates both in operation.
+\item \emph{Tags.} Within the top loop, H-\LX{} ranks a manipulated tag first in \qhaiLXtagone{} (HAI) and \qsimLXtagone{} (PCL-Sim) of attacks; PI-CAX's tag ranking reaches \qhaiPICAXtagone{} and \qsimPICAXtagone{}, the best of all methods.
 \end{itemize}
-
-\begin{figure}[t]
-\centering\includegraphics[width=\linewidth]{figures/temporal_stability.pdf}
-\caption{Temporal stability: share of consecutive explanations (5\,s apart, first 120\,s after the alarm) with the same top-1 loop, single-shot (grey) vs.\ with \TEA{} (blue).}\label{fig:stability}
-\end{figure}
 
 \input{generated/tab_quality.tex}
 
-\subsection{Ablations and robustness (RQ4, RQ5)}\label{sec:ablation}
-\input{sections/ablation}
+\subsection{Robustness (RQ4)}\label{sec:ablation}
+\Cref{tab:phase2} summarises the robustness experiments (CNN detector, seed 0, unless noted).
+\begin{itemize}
+\item \emph{Reference gap.} \LX{} is insensitive to $\Delta_{\mathrm{ref}}\in\{32,60,120,300\}$\,s on PCL-Sim. On HAI the default of 60\,s is best at the alarm (\ptwohairefBLXsingleZerohrOne, against \ptwohairefDLXsingleZerohrOne--\ptwohairefCLXsingleZerohrOne{} for the other gaps), a difference of a few attacks; we did not tune the gap on test data. PI-CAX does not use the reference.
+\item \emph{Sensor noise.} With the alarm threshold kept from clean data, Gaussian noise saturates the detector (precision \ptwohainoiseAcleandetprecision{} on HAI), so we recalibrate $\sigma$ and $\theta$ on equally noisy validation data with frozen weights, as an operator would. Localization then degrades for the score attributions on HAI (\LX+\TEA{} \ptwohainoiseALXteaSixZerohrOne{} and \ptwohainoiseBLXteaSixZerohrOne{} at $\sigma_n=0.1/0.3$, against \ptwohairefBLXteaSixZerohrOne{} without noise), and no score attribution differs significantly from \LX{} (H5a not supported). PI-CAX, with its normalising statistics recalibrated on the same data, stays at \ptwohainoiseAPICAXteaSixZerohrOne{} and \ptwohainoiseBPICAXteaSixZerohrOne. \emph{Without} that recalibration it collapses (\pcfrozenhaiAtea{} and \pcfrozenhaiBtea), so its statistics must be refitted whenever sensor noise changes. On PCL-Sim, noise mainly delays detection, and all methods reach 0.91--0.95 at 60\,s with \TEA.
+\item \emph{Decoy.} A small bias on the PV of an innocent loop captures the top rank in at most \ptwosimdecoyLXteaSixZerodecoytopOne{} of attacks for any method with \TEA{} (PI-CAX \ptwosimdecoyPICAXteaSixZerodecoytopOne). A non-adaptive decoy of this size is ineffective against all methods, so it cannot discriminate between them (H5b not supported).
+\end{itemize}
+
 \input{generated/tab_phase2.tex}
 
-\subsection{RQ6: Leakage from random window splits}
-We trained a gradient-boosting classifier on window features (last value, mean and standard deviation of every tag) from the HAI attack files, as supervised XAI-IDS studies do.
-\begin{itemize}
-\item \emph{Random 70/30 split.} F1 $=\leakRandomFOne\pm\leakRandomFOnesd$ and average precision \leakRandomAP{} (5 seeds).
-\item \emph{Chronological, attack-disjoint split} (train on test1--3, evaluate on test4--5). The same model reaches F1 $=\leakBlockedFOne\pm\leakBlockedFOnesd$ and AP \leakBlockedAP.
-\end{itemize}
-A random split inflates F1 by $\approx$0.37 because overlapping windows of the same attack instance fall on both sides of the split. H6 is supported. Explanations computed for models evaluated this way inherit the optimism.
+\subsection{Leakage from random window splits (RQ5)}
+A gradient-boosting classifier on window features (last value, mean and standard deviation of every tag) of the HAI attack files reaches F1 $=\leakRandomFOne\pm\leakRandomFOnesd$ with a random 70/30 split, but F1 $=\leakBlockedFOne\pm\leakBlockedFOnesd$ with a chronological, attack-disjoint split (train on test1--3, evaluate on test4--5; 5 seeds). Overlapping windows of the same attack instance on both sides of a random split inflate F1 by $\approx$0.37 (H6 supported); explanations of models evaluated this way inherit the optimism.
 
-\subsection{Summary of hypotheses}
-\begin{table}[h]
+\begin{table}[t]
 \centering\scriptsize
-\caption{Outcome of the pre-specified hypotheses.}\label{tab:hyp}
+\caption{Outcome of the pre-specified hypotheses and of the post hoc PI-CAX comparison.}\label{tab:hyp}
 \begin{tabular}{@{}lp{5.2cm}p{5.6cm}@{}}
 \toprule
 H & Statement & Outcome\\
 \midrule
-H1 & \LX{} localizes better than tag-level methods & partially: best black-box at the alarm on HAI; not better than IG, nor than \LX-bg on PCL-Sim\\
+H1 & \LX{} localizes better than tag-level methods & partially: best score attribution at the alarm on HAI; not better than IG, nor than \LX-bg on PCL-Sim\\
 H2 & \TEA{} improves accuracy after the alarm and temporal stability & supported (both benchmarks, all methods)\\
-H3 & \LX+\TEA{} has deterministic cost and the best DCL / in-time rate & cost: supported; DCL: not supported (tied on HAI; IG/\LX-bg slightly better on PCL-Sim)\\
+H3 & \LX+\TEA{} has deterministic cost and the best DCL / in-time rate & cost: supported; DCL: not supported\\
 H4 & control structure beats data-driven / random grouping & supported ($p<10^{-10}$)\\
-H5a & \LX+\TEA{} degrades less under sensor noise & not supported (no significant differences; \LX{} numerically lower on HAI)\\
-H5b & decoy captures top-1 less often with \LX+\TEA & not supported (decoy ineffective against all methods, $\le$5\,\% with \TEA)\\
+H5a & \LX+\TEA{} degrades less under sensor noise & not supported\\
+H5b & a decoy captures top-1 less often with \LX+\TEA & not supported (decoy ineffective against all methods)\\
 H6 & random splits inflate detection & supported (F1 \leakRandomFOne{} vs.\ \leakBlockedFOne)\\
+\midrule
+post hoc & PI-CAX vs.\ all other configurations & better at the alarm and at +60\,s on both benchmarks and in DCL@1(60\,s) on HAI; tied in the PCL-Sim in-time rate; needs recalibration under changed noise\\
 \bottomrule
 \end{tabular}
 \end{table}
