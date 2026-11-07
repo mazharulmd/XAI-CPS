@@ -129,32 +129,29 @@ def front_matter(main):
     abstract = strip_comments(read("sections/abstract.tex")).strip()
     keywords = re.search(r"\\begin\{keyword\}(.*?)\\end\{keyword\}", main, re.S).group(1).strip()
     keywords = re.sub(r"\s*\\sep\s*", "; ", keywords)
-    authors = re.findall(r"\\author\[(\w+)\]\{([^\\}]+)", main)
     aff = {}
-    for m in re.finditer(r"\\affiliation\[(\w+)\]\{(.*?)\}\}", main, re.S):
+    for m in re.finditer(r"\\affiliation(?:\[(\w+)\])?\{(.*?)\}\}", main, re.S):
         fields = dict(re.findall(r"(\w+)=\{([^}]*)\}", m.group(2) + "}"))
-        aff[m.group(1)] = ", ".join(fields[k] for k in ("organization", "addressline", "city", "postcode", "country") if k in fields)
-    emails = re.findall(r"\\ead\{([^}]+)\}", main)
+        aff[m.group(1) or ""] = ", ".join(fields[k] for k in ("organization", "addressline", "city", "postcode", "country") if k in fields)
+    for m in re.finditer(r"\\address(?:\[(\w+)\])?\{([^{}]*)\}", main):
+        aff[m.group(1) or ""] = m.group(2).strip()
     orcid = dict(re.findall(r"\\fntext\[(\w+)\]\{ORCID: \\href\{[^}]+\}\{([^}]+)\}", main))
-    order = list(dict.fromkeys(k for k, _ in authors))
-    mark = {k: "abc"[i] for i, k in enumerate(order)}
-    # map e-mails to authors in order of appearance in the source
-    blocks = re.split(r"(?=\\author\[)", main[main.index("\\author["):main.index("\\affiliation[")])
+    end = min(i for i in (main.find("\\affiliation"), main.find("\\address")) if i >= 0)
+    region = main[main.index("\\author"):end]
     lines = []
-    for b in [b for b in blocks if b.startswith("\\author[")]:
-        name = re.search(r"\\author\[\w+\]\{([^\\}]+)", b).group(1).strip()
-        key = re.search(r"\\author\[(\w+)\]", b).group(1)
+    for b in re.split(r"(?=\\author[\[{])", region):
+        m = re.match(r"\\author(?:\[(\w+)\])?\{([^\\}]+)", b)
+        if not m:
+            continue
         em = re.findall(r"\\ead\{([^}]+)\}", b)
         oc = re.search(r"\\fnref\{(\w+)\}", b)
-        corr = "\\corref" in b
-        extra = []
-        if em:
-            extra.append("e-mail: " + ", ".join(em))
-        if oc and oc.group(1) in orcid:
-            extra.append("ORCID: " + orcid[oc.group(1)])
-        lines.append((name, key, corr, "; ".join(extra)))
-    author_line = ", ".join(f"{n}\\textsuperscript{{{mark[k]}{',*' if c else ''}}}" for n, k, c, _ in lines)
-    aff_lines = "\n\n".join(f"\\textsuperscript{{{mark[k]}}} {aff[k]}" for k in order)
+        extra = (["e-mail: " + ", ".join(em)] if em else []) + (["ORCID: " + orcid[oc.group(1)]] if oc and oc.group(1) in orcid else [])
+        lines.append((m.group(2).strip(), m.group(1) or "", "\\corref" in b, "; ".join(extra)))
+    keys = list(dict.fromkeys(k for _, k, _, _ in lines))
+    mark = {k: ("abc"[i] if len(keys) > 1 else "") for i, k in enumerate(keys)}
+    author_line = ", ".join(n + ("\\textsuperscript{" + mark[k] + (",*" if c and mark[k] else "*" if c else "") + "}" if (mark[k] or c) else "")
+                            for n, k, c, _ in lines)
+    aff_lines = "\n\n".join((f"\\textsuperscript{{{mark[k]}}} " if mark[k] else "") + aff[k] for k in keys)
     contact = "\n\n".join(f"{n}: {x}" for n, _, _, x in lines)
     return (f"\\title{{{title}}}\n\\begin{{document}}\n\\maketitle\n\n{author_line}\n\n{aff_lines}\n\n"
             f"\\textsuperscript{{*}} Corresponding author.\n\n{contact}\n\n"

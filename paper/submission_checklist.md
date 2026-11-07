@@ -10,7 +10,7 @@ ScienceDirect page itself blocks automated access, so re-read it before submitti
 | Abstract <= 250 words, structured (background/gap, objective, method, results, conclusion) | 248 words (counting every number as a word) |
 | Highlights: 3-5 bullets, <= 85 characters each, separate file | `highlights.txt` (5 bullets, 72-82 characters) |
 | Keywords | 6 keywords |
-| Review model: single anonymized; title page with authors and corresponding author's e-mail | in `main.tex`: Md Mazharul Islam (corresponding; ORCID 0000-0001-6225-1487), Sazzad Hossain (ORCID 0000-0002-9675-0468), Mamunur Rashid Alex -- **TODO: confirm Md Mazharul Islam's department and the corresponding author** |
+| Review model: single anonymized; title page with authors and corresponding author's e-mail | in `main.tex`: Md Mazharul Islam (corresponding; ORCID 0000-0001-6225-1487), Sazzad Hossain (ORCID 0000-0002-9675-0468), Mamunur Rashid Alex; all Department of Electrical and Computer Engineering, North South University, Dhaka 1229 |
 | Declaration of generative AI use (Elsevier template wording) | in `sections/declarations.tex` -- **TODO: authors confirm after their own review** |
 | Declaration of competing interest, funding, CRediT roles | in `sections/declarations.tex` -- **TODO: confirm/complete** |
 | Data availability statement | in `sections/declarations.tex` |
