@@ -6,11 +6,11 @@ ScienceDirect page itself blocks automated access, so re-read it before submitti
 
 | Requirement | Status |
 |---|---|
-| Article length <= 12,000 words incl. abstract, main text, references and appendices | 11,241 words counting **everything** in `main.pdf` (tables, captions, title page, declarations, references); appendix moved to `supplementary.pdf` |
-| Abstract <= 250 words | 222 words |
+| Article length <= 12,000 words incl. abstract, main text, references and appendices | about 11,400 words counting **everything** in `main.pdf` (tables, captions, title page, declarations, references); appendix moved to `supplementary.pdf` |
+| Abstract <= 250 words, structured (background/gap, objective, method, results, conclusion) | 248 words (counting every number as a word) |
 | Highlights: 3-5 bullets, <= 85 characters each, separate file | `highlights.txt` (5 bullets, 72-82 characters) |
 | Keywords | 6 keywords |
-| Review model: single anonymized; title page with authors and corresponding author's e-mail | in `main.tex` -- **TODO: add co-authors, affiliations, ORCID iDs** |
+| Review model: single anonymized; title page with authors and corresponding author's e-mail | in `main.tex` (Md Mazharul Islam, corresponding; Sazzad Hossain, ORCID 0000-0002-9675-0468) -- **TODO: confirm Md Mazharul Islam's department and ORCID, and who is corresponding author** |
 | Declaration of generative AI use (Elsevier template wording) | in `sections/declarations.tex` -- **TODO: authors confirm after their own review** |
 | Declaration of competing interest, funding, CRediT roles | in `sections/declarations.tex` -- **TODO: confirm/complete** |
 | Data availability statement | in `sections/declarations.tex` |

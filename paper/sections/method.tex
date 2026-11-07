@@ -5,26 +5,36 @@
 \begin{figure}[t]
 \centering
 \resizebox{\linewidth}{!}{%
-\begin{tikzpicture}[font=\footnotesize, node distance=4mm and 6mm,
-  box/.style={draw, rounded corners=2pt, align=center, minimum height=9mm, inner sep=3pt, fill=white},
-  data/.style={box, fill=black!4},
-  ours/.style={box, draw=blue!60!black, fill=blue!6, thick},
-  ar/.style={-{Stealth[length=2mm]}, thick}]
-\node[data] (hist) {Historian / SCADA feed\\ $\bm x_t\in\mathbb R^d$ (1\,Hz)};
-\node[box, right=of hist] (det) {Forecasting detector\\ $e(Z_t)$, EWMA $s_t$, $\theta$};
-\node[box, right=of det] (alarm) {Alarm at $t_a$\\ ref.\ $t_{\mathrm{ref}}=t_a-\Delta_{\mathrm{ref}}$};
-\node[data, below=7mm of hist] (pid) {P\&ID / controller config\\ loops $g_1,\dots,g_L$};
-\node[ours, below=7mm of det] (lx) {Loop attribution:\\ \LX{} (exact Shapley, $2^L$ evals)\\ or PI-CAX (physical prior)};
-\node[ours, right=of lx] (tea) {\TEA: $A_T=\sum_t\omega_t\,p_t$\\ confidence $c_T$};
-\node[ours, below=6mm of tea] (ref) {Tag refinement in\\ top loop (H-\LX)};
-\node[data, right=6mm of tea] (op) {Operator view:\\ ranked loops + tags,\\ delivered by $t_{\mathrm{on}}+D$};
-\draw[ar] (hist) -- (det); \draw[ar] (det) -- (alarm);
-\draw[ar] (pid) -- (lx); \draw[ar] (alarm.south) |- ($(lx.east)+(0,2mm)$);
-\draw[ar] (lx) -- node[above,font=\scriptsize]{$\phi_t$ every $\Delta$} (tea);
-\draw[ar] (tea) -- (op); \draw[ar] (tea) -- (ref); \draw[ar] (ref) -| (op);
-\draw[ar, dashed] (hist.south) ++(5mm,0) |- ($(lx.west)+(0,-2mm)$);
+\begin{tikzpicture}[font=\footnotesize, >={Stealth[length=2.2mm]},
+  base/.style={draw, rounded corners=3pt, align=center, text width=3.1cm, minimum height=1.75cm, inner sep=4pt, line width=0.8pt},
+  input/.style={base, draw=black!55, fill=black!6},
+  detect/.style={base, draw=orange!80!black, fill=orange!14},
+  explain/.style={base, draw=blue!65!black, fill=blue!10},
+  operator/.style={base, draw=green!45!black, fill=green!14},
+  ar/.style={->, line width=0.9pt, draw=black!75},
+  lab/.style={font=\scriptsize, text=black!80}]
+% row 1: data and detection
+\node[input]  (hist)  at (0,0)     {\textbf{Historian / SCADA}\\ tags $\bm x_t\in\mathbb R^d$ at 1\,Hz};
+\node[detect] (det)   at (4.6,0)   {\textbf{Forecasting detector}\\ score $e(Z_t)$, EWMA $s_t$};
+\node[detect] (alarm) at (9.2,0)   {\textbf{Alarm} at $t_a$\\ when $s_t>\theta$};
+% row 2: explanation and delivery
+\node[input]    (pid) at (0,-2.9)   {\textbf{Loop map}\\ P\&ID / controller configuration: loops $g_1,\dots,g_L$};
+\node[explain]  (lx)  at (4.6,-2.9) {\textbf{Loop attribution}\\ \LX{} (exact Shapley)\\ or PI-CAX (physical prior)};
+\node[explain]  (tea) at (9.2,-2.9) {\textbf{\TEA}\\ $A_T=\sum_t\omega_t\,p_t$,\\ confidence $c_T$};
+\node[operator] (op)  at (13.8,-2.9){\textbf{Operator}\\ ranked loops and tags, delivered by $t_{\mathrm{on}}+D$};
+% row 3: tag refinement
+\node[explain]  (hlx) at (9.2,-5.4) {\textbf{Tag refinement}\\ H-\LX{} within the top-ranked loop};
+% arrows
+\draw[ar] (hist) -- (det);
+\draw[ar] (det) -- (alarm);
+\draw[ar] (pid) -- (lx);
+\draw[ar] (alarm.south) -- ++(0,-0.55) -| node[pos=0.25, below, lab] {trigger; window $Z_t$} (lx.north);
+\draw[ar] (lx) -- node[above, lab] {$\phi_t$} node[below, lab] {every $\Delta$} (tea);
+\draw[ar] (tea) -- (op);
+\draw[ar] (tea) -- node[right, lab] {top loop} (hlx);
+\draw[ar] (hlx) -| node[pos=0.25, below, lab] {tags} (op);
 \end{tikzpicture}}
-\caption{Deadline-aware localization pipeline. Shaded blue: components proposed in this paper. The detector, the explainer and the delivery schedule together determine whether a correct localization reaches the operator before the deadline $D$.}\label{fig:arch}
+\caption{Deadline-aware explanation pipeline. Grey: inputs; orange: detection; blue: explanation components studied in this paper (\LX{} and PI-CAX are alternative loop-level explainers); green: delivery to the operator. After the alarm, the selected explainer attributes the anomaly to control loops every $\Delta$ seconds, \TEA{} accumulates these attributions, and the top loop is refined to tags. Detection delay, explainer latency and correctness together determine whether a correct localization reaches the operator before the deadline $D$.}\label{fig:arch}
 \end{figure}
 
 \subsection{Loop game with an incident-local reference}
