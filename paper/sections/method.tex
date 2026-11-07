@@ -34,7 +34,7 @@
 \draw[ar] (tea) -- node[right, lab] {top loop} (hlx);
 \draw[ar] (hlx) -| node[pos=0.25, below, lab] {tags} (op);
 \end{tikzpicture}}
-\caption{Deadline-aware explanation pipeline. Grey: inputs; orange: detection; blue: explanation components studied in this paper (\LX{} and PI-CAX are alternative loop-level explainers); green: delivery to the operator. After the alarm, the selected explainer attributes the anomaly to control loops every $\Delta$ seconds, \TEA{} accumulates these attributions, and the top loop is refined to tags. Detection delay, explainer latency and correctness together determine whether a correct localization reaches the operator before the deadline $D$.}\label{fig:arch}
+\caption{Deadline-aware explanation pipeline. Grey: inputs; orange: detection; blue: explanation (\LX{} or PI-CAX, \TEA, tag refinement); green: delivery to the operator before the deadline $D$.}\label{fig:arch}
 \end{figure}
 
 \subsection{Loop game with an incident-local reference}

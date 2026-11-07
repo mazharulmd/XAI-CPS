@@ -11,7 +11,7 @@
 \usepackage{graphicx,booktabs,multirow,siunitx,xcolor}
 \usepackage{tikz}
 \usetikzlibrary{arrows.meta,positioning,fit,backgrounds,calc}
-\usepackage[hidelinks]{hyperref}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
 \usepackage{algorithm,algpseudocode}
 \usepackage[capitalise]{cleveref}
 \usepackage{lineno}
@@ -35,8 +35,9 @@
 \begin{frontmatter}
 \title{Explanations That Arrive in Time: Deadline-Aware, Control-Loop-Structured Explainable AI for Intrusion Detection in Cyber-Physical Systems}
 
-%% TODO(authors): confirm Md Mazharul Islam's affiliation (department) and ORCID iD, and the corresponding author.
-\author[nsu]{Md Mazharul Islam\corref{cor1}}
+%% TODO(authors): confirm Md Mazharul Islam's affiliation (department) and the corresponding author.
+\author[nsu]{Md Mazharul Islam\corref{cor1}\fnref{orcidmi}}
+\fntext[orcidmi]{ORCID: \href{https://orcid.org/0000-0001-6225-1487}{0000-0001-6225-1487}.}
 \ead{mazharul.islam1@northsouth.edu}
 \cortext[cor1]{Corresponding author.}
 
@@ -44,6 +45,9 @@
 \fntext[orcidsh]{ORCID: \href{https://orcid.org/0000-0002-9675-0468}{0000-0002-9675-0468}.}
 \ead{hossain.sazzad01@northsouth.edu}
 \ead{sazzad.hossain.cs@gmail.com}
+
+\author[ece]{Mamunur Rashid Alex}
+\ead{mamunur.alex@northsouth.edu}
 
 \affiliation[nsu]{organization={North South University},
             city={Dhaka},

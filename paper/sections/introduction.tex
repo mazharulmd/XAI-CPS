@@ -8,19 +8,10 @@ Two observations motivate this work. First, the most systematic study of attribu
 
 \paragraph{Contributions}
 \begin{enumerate}
-\item \textbf{Deadline-conditioned evaluation.} The metrics DCL@$k(D)$ and the in-time rate against physical hazard deadlines account for detection delay, explainer latency and the correctness of the explanation actually delivered (\cref{sec:problem}).
-\item \textbf{Benchmarks with localization ground truth.} We release loop- and tag-level ground truth for all 50 attacks of HAI~21.03 \citep{shin2021hai}, cross-checked against an independent transcription (49/50 agreement), and PCL-Sim, an open closed-loop simulator whose \SimNattacks{} attacks carry hazard deadlines computed from the true physical state (\cref{sec:setup}).
-\item \textbf{Loop-structured explainers and \TEA} (\cref{sec:method}), with an ablation identifying which physical prior makes PI-CAX work.
-\item \textbf{A leakage-free, statistically tested comparison} of 13 attribution configurations, four detector families and three seeds on both benchmarks, covering accuracy over time, deadlines, latency, faithfulness, stability, noise and decoy robustness (\cref{sec:results}).
+\item \textbf{Deadline-conditioned evaluation.} The metrics DCL@$k(D)$ and the in-time rate against physical hazard deadlines account for detection delay, explainer latency and the correctness of the explanation actually delivered.
+\item \textbf{Benchmarks with localization ground truth.} We release loop- and tag-level ground truth for all 50 attacks of HAI~21.03 \citep{shin2021hai}, cross-checked against an independent transcription (49/50 agreement), and PCL-Sim, an open closed-loop simulator whose \SimNattacks{} attacks carry hazard deadlines computed from the true physical state.
+\item \textbf{Loop-structured explainers and \TEA}, with an ablation identifying which physical prior makes PI-CAX work.
+\item \textbf{A leakage-free, statistically tested comparison} of 13 attribution configurations, four detector families and three seeds on both benchmarks, covering accuracy over time, deadlines, latency, faithfulness, stability, noise and decoy robustness.
 \end{enumerate}
-
-\paragraph{Summary of findings}
-\begin{itemize}
-\item \emph{Score attributions fail as attacks propagate.} Every gradient-, sampling- or Shapley-based method degrades after the alarm as controllers spread the effect to coupled loops. \TEA{} recovers part of the loss for all of them, after which the leading score attributions are within a few points of each other.
-\item \emph{A physical prior fixes this.} PI-CAX is significantly more accurate than every other configuration on both benchmarks, at the alarm and after it. Almost all of its advantage comes from separating persistent from oscillatory deviations.
-\item \emph{Loop structure is essential.} Data-driven or random groupings fail. In HAI, manipulated setpoints almost never appear in the recorded data (\spVisible{} of \spN{} cases), so only the loop, not the tag, can be identified.
-\item \emph{Detection limits timeliness.} On hazardous simulated attacks, \intimeFailUndeliveredPct\,\% of deadline misses are late or missed detections.
-\item \emph{Leakage matters.} A random window split inflates supervised detection F1 on HAI from \leakBlockedFOne{} to \leakRandomFOne.
-\end{itemize}
 
 \paragraph{Paper organization} The remainder of this paper is organized as follows. \Cref{sec:related} reviews related work on XAI for CPS intrusion detection and on evaluating explanations. \Cref{sec:problem} formalizes the system and threat model and defines the deadline-conditioned metrics. \Cref{sec:method} presents \LX, \TEA, tag refinement and PI-CAX. \Cref{sec:setup} describes the benchmarks, detectors, explainers and evaluation protocol. \Cref{sec:results} reports the results, \cref{sec:discussion} discusses their implications and limitations, and \cref{sec:conclusion} concludes.
