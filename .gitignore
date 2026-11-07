@@ -23,3 +23,4 @@ results/raw_picax/
 results/raw_picax_ablation/
 results/raw_picax_frozen/
 paper/*.spl
+paper/build_docx/

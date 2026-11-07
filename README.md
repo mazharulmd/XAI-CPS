@@ -93,6 +93,12 @@ python3 scripts/analyze.py --datasets sim hai sim-decoy && python3 scripts/make_
 cd paper && latexmk -pdf main.tex && latexmk -pdf supplementary.tex
 ```
 
+Word version for the submission system (needs pandoc and pdftoppm; uses `main.aux` for figure, table, section and equation numbers):
+
+```bash
+cd paper && python3 make_docx.py
+```
+
 ## Leakage controls (summary)
 
 - Detectors are trained on normal data only.
